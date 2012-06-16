@@ -49,6 +49,7 @@ Selenium (WebDriver)
 * Ruby Example: Ruby code at <http://seleniumhq.org/docs/03_webdriver.html>
 
 * Live Example: IRB
+
         #gem install selenium-webdriver
         require 'selenium-webdriver'
         driver = Selenium::WebDriver.for :firefox
@@ -71,6 +72,7 @@ Capybara
 * My cheatsheet: <https://github.com/boochtek/cheatsheets/blob/master/capybara.md>
 
 * Live Example: IRB
+
         #gem install capybara
         require 'capybara/dsl'
         Capybara.default_driver = :selenium
@@ -91,6 +93,7 @@ Cucumber
 * Scenario
 * Scenario Outlines / Examples
 * Feature Introduction
+
         As a <role>,
         I want to <perform some action>
         In order to <achieve some goal>
@@ -106,6 +109,7 @@ Cucumber
   * Descriptive versus imperative
 
 * Example:
+
         Given I am on the Google search page
         When I search for "Craig Buchek"
         Then I should see "craigbuchek.com" in the search results
@@ -135,6 +139,7 @@ Credits
 
 Advanced Selenium
 =================
+
         wait_for_element(locator)
         is_element_present(locator)
         is_something_selected(locator)
