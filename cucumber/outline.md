@@ -114,12 +114,14 @@ Cucumber
   * Descriptive versus imperative
 
 * Imperative Example:
+
         Given I go to "http://google.com"
         When I enter "Craig Buchek" in "q"
         And I hit the search button
         Then I should see "craigbuchek.com"
 
 * Descriptive Example:
+
         Given I am on the Google search page
         When I search for "Craig Buchek"
         Then I should see "craigbuchek.com" in the search results
