@@ -22,8 +22,8 @@ Selenium (WebDriver)
 * <http://seleniumhq.org/>
 * Supported languages:
   * Java
-  * C#
   * Ruby
+  * C#
   * Python
   * Perl (3rd party)
   * PHP (3rd party)
@@ -35,7 +35,7 @@ Selenium (WebDriver)
   * Opera 11.5+
   * Android 2.3+ (requires extra download and Android SDK)
   * iOS 3.2+ (requires extra download, XCode, iOS SDK, and developer license)
-* Selenium IDE
+* Selenium IDE (Firefox plugin to create scripts)
 * Selenium Server (remote control)
 * Selenium RC (old remote control)
 * Selenium Grid (distribute over multiple machines or VMs)
@@ -60,7 +60,6 @@ Selenium (WebDriver)
         #inputElement.submit
         buttonElement = driver.find_element :name => "btnG"
         buttonElement.click
-        # TODO: Observe results.
         driver.quit
 
 
@@ -74,13 +73,19 @@ Capybara
 * Live Example: IRB
 
         #gem install capybara
+        #gem install rspec
         require 'capybara/dsl'
-        Capybara.default_driver = :selenium
         include Capybara::DSL
-        visit('google.com')
+        Capybara.default_driver = :selenium
+        require 'rspec'
+        include RSpec::Matchers
+        visit('http://google.com')
         fill_in 'q', with: 'Craig Buchek'
         click_button 'gbqfb' # Or click_on 'gbqfb'
-        # TODO: Observe results.
+        page.has_content?('craigbuchek.com')
+        page.should have_content('STLLUG')
+        page.should_not have_content('John Doe')
+        page.should have_content('kgkjhgkjhgjk')
         quit
 
 
@@ -98,7 +103,7 @@ Cucumber
         I want to <perform some action>
         In order to <achieve some goal>
 * Goal should be one of:
-  * Increase Revenue | Reduce Costs | Protect Revenue
+  * Increase Revenue, Reduce Costs, Protect Revenue, Increase Goodwill
   * You might have to pop the "why" stack 5 times to get to the true business value
 * Step definitions convert English to Ruby (or Java)
   * Cucumber compares English strings to Ruby regular expressions
@@ -108,8 +113,13 @@ Cucumber
 * Higher-level steps
   * Descriptive versus imperative
 
-* Example:
+* Imperative Example:
+        Given I go to "http://google.com"
+        When I enter "Craig Buchek" in "q"
+        And I hit the search button
+        Then I should see "craigbuchek.com"
 
+* Descriptive Example:
         Given I am on the Google search page
         When I search for "Craig Buchek"
         Then I should see "craigbuchek.com" in the search results
@@ -149,5 +159,3 @@ Advanced Selenium
         set_speed(milliseconds)
         highlight(locator)
         get_xpath_count(xpath)
-        Bermuda - Capybara step library for jQuery UI widgets
-        crb - irb + Cucumber
