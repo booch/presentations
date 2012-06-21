@@ -145,17 +145,3 @@ Credits
 * Books
   * RSpec Book
   * Cucumber Book
-
-
-Advanced Selenium
-=================
-
-        wait_for_element(locator)
-        is_element_present(locator)
-        is_something_selected(locator)
-        get_table(locator, row, column)
-        get_selected_label(locator)
-        assign_id(locator, id)
-        set_speed(milliseconds)
-        highlight(locator)
-        get_xpath_count(xpath)
