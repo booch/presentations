@@ -39,6 +39,11 @@ HTML 5 demos
 
 Thursday
 ========
+
+  * Craig Buchek
+  * St. Louis GNU/Linux Users Group
+  * 2012-11-15
+
   * Video, Geolocation, Awesomeness - http://www.thewildernessdowntown.com/
   * Another interactive film - http://www.ro.me/
   * Mario Kart in Canvas - http://www.nihilogic.dk/labs/mariokart/
