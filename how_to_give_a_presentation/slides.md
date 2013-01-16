@@ -81,6 +81,7 @@ How to Give a Presentation
 * [Presentation tips](http://wiki.sluug.org/presentations/tips)
 * [How to Give a Great Presentation](http://www.pc.maricopa.edu/data/GlobalFiles/file/learning_tech_development/ocl/How%20to%20give%20a%20presentation.pdf) by HP (PDF)
 * [How to Create Great Slides for Presentations](http://www.slideshare.net/mikejeffs/how-to-create-great-slides-for-presentations)
+* [Presentation Zen](http://www.presentationzen.com/) by Garr Reynolds
 
 ---
 
