@@ -76,3 +76,17 @@ How to Give a Presentation
 
 ---
 
+# Resources
+
+* [Presentation tips](http://wiki.sluug.org/presentations/tips)
+* [How to Give a Great Presentation](http://www.pc.maricopa.edu/data/GlobalFiles/file/learning_tech_development/ocl/How%20to%20give%20a%20presentation.pdf) by HP (PDF)
+* [How to Create Great Slides for Presentations](http://www.slideshare.net/mikejeffs/how-to-create-great-slides-for-presentations)
+
+---
+
+# Presentation Software
+
+* [PowerPoint](http://office.microsoft.com/en-us/powerpoint/powerpoint-presentation-and-slide-software-FX101825655.aspx)
+* [KeyNote](http://www.apple.com/iwork/keynote/)
+* [Prezi](http://prezi.com)
+* [Reveal](http://lab.hakim.se/reveal-js/) / [Rvl.io](http://www.rvl.io/)
