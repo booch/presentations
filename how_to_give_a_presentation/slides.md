@@ -2,8 +2,8 @@ How to Give a Presentation
 ==========================
 
 ### by Craig Buchek
-### St. Louis GNU/Linux Users Group
-### January 17, 2013
+#### St. Louis GNU/Linux Users Group
+##### January 17, 2013
 
 ---
 
@@ -15,6 +15,9 @@ How to Give a Presentation
 ---
 
 # Start with a Joke
+
+* Or an anecdote
+* Or a surprising fact
 
 ---
 
@@ -44,21 +47,23 @@ How to Give a Presentation
 
 ---
 
-# Preparing the Presentation
+# Preparing Slides
 
-* Preparing: Slides
-  * Start with an outline.
-  * Build slides from the outlines.
-  * The fewer words on a slide, the better.
-  * Slides are the START of the conversation.
-  * Tell a story.
-  * Include facts.
+* Start with an outline.
+* Build slides from the outlines.
+* The fewer words on a slide, the better.
+* Slides are the START of the conversation.
+* Tell a story.
+* Include facts.
 
-* Preparing: Demo
-  * Figure out what you want to show.
-  * Practice.
-  * Practice.
-  * Practice.
+---
+
+# Preparing a Demo
+
+* Figure out what you want to show.
+* Practice.
+* Practice.
+* Practice.
 
 ---
 
