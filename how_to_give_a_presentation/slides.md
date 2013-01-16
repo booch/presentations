@@ -90,4 +90,4 @@ How to Give a Presentation
 * [PowerPoint](http://office.microsoft.com/en-us/powerpoint/powerpoint-presentation-and-slide-software-FX101825655.aspx)
 * [KeyNote](http://www.apple.com/iwork/keynote/)
 * [Prezi](http://prezi.com)
-* [Reveal](http://lab.hakim.se/reveal-js/) / [Rvl.io](http://www.rvl.io/)
+* [Reveal.js](http://lab.hakim.se/reveal-js/) / [Rvl.io](http://www.rvl.io/)
