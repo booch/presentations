@@ -3,6 +3,11 @@
   * Tell where you work and what you do.
   * Briefly talk about some of your relevant experience.
 * Start with a Joke
+* Why Give a Presentation?
+  * To share your knowledge.
+  * To learn.
+  * To improve your reputation.
+  * Because somebody has to.
 * Be Prepared
   * Know your audience.
   * Do some research.
@@ -19,6 +24,7 @@
     * The fewer words on a slide, the better.
     * Slides are the START of the conversation.
     * Tell a story.
+    * Include facts.
   * Preparing: Demo
     * Figure out what you want to show.
     * Practice.
