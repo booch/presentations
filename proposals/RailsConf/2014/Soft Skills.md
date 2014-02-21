@@ -1,27 +1,23 @@
-What They Don't Teach In School -- Or Work -- Or Tech Conferences
-=================================================================
+8 Weird Tricks to Write Better Software
+=======================================
 
 Abstract
 --------
 
-You didn't come to a Rails conference to learn about "soft skills".
-As developers, we're more focused on learning new technical skills.
-As a community, we're not very good at teaching soft skills either.
+Learning is always important in our field.
+But are we focusing on what's important?
+We do a pretty good job of learning about new technologies.
+But what about the process of writing software?
+And what about people skills?
 
-But the most difficult things to learn are usually the most important.
 This presentation will provide some tips and tricks to improve the way
 we work, and the way we work with others.
+
+If you think "soft skills" aren't interesting, then this is the talk for you!
 
 
 Details
 -------
-
-[If you need to trim the title, take out the " -- Or Work". If you still
-need to trim it, change "Tech Conferences" to "RailsConf".]
-
-Many of these tips come from the Agile community, but we won't talk 
-much about Agile itself -- just how these particular practices are
-helpful.
 
 Some points I'd like to make (along with ways to deal with them):
 

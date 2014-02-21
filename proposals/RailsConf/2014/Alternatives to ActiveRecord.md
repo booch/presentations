@@ -4,10 +4,10 @@ Alternatives to ActiveRecord
 Abstract
 --------
 
-ActiveRecord comes with Rails, and its easy to get started with it.
-But as your project grows, you'll start to see some problems.
-Tests will take too long to run. Models will try to do too much,
-and you'll have a hard time dealing with the complexity.
+Do you frequently get frustrated with ActiveRecord?
+Are your tests taking too long to run?
+Are your models trying to do too much?
+Is there a better way?
 
 There are a few good alternatives to ActiveRecord. We'll scan the landscape
 and see when it might be a good idea to use one of those other ORMs. We'll
@@ -31,10 +31,16 @@ Pitch
 -----
 
 I've never quite been happy with ActiveRecord. It's easy to get started,
-but for larger projects, it tries to do too much. Because persistence and
-behavior are combined in a single class, it's hard to write fast tests for
-models. I'm also frequently frustrated by having to look in the model for
-some details and the schema for others.
+but as your project grows, you'll start to see problems.
+I think the sweet spot for ActiveRecord is applications with less than
+20 models.
+
+Because persistence and behavior are combined in a single class,
+it's hard to write fast tests for models. That pain is telling us something.
+I believe it's telling us that there's a better way.
+
+I'm also frequently frustrated by having to look in the model for some
+details and the schema for others. It's just not DRY enough.
 
 DataMapper was an excellent alternative, but has not seen active
 development for 2 years. I've recently gotten involved with the ROM and
@@ -43,4 +49,4 @@ ActiveRecord easier.
 
 While gathering research for a version of this presentation for my local
 Ruby users group, I found that Sequel is a great alternative that's
-definitely worth considering. I plan to try it out on my next side project.
+definitely worth considering. I'm planning to try it out on my next side project.
