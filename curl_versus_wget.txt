@@ -1,0 +1,27 @@
+Curl v Wget
+===========
+
+Curl
+----
+
+Output to stdout:                           curl http://sluug.org
+Output to a file:                           curl http://sluug.org -O
+Output to a file with a different name:     curl http://sluug.org -o curl.sluug.html
+Ignore SSL key issues:                      curl -k https://tv.eurosport.com/
+Follow redirects:                           curl -L ...
+Provide a password:                         curl -u discuss:freely http://www.sluug.org/pipermail/discuss
+Something other than POST or GET:           curl -X PUT ...
+Post:                                       curl -d ...
+Post form:                                  curl -F ...
+
+
+Wget
+----
+
+Output to stdout:                           wget http://sluug.org -O -
+Output to a file:                           wget http://sluug.org
+Output to a file with a different name:     wget http://sluug.org -O
+Ignore SSL key issues:                      wget --no-check-certificate https://tv.eurosport.com/
+Follow redirects:                           wget --user discuss --password freely http://www.sluug.org/pipermail/discuss
+Something other than POST or GET:           wget --method=PUT ...
+Post:                                       wget --post-data 'key1=value1&key2=value2'
