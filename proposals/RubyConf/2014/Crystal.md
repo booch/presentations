@@ -1,14 +1,13 @@
-The Crystal Language
-====================
+The Crystal Programming Language
+================================
 
 Abstract
 --------
 
-What if Ruby was a compiled language? It'd be fast!
-What if it had type inference? It'd be easier to catch errors!
-What if it prevented null pointer references? It'd be awesome!
-
-That's basically what Crystal is.
+What if Ruby was a compiled languages? It would be fast.
+What if Ruby had type inference? It would eliminate all exceptions caused by nil.
+Based on Ruby as a starting point, that's Crystal in a nutshell.
+Find out more about this exciting new language, which has the potential to be the next big thing.
 
 
 Details
@@ -24,7 +23,7 @@ Pitch
 -----
 
 I gave a (longer) version of this presentation to the local Ruby users group earlier this year.
-The primary Crystal developers attended via video, and it was well received.
+The primary developers of Crystal attended via video, and they thought it went well.
 
 I've been contributing to the Crystal standard library.
 This has helped me understand its differences from Ruby, its strengths, and its weaknesses.
@@ -32,3 +31,15 @@ Working with a new language is exciting; you can have an impact on the design of
 
 I think the combination of features in Crystal would be of great interest to Rubyists, and the learning curve is quite easy.
 The syntax and semantics are about 90% the same as Ruby, so I think it's something RubyConf attendees would be interested in.
+I really think this language has the potential to take off, and would like to give it the exposure it deserves.
+
+
+Content
+-------
+
+Downsides:
+
+* Error messages (usually from type issues)
+* No run-time dynamism (won't miss it as much as you might think)
+* Type inference issues
+* Language is still new/changing
