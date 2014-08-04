@@ -36,6 +36,7 @@ Idioms to cover:
 * Some ideas from POODR?
 * Some ways to use keyword params?
 * Ask some Ruby luminaries for more ideas?
+* Allow class or instance, perhaps (as I used in Crystal's Date class for calendar)
 * This, maybe (tell story how we used it to move stuff out of DB):
 
 ~~~ ruby
@@ -49,6 +50,7 @@ module Fields
   end
 end
 ~~~
+
 
 
 Pitch
