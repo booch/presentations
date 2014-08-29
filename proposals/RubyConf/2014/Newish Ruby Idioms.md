@@ -1,18 +1,12 @@
-New(ish) Ruby Idioms
-====================
+Ruby Idioms You're Not Using Yet
+================================
 
 Abstract
 --------
 
-In human languages, idioms are phrases that have a different meaning than their literal meaning;
-they're closely tied to the culture of the speakers.
-Idioms in programming langugaes are similar -- they're more part of the culture than the syntax.
+Idioms are some of the smallest patterns that we use in our programming languages. Learning the idioms of a language helps you more quickly understand commonly used patterns. Over time, some idioms fall out of favor, and new idioms are developed and adopted.
 
-Idioms are some of the smallest patterns that we use in our programming languages.
-Learning the idioms of a language helps you more quickly understand commonly used patterns.
-Over time, some idioms fall out of favor, and new idioms are developed and adopted.
-
-In this talk, we'll explore a few idioms that are relativley new to the Ruby community.
+In this talk, we'll explore a few idioms that are relatively new to the Ruby community.
 
 Here's an example:
 
@@ -31,25 +25,26 @@ Details
 
 Idioms to cover:
 
-* Parameterized module inclusion (example above)
-* Null pattern, perhaps?
-* Some ideas from POODR?
-* Some ways to use keyword params?
-* Ask some Ruby luminaries for more ideas?
-* Allow class or instance, perhaps (as I used in Crystal's Date class for calendar)
-* This, maybe (tell story how we used it to move stuff out of DB):
+* Parameterized module inclusion, AKA module factories (example above)
+* Using keyword parameters
+* Newer uses of Null pattern
+* Avdi's recommended `hash.fetch(key) { value_if_missing }`
+* Allow class or instance
+* Circuit Breaker
+* Tag Modules
+* Simple Struct classes (including story how we used it to move behavior out of DB):
 
 ~~~ ruby
 module Fields
-  module Types
-    class Type < Struct(:id, :name, :parser)
-    end
-    
-    Boolean = Type.new(1, 'boolean', Fields::Parsers::Boolean)
-    Date    = Type.new(2, 'date', Fields::Parsers::Date)
+  class Type < Struct(:id, :name, :parser)
   end
+    
+  Boolean = Type.new(1, 'boolean', Fields::Parsers::Boolean)
+  Date    = Type.new(2, 'date', Fields::Parsers::Date)
 end
 ~~~
+
+If accepted, I'll also continue my search for more new idioms, including asking several Ruby luminaries.
 
 
 
