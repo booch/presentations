@@ -1,83 +1,107 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>Ruby Idioms You're Not Using Yet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
-      @import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-      @import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-      @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
-      body { font-family: 'Droid Serif'; }
+      body { font-family: 'Droid Serif'; font-size: 250%; }
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .remark-slides-area { background-color: #9B111E; }
+      .remark-slide-content { background-color: #F4F4F4; }
+      .remark-slide-content { padding: 0 2em 1em 2em; font-size: 35px; }
+      .remark-slide-content .title h1 { font-size: 70px; }
+      .remark-slide-content h1 { text-align: center; font-size: 65px; }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; background-color: #E0E0E0; }
+      .remark-code { line-height: 1.25; font-size: 22.5px; }
+      .hljs-default .hljs { background-color: #E0E0E0; }
+
+      .remark-slide-number { font-size: 20px; }
     </style>
   </head>
   <body>
     <textarea id="source">
+
+class: title, center, middle
+
 Ruby Idioms You're Not Using Yet
 ================================
 
-# Craig Buchek #
+## Craig Buchek ##
 
-# RubyConf 2014 #
+## Lambda Lounge ##
+
+### November 6, 2014 ###
 
 ---
+
+class: center
 
 Follow Along
 ============
 
-http://craigbuchek.com/presentations/ruby_idioms
+http://tiny.cc/ruby_idioms
 
 ---
 
 Feedback
 ========
 
-# Twitter: CraigBuchek #
-# GitHub: booch #
+@CraigBuchek
+
+github.com/booch (and boochtek)
+
+craig@boochtek.com
 
 ---
 
 What Is An Idiom?
 =================
 
-1. an expression that cannot be understood from the meanings of its separate words but that has a separate meaning of its own
+1\. An expression that cannot be understood from the meanings of its separate words but that has a separate meaning of its own.
+
+???
+
+First I want to talk briefly about what an idiom is.
+
+The dictionary gives us 3 definitions of "idiom".
 
 ---
 
 What Is An Idiom?
 =================
 
-2. a form of a language that is spoken in a particular area and that uses some of its own words, grammar, and pronunciations
+2\. A form of a language that is spoken in a particular area and that uses some of its own words, grammar, and pronunciations.
+
+???
+
+In programming, an idiom in some ways fits all 3 definitions.
 
 ---
 
 What Is An Idiom?
 =================
 
-3. a style or form of expression that is characteristic of a particular person, type of art, etc.
+3\. A style or form of expression that is characteristic of a particular person, type of art, etc.
+
+???
+
+But I think the 3rd is most important.
 
 ---
 
 What Is An Idiom?
 =================
 
-The way we normally do things.
-
----
-
-Non-Idiomatic Ruby
-==================
-
-~~~ ruby
-for i in 1..5
-  puts "Craig is great"
-end
-~~~
+My definition: A way in which we normally express ourselves in a language.
 
 ---
 
@@ -90,6 +114,38 @@ Idiomatic Ruby
 end
 ~~~
 
+???
+
+Here's an example of idiomatic Ruby.
+
+I can tell that the person who wrote this is at least somewhat familiar with Ruby.
+
+---
+
+Non-Idiomatic Ruby
+==================
+
+~~~ ruby
+for i in 1..5
+   puts "Craig is great"
+end
+
+i = 0
+while i < 5
+    puts "Craig is great"
+    i += 1
+end
+~~~
+
+???
+
+I can tell that these were written by someone not very familiar with Ruby.
+
+Maybe they're "writing Java in Ruby".
+
+Not only is the 2nd one 2 lines longer,
+but it takes more effort for me to understand what it means.
+
 ---
 
 Idiom Or Pattern?
@@ -97,12 +153,26 @@ Idiom Or Pattern?
 
 What's the difference?
 
+???
+
+Is there a difference? I don't know.
+
 ---
 
 Pattern
 =======
 
 A template for a common solution to a common problem
+
+???
+
+A pattern is just a template for a common solution to a common problem.
+
+Patterns aren't just for design and architecture level issues.
+For example, Kent Beck's "Smalltalk Best Practice Patterns"
+talks about patterns at the method level.
+
+So I'm going to treat the 2 terms somewhat interchangably.
 
 ---
 
@@ -163,7 +233,24 @@ Uses the Factory Pattern to create a module, and add methods to it at runtime
 Module Factory
 ==============
 
-I've used other names for this one:
+~~~ ruby
+module Virtus
+  def self.model(options = {})
+    Module.new.tap do |mod|
+      if options.fetch(:constructor) { true }
+        mod.send(:include, Model::Constructor)
+      end
+    end
+  end
+end
+~~~
+
+---
+
+Module Factory
+==============
+
+Other names for this:
   - Parameterized Module Inclusion
 
 ---
@@ -172,6 +259,11 @@ Configuration Query
 ===================
 
 Ask a question about the configuration
+
+???
+
+Really just a case of good abstraction and API design.
+We take the "normal" config query up a level of abstraction.
 
 ---
 
@@ -213,7 +305,103 @@ end
 Tag Module
 ==========
 
-TODO
+A mix-in module whose sole purpose is to add a type to an object.
+
+???
+
+This one comes from Avdi Grimm's "Exceptional Ruby".
+
+In Ruby, about the only place we idiomatically test for types is exception handling.
+
+I'm open to other ideas for uses of type tagging though.
+
+---
+
+Tag Module
+==========
+
+~~~ ruby
+module MyLib
+  module Error; end
+
+  def some_method
+    do_something
+  rescue StandardError => error
+    error.extend(MyLib::Error)
+    raise
+  end
+end
+~~~
+
+Now the caller can rescue on `MyLib::Error` or the original exception.
+
+---
+
+Circuit Breaker
+===============
+
+Stop trying to access an inaccessible resource.
+
+* Slow or unresponsive network resource
+* A queue has been filled up
+* A thread pool or connection pool that's been exhausted
+
+???
+
+This one comes to us by way of Martin Fowler
+(of "Patterns of Enterprise Application Architecture" fame)
+and Michael Nygard (from "Release It!").
+
+* Reduces resources tied up in operations which are likely to fail.
+* Reduces cascading failures due to resource issues.
+
+---
+
+Circuit Breaker
+===============
+
+~~~ ruby
+def do_something
+  make_external_call unless circuit_broken?
+rescue Timeout::Error
+  break_circuit
+  raise $!
+end
+
+def circuit_broken?
+  @circuit_broken ||= false
+end
+
+def break_circuit
+  @circuit_broken = true
+end
+
+def reset_circuit
+  @circuit_broken = false
+end
+~~~
+
+Would probably use an object and a block to implement.
+
+???
+
+https://github.com/wsargent/circuit_breaker/tree/master
+
+---
+
+Circuit Breaker
+===============
+
+Lots of additional options available:
+
+* What to do when the circuit is broken
+  * Drop the request
+  * Raise an exception
+  * Use a promise to return a result later
+* Conditions for deciding when to flip the breaker
+  * Thresholds
+* Conditions to automatically reset the circuit
+* Logging and alerting
 
 ---
 
@@ -223,11 +411,22 @@ Allow Class or Instance
 ~~~ ruby
 date1 = Date.new(2014, 11, 17)
 date2 = Date.new(2014, 11, 17, Date::Calendar::Julian)
-first_julian = Date.new(Int64::MIN, Date::Calendar::Julian)
-first_gregorian = Date.new(1752, 9, 14, Date::Calendar::Gregorian)
-default_calendar = Date::Calendar::Multiple.new(first_julian, first_gregorian)
+julian_1st = Date.new(Int64::MIN, Date::Calendar::Julian)
+gregorian_1st = Date.new(1752, 9, 14, Date::Calendar::Gregorian)
+default_calendar = Date::Calendar.new(julian_1st, gregorian_1st)
 date3 = Date.new(2014, 11, 17, default_calendar)
 ~~~
+
+???
+
+This one I discovered when writing the Date class for the Crystal standard library.
+
+For `date3`, we're passing an instance.
+For `date2`, we're specifying the class.
+
+I'm honestly not sure if this is a very good idiom or not.
+
+But it seemed useful at least in the case of this API.
 
 ---
 
@@ -243,43 +442,120 @@ class Date
 end
 ~~~
 
+???
+
+The code just news up an instance of the class if it's found to be a class.
+
+In this case, the Julian and Gregorian claendars have different behavior,
+so we need them to be separate classes.
+
+Alternatively, we could make them constants that are instances of the class.
+But then we'd have to give them singleton methods.
+
+TODO: Show an example where we chose singleton methods?
+
 ---
 
 Fetch with Default Block
 ========================
 
 ~~~ ruby
-RUBY_VERSION_REQUESTED = ENV["RUBY_VERSION"] || "2.1.4"
-RUBY_VERSION_REQUESTED = ENV.fetch("RUBY_VERSION") { "2.1.4" }
+RV = ENV["RUBY_VERSION"] || "2.1.4"
+RV = ENV.fetch("RUBY_VERSION") # Raises IndexError if not found
+RV = ENV.fetch("RUBY_VERSION") { "2.1.4" }
+RV = ENV.fetch("RUBY_VERSION") { raise "Must specify RUBY_VERSION" }
 ~~~
 
----
+???
+
+This is a simple one.
+
+Also comes from Avdi.
+
+This works for `Hash`es, `Array`s, and `Hash`-like objects, such as `ENV`.
+
+Each has its pros and cons:
+
+* First is easiest, if you know the hash can't contain a nil or false
+  * Or of you don't need to distinguish
+* Second is helpful to ensure you don't pass a nil around
+  * Prevents NoMethodError at a later time
+* Third is best for cases where missing, nil, and false need to be handled differently
+* Fourth is good for failing fast and being explicit about how to fix the problem
+
+Avdi's advice is to default to the 3rd over the 1st, unless you think about it.
+
+http://devblog.avdi.org/2009/03/16/go-fetch/
 
 ---
 
-Conclusion
-==========
+Fetch with Default Block
+========================
+
+If you're the one creating the `Hash`, you can new it up with a different default:
+
+~~~ ruby
+h1 = Hash.new(:not_found)
+h1[:anything] # => :not_found
+
+h2 = Hash.new{:not_found}
+h2[:anything] # => :not_found
+~~~
+
+???
+
+Note that `Array` does not have this feature.
+
+---
+
+
+Conclusions
+===========
 
 Our idioms are not static
 
----
-
-Conclusion
-==========
-
 Be on the lookout for new idioms
+
+???
+
+The main take-away here is that was can invent or discover new idioms that fit with our existing idioms.
 
 ---
 
 References
 ==========
 
+* Confident Ruby by Avdi Grimm
+* Exceptional Ruby by Avdi Grimm
+* Martin Fowler's Bliki
+
+---
 
 Credits
 =======
 
+* Module Factory - Virtus developers
+  * Don Morrison (elskwid)
+  * Piotr Solnica (solnic)
+* Tag Module - Avdi Grimm
+* Circuit Breaker - Martin Fowler
+* Configuration Query - Kyle Stevens
+
+???
+
+http://martinfowler.com/bliki/CircuitBreaker.html
+
+---
+
+Colophon
+========
+
+Slide-show software used is [Remark][1].
+
+[1]: https://github.com/gnab/remark
+
     </textarea>
-    <script src="//gnab.github.io/remark/downloads/remark-latest.min.js">
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>
     <script>
       var slideshow = remark.create();
