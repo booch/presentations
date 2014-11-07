@@ -4,9 +4,53 @@
     <title>Ruby Idioms You're Not Using Yet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
+/*
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+*/
+@font-face {
+  font-family: 'Droid Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Serif'), local('DroidSerif'), url(DroidSerif.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Droid Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Droid Serif Bold'), local('DroidSerif-Bold'), url(DroidSerif-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Droid Serif';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Droid Serif Italic'), local('DroidSerif-Italic'), url(DroidSerif-Italic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(UbuntuMono-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Ubuntu Mono Bold'), local('UbuntuMono-Bold'), url(UbuntuMono-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Ubuntu Mono Italic'), local('UbuntuMono-Italic'), url(UbuntuMono-Italic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Yanone Kaffeesatz Regular'), local('YanoneKaffeesatz-Regular'), url(YanoneKaffeesatz-Regular.ttf) format('truetype');
+}
 
       body { font-family: 'Droid Serif'; font-size: 250%; }
       h1, h2, h3 {
@@ -57,9 +101,13 @@ Feedback
 
 @CraigBuchek
 
-github.com/booch (and boochtek)
+github.com/booch
 
 craig@boochtek.com
+
+???
+
+I'm feeling **under the weather** today, fighting off a cold.
 
 ---
 
@@ -181,6 +229,10 @@ Module Factory
 
 First, a story of discovery
 
+???
+
+This is the idiom that instigated this presentation.
+
 ---
 
 Module Factory
@@ -200,7 +252,7 @@ Isn't `table` more like an option to the module being included?
 Module Factory
 ==============
 
-This isn't valid Ruby:
+But this isn't valid Ruby:
 
 ~~~ ruby
 class User
@@ -221,12 +273,18 @@ class User
 end
 ~~~
 
+???
+
+It was the best thing **since sliced bread**.
+
 ---
 
 Module Factory
 ==============
 
-Uses the Factory Pattern to create a module, and add methods to it at runtime
+Uses the Factory Pattern to create a module
+
+Configures the created module per the parameters we pass it
 
 ---
 
@@ -244,6 +302,23 @@ module Virtus
   end
 end
 ~~~
+
+???
+
+We're using several other Ruby idioms here:
+  * Defining a class method
+  * Modifying an object in-line with `tap`
+  * Fetch with Default Value
+  * Options Hash
+  * Accessing a private method with `send`
+
+We can do a lot of different things with configuration:
+  * Take positional parameters
+  * Take a block
+  * Use the Builder Pattern
+
+If we're going to call the factory more than a few times,
+we'll probably want to cache modules for reuse where possible.
 
 ---
 
@@ -518,7 +593,11 @@ Be on the lookout for new idioms
 
 ???
 
-The main take-away here is that was can invent or discover new idioms that fit with our existing idioms.
+That's it **in a nutshell**.
+
+I hope you'll **jump on the bandwagon** and think about using some of these.
+
+The main take-away here is that we can invent or discover new idioms that fit with our existing idioms.
 
 ---
 
@@ -555,8 +634,10 @@ Slide-show software used is [Remark][1].
 [1]: https://github.com/gnab/remark
 
     </textarea>
-    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
-    </script>
+    <!--
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+    -->
+    <script src="remark-latest.min.js"></script>
     <script>
       var slideshow = remark.create();
     </script>
