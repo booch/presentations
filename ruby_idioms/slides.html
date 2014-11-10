@@ -472,6 +472,55 @@ Lots of additional options available:
 
 ---
 
+Page Object
+===========
+
+Use an object to represent a screen within your app
+
+Methods represent actions you can perform on the screen
+
+You can also ask questions about elements on the page
+
+???
+
+This one is mainly used for full-stack acceptance test.
+
+Abstracts away the actions, so you don't have to specify details.
+
+---
+
+Page Object
+===========
+
+~~~ ruby
+Given /^I have logged in$/ do
+  @home_page = LoginPage.new.login(USERNAME, PASSWORD)
+end
+
+class LoginPage
+  include Capybara::DSL
+
+  def initialize
+    visit "/login"
+  end
+
+  def login(user, password)
+    fill_in :user, user
+    fill_in :password password
+    click 'login'
+    HomePage.new(page)
+  end
+end
+~~~
+
+???
+
+Makes cucumber steps more object-oriented instead of procedural.
+
+Reduces the problem in Cucumber of having tons of global methods (in "worlds").
+
+---
+
 Allow Class or Instance
 =======================
 
@@ -606,11 +655,14 @@ Credits
   * Piotr Solnica (solnic)
 * Tag Module - Avdi Grimm
 * Circuit Breaker - Martin Fowler
+* Page Object - Selenium developers
 * Configuration Query - Kyle Stevens
 
 ???
 
 http://martinfowler.com/bliki/CircuitBreaker.html
+
+https://code.google.com/p/selenium/wiki/PageObjects
 
 ---
 
