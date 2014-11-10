@@ -524,7 +524,24 @@ Reduces the problem in Cucumber of having tons of global methods (in "worlds").
 Test Spies
 ==========
 
-I have a problem with mocking:
+I've had a long hatred of mocking
+
+It doesn't fit the patterns:
+
+  * Setup, Exercise, Verify, Teardown
+  * Arrange, Act, Assert
+  * Given, When, Then
+
+???
+
+My hatred of mocking might not be for the reason that you expect.
+
+What I hate is that a mock makes an assertion in the arrange section.
+
+---
+
+Test Spies
+==========
 
 ~~~ ruby
 require "rspec"
@@ -539,15 +556,9 @@ RSpec.describe "An invitiation" do
 end
 ~~~
 
-It doesn't fit the patterns:
-
-  * Setup, Exercise, Verify, Teardown
-  * Arrange, Act, Assert
-  * Given, When, Then
-
 ???
 
-A mock makes an assertion in the arrange section.
+The expectation is in the "wrong" place.
 
 This prevents reuse of the setup (`before` block in RSpec).
 
