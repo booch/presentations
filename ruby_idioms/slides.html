@@ -521,6 +521,61 @@ Reduces the problem in Cucumber of having tons of global methods (in "worlds").
 
 ---
 
+Test Spies
+==========
+
+I have a problem with mocking:
+
+~~~ ruby
+require "rspec"
+
+RSpec.describe "An invitiation" do
+  let(:invitation) { double("invitation", deliver: nil) }
+
+  it "should be delivered" do
+    expect(invitation).to receive(:deliver)
+    invitation.deliver
+  end
+end
+~~~
+
+It doesn't fit the patterns:
+
+  * Setup, Exercise, Verify, Teardown
+  * Arrange, Act, Assert
+  * Given, When, Then
+
+???
+
+A mock makes an assertion in the arrange section.
+
+This prevents reuse of the setup (`before` block in RSpec).
+
+---
+
+Test Spies
+==========
+
+~~~ ruby
+RSpec.describe "An invitiation" do
+  let(:invitation) { double("invitation", deliver: nil) }
+
+  it "should be delivered" do
+    invitation.deliver
+    expect(invitation).to have_received(:deliver)
+  end
+end
+~~~
+
+???
+
+Now we can exercise the code in a common `before` block if we want.
+(Although exercise is more of a "during".)
+
+And the assertion only runs in one place.
+
+---
+
 Allow Class or Instance
 =======================
 
@@ -657,6 +712,7 @@ Credits
 * Circuit Breaker - Martin Fowler
 * Page Object - Selenium developers
 * Configuration Query - Kyle Stevens
+* Spies - RSpec developers
 
 ???
 
