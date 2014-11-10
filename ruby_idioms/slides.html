@@ -647,11 +647,11 @@ This works for `Hash`es, `Array`s, and `Hash`-like objects, such as `ENV`.
 
 Each has its pros and cons:
 
-* First is easiest, if you know the hash can't contain a nil or false
+* First is easiest, if you know the hash won't contain a `nil` or `false`
   * Or of you don't need to distinguish
-* Second is helpful to ensure you don't pass a nil around
+* Second is helpful to ensure you don't pass a `nil` around
   * Prevents NoMethodError at a later time
-* Third is best for cases where missing, nil, and false need to be handled differently
+* Third is best for cases where missing, `nil`, and `false` need to be handled differently
 * Fourth is good for failing fast and being explicit about how to fix the problem
 
 Avdi's advice is to default to the 3rd over the 1st, unless you think about it.
@@ -711,10 +711,12 @@ Credits
 * Tag Module - Avdi Grimm
 * Circuit Breaker - Martin Fowler
 * Page Object - Selenium developers
-* Configuration Query - Kyle Stevens
+* Configuration Query - Kyle Stevens and myself
 * Spies - RSpec developers
 
 ???
+
+These are where I found them, not necessarily the origin.
 
 http://martinfowler.com/bliki/CircuitBreaker.html
 
