@@ -562,11 +562,8 @@ Fetch with Default Block
 If you're the one creating the `Hash`, you can new it up with a different default:
 
 ~~~ ruby
-h1 = Hash.new(:not_found)
-h1[:anything] # => :not_found
-
-h2 = Hash.new{:not_found}
-h2[:anything] # => :not_found
+h = Hash.new { :not_found }
+h[:anything] # => :not_found
 ~~~
 
 ???
