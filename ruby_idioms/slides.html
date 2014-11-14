@@ -618,7 +618,7 @@ Allow Class or Instance
 ~~~ ruby
 class Date
   def initialize(year, month, day, calendar = Date::Calendar.default)
-    calendar = calendar.new if Calendar.is_a?(Class)
+    calendar = calendar.new if calendar.is_a?(Class)
     ...
   end
 end
