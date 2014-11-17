@@ -157,7 +157,7 @@ end
 ~~~
 
 ~~~ ruby
-def expiration_dates
+def expirationDates
     currentYear = Date.today.year
     i = 0
     dates = []
@@ -175,7 +175,7 @@ I can tell that these were written by someone not very familiar with Ruby.
 
 Maybe they're "writing Java in Ruby".
 
-Not only is the 2nd one longer,
+Not only is the 2nd one longer than it needs to be,
 but it takes more effort for me to understand what it means.
 
 ---
@@ -211,7 +211,11 @@ What's the difference?
 
 ???
 
+This is something I've struggled with.
+
 Is there a difference? I don't know.
+
+People disagree.
 
 ---
 
@@ -321,9 +325,25 @@ RV = ENV.fetch("RUBY_VERSION") { raise "Must specify RUBY_VERSION" }
 
 This is a simple one.
 
-Also comes from Avdi.
+Comes from Avdi's blog and Ruby Tapas.
+
+http://devblog.avdi.org/2009/03/16/go-fetch/
 
 This works for `Hash`es, `Array`s, and `Hash`-like objects, such as `ENV`.
+
+---
+
+Fetch with Default Block
+========================
+
+~~~ ruby
+RV = ENV["RUBY_VERSION"] || "2.1.4"
+RV = ENV.fetch("RUBY_VERSION") # Raises IndexError if not found
+RV = ENV.fetch("RUBY_VERSION") { "2.1.4" }
+RV = ENV.fetch("RUBY_VERSION") { raise "Must specify RUBY_VERSION" }
+~~~
+
+???
 
 Each has its pros and cons:
 
@@ -335,8 +355,6 @@ Each has its pros and cons:
 * Fourth is good for failing fast and being explicit about how to fix the problem
 
 Avdi's advice is to default to the 3rd over the 1st, unless you think about it.
-
-http://devblog.avdi.org/2009/03/16/go-fetch/
 
 ---
 
@@ -579,6 +597,12 @@ Configuration Query
 ExtraLogging.for_applicant?(applicant_id)
 ~~~
 
+???
+
+Note that I'm not asking about the config file.
+
+I'm asking about the higher level info that the config file can provide.
+
 ---
 
 Configuration Query
@@ -604,6 +628,15 @@ class ExtraLogging
   end
 end
 ~~~
+
+???
+
+I'm using several other idioms here:
+  * Defining a class method with `self`
+  * Memoization
+  * Unmemoization (cache busting)
+  * Fetch with default block
+  * Functional programming with arrays
 
 ---
 
@@ -642,6 +675,10 @@ class User
   include MyORM::Model, table: 'people'
 end
 ~~~
+
+???
+
+I looked for a solution for a long time.
 
 ---
 
@@ -706,6 +743,10 @@ Module Factory
 
 Other names for this:
   - Parameterized Module Inclusion
+
+???
+
+My buddy Amos wants me to remind you that method names can start with an uppercase.
 
 ---
 
@@ -805,6 +846,8 @@ Conclusions
 
 Learn idioms -- they're great tools
 
+Ruby idioms help us make code more readable
+
 Our idioms are not static
 
 Be on the lookout for new idioms
@@ -824,6 +867,8 @@ Honorable mentions:
   - Config blocks
   - DSLs
   - Flip-flops
+  - Block or value
+  - Enumerable / Enumerator
   - More OOP/OOD
   - More refactoring
   - Keyword arguments
@@ -837,8 +882,13 @@ References
 
 * Confident Ruby by Avdi Grimm
 * Exceptional Ruby by Avdi Grimm
+* SmallTalk Best Practice Patterns by Kent Beck
 * Martin Fowler's Bliki
-* Smalltalk Best Practice Patterns by Kent Beck
+
+???
+
+Most of SmallTalk patterns and idioms apply to Ruby.
+See Avi Bryan'ts talk at RailsConf 2007 (I think) on SmallTalk and Ruby.
 
 ---
 
@@ -846,15 +896,15 @@ Credits
 =======
 
 * Memoization - suggestion from James Edward Gray II
+* Tag Module and Fetch - Avdi Grimm
+* Page Object - Selenium developers
+* Spies - RSpec developers
+* Config Query - Kyle Stevens and myself
 * Module Factory - Virtus developers
   * Don Morrison (elskwid)
   * Piotr Solnica (solnic)
-* Tag Module - Avdi Grimm
 * Circuit Breaker - Martin Fowler
 * Blue-Green Deploymnet - Martin Fowler
-* Page Object - Selenium developers
-* Configuration Query - Kyle Stevens and myself
-* Spies - RSpec developers
 
 ???
 
