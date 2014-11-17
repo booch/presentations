@@ -145,16 +145,23 @@ Idiomatic Ruby
 ==============
 
 ~~~ ruby
-(1..5).each do
+5.times do
   puts "Craig is great at Ruby"
+end
+~~~
+
+~~~ ruby
+def expiration_dates
+  currentYear = Date.today.year
+  [currentYear..currentYear+20]
 end
 ~~~
 
 ???
 
-Here's an example of idiomatic Ruby.
+Here are a couple simple examples of idiomatic Ruby.
 
-I can tell that the person who wrote this is at least somewhat familiar with Ruby.
+I can tell that the person who wrote these is at least somewhat familiar with Ruby.
 
 ---
 
@@ -165,11 +172,18 @@ Non-Idiomatic Ruby
 for i in 1..5
    puts "Craig is great"
 end
+~~~
 
-i = 0
-while i < 5
-    puts "Craig is great"
-    i += 1
+~~~ ruby
+def expiration_dates
+    currentYear = Date.today.year
+    i = 0
+    dates = []
+    while i <= 20
+        dates.push(currentYear + i)
+        i += 1
+    end
+    return dates
 end
 ~~~
 
@@ -179,7 +193,7 @@ I can tell that these were written by someone not very familiar with Ruby.
 
 Maybe they're "writing Java in Ruby".
 
-Not only is the 2nd one 2 lines longer,
+Not only is the 2nd one several lines longer,
 but it takes more effort for me to understand what it means.
 
 ---
