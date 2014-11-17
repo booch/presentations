@@ -209,6 +209,66 @@ So I'm going to treat the 2 terms somewhat interchangably.
 
 ---
 
+Memoization
+===========
+
+~~~ ruby
+def yesterday
+  @yesterday ||= Date.today - 1
+end
+~~~
+
+???
+
+We'll start out with a simple one.
+
+Hopefully most of us here use this one pretty regularly.
+
+If the instance variable is set to something that's not falsey,
+then the instance variable will be returned.
+
+Otherwise the calclation will be performed, stored into the instance variable for next time,
+and returned.
+
+This won't work well if your caluclation might return false or nil.
+
+---
+
+Memoization
+===========
+
+Use to cache "expensive" operations
+  * CPU
+  * I/O
+
+Don't use without thinking!
+
+???
+
+Sometimes you really do need to recaluclate every time.
+
+In my example on the previous slide,
+if your process might run for more than 1 day,
+you'll have a bug -- and it'll be hard to track down.
+
+---
+
+Memoization
+===========
+
+Use a gem?
+
+What about parameters?
+
+???
+
+There's a gem, but for the basic case, it's not worth bothering.
+
+When you have to cache based on parameters, you'd need to store in a Hash.
+This happens a lot less in Ruby -- probably due to extracting objects.
+
+---
+
 Module Factory
 ==============
 
@@ -299,7 +359,7 @@ We can do a lot of different things with configuration:
   * Use the Builder Pattern
 
 If we're going to call the factory more than a few times,
-we'll probably want to cache modules for reuse where possible.
+we'll probably want to memoize modules for reuse where possible.
 
 ---
 
@@ -699,12 +759,14 @@ References
 * Confident Ruby by Avdi Grimm
 * Exceptional Ruby by Avdi Grimm
 * Martin Fowler's Bliki
+* Smalltalk Best Practice Patterns by Kent Beck
 
 ---
 
 Credits
 =======
 
+* Memoization - suggestion from James Edward Gray II
 * Module Factory - Virtus developers
   * Don Morrison (elskwid)
   * Piotr Solnica (solnic)
