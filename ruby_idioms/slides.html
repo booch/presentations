@@ -771,6 +771,28 @@ Lots of additional options available:
 
 ---
 
+Blue-Green Deployment
+=====================
+
+You have 2 complete production environments
+
+One is live, the other is "previous" or "next"
+
+Deploy to one while the other is still running
+
+After smoke testing the deploy, swap the live with "next"
+
+Very easy to switch back to "previous"
+
+???
+
+This is a deployment pattern.
+
+I'd like to see more Rubyists adopt this, as they have Continuous Deployment.
+
+The only tricky part is database integrity.
+
+---
 
 Conclusions
 ===========
@@ -809,6 +831,7 @@ Credits
   * Piotr Solnica (solnic)
 * Tag Module - Avdi Grimm
 * Circuit Breaker - Martin Fowler
+* Blue-Green Deploymnet - Martin Fowler
 * Page Object - Selenium developers
 * Configuration Query - Kyle Stevens and myself
 * Spies - RSpec developers
@@ -818,6 +841,8 @@ Credits
 These are where I found them, not necessarily the origin.
 
 http://martinfowler.com/bliki/CircuitBreaker.html
+
+http://martinfowler.com/bliki/BlueGreenDeployment.html
 
 https://code.google.com/p/selenium/wiki/PageObjects
 
