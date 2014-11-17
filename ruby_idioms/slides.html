@@ -226,6 +226,21 @@ So I'm going to treat the 2 terms somewhat interchangably.
 
 ---
 
+Why Use Idioms?
+===============
+
+They're tools that Ruby gives you
+
+They're tools that Rubyists can help you with
+
+???
+
+They're not necessarily tools that Ruby gives you *on purpose*.
+
+Often, Ruby is optimized to make idiomatic versions work better than non-idiomatic.
+
+---
+
 Memoization
 ===========
 
@@ -740,6 +755,9 @@ http://devblog.avdi.org/2009/03/16/go-fetch/
 Fetch with Default Block
 ========================
 
+Alternative
+-----------
+
 If you're the one creating the `Hash`, you can new it up with a different default:
 
 ~~~ ruby
@@ -749,7 +767,7 @@ h[:anything] # => :not_found
 
 ???
 
-Note that `Array` does not have this feature.
+Note that `Array` does not have this feature (returning a default for an undefined element).
 
 ---
 
