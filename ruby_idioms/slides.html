@@ -301,152 +301,55 @@ This happens a lot less in Ruby -- probably due to extracting objects.
 
 ---
 
-Module Factory
-==============
-
-First, a story of discovery
-
-???
-
-This is the idiom that instigated this presentation.
-
----
-
-Module Factory
-==============
+Fetch with Default Block
+========================
 
 ~~~ ruby
-class User
-  include MyORM::Model
-  table 'people'
-end
-~~~
-
-Isn't `table` more like an option to the module being included?
-
----
-
-Module Factory
-==============
-
-But this isn't valid Ruby:
-
-~~~ ruby
-class User
-  include MyORM::Model, table: 'people'
-end
-~~~
-
----
-
-Module Factory
-==============
-
-Then I saw Virtus do this:
-
-~~~ ruby
-class User
-  include Virtus.model(constructor: false, mass_assignment: false)
-end
-~~~
-
----
-
-Module Factory
-==============
-
-Uses the Factory Pattern to create a module
-
-Configures the created module per the parameters we pass it
-
----
-
-Module Factory
-==============
-
-~~~ ruby
-module Virtus
-  def self.model(options = {})
-    Module.new.tap do |mod|
-      if options.fetch(:constructor) { true }
-        mod.send(:include, Model::Constructor)
-      end
-    end
-  end
-end
+RV = ENV["RUBY_VERSION"] || "2.1.4"
+RV = ENV.fetch("RUBY_VERSION") # Raises IndexError if not found
+RV = ENV.fetch("RUBY_VERSION") { "2.1.4" }
+RV = ENV.fetch("RUBY_VERSION") { raise "Must specify RUBY_VERSION" }
 ~~~
 
 ???
 
-We're using several other Ruby idioms here:
-  * Defining a class method
-  * Modifying an object in-line with `tap`
-  * Fetch with Default Value
-  * Options Hash
-  * Accessing a private method with `send`
+This is a simple one.
 
-We can do a lot of different things with configuration:
-  * Take positional parameters
-  * Take a block
-  * Use the Builder Pattern
+Also comes from Avdi.
 
-If we're going to call the factory more than a few times,
-we'll probably want to memoize modules for reuse where possible.
+This works for `Hash`es, `Array`s, and `Hash`-like objects, such as `ENV`.
 
----
+Each has its pros and cons:
 
-Module Factory
-==============
+* First is easiest, if you know the hash won't contain a `nil` or `false`
+  * Or of you don't need to distinguish
+* Second is helpful to ensure you don't pass a `nil` around
+  * Prevents NoMethodError at a later time
+* Third is best for cases where missing, `nil`, and `false` need to be handled differently
+* Fourth is good for failing fast and being explicit about how to fix the problem
 
-Other names for this:
-  - Parameterized Module Inclusion
+Avdi's advice is to default to the 3rd over the 1st, unless you think about it.
+
+http://devblog.avdi.org/2009/03/16/go-fetch/
 
 ---
 
-Configuration Query
-===================
+Fetch with Default Block
+========================
 
-Ask a question about the configuration
+Alternative
+-----------
+
+If you're the one creating the `Hash`, you can new it up with a different default:
+
+~~~ ruby
+h = Hash.new { :not_found }
+h[:anything] # => :not_found
+~~~
 
 ???
 
-Really just a case of good abstraction and API design.
-We take the "normal" config query up a level of abstraction.
-
----
-
-Configuration Query
-===================
-
-~~~ ruby
-ExtraLogging.for_applicant?(applicant_id)
-~~~
-
----
-
-Configuration Query
-===================
-
-~~~ ruby
-class ExtraLogging
-  def self.for_applicant?(applicant_id)
-    applicant_ids.include?(applicant_id.to_s)
-  end
-
-  def self.applicant_ids
-    @applicant_ids ||= config.fetch('applicant_ids'){[]}.map(&:to_s)
-  end
-
-  def self.config
-    @config ||= YAML.load_file(CONFIG_FILENAME)
-  end
-
-  def self.reload
-    @applicant_ids = nil
-    @config = nil
-  end
-end
-~~~
+Note that `Array` does not have this feature (returning a default for an undefined element).
 
 ---
 
@@ -482,74 +385,6 @@ end
 ~~~
 
 Now the caller can rescue on `MyLib::Error` or the original exception.
-
----
-
-Circuit Breaker
-===============
-
-Stop trying to access an inaccessible resource.
-
-* Slow or unresponsive network resource
-* A queue has been filled up
-* A thread pool or connection pool that's been exhausted
-
-???
-
-This one comes to us by way of Martin Fowler
-(of "Patterns of Enterprise Application Architecture" fame)
-and Michael Nygard (from "Release It!").
-
-* Reduces resources tied up in operations which are likely to fail.
-* Reduces cascading failures due to resource issues.
-
----
-
-Circuit Breaker
-===============
-
-~~~ ruby
-def do_something
-  make_external_call unless circuit_broken?
-rescue Timeout::Error
-  break_circuit
-  raise $!
-end
-
-def circuit_broken?
-  @circuit_broken ||= false
-end
-
-def break_circuit
-  @circuit_broken = true
-end
-
-def reset_circuit
-  @circuit_broken = false
-end
-~~~
-
-Would probably use an object and a block to implement.
-
-???
-
-https://github.com/wsargent/circuit_breaker/tree/master
-
----
-
-Circuit Breaker
-===============
-
-Lots of additional options available:
-
-* What to do when the circuit is broken
-  * Drop the request
-  * Raise an exception
-  * Use a promise to return a result later
-* Conditions for deciding when to flip the breaker
-  * Thresholds
-* Conditions to automatically reset the circuit
-* Logging and alerting
 
 ---
 
@@ -719,61 +554,228 @@ TODO: Show an example where we chose singleton methods?
 
 ---
 
-Fetch with Default Block
-========================
+Configuration Query
+===================
 
-~~~ ruby
-RV = ENV["RUBY_VERSION"] || "2.1.4"
-RV = ENV.fetch("RUBY_VERSION") # Raises IndexError if not found
-RV = ENV.fetch("RUBY_VERSION") { "2.1.4" }
-RV = ENV.fetch("RUBY_VERSION") { raise "Must specify RUBY_VERSION" }
-~~~
+Ask a question about the configuration
 
 ???
 
-This is a simple one.
-
-Also comes from Avdi.
-
-This works for `Hash`es, `Array`s, and `Hash`-like objects, such as `ENV`.
-
-Each has its pros and cons:
-
-* First is easiest, if you know the hash won't contain a `nil` or `false`
-  * Or of you don't need to distinguish
-* Second is helpful to ensure you don't pass a `nil` around
-  * Prevents NoMethodError at a later time
-* Third is best for cases where missing, `nil`, and `false` need to be handled differently
-* Fourth is good for failing fast and being explicit about how to fix the problem
-
-Avdi's advice is to default to the 3rd over the 1st, unless you think about it.
-
-http://devblog.avdi.org/2009/03/16/go-fetch/
+Really just a case of good abstraction and API design.
+We take the "normal" config query up a level of abstraction.
 
 ---
 
-Fetch with Default Block
-========================
-
-Alternative
------------
-
-If you're the one creating the `Hash`, you can new it up with a different default:
+Configuration Query
+===================
 
 ~~~ ruby
-h = Hash.new { :not_found }
-h[:anything] # => :not_found
+ExtraLogging.for_applicant?(applicant_id)
+~~~
+
+---
+
+Configuration Query
+===================
+
+~~~ ruby
+class ExtraLogging
+  def self.for_applicant?(applicant_id)
+    applicant_ids.include?(applicant_id.to_s)
+  end
+
+  def self.applicant_ids
+    @applicant_ids ||= config.fetch('applicant_ids'){[]}.map(&:to_s)
+  end
+
+  def self.config
+    @config ||= YAML.load_file(CONFIG_FILENAME)
+  end
+
+  def self.reload
+    @applicant_ids = nil
+    @config = nil
+  end
+end
+~~~
+
+---
+
+Module Factory
+==============
+
+First, a story of discovery
+
+???
+
+This is the idiom that instigated this presentation.
+
+---
+
+Module Factory
+==============
+
+~~~ ruby
+class User
+  include MyORM::Model
+  table 'people'
+end
+~~~
+
+Isn't `table` more like an option to the module being included?
+
+---
+
+Module Factory
+==============
+
+But this isn't valid Ruby:
+
+~~~ ruby
+class User
+  include MyORM::Model, table: 'people'
+end
+~~~
+
+---
+
+Module Factory
+==============
+
+Then I saw Virtus do this:
+
+~~~ ruby
+class User
+  include Virtus.model(constructor: false, mass_assignment: false)
+end
+~~~
+
+---
+
+Module Factory
+==============
+
+Uses the Factory Pattern to create a module
+
+Configures the created module per the parameters we pass it
+
+---
+
+Module Factory
+==============
+
+~~~ ruby
+module Virtus
+  def self.model(options = {})
+    Module.new.tap do |mod|
+      if options.fetch(:constructor) { true }
+        mod.send(:include, Model::Constructor)
+      end
+    end
+  end
+end
 ~~~
 
 ???
 
-Note that `Array` does not have this feature (returning a default for an undefined element).
+We're using several other Ruby idioms here:
+  * Defining a class method
+  * Modifying an object in-line with `tap`
+  * Fetch with Default Value
+  * Options Hash
+  * Accessing a private method with `send`
+
+We can do a lot of different things with configuration:
+  * Take positional parameters
+  * Take a block
+  * Use the Builder Pattern
+
+If we're going to call the factory more than a few times,
+we'll probably want to memoize modules for reuse where possible.
+
+---
+
+Module Factory
+==============
+
+Other names for this:
+  - Parameterized Module Inclusion
+
+---
+
+Circuit Breaker
+===============
+
+Stop trying to access an inaccessible resource.
+
+* Slow or unresponsive network resource
+* A queue has been filled up
+* A thread pool or connection pool that's been exhausted
+
+???
+
+This one comes to us by way of Martin Fowler
+(of "Patterns of Enterprise Application Architecture" fame)
+and Michael Nygard (from "Release It!").
+
+* Reduces resources tied up in operations which are likely to fail.
+* Reduces cascading failures due to resource issues.
+
+---
+
+Circuit Breaker
+===============
+
+~~~ ruby
+def do_something
+  make_external_call unless circuit_broken?
+rescue Timeout::Error
+  break_circuit
+  raise $!
+end
+
+def circuit_broken?
+  @circuit_broken ||= false
+end
+
+def break_circuit
+  @circuit_broken = true
+end
+
+def reset_circuit
+  @circuit_broken = false
+end
+~~~
+
+Would probably use an object and a block to implement.
+
+???
+
+https://github.com/wsargent/circuit_breaker/tree/master
+
+---
+
+Circuit Breaker
+===============
+
+Lots of additional options available:
+
+* What to do when the circuit is broken
+  * Drop the request
+  * Raise an exception
+  * Use a promise to return a result later
+* Conditions for deciding when to flip the breaker
+  * Thresholds
+* Conditions to automatically reset the circuit
+* Logging and alerting
 
 ---
 
 
 Conclusions
 ===========
+
+Learn idioms -- they're great tools
 
 Our idioms are not static
 
