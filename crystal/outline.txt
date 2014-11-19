@@ -1,0 +1,196 @@
+Ruby-Inspired Syntax
+	If you know Ruby, it's easy to get started.
+		Few surprises, keeping in mind that it's compiled.
+	Syntax is the same for 90% or so.
+	Semantics are about 80-90%, mainly due to being compiled.
+
+Compiled
+	This means no support for send, define_method, method_missing.
+		I think.
+		Lack of `send` is more about typing, probably.
+		Still have `instance_eval`.
+	Binaries start at about 100KB.
+		With all the libs, closer to 20MB.
+	Object code is cached in .crystal directory.
+		It's taking up 500MB+ when compiling the compiler and standard lib.
+
+Fast!
+	Newing up 1 million objects took about 30 milliseconds.
+		275 ms in Ruby (including ~120 ms startup time).
+	My specs run in about 7 milliseconds (including startup time).
+	Even compiling is relatively quick.
+		My Date class takes less than 1 second.
+		Compiling the REPL takes about 30 seconds.
+		Compiling the comiler takes about 45 seconds.
+	Compiling from LLVM bytecode to assembler is multithreaded.
+		Clock time is significantly less than User and System CPU time.
+	Full test suite (2200 specs) takes less than 60 seconds to compile and run.
+	Standard library suite (500 specs) takes about 5 seconds.
+
+Typed
+	Type inference prevents having to label types everywhere.
+		Mostly just lower-level libraries require type specificiations.
+	Does great job protecting from NullPointerException errors.
+
+	module Enumerable(T)
+	  def first
+	    each { |e| return e }
+	    nil
+	  end
+	  def first(count : Int)
+	    ...
+	  end
+	  def inject
+	    memo :: T
+	    ...
+	  end
+	  def map(&block : T -> U)
+	    ary = [] of U
+	    ...
+	  end
+	  def map_with_index(&block : T, Int32 -> U)
+	    ...
+	  end
+	  def flat_map(&block : T -> Array(U))
+	    ...
+	  end
+	  def select(&block : T ->)
+	    ...
+	  end
+	end
+	struct Range(B, E)
+	  include Enumerable(B)
+	  ...
+	end
+
+
+Differences from Ruby
+	Types required in some places.
+	Empty arrays and hashes have to declare the type of what they contain.
+		x = [1] # OK
+		x = []  # Syntax Error
+		x = [] of String
+		x = [] of String|Nil|Int32
+		y = {} of String => String
+	No single-quoted strings.
+		Single-quotes are for Char.
+		Solves the style debate between which quotes to default to.
+	No `eval` and friends.
+	Can have method variants with different signatures.
+
+
+High-Level
+	Based on the Ruby we love.
+	Strong OOP - types help a bit.
+	Strong sense of getting things right and no surprises.
+		Surprises tend to be more about differences from Ruby.
+		For example - Ruby `equals?` is `same?` in Crystal.
+			Prevents the proliferation of `equals`es that Ruby has.
+	TODO: Show implementation of getters and setters.
+
+Innovative
+	TODO: Show shorthand syntax for initializer params.
+	TODO: Show getter/setter/property and delegate macros in Object.
+	Hash initialization takes an optional comparator class for keys.
+		Lets you do things like Rails' HashWithIndifferentAccess.
+	something.not_nil!.method_call
+		Raises an exception if nil, otherwise returns self.
+
+Low-Level
+	Pretty easy to interface with C libraries.
+	Allows using C types.
+	Pointer, Reference.
+	Example:
+
+		lib LibReadline("readline")
+		  fun readline(prompt : UInt8*) : UInt8*
+		  fun add_history(line : UInt8*)
+		end
+
+		module Readline
+		  def self.readline(prompt, add_history = false)
+		    line = LibReadline.readline(prompt)
+		    if line
+		      LibReadline.add_history(line) if add_history
+		      String.new(line)
+		    else
+		      nil
+		    end
+		  end
+		end
+
+
+
+Young
+	Project was started in September 2012.
+		Really just 2 primary contributors.
+	Standard library is relatively minimal.
+		There was no Date class.
+			So I started it myself.
+		But there are a lot of things you'd expect.
+			Array, Hash
+			Set
+	Spec library is minimal.
+		It has `describe`, `it`, and `should`.
+	No Windows support.
+	No debugger.
+
+In Flux
+	They don't want to document too much, because it's changing.
+	Things are broken sometimes.
+		REPL (`icr`) was not compiling.
+	Lots of changes in the past year.
+
+Undocumented
+	Implicit conversion from String to UInt8* for C functions.
+	Implicit conversion from nil to any 0 for C functions taking a pointer.
+	struct vs class
+	TODO: def xyz(x = nil : String?, y = nil : Exception?)
+	REPL is a hack; doesn't work 100% right.
+		Can't raise exceptions in some cases - just crashes.
+			x = [0]; x[1]
+		This crashes:
+			y = {} of String => String
+		Anything with a side effect will be executed on every command:
+			puts 1
+			puts 2
+
+
+Potential
+	I like what I see.
+		I came in about a year and a half in.
+			They'd gotten to self-hosting.
+				Compiler was previously written in Ruby.
+	I think it's pretty fast; the primary devs think it's too slow.
+
+
+Questions
+	If a method takes an Int paramter, can I pass it Int32 or Int64?
+	Help explain the syntax in Enumerable, especially block parameters.
+	What is the numeric hierarchy?
+	Is there any introspection?
+	How can I see the primitive methods?
+		Bool and String and numerics seem to have stuff not written in Crystal.
+	How does self.new work?
+		Manually call allocate, initialize, and return the object.
+	Can I define functions and enums outside of a lib?
+	How are lib and modules namespaced?
+	Are structs inside libs the same as otherwise?
+	Why the +@ and -@ carry-over from Ruby?
+		We already have method overloading by type.
+	Why so many overloads for print/puts?
+		Why not use their to_s calls?
+	Could clean up initializers even more if `property` took types and defaults.
+		For example, Json::Token
+	Support for private/protected methods coming?
+	Can I not call same? on structs?
+	What is the Value class for?
+	Is there a recommended way to memoize?
+		Leary about instantiating an instance variable.
+			Because it will be nillable (since not defined in initializer).
+
+
+Future Directions
+	It would be nice for methods to declare their return type, so subclasses don't return a different type.
+	Notating immutable or mutable objects.
+	Notating (or inferring) pure functions and methods.

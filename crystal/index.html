@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>The Crystal Programming Language</title>
+
+		<meta name="description" content="Presentation at STL Ruby User Group, March 10, 2014">
+		<meta name="author" content="Craig Buchek">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Crystal</h1>
+					<p>by Craig Buchek</p>
+					<p>St. Louis Ruby User Group</p>
+					<p><small>March 10, 2014</small></p>
+					<p><small><a href="http://twitter.com/CraigBuchek">@CraigBuchek</a></small></p>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is Inspired by Ruby</h2>
+					</section>
+					<section>
+						<p>If you know Ruby, it's easy to get started</p>
+					</section>
+					<section>
+						<p>Syntax is about 90% the same as Ruby</p>
+					</section>
+					<section>
+						<p>Semantics are about 80% the same as Ruby</p>
+						<br />
+						<p>(Differences mainly due to being compiled)
+					</section>
+					<section>
+						<pre><code>
+							class Foo(T)
+							  property :bar
+							  def initialize(@bar : T)
+							  end
+							end
+							foo = Foo.new("string")
+							puts foo.bar #=> "string"
+							foo2 = Foo(Int).new(123)
+							puts foo2.bar #=> 123
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is Compiled</h2>
+					</section>
+					<section>
+						<p>No support for dynamic features:</p>
+						<br />
+						<ul>
+							<li><code>define_method</code></li>
+							<li><code>method_missing</code></li>
+							<li><code>eval</code></li>
+						</ul>
+					</section>
+					<section>
+						<p>Supported "dynamic" features:</p>
+						<br />
+						<ul>
+							<li><code>instance_eval</code></li>
+							<li><code>responds_to?</code></li>
+							<li><code>macro</code></li>
+						</ul>
+					</section>
+					<section>
+						<p>Binaries range from 100 KB to 20 MB</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is Fast</h2>
+					</section>
+					<section>
+						<p>Compiles pretty quickly</p>
+						<br />
+						<ul>
+							<li>Compiles itself in less than 45 seconds</li>
+							<li>My Date class takes less than 1 second</li>
+						</ul>
+					</section>
+					<section>
+						<p>Binaries are fast</p>
+						<br />
+						<ul>
+							<li>My Date specs run in about 7 milliseconds</li>
+							<li>Newing up 1 million objects: 30 ms
+								<ul>
+									<li>275 ms in Ruby (including 120 ms startup time)</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<p>Compiles and runs quickly</p>
+						<br />
+						<ul>
+							<li>Full test suite takes less than 60 seconds
+								<ul>
+									<li>2200 specs</li>
+								</ul>
+							</li>
+							<li>Standard lib test suite takes about 5 seconds
+								<ul>
+									<li>500 specs</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<p>Compiling LLVM bytecode to assembler is multithreaded</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is Typed</h2>
+					</section>
+					<section>
+						<p>Types are inferred in most cases</p>
+						<br />
+						<ul>
+							<li>Including union types</li>
+						</ul>
+					</section>
+					<section>
+						<p>Eliminates NullPointerException errors</p>
+						<pre><code>
+							def nil_or_string
+							  rand(2) == 0 ? nil : "string"
+							end
+							nil_or_string.capitalize #=> Compile error: undefined method 'capitalize' for Nil
+						</code></pre>
+					</section>
+					<section>
+						<p>Methods can have variants with different signatures</p>
+						<br />
+						<pre><code>
+							struct Date
+							  def initialize(year : Int, month : Int, day : Int, @calendar = Date::Calendar.default)
+							    @jdn = @calendar.ymd_to_jdn(year, month, day).to_i64
+							  end
+							  def initialize(jdn : Int, @calendar = Date::Calendar.default)
+							    @jdn = jdn.to_i64
+							  end
+							end
+						</code></pre>
+					</section>
+					<section>
+						<p>Empty arrays and hashes have to declare their type</p>
+						<pre><code>
+							x = [1] # OK
+							x = [1, 1.5, 'a', "abc"] # OK
+							x = []  # Syntax Error
+							x = [] of Int
+							x = [] of String|Nil|Int32
+							y = {} of Symbol => String
+						</code></pre>
+					</section>
+					<section>
+						<p>No support for <code>send</code></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is High-Level</h2>
+					</section>
+					<section>
+						<p>Based on the Ruby we love</p>
+					</section>
+					<section>
+						<p>Strong OOP</p>
+					</section>
+					<section>
+						<p>Strong sense of getting things right and no surprises</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is Low-Level</h2>
+					</section>
+					<section>
+						<p>Easy to interface with C libraries</p>
+						<pre><code>
+							lib LibReadline("readline")
+							  fun readline(prompt : UInt8*) : UInt8*
+							end
+							module Readline
+							  def self.readline(prompt)
+							    line = LibReadline.readline(prompt)
+							    line ? String.new(line) : nil
+							  end
+							end
+						</code></pre>
+					</section>
+					<section>
+						<p>C types</p>
+						<pre><code>
+							lib C
+							  fun atoi(str : UInt8*) : Int32
+							  fun atoll(str : UInt8*) : Int64
+							  fun atof(str : UInt8*) : Float64
+							  fun strtof(str : UInt8*, endp : UInt8**) : Float32
+							  fun sprintf(str : UInt8*, format : UInt8*, ...) : Int32
+							end
+						</code></pre>
+					</section>
+					<section>
+						<p>Low-level types</p>
+						<br />
+						<ul>
+							<li>Pointer</li>
+							<li>Reference</li>
+							<li>Value</li>
+							<li>Struct</li>
+							<li>enum</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is Innovative</h2>
+					</section>
+					<section>
+						<p>Shorthand syntax for initializer params</p>
+						<pre><code>
+							class URI
+							  def initialize(@scheme, @host, @port, @path, @query_string)
+							    @uri = "#{@scheme}://#{@host}:#{@port}/#{@path}?#{@query_string}"
+							  end
+							end
+						</code></pre>
+					</section>
+					<section>
+						<p>Macros for <code>getter</code>, <code>setter</code>, <code>property</code>, and <code>delegate</code></p>
+						<br />
+						<pre><code>
+							class Object
+							  macro self.getter(name)"
+							    def #{name}
+							      @#{name}
+							    end
+							  "end
+							end
+						</code></pre>
+					</section>
+					<section>
+						<p>Hash initialization takes an optional key comparator</p>
+						<br />
+						<pre><code>
+							h = Hash(String, Int).new(nil, Hash::CaseInsensitiveComparator)
+							h["abc"] = 123
+							puts h["AbC"] #=> 123
+						</code></pre>
+					</section>
+					<section>
+						<p>Block shorthand syntax</p>
+						<br />
+						<pre><code>
+							[1, 20, 300].map &.to_s.length #=> [1, 2, 3]
+						</code></pre>
+					</section>
+					<section>
+						<p>Null checking</p>
+						<br />
+						<pre><code>
+							method1.not_nil!.method2
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is Young</h2>
+					</section>
+					<section>
+						<p>Started in September 2012</p>
+					</section>
+					<section>
+						<p>Standard library is somewhat minimal</p>
+						<br />
+						<ul>
+							<li>Array, Hash, Set, Regex</li>
+							<li>Time, Env, File, Dir, Socket, MD5</li>
+							<li>Net::HTTP</li>
+							<li>JSON, YAML, XML</li>
+							<li>Missing: Date, Logger, Pathname</li>
+						</ul>
+					</section>
+					<section>
+						<p>Spec library is minimal</p>
+						<br />
+						<ul>
+							<li><code>describe</code></li>
+							<li><code>it</code></li>
+							<li><code>should</code></li>
+						</ul>
+					</section>
+					<section>
+						<p>No database support</p>
+					</section>
+					<section>
+						<p>No Windows support</p>
+					</section>
+					<section>
+						<p>No debugger</p>
+					</section>
+					<section>
+						<p>REPL is a hack</p>
+						<br />
+						<ul>
+							<li>Can't raise exceptions in some cases - just crashes</li>
+							<li>Anything with a side effect will be executed on every command</li>
+							<li>Several things just don't work</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is In Flux</h2>
+					</section>
+					<section>
+						<p>Ported compiler from Ruby to self-hosting</p>
+					</section>
+					<section>
+						<p>They don't want to document too much</p>
+						<br />
+						<ul>
+							<li>Because things are changing so fast</li>
+						</ul>
+					</section>
+					<section>
+						<p>Things are broken sometimes</p>
+						<br />
+						<ul>
+							<li>REPL was not compiling</li>
+						</ul>
+					</section>
+					<section>
+						<p>Lots of changes in the past year</p>
+						<br />
+						<ul>
+							<li>Garbage collection</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is Undocumented</h2>
+					</section>
+					<section>
+						<p>Implicit conversions:</p>
+						<br />
+						<ul>
+							<li><code>String</code> to <code>UInt8*</code> for C functions</li>
+							<li><code>Nil</code> to <code>0</code> for C functions taking a pointer</li>
+						</ul>
+					</section>
+					<section>
+						<p>Class v. Struct</p>
+					</section>
+					<section>
+						<p>Syntax for complex types</p>
+					</section>
+					<section>
+						<p>No introspection</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Crystal Is Full of Potential</h2>
+					</section>
+					<section>
+						<p>I like what I see</p>
+					</section>
+					<section>
+						<p>I think it's pretty fast</p>
+						<br />
+						<ul>
+							<li>The primary devs think it's too slow</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Resources</h2>
+					<ul>
+						<li><a href="http://crystal-lang.org/">Home page</a></li>
+						<li><a href="https://github.com/manastech/crystal">Source code</a></li>
+						<li><a href="irc://irc.freenode.net/crystal-lang">IRC channel</a></li>
+						<li><a href="https://groups.google.com/forum/?fromgroups#!forum/crystal-lang">Google Group</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h2>Thanks</h2>
+					</section>
+					<section>
+						<p>Primary Developers</p>
+						<ul>
+							<li>Ary Borenszweig (<a href="https://github.com/asterite">asterite</a>)</li>
+							<li>Juan Wajnerman (<a href="https://github.com/waj">waj</a>)</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				slideNumber: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
