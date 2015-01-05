@@ -63,11 +63,16 @@ HTTPS
 Web Servers
 -----------
 
+App Servers
+-----------
+
 Web Browsers
 ------------
 
 URL vs. URI
 -----------
+
+* And IRI
 
 HTML
 ----
@@ -104,4 +109,7 @@ HTML 5
 
 Mobile Web
 ----------
+
+HTTP/2
+------
 
