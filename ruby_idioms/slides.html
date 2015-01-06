@@ -315,7 +315,7 @@ Fetch with Default Block
 
 ~~~ ruby
 RV = ENV["RUBY_VERSION"] || "2.1.4"
-RV = ENV.fetch("RUBY_VERSION") # Raises IndexError if not found
+RV = ENV.fetch("RUBY_VERSION") # Raises KeyError if not found
 RV = ENV.fetch("RUBY_VERSION") { "2.1.4" }
 RV = ENV.fetch("RUBY_VERSION") { raise "Must specify RUBY_VERSION" }
 ~~~
