@@ -5,9 +5,9 @@ How The Web Works - HTTP
 Abstract
 --------
 
-Everything You (Never) Ever Wanted to Know About HTTP.
+Everything You Ever Wanted to Know About HTTP.
 
-HTTP is the protocol of the web. It's how everything gets from web servers to your browser.
+HTTP is the protocol of the web. It's how everything gets from the web server to your browser.
 Understanding HTTP is fundamental to understanding how the web works.
 Knowing HTTP better will help you more effectively deal with authentication, caching, and REST services.
 
@@ -35,15 +35,16 @@ We'll also take a look at how proxies work -- possibly changing the content of y
 This can have major consequences for caching, so we'll take a look at how caching works,
 and what we can do to influence how our content gets cached.
 
-Finally, we'll take a peak at HTTP/2, which ws just recently published.
+Finally, we'll take a peak at HTTP/2, which was just recently published.
 
 
 Pitch
 -----
 
 I've given this as a 45-minute presentation at the local Ruby users group.
-I've also given an unabridged (2-part, over 3 hours total) version at the local LUG.
-So I could also do this as a 3-hour lab; the LUG version was quite hands-on, with lots of interaction with the audience.
+I've also given an unabridged (2-part, over 3 hours total) version at the local LUG,
+with lots of interaction with the audience.
+So I think this would work best as a 2-hour lab, but I could extend that as long as 3 hours, compress it to 90 minutes, or do it as a 45-minute standard talk.
 
 In a previous life, I was a network admin, maintaining firewalls at a Fortune 500 company.
 One of my roles was troubleshooting traffic as it was going through the firewalls.
