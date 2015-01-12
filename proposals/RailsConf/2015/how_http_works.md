@@ -27,8 +27,9 @@ If you're a web developer, you should really know how the web works!
 Details
 -------
 
-I plan to show how HTTP works by using tools like `telnet`, `curl`, `openssl -s`, and WireShark
-to hit the protocol at the lowest layers. We'll be able to see what's going across the wire:
+I plan to show how HTTP works by using tools like `telnet`, `curl`, `openssl s_client`, WireShark, and
+the browser developer tools to hit the protocol at the lowest layers.
+We'll be able to see what's going across the wire:
 URIs, headers, methods (verbs), request and response bodies, etc.
 
 We'll also take a look at how proxies work -- possibly changing the content of your traffic in the middle.
