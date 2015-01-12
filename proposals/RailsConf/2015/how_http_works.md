@@ -1,15 +1,13 @@
-How The Web Works - HTTP
-========================
+HTTP://Exploration
+==================
 
 
 Abstract
 --------
 
-Everything You Ever Wanted to Know About HTTP.
-
-HTTP is the protocol of the web. It's how everything gets from the web server to your browser.
-Understanding HTTP is fundamental to understanding how the web works.
-Knowing HTTP better will help you more effectively deal with authentication, caching, and REST services.
+We're web developers. But how well do we know the web's core protocol, HTTP?
+In this presentation, we'll explore the protocol, with a goal of a better understanding
+so that we can more effectively deal with authentication, caching, and REST services.
 
 We'll cover:
 
@@ -20,8 +18,6 @@ We'll cover:
 * Proxies
 * Caching
 * HTTP/2
-
-If you're a web developer, you should really know how the web works!
 
 
 Details
