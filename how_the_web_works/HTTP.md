@@ -1,11 +1,17 @@
+class: title, middle, center
+
 How The Web Works - HTTP
 ========================
 
-Everything You (Never) Ever Wanted to Know About HTTP
-by Craig Buchek
-STL Ruby
-January 26, 2015
+* Everything You (Never) Ever Wanted to Know About HTTP
 
+
+* by Craig Buchek
+* STL Ruby
+* January 26, 2015
+
+
+---
 
 Feedback
 ========
@@ -18,6 +24,8 @@ Feedback
 * Please feel free to ask questions during the presentation
 
 
+---
+
 About Me
 ========
 
@@ -28,6 +36,8 @@ About Me
 * Ruby / Rails user since 2006
 * Agile practitioner / podcaster
 
+
+---
 
 Agenda
 ======
@@ -42,6 +52,8 @@ Agenda
 * HTTP/2
 
 
+---
+
 HTTP Basics
 ===========
 
@@ -51,6 +63,8 @@ HTTP Basics
 * Headers
 * Body
 
+
+---
 
 HTTP History
 ============
@@ -65,6 +79,8 @@ HTTP History
 * HTTP/2.0 (2015)
   * http://http2.github.io/
 
+
+---
 
 URLs
 ====
@@ -84,7 +100,7 @@ URLs
 * Query string
 * Fragment
 
-~~~
+???
 
 * URN example: ISBN number for a specific edition of a book
   * urn:isbn:0-486-27557-4
@@ -104,6 +120,8 @@ URLs
 * TODO: Show an example of a URI with the sections shown
 
 
+---
+
 HTTP Methods
 ============
 
@@ -119,6 +137,8 @@ HTTP Methods
 * Safety, idempotency
 
 
+---
+
 HTTP Request
 ============
 
@@ -127,6 +147,8 @@ HTTP Request
 * Body
 
 
+---
+
 HTTP Response
 =============
 
@@ -134,6 +156,8 @@ HTTP Response
 * Headers
 * Body
 
+
+---
 
 Request Headers
 ===============
@@ -150,6 +174,8 @@ Request Headers
 * User-Agent
 * X-Forwarded-For
 
+
+---
 
 Response Status Codes
 =====================
@@ -172,6 +198,8 @@ Response Status Codes
   * 504 - Gateway Timeout
 
 
+---
+
 Response Headers
 ================
 
@@ -184,6 +212,8 @@ Response Headers
 * WWW-Authenticate
 
 
+---
+
 HTTPS
 =====
 
@@ -193,6 +223,8 @@ HTTPS
 * curl / wget
 
 
+---
+
 Proxies
 =======
 
@@ -201,6 +233,8 @@ Proxies
   * Proxy-Authorization
   * Via
 
+
+---
 
 Caching
 =======
@@ -215,6 +249,8 @@ Caching
   * Vary
 
 
+---
+
 CDNs
 ====
 
@@ -227,6 +263,8 @@ CDNs
 
 * DoS protection
 
+
+---
 
 REST
 ====
@@ -246,6 +284,8 @@ REST
 * HATEOAS - Use HTTP documents like HTML documents 
 
 
+---
+
 HTTP/2
 ======
 
@@ -264,6 +304,8 @@ HTTP/2
 * Starts with an HTTP/1.1 connection using `Upgrade` and `HTTP2-Settings` headers
   * Returns a 101 status code (Switching Protocols)
 
+???
+
 * Nginx will support it very soon after the RFC is published
   * 1.5.10 supports SPDY/3.1
 * Apache seems to have no plans, but mod_spdy is available
@@ -273,6 +315,8 @@ HTTP/2
 * IE 11 will support HTTP/2
 
 
+---
+
 Feedback
 ========
 
@@ -280,9 +324,7 @@ Feedback
 * GitHub: booch
 * Email: craig@boochtek.com
 
-
-
----
+???
 
 brew install nginx --with-spdy --with-gunzip --with-debug
 # Docroot: /usr/local/var/www
