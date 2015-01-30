@@ -6,14 +6,17 @@ Abstract
 --------
 
 We're web developers. But how well do we know the web's core protocol, HTTP?
-In this presentation, we'll explore the protocol, with a goal of a better understanding
-so that we can more effectively deal with authentication, caching, and REST services.
+In this lab, we'll explore the protocol, using browser tools and command-line tools
+to see what's going on between the browser and the web server.
+
+We'll investigate how we can take advantage of HTTP features to make our Rails apps faster.
 
 We'll cover:
 
 * HTTP basics
 * HTTP methods (GET, POST, PUT, etc.)
 * HTTPS
+* Troubleshooting tools
 * REST
 * Proxies
 * Caching
@@ -23,25 +26,35 @@ We'll cover:
 Details
 -------
 
-I plan to show how HTTP works by using tools like `telnet`, `curl`, `openssl s_client`, WireShark, and
-the browser developer tools to hit the protocol at the lowest layers.
-We'll be able to see what's going across the wire:
-URIs, headers, methods (verbs), request and response bodies, etc.
+The goal of this lab is to help people understand HTTP better, so they can troubleshoot problems and improve the performance of their Rails apps.
 
-We'll also take a look at how proxies work -- possibly changing the content of your traffic in the middle.
+I'll start by explaining the basics of the protocol, including URLs, HTTP methods, the request/response cycle, and headers.
+
+We'll then start up a Rails app and use some tools to hit it:
+
+* We'll use `telnet` to show how the raw data looks over the wire.
+* We'll use cURL and HTTPie to explore how a few headers work.
+* We'll work with a secure HTTPS connection using `openssl s_client`, and see how TLS works, including certificate info.
+
+We'll then start a proxy to see how it affects traffic between the client and server.
+The proxy can also be used to observe the traffic.
+
 This can have major consequences for caching, so we'll take a look at how caching works,
 and what we can do to influence how our content gets cached.
 
-Finally, we'll take a peak at HTTP/2, which was just recently published.
+Finally, we'll take a quick peak at HTTP/2, which was just recently published.
 
 
 Pitch
 -----
 
-I've given this as a 45-minute presentation at the local Ruby users group.
-I've also given an unabridged (2-part, over 3 hours total) version at the local LUG,
-with lots of interaction with the audience.
-So I think this would work best as a 2-hour lab, but I could extend that as long as 3 hours, compress it to 90 minutes, or do it as a 45-minute standard talk.
+I recently gave a similar 90-minute talk at the local Ruby users group.
+It was one of the best-attended talks in our 10-year history.
+I got a lot of good feedback on how to improve the presentation to make
+the information more interesting and more actionable.
+
+I think this would work best as a 2-hour lab, but I could easily expand it
+to 2.5 or 3 hours.
 
 In a previous life, I was a network admin, maintaining firewalls at a Fortune 500 company.
 One of my roles was troubleshooting traffic as it was going through the firewalls.
@@ -51,3 +64,17 @@ I love speaking at local user groups.
 Last year I got to speak at a conference for the first time.
 I was very nervous at first, but loved the experience.
 I'm looking forward to my next chance to speak at a conference.
+
+
+Work to Do
+----------
+
+* Humor
+* Pictures
+  * Client -> Proxy -> Reverse Proxy -> Server
+  * Diagram of URI breakdown
+* HTTpie
+* Script out the commands and data better
+  * Especially for the telnet examples
+* Do better at switching between presentation and demo
+
