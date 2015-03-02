@@ -1,4 +1,4 @@
-HTTP://Exploration
+http://exploration
 ==================
 
 
