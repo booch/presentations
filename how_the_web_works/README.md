@@ -1,7 +1,7 @@
 How the Web Works
 =================
 
-Everything You (N)Ever Wanted to Know About the Web
+Everything You (Never) Ever Wanted to Know About the Web
 
 - HTTP
 - HTML

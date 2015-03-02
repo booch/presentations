@@ -136,6 +136,17 @@ HTTP Methods
 * WebDAV additions
 * Safety, idempotency
 
+???
+
+* `rails new hello`
+* `cd hello`
+* `rails g controller hello`
+* Add to `config/routes.rb`:
+  * `root 'hello#index'`
+* Add to `app/controllers/hello_controller.rb`:
+  * `def index; render text: "<h1>Hello, World!</h1>".html_safe; end`
+* `rails s`
+
 
 ---
 
@@ -146,6 +157,18 @@ HTTP Request
 * Headers
 * Body
 
+???
+
+* `telnet localhost 3000`
+* HTTP/0.9
+  * `GET http://localhost/`
+* HTTP/1.0
+  * `GET / HTTP/1.0`
+  * `Host: localhost`
+* HTTP/1.1 (notice the `Connection: Keep-Alive` by default)
+  * `GET / HTTP/1.1`
+  * `Host: localhost`
+
 
 ---
 
@@ -155,6 +178,12 @@ HTTP Response
 * Status code
 * Headers
 * Body
+
+???
+
+* `curl -v http://localhost:3000/`
+* `brew reinstall wget --with-debug`
+* `wget -d http://localhost:3000/`
 
 
 ---
@@ -173,6 +202,12 @@ Request Headers
 * Referer
 * User-Agent
 * X-Forwarded-For
+
+???
+
+* Modify the controller action:
+  * `request_headers = request.headers.map{|k,v| "#{k}: #{v}"}.join("\n")`
+  * `render text: "<h1>Hello, World!</h1><pre><code>#{request_headers}</code></pre>".html_safe`
 
 
 ---
@@ -211,6 +246,13 @@ Response Headers
 * Set-Cookie
 * WWW-Authenticate
 
+???
+
+* Modify the controller action, and look at results in `curl`, browser, and `wget`:
+  * `headers["foo"] = "*** bar ***"`
+  * `headers["Location"] = "https://google.com/"; render text: "", status: 302`
+  * `redirect_to "https://google.com/"`
+
 
 ---
 
@@ -221,6 +263,12 @@ HTTPS
 * TLS
 * openssl s_client
 * curl / wget
+
+???
+
+* `openssl s_client -connect google.com:443`
+  * `GET / HTTP/1.0`
+  * `Host: www.google.com`
 
 
 ---
