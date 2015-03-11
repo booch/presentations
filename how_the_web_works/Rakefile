@@ -1,6 +1,6 @@
 task default: %w[slides]
 
-task slides: ['clean', 'HTTP.html']
+task slides: ['clean', 'HTTP.html', 'HTWW1.html']
 
 task :clean do
   %x[rm *.html]

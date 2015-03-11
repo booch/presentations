@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>class: title, middle, center</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide .title li {
+        list-style-type: none;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: title, middle, center
+
+How The Web Works - Part 1
+==========================
+
+* Everything You (Never) Ever Wanted to Know About The Web
+
+* by Craig Buchek
+* SLUUG
+* March 11, 2015
+
+---
+
+Feedback
+========
+
+* Twitter: @CraigBuchek
+* GitHub: booch (personal, presentations)
+* GitHub: boochtek (projects)
+* Email: craig@boochtek.com
+
+* Please feel free to ask questions during the presentation
+  * We can explore things more in depth, as required
+
+---
+
+About Me
+========
+
+* Independent web developer
+  * BoochTek
+  * Binary Noggin
+  * Mercy
+* Ruby / Rails programmer since 2006
+* Agile practitioner
+  * This Agile Life podcast
+
+---
+
+Agenda
+======
+
+* History
+* Web Browsers
+* Web Servers
+* HTML
+* CSS
+* JavaScript
+
+---
+
+History - The Internet
+======================
+
+* ARPANET - 1969
+* NSFNET - 1985-1995
+* Commercial activity - 1992
+
+---
+
+History - Predecessors
+======================
+
+* Vannevar Bush's microfilm-based "memex" (1945)
+  * "As We May Think"
+* Ted Nelson's Hypertext
+* Ted Nelson's Project Xanadu
+* Douglas Engelbart's oN-Line System (NLS)
+* Gopher (early 1991)
+
+---
+
+History - WorldWideWeb
+======================
+
+* [Tim Berners-Lee]
+* 1990
+* NeXT
+* CERN
+* Goes public August 23, 1991
+
+[Tim Berners-Lee](http://cdni.wired.co.uk/1240x826/a_c/03_13.jpg)
+
+---
+
+Why Did HTTP Beat Gopher?
+=========================
+
+* University of Michigan was going to charge for the server software
+  * WorldWideWeb was made public domain in 1991
+* Early web browsers included Gopher functionality
+* HTML pages are more free-form
+  * Gopher was hierarchical
+  * Gopher is more like a list of docs you can download
+    * Sort of like FTP with an HTML interface
+
+???
+
+* Demo Gopher through HTTP proxy: http://gopher.floodgap.com/gopher/
+  * Click on a few things on the right
+  * Maybe do some searches
+
+---
+
+Browsers
+========
+
+* Browser - software running on *your* computer to access web sites
+
+* [WorldWideWeb] - 1991
+* NCSA Mosaic - 1992/1993
+* Netscape Navigator - 1994
+* Internet Explorer - 1995
+* Opera - 1996
+* Netscape Communicator - 1997
+* Mozilla - 1998
+* Mozilla Firefox - 2002
+* Safari - 2003
+* Google Chrome - 2008
+
+[WorldWideWeb]: http://upload.wikimedia.org/wikipedia/commons/7/76/WorldWideWeb_FSF_GNU.png
+
+---
+
+Browsers - Non-Graphical
+========================
+
+* Lynx
+* Links
+* Elinks
+* w3m
+
+???
+
+* Demo a couple of these
+
+---
+
+User Agents
+===========
+
+* Technical term for a web client
+* Includes:
+  * Browsers
+  * Web spiders
+  * Downloaders
+  * Command-line clients
+    * Curl
+    * Wget
+    * HTTPie
+
+???
+
+* Show some user agent strings
+  * http://www.useragentstring.com/
+  * http://www.useragentstring.com/pages/useragentstring.php
+
+---
+
+Web Servers
+===========
+
+* Web Server - hardware system or software used to provide web sites
+
+* WorldWideWeb
+* CERN httpd - 1990
+* NCSA httpd - c 1992
+* Netscape Enterprise Server - 1994
+* Apache httpd - 1995
+* Microsoft IIS - c. 1995
+* Nginx - 2002
+
+---
+
+Web Applications
+================
+
+* Web App - a web site that "does something"
+
+---
+
+Web Applications - Server Side
+==============================
+
+* Application Server - web server software designed for web apps
+  * Apache Tomcat
+  * tc Server (Pivotal, VMware, Spring)
+* Server-side languages
+  * PHP
+* Application frameworks
+  * Ruby on Rails
+  * ASP.NET
+
+---
+
+Web Applications - Client Side
+==============================
+
+* Single-page apps (SAP)
+* AJAX
+* Frameworks
+  * Backbone
+  * Angular
+  * Ember
+  * React
+
+---
+
+HTML
+====
+
+* Hypertext Markup Language
+
+* The markup language that web pages are written in
+* Tags for different things
+  * Each has a meaning, independent from the way it is displayed
+
+???
+
+* Demo the HTML of this page
+
+---
+
+CSS
+===
+
+* CSS describes how the HTML should look
+
+???
+
+* Demo the CSS for this page
+
+---
+
+JavaScript
+==========
+
+* On (almost) every browser
+  * De facto language for client-side programming
+* Brandon Eich at Netscape
+  * Written in 10 days 
+* Originally designed for client and server
+  * Node brings it back to the server side
+* Much hated at first
+* Now [tolerated] or liked
+
+[tolerated]: http://i.imgur.com/wR3ZxfB.jpg
+
+???
+
+* Demo the JavaScript for this page
+
+---
+
+Web 2.0
+=======
+
+* Coined by Tim O'Reilly
+* Noticed a qualitative difference in web sites
+* More interactive, dynamic, participatory
+* Web "as a platform"
+* Different look and feel
+* AJAX
+
+---
+
+HTML 5
+======
+
+* Recent update to the standards
+  * HTML, CSS, and JavaScript
+* Helps write client-side web apps more easily
+
+---
+
+How Does the Browser Talk to the Server?
+========================================
+
+* URL is interpretted and broken into pieces
+* Web server is determined
+* Name of web server is looked up
+  * DNS query / resolution
+* Browser communicates with server via HTTP
+
+---
+
+URLs
+====
+
+* RFC 3986
+* URL versus URI
+  * URL - provide a means of locating the resource by describing its primary access mechanism
+    * Used to *access* the resource
+  * URI - identifies a resource
+    * Used for identifiers without going to get the resource
+  * URN - non-network resource hierarchy
+  * IRI (International Resource Identifiers) - the extension of URI syntax to non-ASCII
+    * PunyCode
+
+---
+
+* URN example: ISBN number for a specific edition of a book
+  * urn:isbn:0-486-27557-4
+* More URL examples:
+  * urn:ietf:rfc:2648
+  * urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66
+  * urn:oid:1.3.6.1.4.1.9954 (BoochTek's Private Enterprise Number (PEN) registered with the IANA)
+    * Used for SNMP MIBs, LDAP, DHCP options, and other places
+* All URLs are URIs (with some possible caveats)
+* Not all URIs are URLs
+* All URNs are URIs
+* An example of a URI that's not a URL is the "system identifier" portion of an HTML/SGML DOCTYPE
+  * For example http://www.w3.org/TR/html4/strict.dtd
+    * Although this particular one DOES have content at that URL
+* Another example is an XML namespace
+  * TODO: Show an example (preferably one that has no content at the URL)
+
+URL Components
+==============
+
+~~~
+http://user:pword@example.com:8080/abc/index.php?type=prod&name=cd#price
+\__/   \________/ \_________/ \__/\____________/\________________/\____/
+  |        |           |       |       |                |           |
+  |     userinfo      host    port    path            query      fragment
+  |    \_________________________/
+scheme            |
+              authority
+~~~
+
+* Scheme (protocol)
+* Host (server)
+* Port
+* Path
+* Query string
+* Fragment
+
+---
+
+Part 2
+======
+
+* STLLUG
+* Thursday, March 19, 2015
+
+* How the browser and server communicate
+* HTTP and related topics
+  * HTTPS
+  * HTTP/2
+  * Proxies
+
+---
+
+Credits
+=======
+
+* Wikipedia
+  * URL example: http://en.wikipedia.org/wiki/URI_scheme#Examples
+* Charlie Sanders for feedback
+
+---
+
+Further Info
+============
+
+* [What Happens When]
+
+[What Happens When]: https://github.com/alex/what-happens-when
+
+---
+
+Feedback
+========
+
+* Twitter: @CraigBuchek
+* GitHub: booch
+* Email: craig@boochtek.com
+
+* This Presentation: https://github.com/booch/presentations
+  * How The Web Works
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
