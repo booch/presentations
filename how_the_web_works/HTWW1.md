@@ -132,7 +132,7 @@ The Web Today
 Browsers
 ========
 
-* Browser - software running on *your* computer to access web sites
+* Browser - software running on ***your*** computer to access web sites
 
 * [WorldWideWeb][www] - 1991
 * NCSA Mosaic - 1992/1993
@@ -401,6 +401,7 @@ Credits
 * Wikipedia
   * URL example: http://en.wikipedia.org/wiki/URI_scheme#Examples
 * Charlie Sanders for feedback
+* Background image: http://www.demilked.com/free-grunge-textures-backgrounds/
 
 ---
 
