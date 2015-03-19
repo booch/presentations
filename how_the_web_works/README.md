@@ -22,7 +22,9 @@ Part 2
 * St. Louis GNU/Linux Users Group (STLLUG)
 * March 19, 2015
 
-Coming Soon
+* [Slides](http://rawgit.com/booch/presentations/master/how_the_web_works/HTWW2.html)
+* [Video]() - Coming Soon
+* [Source](HTWW2.md)
 
 
 HTTP
