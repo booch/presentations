@@ -32,8 +32,8 @@ Log into VM as root
   umount /media/cdrom
 
 
-Install Packages (via `ssh -p 2222 vagrant@127.0.0.1`)
-----------------
+Install and Configure (via `ssh -p 2222 vagrant@127.0.0.1`)
+---------------------
 
 ~~~ bash
 sudo apt-get update
@@ -45,25 +45,91 @@ sudo apt-get install lynx links elinks w3m
 sudo apt-get install vim emacs nano
 sudo apt-get install nginx
 sudo apt-get install squid3 squidclient privoxy polipo
-sudo apt-get install ruby ruby-dev bundler
+sudo apt-get install ruby ruby-dev
 sudo apt-get install tmux
 sudo apt-get install git
 
+# Squid
+sudo service squid3 stop
+sudo sh -c 'cat >> /etc/squid3/squid.conf' <<EOF
+acl localnet src 10.0.0.0/8
+http_access allow localnet
+request_header_access User-Agent deny all
+reply_header_access Date deny all
+request_header_add User-Agent "HTTP Exploration - RailsConf" all
+reply_header_replace Date "RailsConf Day 3"
+EOF
+sudo service squid3 start
+
+# Rails
+sudo apt-get install libxml2-dev zlib1g-dev
+sudo gem install railties bundler
+rails new -O -S -d none -J --skip-turbolinks rails_app
+cd rails_app
+cat > Gemfile <<GEMFILE
+gem 'rails', '4.2.1'
+GEMFILE
+bundle
+rails g controller main index reflect redirect post
+cat > config/routes.rb <<ROUTES
+Rails.application.routes.draw do
+  root 'main#index'
+  get  'reflect'  => 'main#reflect'
+  get  'redirect' => 'main#redirect'
+  post 'post'     => 'main#post'
+end
+ROUTES
+cat > app/controllers/main_controller.rb <<CONTROLLER
+class MainController < ApplicationController
+
+  def index
+   render text: "Hello, World!\n", content_type: "text"
+  end
+
+  def reflect
+    request_headers = request.headers.map{|k,v| "#{k}: #{v}"}.join("\n")
+    render text: "<h1>Hello, World!</h1><pre><code>#{request_headers}</code></pre>\n".html_safe
+  end
+
+  def redirect
+    redirect_to "https://www.google.com/"
+  end
+
+  def post
+
+  end
+
+end
+CONTROLLER
+cat > Gemfile <<GEMFILE
+gem 'rails', '4.2.1'
+GEMFILE
+rails s
+cd -
+
+# Use a more vibrant HTTPie color scheme.
+sed -ie 's|^.*default_options.*$|    "default_options": ["--style=igor"],|' ~/.httpie/config.json
+
+
 ~~~
 
-* Edit ``
-  * Uncomment `acl localnet src 10.0.0.0/8`
-  * Uncomment `http_access allow localnet`
-  * Add `request_header_access User-Agent deny all`
-  * Add `reply_header_access Date deny all`
-  * Add `request_header_add User-Agent "HTTP Exploration - RailsConf" all`
-  * Add `reply_header_replace Date "RailsConf Day 3"`
 
 TODO:
 
 ~~~
-git clone https://github.com/orangejulius/you-too-can-be-a-webserver.git
-sudo service squid3 start
+# Startup script for Rails:
+su - vagrant -c 'cd rails_app && rails s &'
+
+# Config nginx for SSL and SPDY
+# Restart nginx
+# SSL Certs
+yes "" | openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 3560 -nodes
+sudo mv *.pem /etc/nginx/
+sudo chown root:root /etc/nginx/*.pem
+sudo chmod 600 /etc/nginx/*.pem
+
+#
+
 ~~~
 
 ~~~ bash
@@ -73,11 +139,14 @@ sudo init 0
 ~~~
 
 
+
+
+
 Create Vagrant Box
 ------------------
 
 vagrant package --base 'HTTP Exploration' --output http_exploration.box
-vagrant 
+vagrant init --minimal http_exploration ./http_exploration.box
 vagrant up
 vagrant ssh
 
@@ -86,4 +155,18 @@ vagrant ssh
 Notes
 -----
 
-squid - port 3128
+We tried to compile a version of cURL with SPDY and HTTP/2 support.
+  It requires a newer version of the OpenSSL library.
+
+~~~ bash
+sudo apt-get install nghttp2 libnghttp2-dev
+sudo apt-get install libssl-dev
+wget http://curl.haxx.se/download/curl-7.41.0.tar.gz
+tar xfz curl-7.41.0.tar.gz
+cd curl-7.41.0/
+./configure --with-nghttp2 --with-ssl
+make
+sudo make install
+cd -
+~~~
+

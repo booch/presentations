@@ -97,23 +97,29 @@ scheme            |
 * Fragment
 
 ---
+class: http-request
 
 HTTP Request
 ============
 
-* Request line
-  * Method
-  * URL path
-* Headers
-* Body
+<pre><code>
+<span class="method">PUT</span> <span class="url_path">https://www.google.com/</span> HTTP/1.1
+<span class="headers">Host: google.com</span>
+<span class="headers">Content-Length: 38</span>
+<span class="blank"> </span>
+<span class="body">Haha, I've updated Google's home page!</span>
+</code></pre>
 
-~~~
-GET http://google.com/ HTTP/1.1
-Host: google.com
-Accept: */*
+<ul>
+  <li><span class="method">Method</span></li>
+  <li><span class="url_path">URL path</span></li>
+  <li><span class="headers">Headers</span></li>
+  <li><span class="body">Body</span></li>
+</ul>
 
-~~~
+???
 
+* Request line - contains the method, URL path, and protocol
 
 ---
 
@@ -125,50 +131,44 @@ HTTP Methods
 * PUT
 * DELETE
 
-* Safe methods
-  * Do not have any effect on information
-  * GET, HEAD
+---
 
-* Idempotent methods
-  * Can call multiple times without any additional effect
-  * GET, HEAD, PUT, DELETE
+Safe Methods
+============
 
-???
-
-* `rails new hello`
-* `cd hello`
-* `rails g controller hello`
-* Add to `config/routes.rb`:
-  * `root 'hello#index'`
-* Add to `app/controllers/hello_controller.rb`:
-  * `def index; render text: "<h1>Hello, World!</h1>".html_safe; end`
-* `rails s`
-
+* Do not have any effect on information
+* GET, HEAD
 
 ---
 
+Idempotent Methods
+==================
+
+* Can call multiple times without any additional effect
+* GET, HEAD, PUT, DELETE
+
+---
+class: http-response
 
 HTTP Response
 =============
 
-* Status line
-  * Status code
-* Headers
-* Body
+<pre><code>HTTP/1.0 <span class="status_code">201</span> Created
+<span class="headers">Location: https://www.google.com/</span>
+<span class="headers">Content-Type: application/json; charset=UTF-8</span>
+<span class="blank"> </span>
+<span class="body">{"rubyconf": "awesome", "day": 3}</span>
+</code></pre>
 
-~~~
-HTTP/1.0 301 Moved Permanently
-Location: http://www.google.com/
-Content-Type: text/html; charset=UTF-8
+<ul>
+  <li><span class="status_code">Status code</span></li>
+  <li><span class="headers">Headers</span></li>
+  <li><span class="body">Body</span></li>
+</ul>
 
-<HTML><HEAD>
-<TITLE>301 Moved</TITLE></HEAD><BODY>
-<H1>301 Moved</H1>
-The document has moved
-<A HREF="http://www.google.com/">here</A>.
-</BODY></HTML>
-~~~
+???
 
+* Status line - contains protocol, status code, and status description
 
 ---
 
@@ -187,13 +187,6 @@ Request Headers
 * User-Agent
 * X-Forwarded-For
 
-???
-
-* Modify the controller action:
-  * `request_headers = request.headers.map{|k,v| "#{k}: #{v}"}.join("\n")`
-  * `render text: "<h1>Hello, World!</h1><pre><code>#{request_headers}</code></pre>".html_safe`
-
-
 ---
 
 Response Status Codes
@@ -207,10 +200,9 @@ Response Status Codes
   * 301 - Moved Permanently
   * 304 - Not Modified
 
-
 ---
 
-Response Status Codes - More
+Response Status Codes
 =====================
 
 * 400s - Client Error
@@ -222,7 +214,6 @@ Response Status Codes - More
   * 500 - Internal Server Error
   * 502 - Bad Gateway
   * 504 - Gateway Timeout
-
 
 ---
 
@@ -237,24 +228,28 @@ Response Headers
 * Set-Cookie
 * WWW-Authenticate
 
-???
+---
 
-* Modify the controller action, and look at results in `curl`, browser, and `wget`:
-  * `headers["foo"] = "*** bar ***"`
-  * `headers["Location"] = "https://google.com/"; render text: "", status: 302`
-  * `redirect_to "https://google.com/"`
+Proxies
+=======
+
+* Proxy - to act in place of another
+
+
+* Web proxies intercept HTTP requests
+  * Can modify the request or response
+  * Can modify headers or body content
 
 ---
 
-# Proxies
-
-* Proxy - act in place of another
-
-* Web proxies intercept HTTP requests
-  * They can modify the request or response
+Proxies
+=======
 
 * Good for caching
-* Can add some security
+* Can add security
+  * SSL termination / offloading
+  * Authentication
+
 
 * Transparent vs. non-transparent
 * Reverse vs. forward
@@ -275,7 +270,8 @@ CDNs
 
 ---
 
-# Troubleshooting
+Troubleshooting
+===============
 
 * ping
 * traceroute
@@ -287,8 +283,10 @@ CDNs
 
 ???
 
-* Linux `netstat` takes `-plant`
-* Mac `netstat` takes only `-na`; pipe it to `grep LISTEN`
+* Mac `netstat` takes only `-na`, not `-plt`
+  * Pipe it to `grep LISTEN`
+
+* You can capture with `tcpdump` and view in Wireshark
 
 ---
 
@@ -297,11 +295,15 @@ HTTP/2
 
 * SPDY
 * Header compression (HPACK)
-* TLS
-  * Not related, but required by every implementation
-    * Probably due to application protocol negotiation TLS feature
+* TLS required by every implementation
+  * Not really related to HTTP/2
+  * Probably due to use of ALPN TLS extension
 * Binary framing instead of text-based
   * Same semantics as HTTP/1.1 though
+
+???
+
+* ALPN = Application-Layer Protocol Negotiation
 
 ---
 
@@ -321,18 +323,18 @@ HTTP/2
 HTTP/2 - Support
 ================
 
+* Chrome 41
+* Firefox 36
+* IE 11 - only in Windows 10
 * Nginx will support it by the end of 2015
   * 1.5.10 supports SPDY/3.1
+* Wireshark 1.99
 * Apache seems to have no plans, but mod_spdy is available
-* Chrome support is enabled with `--enable-spdy4` or via `chrome://flags`
-* Firefox (34) support is enabled with `network.http.spdy.enabled.http2draft`
-  * Has supported SPDY since version 15
-* IE 11 will support HTTP/2
-
 
 ---
 
-# Start Vagrant
+Start Vagrant
+=============
 
 Change to the directory containing and `http_exploration.box`
 
@@ -347,53 +349,55 @@ When you're done, stop the VM with `vagrant halt`
 
 ---
 
-# Telnet - HTTP/0.9
+Telnet - HTTP/0.9
+=================
 
 Use telnet, but don't specify a version of HTTP in the request
 
 ~~~ bash
-telnet google.com 80
+telnet localhost 3000
 ~~~
 
 ~~~
-GET http://google.com/
+GET http://localhost/
 ~~~
 
 Note that you couldn't specify request headers
-Note that the response was HTTP/1.0
+Note that there are no response headers
 
 ---
 
-# Telnet - HTTP/1.0
+Telnet - HTTP/1.0
+=================
 
 Use telnet, and specify HTTP/1.0 in the request
 
 ~~~ bash
-telnet google.com 80
+telnet localhost 3000
 ~~~
 
 ~~~
-GET http://google.com/ HTTP/1.0
-Host: google.com
+GET http://localhost:3000/ HTTP/1.0
+Host: localhost
 
 ~~~
 
-Note that you had to specify the `Host` header
 Note that you need a blank line after the last header
 
 ---
 
-# Telnet - HTTP/1.1
+Telnet - HTTP/1.1
+=================
 
 Use telnet, and specify HTTP/1.1 in the request
 
 ~~~ bash
-telnet google.com 80
+telnet localhost 3000
 ~~~
 
 ~~~
 GET / HTTP/1.1
-Host: google.com
+Host: localhost
 
 ~~~
 
@@ -404,15 +408,14 @@ What's different about this, compared to HTTP/1.0?
 
 ---
 
-# Wget
+Wget
+====
 
 Use wget
 
 ~~~ bash
-wget -d http://google.com
+wget -d http://localhost:3000/
 ~~~
-
-Note that it followed the redirect to `www.google.com`
 
 Where did it put the result?
 
@@ -423,31 +426,32 @@ Tip: use `-o` to specify the output file
 * Mac Homebrew wget doesn't support `-d` out of the box
   * `brew reinstall wget --with-debug`
 
-
 ---
 
-# cURL
+cURL
+====
 
 Use cURL
 
 ~~~ bash
-curl -v http://google.com
+curl -v http://localhost:3000/
+curl -v --proxy localhost:3128 http://localhost:3000/reflect \
+  | grep 'HTTP_'
 ~~~
 
 Note the leading `*`, `>`, and `<` characters
-  * Info about connecting to the server is prefixed with `*`
-  * What the client sends to the server is prefixed with `>`
-  * What the server sends back to the client is prefixed with `<`
-  * The response body contains no prefix character
+  * What does each prefix character mean?
 
 ---
 
-# HTTPie
+HTTPie
+======
 
 Use HTTPie
 
 ~~~ bash
-http -v http://google.com
+http -v http://localhost:3000/
+http --style=xcode -v http://localhost:3000/
 ~~~
 
 What's different about this ouput compared to cURL?
@@ -455,7 +459,8 @@ What's different about this ouput compared to cURL?
 
 ---
 
-# HTTPS - Telnet
+HTTPS - Telnet
+==============
 
 Try to telnet to an HTTPS server:
 
@@ -473,9 +478,10 @@ What happens? Why?
 
 ---
 
-# HTTPS - OpenSSL
+HTTPS - OpenSSL
+===============
 
-Try using OpenSSL s_client instead:
+Try using OpenSSL `s_client` instead:
 
 ~~~ bash
 openssl s_client -connect www.google.com:443
@@ -491,27 +497,30 @@ Tip: Check out the `-pause` and `-debug` options to `s_client`
 
 ---
 
-# HTTPS - HTTPie
+HTTPS - HTTPie
+==============
 
 Try using HTTPie instead:
 
 ~~~ bash
-http -v HEAD https://www.google.com
+http -v HEAD https://www.google.com/
 ~~~
 
 ---
 
-# HTTPS - cURL
+HTTPS - cURL
+============
 
 Try using cURL instead:
 
 ~~~ bash
-curl -v -X HEAD https://www.google.com
+curl -v -X HEAD https://www.google.com/
 ~~~
 
 ---
 
-# Netstat
+Netstat
+=======
 
 See what services are listening
 
@@ -521,26 +530,39 @@ sudo netstat -plant
 
 ---
 
-# Proxy - Squid
+Proxy - Squid
+=============
 
-Proxy your requests through Squid
+Proxy your requests through Squid, which is running on port 3128
 
 ~~~ bash
-curl -v --proxy localhost:3128 -X HEAD http://google.com
-http -v --proxy http:http://localhost:3128 HEAD http://google.com
-http_proxy=http://localhost:3128 curl -v -X HEAD http://google.com
+curl -v --proxy localhost:3128 http://localhost:3000/
+curl -v --proxy localhost:3128 http://localhost:3000/reflect \
+  | grep 'HTTP_'
+http -v --proxy http:http://localhost:3128 http://localhost:3000/
+http_proxy=http://localhost:3128 curl -v http://localhost:3000/
 ~~~
 
 What did the proxy change?
 
----
-
-
-
-
+Bonus: Take a look at the bottom of `/etc/squid3/squid.conf`
 
 ---
 
+Proxy - Nginx
+=============
+
+Use Nginx as a reverse proxy to add TLS security
+
+~~~ bash
+curl -v --insecure https://localhost/
+http -v --verify=no https://localhost/
+~~~
+
+Note: We're ignoring invalid SSL certs here -- never do this!
+  * You would be vulnerable to a man-in-the-middle attack
+
+---
 
 Thanks
 ======
@@ -572,4 +594,3 @@ Feedback
 * Twitter: @CraigBuchek
 * GitHub: booch
 * Email: craig@boochtek.com
-
