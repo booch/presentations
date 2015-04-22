@@ -229,6 +229,7 @@ Response Status Codes
 
 * 405 - Method Not Allowed
 * 418 - I'm a teapot
+* 420 - Enhance your calm (exceeded rate limiting on Twitter)
 
 ---
 
