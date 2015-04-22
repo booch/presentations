@@ -133,6 +133,7 @@ HTTP Methods
 * POST
 * PUT
 * DELETE
+* HEAD
 
 ---
 
@@ -162,6 +163,18 @@ Request Headers
 * Referer
 * User-Agent
 
+???
+
+* Host - the only *required* header (except pre-HTTP/1.0)
+* Accept - lists content types that the browser would like
+  * Can specify relative quality factor for each type
+* Content-Length - size of the body (if applicable -- POST and PUT)
+* Content-Type - MIME type of body
+  * Forms: Usually `application/x-www-form-urlencoded` or `multipart/form-data`
+  * APIs: Typically `application/json` or `text/xml`
+* Referer (spelled incorrectly) - page with link the user clicked
+* User-Agent - string describing browser (or other HTTP client)
+
 ---
 
 Request Headers
@@ -171,7 +184,13 @@ Request Headers
 * Accept-Encoding
 * Connection
 * Cookie
-* X-Forwarded-For
+
+???
+
+* Authorization - provides login info (for popups)
+* Accept-Encoding - gzip or deflate
+* Connection - keep-alive
+* Cookie - return a cookie that the server has previously handed us
 
 ---
 class: http-response
@@ -235,20 +254,30 @@ Response Status Codes
 Response Headers
 ================
 
-* Content-Encoding
 * Content-Length
-* Content-Disposition
 * Content-Type
+* Content-Encoding
+* Content-Disposition
 * Location
 * Set-Cookie
 * WWW-Authenticate
+
+???
+
+* Content-Encoding - body has been gzip or deflated
+* Content-Disposition - used to tell browser to download instead of display
+  * Can also provide a default filename to save as
+* Location - browser should redirect to the value of this header
+* Set-Cookie - tells browser to remember a token to pass back next time
+  * This is how we get statefulness in a stateless protocol
+* WWW-Authenticate - asks for user to authenticate (via browser popup)
 
 ---
 
 Proxies
 =======
 
-* Proxy - to act in place of another
+* Proxy - something that acts in place of another
 
 
 * Web proxies intercept HTTP requests
@@ -269,6 +298,12 @@ Proxies
 * Transparent vs. non-transparent
 * Reverse vs. forward
 
+???
+
+* Transparent means we don't need to tell our user-agent about it
+* Reverse proxy (always transparent) is near the server(s)
+* Forward proxy is near the client(s)
+
 ---
 
 CDNs
@@ -281,6 +316,7 @@ CDNs
 * BGP Anycast for DNS servers
   * Determines which content server is closest
 
+
 * DDoS protection
 
 ---
@@ -291,7 +327,7 @@ Troubleshooting
 * ping
 * traceroute
 * telnet
-* netstat -plant
+* netstat -plant (on servers)
 * openssl s_client (HTTPS)
 * tcpdump
 * Wireshark
@@ -303,12 +339,17 @@ Troubleshooting
 
 * You can capture with `tcpdump` and view in Wireshark
 
+* Consider the various layers of the OSI model
+  * ping, traceroute = network layer
+  * telnet = transport layer
+  * s_client = presentation layer
+
 ---
 
 HTTP/2
 ======
 
-* SPDY
+* Google SPDY project
 * Header compression (HPACK)
 * TLS required by every implementation
   * Not really related to HTTP/2
@@ -333,6 +374,11 @@ HTTP/2
 * Starts with an HTTP/1.1 connection using `Upgrade` and `HTTP2-Settings` headers
   * Returns a 101 status code (Switching Protocols)
 
+???
+
+* Chrome and Google can also use QUIC
+  * Basically best of UDP and TCP transport layer
+
 ---
 
 HTTP/2 - Support
@@ -355,6 +401,7 @@ HTTP/2 - Support
   * They used NPN instead of ALPN
 
 ---
+class: title, middle, center
 
 Exercises
 =========
@@ -627,6 +674,8 @@ Note that we've configured Nginx to use SSL and proxy to port 3000
 
 Bonus: Take a look at the bottom of `/etc/nginx/nginx.conf`
 
+Bonus: Stop the Rails app and try to hit https://localhost/
+
 ---
 
 HTTP/2
@@ -643,6 +692,51 @@ Note: We had to manually compile OpenSSL and cURL to make this work
 
 ---
 
+Logs
+====
+
+Pick some previous exercises and run them while watching Rails logs
+
+Hint: Use `tail -f`, `tailf`, or `less +F`
+
+Tip: Use `tmux` to run multiple things in separate "windows"
+
+Bonus: Do the same for the Nginx and Squid proxy logs
+
+---
+
+Web Browsers
+============
+
+Try some of the above exercises using a browser on your host OS
+
+* The Rails app is exposed on port 3333
+* The Nginx HTTPS proxy is exposed on port 4444
+  * It should have SPDY/3.1 enabled
+
+Tip: Take a look at the Network tab in Developer Tools
+
+---
+
+TUI Browsers
+============
+
+Try some of the above exercises using a TUI-based browser
+
+* lynx
+* links
+* elinks
+* w3m
+
+What are the differences between these browsers?
+  * Which do you like best?
+
+???
+
+* TUI = Text-based User Interface, basically a GUI in the terminal
+
+---
+
 Thanks
 ======
 
@@ -652,23 +746,27 @@ Thanks
   * Lab assistant
 * Julian Simioni
   * Feedback
-  * Live demo
+  * Lab assistant
 
 ---
 
 Further Info
 ============
 
+* [RFC 2616][rfc2616]
 * [What Happens When][whw]
   * Covers every step involved in showing a page in a browser
     * From entering the URL to the page rendering
     * Hardware, operating system, networking, ...
     * Very detailed and thorough
+* [Common HTTP Headers][http-headers]
 * [HTTP/2 Official Site][http2]
 * [Video on benefits of HTTP/2][http2-video]
 * [Nginx HTTP/2 Support][nginx-http2]
 
+[rfc2616]: http://www.rfc-editor.org/rfc/rfc2616.txt
 [whw]: https://github.com/alex/what-happens-when
+[http-headers]: http://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 [http2]: http://http2.github.io/
 [http2-video]: https://www.youtube.com/watch?v=eunWfaTeodc
 [nginx-http2]: http://nginx.com/blog/how-nginx-plans-to-support-http2/

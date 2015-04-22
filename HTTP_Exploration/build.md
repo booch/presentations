@@ -6,6 +6,8 @@ Create VirtualBox VM
   Turn off audio
   Network / Port Forwarding
     SSH: 2222 -> 22 (leave IPs blank)
+    HTTP: 3333 -> 3000 (leave IPs blank)
+    HTTPS: 4444 -> 3000 (leave IPs blank)
 Install Debian Jessie
   Default "Install" from boot menu
   Root password: vagrant
