@@ -110,6 +110,25 @@ cd -
 # Use a more vibrant HTTPie color scheme.
 sed -ie 's|^.*default_options.*$|    "default_options": ["--style=igor"],|' ~/.httpie/config.json
 
+# Compile latest OpenSSL - required for ALPN support for cURL below
+wget https://www.openssl.org/source/openssl-1.0.2a.tar.gz
+tar xfz openssl-1.0.2a.tar.gz
+cd openssl-1.0.2a/
+./config
+make
+sudo make install
+cd -
+
+# Compile latest cURL - required for HTTP/2 and SPDY support
+sudo apt-get install nghttp2 libnghttp2-dev
+sudo apt-get install libssl-dev
+wget http://curl.haxx.se/download/curl-7.41.0.tar.gz
+tar xfz curl-7.41.0.tar.gz
+cd curl-7.41.0/
+./configure --with-nghttp2 --with-ssl
+make
+sudo make install
+cd -
 
 ~~~
 
@@ -140,8 +159,6 @@ sudo init 0
 
 
 
-
-
 Create Vagrant Box
 ------------------
 
@@ -155,18 +172,4 @@ vagrant ssh
 Notes
 -----
 
-We tried to compile a version of cURL with SPDY and HTTP/2 support.
-  It requires a newer version of the OpenSSL library.
-
-~~~ bash
-sudo apt-get install nghttp2 libnghttp2-dev
-sudo apt-get install libssl-dev
-wget http://curl.haxx.se/download/curl-7.41.0.tar.gz
-tar xfz curl-7.41.0.tar.gz
-cd curl-7.41.0/
-./configure --with-nghttp2 --with-ssl
-make
-sudo make install
-cd -
-~~~
 

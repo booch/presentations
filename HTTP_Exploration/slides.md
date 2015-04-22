@@ -33,6 +33,7 @@ About Me
   * Network and System Admin before that
 * Agile practitioner
   * This Agile Life podcast
+* Boring slide designer
 
 ---
 
@@ -60,8 +61,12 @@ HTTP History
   * RFC 2616
 * HTTP/1.1 updates (2014)
   * RFCs 7230, 7231, 7232, 7233, 7234, 7235
-* HTTP/2.0 (2015)
+* HTTP/2 (2015)
   * http://http2.github.io/
+
+???
+
+* HTTP/2 has been approved, but not yet published as RFCs
 
 ---
 
@@ -71,8 +76,6 @@ HTTP Basics
 * Stateless
 * Text-based
 * Request / Response
-* Headers
-* Body
 
 ---
 
@@ -148,6 +151,29 @@ Idempotent Methods
 * GET, HEAD, PUT, DELETE
 
 ---
+
+Request Headers
+===============
+
+* Host
+* Accept
+* Content-Length
+* Content-Type
+* Referer
+* User-Agent
+
+---
+
+Request Headers
+===============
+
+* Authorization
+* Accept-Encoding
+* Connection
+* Cookie
+* X-Forwarded-For
+
+---
 class: http-response
 
 HTTP Response
@@ -172,23 +198,6 @@ HTTP Response
 
 ---
 
-Request Headers
-===============
-
-* Host
-* Accept
-* Accept-Encoding
-* Authorization
-* Connection
-* Cookie
-* Content-Length
-* Content-Type
-* Referer
-* User-Agent
-* X-Forwarded-For
-
----
-
 Response Status Codes
 =====================
 
@@ -210,10 +219,16 @@ Response Status Codes
   * 403 - Forbidden
   * 404 - Not Found
   * 407 - Proxy Authentication Required
+  * 422 - Unprocessable Entity
 * 500s - Server Error
   * 500 - Internal Server Error
   * 502 - Bad Gateway
   * 504 - Gateway Timeout
+
+???
+
+* 405 - Method Not Allowed
+* 418 - I'm a teapot
 
 ---
 
@@ -328,8 +343,21 @@ HTTP/2 - Support
 * IE 11 - only in Windows 10
 * Nginx will support it by the end of 2015
   * 1.5.10 supports SPDY/3.1
+* cURL 4.x
+  * With `--http2` flag, if feature compiled in
 * Wireshark 1.99
 * Apache seems to have no plans, but mod_spdy is available
+
+???
+
+* Unfortunately, I couldn't get cURL and Nginx to cooperate
+  * Had to compile OpenSSL 1.0.2 and cURL 7.41 with nghttp2
+  * They used NPN instead of ALPN
+
+---
+
+Exercises
+=========
 
 ---
 
@@ -404,7 +432,7 @@ Host: localhost
 Note that you can simplify the request line (except HTTP/0.9)
 
 What's different about this, compared to HTTP/1.0?
-  * Hint: hit Control+C
+  * Hint: Hit Control+C
 
 ---
 
@@ -419,7 +447,7 @@ wget -d http://localhost:3000/
 
 Where did it put the result?
 
-Tip: use `-o` to specify the output file
+Tip: Use `-o` to specify the output file
 
 ???
 
@@ -435,8 +463,7 @@ Use cURL
 
 ~~~ bash
 curl -v http://localhost:3000/
-curl -v --proxy localhost:3128 http://localhost:3000/reflect \
-  | grep 'HTTP_'
+curl -v http://localhost:3000/reflect
 ~~~
 
 Note the leading `*`, `>`, and `<` characters
@@ -451,11 +478,46 @@ Use HTTPie
 
 ~~~ bash
 http -v http://localhost:3000/
+http -v http://localhost:3000/reflect X-RailsConf-Date:2015-04-23
 http --style=xcode -v http://localhost:3000/
 ~~~
 
 What's different about this ouput compared to cURL?
   * Which do you prefer?
+
+---
+
+Redirect
+========
+
+Let's see what a redirect looks like
+
+~~~ bash
+curl -v http://localhost:3000/redirect
+http -v --follow http://localhost:3000/redirect
+~~~
+
+Notice the status code and `Location` header
+
+Now let's follow the redirect
+
+~~~ bash
+curl -v -L http://localhost:3000/redirect
+~~~
+
+---
+
+POST
+====
+
+Let's see what a POST looks like
+
+~~~ bash
+curl -v -X POST http://localhost:3000/post -d key=value -d railsconf=fun
+http -v POST http://localhost:3000/post key=value railsconf=fun
+~~~
+
+Note the request body being sent
 
 ---
 
@@ -522,7 +584,7 @@ curl -v -X HEAD https://www.google.com/
 Netstat
 =======
 
-See what services are listening
+See what services are listening:
 
 ~~~ bash
 sudo netstat -plant
@@ -533,12 +595,11 @@ sudo netstat -plant
 Proxy - Squid
 =============
 
-Proxy your requests through Squid, which is running on port 3128
+Proxy your requests through Squid (running on port 3128):
 
 ~~~ bash
 curl -v --proxy localhost:3128 http://localhost:3000/
-curl -v --proxy localhost:3128 http://localhost:3000/reflect \
-  | grep 'HTTP_'
+curl -v --proxy localhost:3128 http://localhost:3000/reflect
 http -v --proxy http:http://localhost:3128 http://localhost:3000/
 http_proxy=http://localhost:3128 curl -v http://localhost:3000/
 ~~~
@@ -552,7 +613,7 @@ Bonus: Take a look at the bottom of `/etc/squid3/squid.conf`
 Proxy - Nginx
 =============
 
-Use Nginx as a reverse proxy to add TLS security
+Use Nginx as a reverse proxy to add TLS security:
 
 ~~~ bash
 curl -v --insecure https://localhost/
@@ -561,6 +622,24 @@ http -v --verify=no https://localhost/
 
 Note: We're ignoring invalid SSL certs here -- never do this!
   * You would be vulnerable to a man-in-the-middle attack
+
+Note that we've configured Nginx to use SSL and proxy to port 3000
+
+Bonus: Take a look at the bottom of `/etc/nginx/nginx.conf`
+
+---
+
+HTTP/2
+======
+
+Use cURL to hit Google using HTTP/2:
+
+~~~ bash
+curl -v --http2 -X HEAD https://www.google.com/
+~~~
+
+Note: We had to manually compile OpenSSL and cURL to make this work
+  * We still couldn't get it to work against Nginx's SPDY
 
 ---
 
@@ -581,10 +660,34 @@ Further Info
 ============
 
 * [What Happens When][whw]
+  * Covers every step involved in showing a page in a browser
+    * From entering the URL to the page rendering
+    * Hardware, operating system, networking, ...
+    * Very detailed and thorough
+* [HTTP/2 Official Site][http2]
+* [Video on benefits of HTTP/2][http2-video]
 * [Nginx HTTP/2 Support][nginx-http2]
 
 [whw]: https://github.com/alex/what-happens-when
+[http2]: http://http2.github.io/
+[http2-video]: https://www.youtube.com/watch?v=eunWfaTeodc
 [nginx-http2]: http://nginx.com/blog/how-nginx-plans-to-support-http2/
+
+---
+
+Colophon
+========
+
+* [Remark] - JavaScript slide show from Markdown
+* [Debian 8 (Jessie) RC2][debian-installer] - OS image
+* [VirtualBox] - Virtual Machine
+* [Vagrant] - VM provisioning and management
+  * I did a poor job with *automated* provisioning
+
+[Remark]: http://remarkjs.com/
+[debian-installer]: https://www.debian.org/devel/debian-installer/
+[VirtualBox]: https://www.virtualbox.org/
+[Vagrant]: https://www.vagrantup.com/
 
 ---
 
