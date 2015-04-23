@@ -305,6 +305,7 @@ Troubleshooting
 
 ---
 
+
 HTTP/2
 ======
 
@@ -588,6 +589,33 @@ See what services are listening:
 
 ~~~ bash
 sudo netstat -plant
+~~~
+
+---
+
+tcpdump
+=======
+
+* See data sent/received on the network
+* Any hop between the client and server can peek at data
+* Powerful expression language to choose which packets to capture
+
+~~~ bash
+sudo tcpdump -A -i lo0 -l port 3000 > tcpdump.out &
+curl http://username:password@localhost:3000
+cat tcpdump.out
+~~~
+
+???
+
+* Are these packets getting to my machine?
+* Is my client behaving like I expect?
+* Something modifying the request/response?
+* Wireshark
+* Decode all the basic auths:
+
+~~~ bash
+sudo tcpdump -A -i lo0 -l port 8080 | \grep Basic --line-buffered | head -n1 | cut -d' ' -f3 | base64 -D
 ~~~
 
 ---
