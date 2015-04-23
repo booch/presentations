@@ -3,14 +3,14 @@ class: title, middle, center
 # http://exploration
 
 * by Craig Buchek
-
+* with Charlie Sanders
 
 * RailsConf
 * April 23, 2015
 
 
 * Please install Vagrant and VirtualBox
-* Please copy BOX file from USB keys
+* Please copy `Vagrantfile` and `http_exploration.box`
 
 ---
 
@@ -21,6 +21,13 @@ Feedback
 * GitHub: booch (personal, presentations)
 * GitHub: boochtek (projects)
 * Email: craig@boochtek.com
+
+---
+
+Follow Along
+============
+
+http://tiny.cc/http_exploration
 
 ---
 
@@ -143,6 +150,10 @@ Safe Methods
 * Do not have any effect on information
 * GET, HEAD
 
+???
+
+Takeaway = Don't have your app change things when processing `GET` requests (except logging and such)
+
 ---
 
 Idempotent Methods
@@ -150,6 +161,10 @@ Idempotent Methods
 
 * Can call multiple times without any additional effect
 * GET, HEAD, PUT, DELETE
+
+???
+
+Takeaway = Don't POST the same thing multiple times
 
 ---
 
@@ -406,16 +421,23 @@ class: title, middle, center
 Exercises
 =========
 
+http://tiny.cc/http_exploration
+
+* Tip: Hit `P` to toggle presenter notes
+
+???
+
+See? Presenter Notes!
+
 ---
 
 Start Vagrant
 =============
 
-Change to the directory containing and `http_exploration.box`
+Change to the directory containing `Vagrantfile` and `http_exploration.box`
 
 ~~~ bash
 vagrant box add http_exploration ./http_exploration.box
-vagrant init http_exploration
 vagrant up
 vagrant ssh
 ~~~
@@ -427,7 +449,7 @@ When you're done, stop the VM with `vagrant halt`
 Telnet - HTTP/0.9
 =================
 
-Use telnet, but don't specify a version of HTTP in the request
+Use telnet, but don't specify a version of HTTP:
 
 ~~~ bash
 telnet localhost 3000
@@ -445,7 +467,7 @@ Note that there are no response headers
 Telnet - HTTP/1.0
 =================
 
-Use telnet, and specify HTTP/1.0 in the request
+Use telnet, and specify HTTP/1.0 in the request:
 
 ~~~ bash
 telnet localhost 3000
@@ -464,7 +486,7 @@ Note that you need a blank line after the last header
 Telnet - HTTP/1.1
 =================
 
-Use telnet, and specify HTTP/1.1 in the request
+Use telnet, specifying HTTP/1.1:
 
 ~~~ bash
 telnet localhost 3000
@@ -476,9 +498,9 @@ Host: localhost
 
 ~~~
 
-Note that you can simplify the request line (except HTTP/0.9)
+Note that you don't need the protocol and server in the request line (except HTTP/0.9)
 
-What's different about this, compared to HTTP/1.0?
+How does this differ from HTTP/1.0?
   * Hint: Hit Control+C
 
 ---
@@ -486,7 +508,7 @@ What's different about this, compared to HTTP/1.0?
 Wget
 ====
 
-Use wget
+Use wget:
 
 ~~~ bash
 wget -d http://localhost:3000/
@@ -506,7 +528,7 @@ Tip: Use `-o` to specify the output file
 cURL
 ====
 
-Use cURL
+Use cURL:
 
 ~~~ bash
 curl -v http://localhost:3000/
@@ -516,12 +538,18 @@ curl -v http://localhost:3000/reflect
 Note the leading `*`, `>`, and `<` characters
   * What does each prefix character mean?
 
+???
+
+* `>` indicates traffic being sent from client to server
+* `<` indicates traffic being sent back from the server to the client
+* `*` indicates information about the connection between the client and server
+
 ---
 
 HTTPie
 ======
 
-Use HTTPie
+Use HTTPie:
 
 ~~~ bash
 http -v http://localhost:3000/
@@ -532,12 +560,16 @@ http --style=xcode -v http://localhost:3000/
 What's different about this ouput compared to cURL?
   * Which do you prefer?
 
+???
+
+* Note: You can use `http` in place of `curl` in most of the following exercises if you want
+
 ---
 
 Redirect
 ========
 
-Let's see what a redirect looks like
+Let's see what a redirect looks like:
 
 ~~~ bash
 curl -v http://localhost:3000/redirect
@@ -557,7 +589,7 @@ curl -v -L http://localhost:3000/redirect
 POST
 ====
 
-Let's see what a POST looks like
+Let's see what a POST looks like:
 
 ~~~ bash
 curl -v -X POST http://localhost:3000/post -d key=value -d railsconf=fun
@@ -565,6 +597,34 @@ http -v POST http://localhost:3000/post key=value railsconf=fun
 ~~~
 
 Note the request body being sent
+
+---
+
+Caching
+=======
+
+Let's see how a cache would use headers:
+
+~~~ bash
+URL='http://localhost:3000/etag'
+curl -v http://localhost:3000/etag
+ETAG=$(curl -v $URL 2>&1 | grep Etag: | sed -e 's/.*"\(.*\)"/\1/')
+curl -v -H "If-None-Match: $ETAG" http://localhost:3000/etag
+MODIFIED=$(curl -v $URL 2>&1 | grep Last-Modified: | sed -e 's/.*: \(.*\)/\1/')
+curl -v -H "If-Modified-Since: $MODIFIED" http://localhost:3000/etag
+~~~
+
+Note the status code when we supply the headers
+
+Note that when we get a `304`, there's no body content included
+
+???
+
+That crazy complicated stuff is just grabbing the content of the appropriate headers
+
+Note how the names of the request tags and response tags go together
+  * Response: `ETag` -> Request: `If-None-Match`
+  * Response: `Last-Modified` -> Request: `If-Modified-Since`
 
 ---
 
@@ -628,21 +688,10 @@ curl -v -X HEAD https://www.google.com/
 
 ---
 
-Netstat
-=======
+Non-Transparent Proxy
+=====================
 
-See what services are listening:
-
-~~~ bash
-sudo netstat -plant
-~~~
-
----
-
-Proxy - Squid
-=============
-
-Proxy your requests through Squid (running on port 3128):
+Proxy your requests through Squid (on port 3128):
 
 ~~~ bash
 curl -v --proxy localhost:3128 http://localhost:3000/
@@ -653,11 +702,13 @@ http_proxy=http://localhost:3128 curl -v http://localhost:3000/
 
 What did the proxy change?
 
+???
+
 Bonus: Take a look at the bottom of `/etc/squid3/squid.conf`
 
 ---
 
-Proxy - Nginx
+Reverse Proxy
 =============
 
 Use Nginx as a reverse proxy to add TLS security:
@@ -670,11 +721,17 @@ http -v --verify=no https://localhost/
 Note: We're ignoring invalid SSL certs here -- never do this!
   * You would be vulnerable to a man-in-the-middle attack
 
+???
+
 Note that we've configured Nginx to use SSL and proxy to port 3000
 
 Bonus: Take a look at the bottom of `/etc/nginx/nginx.conf`
 
 Bonus: Stop the Rails app and try to hit https://localhost/
+
+~~~ bash
+sudo service rails_app stop
+~~~
 
 ---
 
@@ -689,19 +746,6 @@ curl -v --http2 -X HEAD https://www.google.com/
 
 Note: We had to manually compile OpenSSL and cURL to make this work
   * We still couldn't get it to work against Nginx's SPDY
-
----
-
-Logs
-====
-
-Pick some previous exercises and run them while watching Rails logs
-
-Hint: Use `tail -f`, `tailf`, or `less +F`
-
-Tip: Use `tmux` to run multiple things in separate "windows"
-
-Bonus: Do the same for the Nginx and Squid proxy logs
 
 ---
 
@@ -733,7 +777,63 @@ What are the differences between these browsers?
 
 ???
 
-* TUI = Text-based User Interface, basically a GUI in the terminal
+TUI = Text-based User Interface, basically a GUI in the terminal
+
+---
+
+Netstat
+=======
+
+See what services are listening on what ports:
+
+~~~ bash
+sudo netstat -plant
+~~~
+
+???
+
+This is helpful in determining if your app is listening on the port you think it is
+
+Mac `netstat` takes only `-na`, not `-plt`
+  * Pipe it to `grep LISTEN`
+
+---
+
+Tcpdump
+=======
+
+Let's capture the raw packets going across the network:
+
+~~~ bash
+sudo tcpdump -A -i lo -l port 3000 > tcpdump.out &
+curl http://username:password@localhost:3000
+less tcpdump.out
+~~~
+
+Let's find the password that went across the wire:
+
+~~~ bash
+cat tcpdump.out | grep Basic | cut -d' ' -f3 | base64 -d
+~~~
+
+???
+
+You can capture with `tcpdump` and view in Wireshark
+
+---
+
+Logs
+====
+
+Pick some previous exercises and run them while watching Rails logs
+
+Hint: Use `tail -f`, `tailf`, or `less +F`
+
+Tip: Use `tmux` to run multiple things in separate "windows"
+
+???
+
+Bonus: Do the same for the Nginx and Squid proxy logs
 
 ---
 
@@ -747,6 +847,8 @@ Thanks
 * Julian Simioni
   * Feedback
   * Lab assistant
+* Olivier Lacan
+  * Feedback
 
 ---
 

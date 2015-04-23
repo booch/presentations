@@ -22,6 +22,7 @@ Log into VM as root
   chown -R vagrant:vagrant ~vagrant/.ssh
   chmod 700 ~vagrant/.ssh
   chmod 600 ~vagrant/.ssh/authorized_keys
+  cat ~vagrant/.ssh/authorized_keys
   apt-get install sudo
   visudo
     # Verify no `requiretty`
@@ -42,11 +43,13 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo init 6
 sudo apt-get install telnet netcat
+sudo apt-get install tcpdump
 sudo apt-get install wget curl httpie
 sudo apt-get install lynx links elinks w3m
 sudo apt-get install vim emacs nano
 sudo apt-get install nginx
 sudo apt-get install squid3 squidclient privoxy polipo
+sudo apt-get install siege apache2-utils
 sudo apt-get install ruby ruby-dev
 sudo apt-get install tmux
 sudo apt-get install git
@@ -106,7 +109,22 @@ CONTROLLER
 cat > Gemfile <<GEMFILE
 gem 'rails', '4.2.1'
 GEMFILE
-rails s
+sudo sh -c 'cat > /etc/systemd/system/rails_app.service' <<'SYSTEMD'
+[Unit]
+Description=Rails application
+After=network.target
+
+[Service]
+User=vagrant
+WorkingDirectory=/home/vagrant/rails_app
+ExecStart=/home/vagrant/rails_app/bin/rails server
+ExecStop=/bin/kill $(cat tmp/pids/server.pid)
+
+[Install]
+WantedBy=multi-user.target
+SYSTEMD
+sudo service rails_app start
+sudo systemctl enable rails_app.service
 cd -
 
 # Use a more vibrant HTTPie color scheme.
@@ -138,11 +156,15 @@ cd -
 TODO:
 
 ~~~
-# Startup script for Rails:
-su - vagrant -c 'cd rails_app && rails s &'
 
 # Config nginx for SSL and SPDY
+...
+sudo service nginx checkconfig
+
+
 # Restart nginx
+sudo service nginx restart
+
 # SSL Certs
 yes "" | openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 3560 -nodes
 sudo mv *.pem /etc/nginx/
@@ -154,7 +176,7 @@ sudo chmod 600 /etc/nginx/*.pem
 ~~~
 
 ~~~ bash
-rm ~/.bash_history
+rm ~vagrant/.bash_history
 sudo rm ~root/.bash_history
 sudo init 0
 ~~~
@@ -164,11 +186,19 @@ sudo init 0
 Create Vagrant Box
 ------------------
 
+rm -f http_exploration.box
+rm -f Vagrantfile
+vagrant box remove http_exploration
 vagrant package --base 'HTTP Exploration' --output http_exploration.box
 vagrant init --minimal http_exploration ./http_exploration.box
+# Edit Vagrantfile:
+  config.vm.network "forwarded_port", guest: 3000, host: 3333, auto_correct: true
+  config.vm.network "forwarded_port", guest: 443, host: 4444, auto_correct: true
+  config.ssh.insert_key = false # Work-around for https://github.com/mitchellh/vagrant/issues/5186                               
+cp http_exploration.box http_exploration.box.NEW_GOOD
 vagrant up
 vagrant ssh
-
+vagrant halt
 
 
 Notes
