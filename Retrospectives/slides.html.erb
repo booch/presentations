@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= TITLE %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-slide-content {
+        font-size: 28px; line-height: 1.4;
+      }
+
+      .remark-slides-area { background-color: #9B111E; }
+      .remark-slide-content { background-color: #F4F4F4; }
+      .remark-slide-content { padding: 0 2em 1em 2em; font-size: 35px; }
+      .remark-slide-content.title h1 { font-size: 80px; line-height: 1.0; margin: 0; }
+      .remark-slide-content h1 { text-align: center; font-size: 65px; }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; background-color: #E0E0E0; }
+      .remark-code { line-height: 1.25; font-size: 22.5px; }
+      .hljs-default .hljs { background-color: #E0E0E0; }
+
+      .remark-slide-number { font-size: 18px; }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide .title li {
+        list-style-type: none;
+        font-size: 28px;
+      }
+      .remark-slide .title ul {
+        padding-left: 0px;
+      }
+      .remark-slide li p {
+        margin: 0;
+      }
+      a {
+        color: #202;
+      }
+      a:hover {
+        color: #505;
+        background-color: #DD0; 
+      }
+
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+<%= BODY %>
+    </textarea>
+    <!-- <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"> -->
+    <script src="remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+      for (i = 0; slide = slideshow.getSlides[i]; )
+      {
+        slide.properties.class = "middle, center";
+      }
+    </script>
+  </body>
+</html>

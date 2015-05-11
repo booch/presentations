@@ -1,0 +1,17 @@
+task default: %w[slides]
+
+task slides: ['clean', 'slides.html']
+
+task :clean do
+  %x[rm -f *.html]
+end
+
+rule '.html' => ['.md'] do |t|
+  require 'erb'
+  template = File.read('slides.html.erb')
+  File.open(t.name, 'w') do |file|
+    BODY = File.read(t.source)
+    TITLE = BODY.lines.reject{|line| line =~ /^\s$/ || line =~ /^class:\s/ }.first.chomp.sub(/^#*\s*/, '')
+    file.write(ERB.new(template).result(binding))
+  end
+end
