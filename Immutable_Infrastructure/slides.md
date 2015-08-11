@@ -9,8 +9,6 @@ class: title, middle, center
 * August 10, 2015
 
 
-http://tiny.cc/provisional_stlruby
-
 ---
 
 Feedback
@@ -84,7 +82,7 @@ Phoenix Servers
 Immutable Servers
 =================
 
-* One you've built it, don't make changes
+* Once you've built it, don't make changes
 * If you need changes, just build a new server
 
 ???
@@ -289,6 +287,16 @@ Demo
 * Cold deploy
 * Deploying to Staging
 * Promoting from Staging to Production
+
+???
+
+* Show config file
+* Build the base image
+  * exe/provisional image build base
+* Build the app image
+  * exe/provisional image build app
+* Provision staging servers
+* List staging servers
 
 ---
 
