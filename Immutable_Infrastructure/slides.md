@@ -5,8 +5,8 @@ class: title, middle, center
 * by Craig Buchek
 
 
-* St. Louis Ruby
-* August 10, 2015
+* St. Louis UNIX Users Group
+* August 12, 2015
 
 
 ---
@@ -93,22 +93,6 @@ Immutable Servers
 
 ---
 
-Automation
-==========
-
-* Consistency
-* Repeatability
-* Quicker feedback loops
-* Self-documenting
-
-???
-
-* Immutable servers requires complete automation of the server provision/build process
-* Solves the problem of documentation:
-  * It's not on any server, unless it's in the build automation
-
----
-
 Pets v. Cattle
 ==============
 
@@ -129,11 +113,30 @@ Pets v. Cattle
 ???
 
 * Great analogy
+* Originally by someone at Microsoft
+  * First popularized by a talk by someone from CERN
 * Treat your servers like cattle, not pets
   * Virtualization required to get us to this point
 * Treat your development box like a pet
   * Or not -- being able to replace it should be quick and painless too!
   * Then maybe your phone and iPad?
+* Anyone have examples of systems we SHOULD treat as pets?
+
+---
+
+Automation
+==========
+
+* Consistency
+* Repeatability
+* Quicker feedback loops
+* Self-documenting
+
+???
+
+* Immutable servers requires complete automation of the server provision/build process
+* Solves the problem of documentation:
+  * It's not on any server, unless it's in the build automation
 
 ---
 
@@ -221,14 +224,35 @@ Tools
 
 ---
 
+Config Management
+=================
+
+* Why not just configuration management?
+  * Ansible
+  * Chef
+  * Puppet
+* They don't capture every possible change
+* They make your servers mutable, by design
+
+???
+
+* You could use these to configure your servers at deploy time
+  * Packer allows this (or shell scripts)
+* I find shell scripts easier to work with
+* A hybrid approach might make sense though
+  * Use CM tools to roll out security patches and package updates
+
+---
+
 Docker
 ======
 
 * Docker itself doesn't quite do this for us
   * Still have to manage provisioning servers
   * Adds another layer for the docker images
+  * Have to manage connecting everything together
 * Docker ecosystem has tools to manage images
-  * Fleet, Kubernetes
+  * Fleet, Kubernetes, Mesos
 
 ???
 
@@ -258,63 +282,82 @@ Provisional
 
 ---
 
-Config Management
-=================
+Provisional Config
+==================
 
-* Why not configuration management?
-  * Ansible
-  * Chef
-  * Puppet
-* They don't capture every possible change
-* They make your servers mutable, by design
-
-???
-
-* You could use these to configure your servers at deploy time
-  * Packer allows this (or shell scripts)
-* I find shell scripts easier to work with
-* A hybrid approach might make sense though
-  * Use CM tools to roll out security patches and package updates
-
----
-
-
-Demo
-====
-
-* Configuration
-* Creating images
-* Cold deploy
-* Deploying to Staging
-* Promoting from Staging to Production
-
-???
-
-* Show config file
-* Build the base image
-  * exe/provisional image build base
-* Build the app image
-  * exe/provisional image build app
-* Provision staging servers
-* List staging servers
+~~~ yml
+domain: <%= ENV["DOMAIN"] %>
+vps:
+  provider: digital-ocean
+  api_key: <%= ENV["DIGITAL_OCEAN_API_KEY"] %>
+  defaults:
+    region: nyc3
+    size: 512mb
+    backups: true
+    private_networking: true
+    ipv6: true
+    locked: false
+~~~
 
 ---
 
-SSH
-===
+Provisional Config - Images
+===========================
 
-* Should we turn off SSH?
+~~~ yml
+images:
+  base:
+    base-image: debian-8-x64
+  lb:
+    base-image: base
+  app:
+    base-image: base
+  db:
+    base-image: base
+~~~
 
-???
+---
 
-* Probably
-  * If you want complete immutability
-  * Security benefits
-* Maybe not
-  * Makes troubleshooting easier
-  * Required for "push" CM tools, like Ansible
-  * Use a bastion host if you do keep SSH enabled
-* Possible compromise: port knocking
+Provisional Config - Deployments
+================================
+
+~~~ yml
+deployments:
+  staging:
+    lb:
+      servers: 1
+      cold-only: true
+    app:
+      servers: 2
+    db:
+      servers: 1
+      cold-only: true
+      size: 2gb
+~~~
+
+---
+
+Provisional - Build Images
+==========================
+
+~~~ bash
+provisional image list
+provisional image build base
+provisional image build lb
+provisional image build app
+provisional image build db
+~~~
+
+---
+
+Provisional - Deploying
+=======================
+
+~~~ bash
+provisional server list
+provisional deploy --cold staging
+provisional server list staging
+~~~
 
 ---
 
@@ -353,6 +396,24 @@ Issue - SSL Certificates
 
 ---
 
+Issue - SSH
+===========
+
+* Should we turn off SSH?
+
+???
+
+* Probably
+  * If you want complete immutability
+  * Security benefits
+* Maybe not
+  * Makes troubleshooting easier
+  * Required for "push" CM tools, like Ansible
+  * Use a bastion host if you do keep SSH enabled
+* Possible compromise: port knocking
+
+---
+
 More Extensive Provisional Configuration
 ========================================
 
@@ -363,7 +424,7 @@ More Extensive Provisional Configuration
 * Static assets servers
 * Bastion host
 * Logging host
-* Incorporate Varnish in front of app servers and/or LBs
+* Put Varnish in front of app servers and/or LBs
 * TDD using Serverspec
 * Clustered DB servers
 
