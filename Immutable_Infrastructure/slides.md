@@ -5,9 +5,8 @@ class: title, middle, center
 * by Craig Buchek
 
 
-* St. Louis UNIX Users Group
-* August 12, 2015
-
+* Madison+ Ruby Conference
+* August 22, 2015
 
 ---
 
@@ -200,6 +199,7 @@ Getting There
 2. Write shell scripts to semi-automate the process
   * Or configuration management tools
 3. Find a tool to fully automate the process
+4. Iterate
 
 ???
 
@@ -212,6 +212,7 @@ Tools
 
 * Atlas, Terraform, and Packer
 * [AWS CloudFormation][aws-cloudformation]
+* Salt Cloud
 * Docker (and its ecosystem of tools)
 
 ???
@@ -361,6 +362,40 @@ provisional server list staging
 
 ---
 
+More Extensive Provisional Configuration
+========================================
+
+* More environments
+* Staggered deployments
+* TLS or VPN between components
+* Redundant load balancers
+* Static assets servers
+* Bastion host
+* Logging host
+* Put Varnish in front of app servers and/or LBs
+* TDD using Serverspec
+* Clustered DB servers
+
+???
+
+* Staggered deployments - latest version (`n`) running in parallel with `n-1`
+* Will initially configure logs to go to Syslog running on DB server
+* Serverspec is used to prove that images are configured as we think
+
+---
+
+Provisional Enhancements
+========================
+
+* Adapters to support Amazon AWS, etc.
+* Adapters to support DynDNS, etc.
+
+???
+
+* There's a lot more work to be done to make the tool generally useful
+
+---
+
 Issue - Sensitive Data
 ======================
 
@@ -414,33 +449,26 @@ Issue - SSH
 
 ---
 
-More Extensive Provisional Configuration
-========================================
+Issue - Reverse Engineering
+===========================
 
-* More environments
-* Staggered deployments
-* TLS or VPN between components
-* Redundant load balancers
-* Static assets servers
-* Bastion host
-* Logging host
-* Put Varnish in front of app servers and/or LBs
-* TDD using Serverspec
-* Clustered DB servers
+* Can't we generate configs from existing servers?
+  * DevStructure Blueprint
 
 ???
 
-* Staggered deployments - latest version (`n`) running in parallel with `n-1`
-* Will initially configure logs to go to Syslog running on DB server
-* Serverspec is used to prove that images are configured as we think
+* Unfortunately, Blueprint has not been updated for 2 years
 
 ---
 
-Provisional Enhancements
-========================
+Then What?
+==========
 
-* Adapters to support Amazon AWS, etc.
-* Adapters to support DynDNS, etc.
+* What does this enable?
+  * Ability to move between providers
+  * More time to focus on higher-level operations concerns
+  * Infrastructure automation scripts can be shared
+    * App developers can use someone else's configs
 
 ---
 
@@ -448,6 +476,7 @@ Extending the Idea
 ==================
 
 * Docker containers instead of (or in addition to) VMs
+* Can we do this for our database infrastructure?
 
 ---
 
@@ -455,6 +484,13 @@ More Ideas
 ==========
 
 * Blue-green deployments
+* Monitoring and reacting to server health
+  * Scaling up/down, depending on traffic
+  * Replacing servers with problems
+
+???
+
+* The ultimate in monitoring and reaction is Netflix' Chaos Monkey
 
 ---
 
@@ -465,6 +501,7 @@ Further Info
   * [SnowflakeServer][bliki-snowflakeserver]
   * [PhoenixServer][bliki-phoenixserver]
   * [ImmutableServer][bliki-immutableserver]
+  * [BlueGreenDeployment][bliki-bluegreen]
 * ThoughtWorks articles:
   * [Moving to the Phoenix Server Pattern - Part 1][moving-to-phoenix-1]
 
@@ -475,6 +512,28 @@ Colophon
 ========
 
 * [Remark][remark] - JavaScript slide show from Markdown
+
+---
+
+Call to Action
+==============
+
+* Automate your provisioning and deployment
+  * Use my stuff if you find it useful
+
+
+1. Document the server build process
+2. Write shell scripts to semi-automate the process
+  * Or configuration management tools
+3. Find a tool to fully automate the process
+4. Iterate
+
+???
+
+* I'm not saying you should use my tool
+  * I'm saying you should find a way to make this happen
+* Everyone should be doing this in 2015 or 2016
+* My server configs are probably more useful than the tool itself
 
 ---
 
@@ -505,5 +564,6 @@ Feedback
 [bliki-snowflakeserver]: http://martinfowler.com/bliki/SnowflakeServer.html
 [bliki-phoenixserver]: http://martinfowler.com/bliki/PhoenixServer.html
 [bliki-immutableserver]: http://martinfowler.com/bliki/ImmutableServer.html
+[bliki-bluegreen]: http://martinfowler.com/bliki/BlueGreenDeployment.html
 [moving-to-phoenix-1]: http://www.thoughtworks.com/insights/blog/moving-to-phoenix-server-pattern-introduction
 [remark]: http://remarkjs.com/
