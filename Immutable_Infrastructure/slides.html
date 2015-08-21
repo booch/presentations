@@ -58,6 +58,10 @@ class: title, middle, center
 * Madison+ Ruby Conference
 * August 22, 2015
 
+
+http://tinyurl.com/madruby-ii
+
+
 ---
 
 Feedback
@@ -230,6 +234,7 @@ Prerequisites
 
 * Virtual machines (VMs)
 * Load balancers (LBs)
+  * Use HAProxy
 * APIs
   * Provisioning
   * DNS
@@ -239,6 +244,11 @@ Prerequisites
 * You might get away without the load balancers, with a few caveats
   * Potential downtime
   * Have to leave old servers up until DNS caches drain
+* HAProxy is great for load balancing
+  * Free
+  * Deploy it to your own servers
+  * As powerful as most $10k commercial offerings
+  * Can understand and configure in just a couple days
 
 ---
 
@@ -261,8 +271,10 @@ Tools
 =====
 
 * Atlas, Terraform, and Packer
+* Cobbler, Spacewalk, Red Hat Satellite
 * [AWS CloudFormation][aws-cloudformation]
 * Salt Cloud
+* [Foreman][foreman], Katello, Puppet Razor
 * Docker (and its ecosystem of tools)
 
 ???
@@ -598,9 +610,10 @@ Feedback
 * Provisional: https://github.com/boochtek/provisional
 
 
+* Slides: http://tinyurl.com/madruby-ii
 * Slides: https://github.com/booch/presentations/
 
----
+
 
 [twitter]: https://twitter.com/CraigBuchek
 [github]: https://github.com/booch
@@ -608,6 +621,7 @@ Feedback
 [boochtek]: http://boochtek.com
 [tal]: http://www.thisagilelife.com
 [aws-cloudformation]: http://aws.amazon.com/cloudformation/
+[foreman]: http://theforeman.org/
 
 [letsencrypt]: https://letsencrypt.org
 

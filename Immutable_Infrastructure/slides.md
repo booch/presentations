@@ -8,6 +8,10 @@ class: title, middle, center
 * Madison+ Ruby Conference
 * August 22, 2015
 
+
+http://tinyurl.com/madruby-ii
+
+
 ---
 
 Feedback
@@ -556,9 +560,10 @@ Feedback
 * Provisional: https://github.com/boochtek/provisional
 
 
+* Slides: http://tinyurl.com/madruby-ii
 * Slides: https://github.com/booch/presentations/
 
----
+
 
 [twitter]: https://twitter.com/CraigBuchek
 [github]: https://github.com/booch
