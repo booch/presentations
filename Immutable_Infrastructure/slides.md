@@ -180,6 +180,7 @@ Prerequisites
 
 * Virtual machines (VMs)
 * Load balancers (LBs)
+  * Use HAProxy
 * APIs
   * Provisioning
   * DNS
@@ -189,6 +190,11 @@ Prerequisites
 * You might get away without the load balancers, with a few caveats
   * Potential downtime
   * Have to leave old servers up until DNS caches drain
+* HAProxy is great for load balancing
+  * Free
+  * Deploy it to your own servers
+  * As powerful as most $10k commercial offerings
+  * Can understand and configure in just a couple days
 
 ---
 
