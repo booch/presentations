@@ -211,8 +211,10 @@ Tools
 =====
 
 * Atlas, Terraform, and Packer
+* Cobbler, Spacewalk, Red Hat Satellite
 * [AWS CloudFormation][aws-cloudformation]
 * Salt Cloud
+* [Foreman][foreman], Katello, Puppet Razor
 * Docker (and its ecosystem of tools)
 
 ???
@@ -558,6 +560,7 @@ Feedback
 [boochtek]: http://boochtek.com
 [tal]: http://www.thisagilelife.com
 [aws-cloudformation]: http://aws.amazon.com/cloudformation/
+[foreman]: http://theforeman.org/
 
 [letsencrypt]: https://letsencrypt.org
 
