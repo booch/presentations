@@ -13,6 +13,13 @@ http://tinyurl.com/madruby-ii
 
 
 ---
+layout: true
+
+<footer>
+  <p>@CraigBuchek</p>
+</footer>
+
+---
 
 Feedback
 ========
@@ -110,7 +117,6 @@ Pets v. Cattle
   * We treat them as a group
     * They're all nearly identical
   * We tag them with numbers
-  * When they get sick, we replace them
   * We're NOT emotionally invested
 
 ???
