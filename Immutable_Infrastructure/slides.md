@@ -198,7 +198,10 @@ Prerequisites
   * Free
   * Deploy it to your own servers
   * As powerful as most $10k commercial offerings
+    * F5 BigIP
   * Can understand and configure in just a couple days
+  * Used by many large companies
+    * GitHub, Stack Overflow, Twitter
 
 ---
 
