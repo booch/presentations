@@ -379,18 +379,6 @@ provisional server list staging
 
 ---
 
-Provisional Enhancements
-========================
-
-* Adapters to support Amazon AWS, etc.
-* Adapters to support DynDNS, etc.
-
-???
-
-* There's a lot more work to be done to make the tool generally useful
-
----
-
 Issue - Sensitive Data
 ======================
 
@@ -449,6 +437,7 @@ Issue - Reverse Engineering
 
 * Can't we generate configs from existing servers?
   * DevStructure Blueprint
+  * Listing installed packages
 
 ???
 
