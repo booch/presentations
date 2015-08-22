@@ -21,16 +21,6 @@ layout: true
 
 ---
 
-Feedback
-========
-
-* Twitter: [@CraigBuchek][twitter]
-* GitHub: [booch][github] (personal, presentations)
-* GitHub: [boochtek][github-boochtek] (projects)
-* Email: craig@boochtek.com
-
----
-
 About Me
 ========
 
