@@ -102,7 +102,7 @@ Pets v. Cattle
 * Pets
   * We treat each as an individual
     * Each has its own unique name
-  * When they get sick, we make sure they're cared for
+  * When they get sick, we nurse them back to health
   * We're emotionally invested
 
 
@@ -481,7 +481,7 @@ Then What?
 
 * What does this enable?
   * Ability to move between providers
-  * More time to focus on higher-level operations concerns
+  * Focus on higher-level operations concerns
   * Infrastructure automation scripts can be shared
     * App developers can use someone else's configs
 
