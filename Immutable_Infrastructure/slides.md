@@ -184,7 +184,7 @@ Prerequisites
 
 * Virtual machines (VMs)
 * Load balancers (LBs)
-  * Use HAProxy
+  * Use [HAProxy][haproxy]
 * APIs
   * Provisioning
   * DNS
@@ -223,12 +223,12 @@ Getting There
 Tools
 =====
 
-* Atlas, Terraform, and Packer
-* Cobbler, Spacewalk, Red Hat Satellite
+* [Atlas][atlas], [Terraform][terraform], and [Packer][packer]
+* [Cobbler][cobbler], [Spacewalk][spacewalk], [Red Hat Satellite][satellite]
 * [AWS CloudFormation][aws-cloudformation]
-* Salt Cloud
-* [Foreman][foreman], Katello, Puppet Razor
-* Docker (and its ecosystem of tools)
+* [Salt Cloud][salt-cloud]
+* [Foreman][foreman], [Katello][katello], [Puppet Razor][puppet-razor]
+* [Docker][docker] (and its ecosystem of tools)
 
 ???
 
@@ -244,9 +244,9 @@ Config Management
 =================
 
 * Why not just configuration management?
-  * Ansible
-  * Chef
-  * Puppet
+  * [Ansible][ansible]
+  * [Chef][chef]
+  * [Puppet][puppet]
 * They don't capture every possible change
 * They make your servers mutable, by design
 
@@ -268,11 +268,13 @@ Docker
   * Adds another layer for the docker images
   * Have to manage connecting everything together
 * Docker ecosystem has tools to manage images
-  * Fleet, Kubernetes, Mesos
+  * [No fewer than 20 choices][docker-orchestration]
+  * [Kubernetes][kubernetes], [Mesos][mesos], [Panamax][panamax]
 
 ???
 
 * There's a lot to learn to use Docker
+  * Everything moves so fast
 * I'm not saying don't use Docker
   * I'm saying to start with something simpler
   * I don't think that 80% of apps need the complexity of Docker
@@ -519,7 +521,8 @@ Further Info
   * [BlueGreenDeployment][bliki-bluegreen]
 * ThoughtWorks articles:
   * [Moving to the Phoenix Server Pattern - Part 1][moving-to-phoenix-1]
-
+* Mitchell Hashimoto presentation:
+  * [Towards FutureOps][future-ops]
 
 ---
 
@@ -573,9 +576,27 @@ Feedback
 [github-boochtek]: https://github.com/boochtek
 [boochtek]: http://boochtek.com
 [tal]: http://www.thisagilelife.com
-[aws-cloudformation]: http://aws.amazon.com/cloudformation/
-[foreman]: http://theforeman.org/
 
+[haproxy]: http://www.haproxy.org/
+[atlas]: https://atlas.hashicorp.com/
+[terraform]: https://terraform.io/
+[packer]: https://packer.io/
+[cobbler]: http://cobbler.github.io/
+[spacewalk]: http://spacewalk.redhat.com/
+[satellite]: http://www.redhat.com/en/technologies/linux-platforms/satellite
+[aws-cloudformation]: http://aws.amazon.com/cloudformation/
+[salt-cloud]: http://docs.saltstack.com/en/latest/topics/cloud/index.html
+[foreman]: http://theforeman.org/
+[katello]: http://www.katello.org/
+[puppet-razor]: https://docs.puppetlabs.com/pe/latest/razor_intro.html
+[docker]: https://www.docker.com/
+[ansible]: http://www.ansible.com/home
+[chef]: https://www.chef.io/chef/
+[puppet]: https://puppetlabs.com/puppet/what-is-puppet
+[kubernetes]:http://kubernetes.io/
+[mesos]: http://mesos.apache.org/
+[panamax]: http://panamax.io/
+[docker-orchestration]: http://stackoverflow.com/a/18287169
 [letsencrypt]: https://letsencrypt.org
 
 [bliki-snowflakeserver]: http://martinfowler.com/bliki/SnowflakeServer.html
@@ -583,4 +604,5 @@ Feedback
 [bliki-immutableserver]: http://martinfowler.com/bliki/ImmutableServer.html
 [bliki-bluegreen]: http://martinfowler.com/bliki/BlueGreenDeployment.html
 [moving-to-phoenix-1]: http://www.thoughtworks.com/insights/blog/moving-to-phoenix-server-pattern-introduction
+[future-ops]: http://www.slideshare.net/profyclub_ru/8-mitchell-hashimoto-hashicorp
 [remark]: http://remarkjs.com/
