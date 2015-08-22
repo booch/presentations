@@ -379,28 +379,6 @@ provisional server list staging
 
 ---
 
-More Extensive Provisional Configuration
-========================================
-
-* More environments
-* Staggered deployments
-* TLS or VPN between components
-* Redundant load balancers
-* Static assets servers
-* Bastion host
-* Logging host
-* Put Varnish in front of app servers and/or LBs
-* TDD using Serverspec
-* Clustered DB servers
-
-???
-
-* Staggered deployments - latest version (`n`) running in parallel with `n-1`
-* Will initially configure logs to go to Syslog running on DB server
-* Serverspec is used to prove that images are configured as we think
-
----
-
 Provisional Enhancements
 ========================
 
@@ -492,8 +470,22 @@ Then What?
 Extending the Idea
 ==================
 
+* More server types
+  * Static assets
+  * Logging
+  * Queuing
+  * Bastion host
+* Integrate with Capistrano and similar tools
+* TDD using Serverspec
 * Docker containers instead of (or in addition to) VMs
 * Can we do this for our database infrastructure?
+* Staggered deployments
+
+???
+
+* Bastion host - SSH jump box to mediate access to all the other servers
+* Serverspec is used to prove that images are configured as we think
+* Staggered deployments - latest version (`n`) running in parallel with `n-1`
 
 ---
 
