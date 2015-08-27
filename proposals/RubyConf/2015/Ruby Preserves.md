@@ -41,6 +41,8 @@ I want to get a couple points across:
 * The Data Mapper and Repository patterns make writing model code simpler and easier.
 * Your tests will run quicker if you use these patterns to adhere to the Single Responsibility Principle.
 
+Basically, I'll do whatever it takes to get people to consider alternatives to ActiveRecord.
+
 I love speaking at local user groups.
 Last year I got to give my first conference talk at RubyConf.
 I was very nervous at first, partly because I chose an advanced topic.
