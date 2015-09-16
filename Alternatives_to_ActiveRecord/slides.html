@@ -221,16 +221,30 @@ end
 
 ---
 
+Lotus::Model
+============
+
+* Data Mapper pattern
+* SQL (via Sequel), memory, and file adapters
+* Version 0.4.1
+* Follows Data Driven Design architecture
+  * Entity
+  * Repository
+  * Mapper
+  * Query
+
+---
+
 ROM
 ===
 
 * Should be the best alternative in the future
-* Previously was called DataMapper 2
-  * But has diverged a **lot** since the name change
-* Truly implements the Data Mapper pattern
 * Taking longer to get to 1.0 than hoped
   * Developers seem to be low-level / bottom-up types
-* Supports in-memory (PostgreSQL in the works)
+* Previously DataMapper 2
+  * But has diverged a **lot** since the name change
+* Truly implements the Data Mapper pattern
+* Supports SQL (via Sequel), MongoDB, YAML, HTTP
 
 ---
 
@@ -266,7 +280,14 @@ Mongoid and MongoMapper
   * Pretty simple
   * Be sure to turn on MongoDB persistence!
   * Pretty stable
-* TODO: Why to avoid MongoMapper
+* MongoMapper
+  * No longer well-maintained
+
+???
+
+* MongoMapper hasn't been updated much in 2 years
+  * Still at version 0.13
+  * No support for Ruby 2.2 or Rails 4.1+
 
 ---
 
