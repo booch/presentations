@@ -185,16 +185,20 @@ Lotus::Model
 ROM
 ===
 
-* Should be the best alternative in the future
+* Ruby Object Mapper
+* Started life as DataMapper 2
 * Taking longer to get to 1.0 than hoped
-  * Developers seem to be low-level / bottom-up types
-* Previously DataMapper 2
-  * But has diverged a **lot** since the name change
-* Truly implements the Data Mapper pattern
+  * But RC is just around the corner
 * Supports SQL (via Sequel), MongoDB, YAML, HTTP
+  * Can support almost any data source, via adapters
 
 ???
 
+* Initially meant to implement the Data Mapper pattern
+* Renamed from DM2 to ROM in 2013
+* Moved away from object-relational mapping altogether in 2014
+  * So not really an "ORM"
+  * Just maps to data, not objects
 * Most of the work done by Piotr Solnica
 
 ---
@@ -202,13 +206,20 @@ ROM
 ROM
 ===
 
-* Low-level pieces:
-  * Axiom
-  * ROM::Relation
-  * ROM::Mapper
-  * ROM::Session
-  * Model
-* Identity Map
+* Functional approach to persistence
+* Focus on mapping to domain data types
+* Promotes immutable objects
+* Promotes separation between reading and writing
+  * Command Query Responsibility Segregation (CQRS)
+* Architecture has strong separation of concerns
+  * Can implement DDD or a true ORM on top of its components
+
+???
+
+* Developers really good at small, independent, low-level composable libraries
+* Some of the leaders of the movement toward FP and immutability in Ruby
+  * A bit focused on low-level details at times
+  * End up taking longer than expected, but really high quality code
 
 ---
 
