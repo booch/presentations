@@ -268,13 +268,65 @@ Lotus Model
 ???
 
 * Entity = model, without persistence or validations
-  * Default initializer to pass a hash of attributes to set the entity's attributes
-  * Adds `id`, `id=`, `initialize`, plus `attributes` class method - and that's **all**
 * Repository = mostly like class methods on an AR model class
   * Allows easily changing the storage layer
   * create, update, persist, delete
   * all, find, first, last
 * Mapper = declaration of how to map DB records to object attributes
+
+---
+
+Lotus Model
+===========
+
+~~~ ruby
+Lotus::Model.configure do
+  adapter type: :sql, uri: 'postgres://localhost/database'
+  mapping do
+    collection :articles do
+      repository ArticleRepository
+      entity Article
+      attribute :id, Integer
+      attribute :author, String
+      attribute :text, String
+      attribute :date, Date
+    end
+  end
+end
+
+Lotus::Model.load!
+~~~
+
+---
+
+Lotus Model
+===========
+
+~~~ ruby
+class Article
+  include Lotus::Entity
+  attributes :author, :text, :date
+end
+
+class ArticleRepository
+  include Lotus::Repository
+  def self.for(name)
+    query{where(author: name).order(:date)}
+  end
+end
+
+article = Article.new(author: "Craig", text: "Hello", date: Date.today)
+article = ArticleRepository.create(article)
+ArticleRepository.find(12)
+ArticleRepository.for("Craig")
+~~~
+
+???
+
+* Inheriting from `Lotus::Entity` adds `id`, `id=`, `initialize`, plus `attributes` class method
+  * That's **all** it adds!
+  * Default initializer takes a hash of attributes to set the entity's attributes
+* Persistence is done by the repository class
 
 ---
 
