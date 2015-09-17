@@ -202,6 +202,17 @@ Lotus::Model
   * Mapper
   * Query
 
+???
+
+* Entity = model, without persistence or validations
+  * Default initializer to pass a hash of attributes to set the entity's attributes
+  * Adds `id`, `id=`, `initialize`, plus `attributes` class method - and that's **all**
+* Repository = mostly like class methods on an AR model class
+  * Allows easily changing the storage layer
+  * create, update, persist, delete
+  * all, find, first, last
+* Mapper = declaration of how to map DB records to object attributes
+
 ---
 
 ROM
@@ -238,6 +249,8 @@ ROM
 
 ???
 
+* A bit complex to use - commands, relations, mappers
+  * Have to buy into a completely different paradigm
 * Developers really good at small, independent, low-level composable libraries
 * Some of the leaders of the movement toward FP and immutability in Ruby
   * A bit focused on low-level details at times
@@ -248,11 +261,13 @@ ROM
 Perpetuity
 ==========
 
-* Worth looking at
 * Simple
 * Implements the Data Mapper pattern
 * Supports PostgreSQL, MongoDB, in-memory
-* Identity Map
+
+???
+
+* Worth looking at
 
 ---
 
