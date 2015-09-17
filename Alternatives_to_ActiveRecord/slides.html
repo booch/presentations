@@ -223,7 +223,9 @@ DataMapper
 Sequel
 ======
 
-* Good documentation
+* Excellent documentation
+* Tons of plugins
+  * Especially for PostgreSQL
 * Leverages database features
   * Like foreign key constraints
 * Supports almost any SQL database you can think of
@@ -240,16 +242,69 @@ Sequel
 Sequel
 ======
 
-* Awesome feature - set a model to a subset of a table
+* Two separate layers you can use
+  * Sequel::Dataset
+  * Sequel::Model (Active Record pattern)
 
 ~~~ ruby
-DB = Sequel.connect("sqlite://blog.db")
-class Post < Sequel::Model
-  set_primary_key [:category, :title]
-  set_dataset DB[:my_posts].where(category: "ruby")
-    .select(:category, :title, :content).order(:date)
+DB = Sequel.connect("postgres://user:password@localhost/my_db")
+
+DB.create_table :items do
+  primary_key :id
+  String :name, unique: true, null: false
+  TrueClass :active, default: true
+  Float :price
+  foreign_key :category_id, :categories
+  index :created_at
 end
 ~~~
+
+---
+
+Sequel Dataset
+==============
+
+~~~ ruby
+DB[:items].insert(name: "abc", price: 1.23)
+DB[:items].where("price < ?", 100).update(active: true)
+
+middle_managers = DB[:managers].where(salary: (50*1000)..(100*1000)).order(:name, :department)
+rich_managers = DB[:managers].where{salary > (100*1000)}.order(:salary).limit(10)
+rich_managers.each{|mgr| puts mgr[:name], mgr[:salary]}
+~~~
+
+???
+
+* Sequel's syntax is really nice
+* Datasets are enumerable, with each element a hash-like object
+* I haven't come across anything that Sequel can't do well
+
+---
+
+Sequel Model
+============
+
+~~~ ruby
+class Post < Sequel::Model
+  set_dataset DB[:my_posts].where(author: "booch")
+  many_to_many :categories
+end
+
+post = Post[123]
+post.title = "hey there"
+post.save
+
+Post.where(title: /ruby/).update(category: "ruby")
+Post.where(category: "ruby").each{|post| puts post}
+Post.where{num_comments < 7}.delete
+~~~
+
+???
+
+* Like ActiveRecord, attributes are derived from the database schema
+  * But also like AR, not relationships
+* Seems like a small advantage over ActiveRecord
+  * Doesn't solve the SRP issues
 
 ---
 
