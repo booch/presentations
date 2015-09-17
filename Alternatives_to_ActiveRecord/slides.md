@@ -190,8 +190,8 @@ end
 
 ---
 
-Lotus::Model
-============
+Lotus Model
+===========
 
 * Data Mapper pattern
 * SQL (via Sequel), memory, and file adapters
