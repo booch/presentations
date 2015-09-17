@@ -136,9 +136,10 @@ Active Record Pattern
 * Separation of concerns in important
   * Just like Rails separates M-V-C concerns
   * But ActiveRecord does a terrible job at it
-* My experience is that AR breaks down at about 20 model classes
-  * Data Mapper pattern has some advantages with only a few classes
-    * But has a little more overhead in the number of classes/concepts
+* My experience is that the sweet spot for AR is about 20 model classes
+  * Data Mapper pattern has a little more overhead in the number of classes/concepts
+    * Pays off a lot as you have more classes
+    * Still has a couple advantages with only a few classes
 
 ---
 
@@ -175,6 +176,9 @@ ActiveRecord - Insanity
 
 ???
 
+* This is a terrible abue of the DRY (don't repeat yourself) principle
+  * DRY says there should be one place to look for any piece of info
+  * But it doesn't mean to put related things in different places
 * True madness to have to look in 2 places for all details about a model
   * This is a case of too much magic for me
   * Work-arounds like model-annotations helped
