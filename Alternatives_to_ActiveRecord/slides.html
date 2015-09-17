@@ -134,6 +134,26 @@ ActiveRecord - Size
 
 ---
 
+ActiveRecord - Insanity
+=======================
+
+* Attributes and relationships defined different places
+  * Attributes are defined in DB schema
+  * Relationships are defined in the model class
+* Can be solved using new attributes API (Rails 5.0)
+
+???
+
+* True madness to have to look in 2 places for all details about a model
+  * This is a case of too much magic for me
+  * Work-arounds like model-annotations helped
+* Attributes API actually debuted in Rails 4.2, but was not publicized
+* I had also released a couple gems to define attributes in AR models
+  * Virtus-ActiveRecord
+  * ActiveRecord-AttributeDeclarations
+
+---
+
 Active Record Pattern
 =====================
 
@@ -331,6 +351,22 @@ No ORM
 * POROs = plain old Ruby objects
 * MagLev is a SmallTalk-derived Ruby implementation
   * It has object persistence built in - no DB required
+
+---
+
+My Preferences
+==============
+
+1. Lotus::Model
+2. Perpetuity
+3. ROM
+4. Sequel
+5. ActiveRecord with declared attributes
+
+???
+
+* This is the order I'd currently consider them, for my personal projects
+  * Obviously, context matters a lot
 
 ---
 
