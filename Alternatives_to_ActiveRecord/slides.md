@@ -97,7 +97,11 @@ ActiveRecord - Size
   * The size of AR is just a symptom of the SRP violation
   * It tries to do too much in one place, conflating multiple concerns
 * kloc = 1000 lines of code
-* LOC stats are from Sean Griffin, [Ruby Rogues episode 222][rr-222]
+* For comparison:
+  * Sequel is 31 kloc
+  * Lotus::Model is 2 kloc
+  * Perpetuity is 2.5 kloc (with all 3 adapters)
+* AR LOC stats are from Sean Griffin, [Ruby Rogues episode 222][rr-222]
 * Method stats are from a Rails 4.2 model w/ 1 field
 
 ---
