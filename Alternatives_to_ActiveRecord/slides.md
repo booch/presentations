@@ -78,12 +78,11 @@ ActiveRecord - Size
 Active Record Pattern
 =====================
 
-* Active Record pattern
 * Persistence logic in same class as domain logic
 * Violates Single Responsibility Principle
 
 
-* ActiveRecord ORM uses the pattern
+* ActiveRecord ORM uses this pattern
 
 ???
 
@@ -91,9 +90,12 @@ Active Record Pattern
   * The biggest problem is that it encourages bad engineering habits
     * This is mostly because it violates the SRP
     * The size of AR is just a symptom of the SRP violation
-* Note "Active Record" for the pattern and "ActiveRecord" for the ORM
+* Note "Active Record" is the pattern and "ActiveRecord" is the ORM
 * Active Record pattern described by Martin Fowler
   * [Patterns of Enterprise Application Architecture][peap]
+* Separation of concerns in important
+  * Just like Rails separates M-V-C concerns
+  * But ActiveRecord does a terrible job at it
 * My experience is that AR breaks down at about 20 model classes
   * Data Mapper pattern has some advantages with only a few classes
     * But has a little more overhead in the number of classes/concepts
