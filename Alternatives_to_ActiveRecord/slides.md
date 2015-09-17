@@ -58,6 +58,31 @@ ActiveRecord
 
 ---
 
+Active Record Pattern
+=====================
+
+* Persistence logic in same class as domain logic
+* Violates Single Responsibility Principle
+
+
+* ActiveRecord ORM uses this pattern
+
+???
+
+* The biggest problem with AR is that it encourages bad engineering habits
+  * This is mostly because it violates the SRP
+* Note "Active Record" is the pattern and "ActiveRecord" is the ORM
+* Active Record pattern described by Martin Fowler
+  * [Patterns of Enterprise Application Architecture][peap]
+* Separation of concerns in important
+  * Just like Rails separates M-V-C concerns
+  * But ActiveRecord does a terrible job at it
+* My experience is that AR breaks down at about 20 model classes
+  * Data Mapper pattern has some advantages with only a few classes
+    * But has a little more overhead in the number of classes/concepts
+
+---
+
 ActiveRecord - Size
 ===================
 
@@ -69,6 +94,8 @@ ActiveRecord - Size
 ???
 
 * ActiveRecord is **big**
+  * The size of AR is just a symptom of the SRP violation
+  * It tries to do too much in one place, conflating multiple concerns
 * kloc = 1000 lines of code
 * LOC stats are from Sean Griffin, [Ruby Rogues episode 222][rr-222]
 * Method stats are from a Rails 4.2 model w/ 1 field
@@ -92,33 +119,6 @@ ActiveRecord - Insanity
 * I had also released a couple gems to define attributes in AR models
   * Virtus-ActiveRecord
   * ActiveRecord-AttributeDeclarations
-
----
-
-Active Record Pattern
-=====================
-
-* Persistence logic in same class as domain logic
-* Violates Single Responsibility Principle
-
-
-* ActiveRecord ORM uses this pattern
-
-???
-
-* But it's not the size of ActiveRecord that's the biggest problem
-  * The biggest problem is that it encourages bad engineering habits
-    * This is mostly because it violates the SRP
-    * The size of AR is just a symptom of the SRP violation
-* Note "Active Record" is the pattern and "ActiveRecord" is the ORM
-* Active Record pattern described by Martin Fowler
-  * [Patterns of Enterprise Application Architecture][peap]
-* Separation of concerns in important
-  * Just like Rails separates M-V-C concerns
-  * But ActiveRecord does a terrible job at it
-* My experience is that AR breaks down at about 20 model classes
-  * Data Mapper pattern has some advantages with only a few classes
-    * But has a little more overhead in the number of classes/concepts
 
 ---
 
