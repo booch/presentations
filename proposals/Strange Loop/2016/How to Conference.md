@@ -13,6 +13,8 @@ In this session, we'll provide strategies, tactics, and tips for getting better 
 Slides
 ------
 
+NOTE: The top-level bullet points describe the slide. The lower-level bullet points will be notes for the spoken words to go with the slides.
+
 - Pic of Deech's tweet that inspired the talk (https://twitter.com/deech/status/647402119969013760)
   - Aditya Siram (Deech) posted this during Strange Loop 2015
   - I responded with several tips
