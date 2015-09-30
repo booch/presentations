@@ -32,6 +32,7 @@ NOTE: The top-level bullet points describe the slide. The lower-level bullet poi
   - I'm still making progress
     - Strange Loop 2015, and 2 conferences the week before, were a real turning point for me
       - I networked a *lot* better than I had before - and felt almost natural at it
+      - What were some concrete things you did?
 
 - Definition of introvert and extrovert that talk about how we recharge
   - Inside, I still feel like an introvert most of the time
@@ -46,6 +47,7 @@ NOTE: The top-level bullet points describe the slide. The lower-level bullet poi
     - And the value to me (and to others) is worth it
   - And yes, I know you shouldn't talk about how nervous you are in your talk
     - Except that it's actually on-topic for this talk
+    - Nice
 
 - Pic of a newspaper???
   - The good news:
@@ -79,6 +81,7 @@ NOTE: The top-level bullet points describe the slide. The lower-level bullet poi
 - Pic of ??? (Jessiton? [with her permission, of course])
   - Hang out with more outgoing friends and have them introduce you to people
     - Ask them to start conversations about topics they know you and the other people are interested in
+    - This is great. I like this.
 
 - Pic of My Name Is badge (preferably with Inigo Montoya filled in)
   - Who here is bad with names? I am!
@@ -91,7 +94,9 @@ NOTE: The top-level bullet points describe the slide. The lower-level bullet poi
   - Purposely join different groups
   - If you can, try NOT to stick with people you know the whole time
   - Ask random people if you can tag along with them for dinner
+  - This is pretty hard and awkward. :)
   - Helena had a great line once: "you look like some people I don't know yet"
+  - I'm not sure I could pull that off as a guy in this day and age.
 
 - ???
   - Talk to speakers after their talks
@@ -103,6 +108,8 @@ NOTE: The top-level bullet points describe the slide. The lower-level bullet poi
     - It's not
     - Either they're an extrovert, and generally don't mind talking to people
     - Or they're an introvert, and using their as a way to get people to talk to them
+    - And if you follow the speaker on Twitter and they follow you, say "hello" dammit. This happened
+      to me last year. A bunch of people in the room followed me and didn't say hi.
   - Just don't monopolize their time
 
 - ???
@@ -119,6 +126,8 @@ NOTE: The top-level bullet points describe the slide. The lower-level bullet poi
       - Slack channel
   - Deech and I like Blues music
     - Who wants to come with us to BoB or BB's or BOB tonight?
+    - I'm in.
+    - I didn't attend but tweeted that I was going to a jazz show on Thursday. No-one came.
 
 - Pic of my badge addition - Ask Me About / Tell Me About
   - Add to your badge a short list of things you'd like to talk about
@@ -165,3 +174,10 @@ Other thoughts
   - We're used to being right, and don't know how to be wrong
     - We don't know how, because we haven't had much practice
   - We have to be careful, and work on this aspect of ourselves as well
+
+Other, other thoughts
+---------------------
+- My biggest obstacle is the cliqueish nature of conferences
+- A bunch of people who know each other from the conference circuit huddle. I sometimes recognize someone and say, I liked your paper/talk/library. They usually say thanks and that's it.
+- I once sat next to a conversation between two people on F#. I was clearly interested and listening. Ten minutes go by and neither one asked my name. I got up and left.
+- The hallway track has never yielded much for me so I don't go to conferences that often. When Strange Loop tickets came out this year I didn't make much of an effort get one because I knew the talks would be recorded and that's pretty much I get out of SL anyway so why shell out?
