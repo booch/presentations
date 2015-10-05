@@ -68,11 +68,9 @@ ActiveRecord
 
 ???
 
-* Who here uses ActiveRecord?
-* Who hasn't used ActiveRecord?
 * Who loves ActiveRecord?
 * Who hates ActiveRecord?
-* Who both loves and hates ActiveRecord?
+* Who raised their hand both times?
 * Who has had to manually type SQL in an ActiveRecord class?
     * So ActiveRecord is a leaky abstraction
         * SQL leaked up into the upper layers of abstraction
@@ -86,8 +84,8 @@ ActiveRecord
 Active Record Pattern
 =====================
 
-* Persistence logic in same class as domain logic
-* Violates Single Responsibility Principle
+* Domain logic and persistence logic in same class
+* Violates SRP (Single Responsibility Principle)
 
 
 * ActiveRecord ORM uses this pattern
@@ -139,12 +137,48 @@ Repository Pattern
 
 ---
 
-Our Architecture
-================
+Repository Architecture
+=======================
 
 * Domain model class handles business logic
 * Repository class handles persistence
 * Mapper class handles mapping database fields to object attributes
+
+???
+
+* We have a clear separation of concerns
+* Sometimes we'll call the domain models entities
+    * From [Domain-Driven Design][ddd] book
+    * Entities implies that the object is defined by its ID
+
+---
+
+Ruby Preserves
+==============
+
+Trying to answer 3 questions:
+
+* How simple can we make an ORM that is still useful?
+* Developers have to know SQL anyway, so why try to hide the SQL from them?
+    * Is the complexity of a typical ORM really better than the complexity of SQL?
+* ORMs are a leaky abstraction. What if we made it so leaky that it doesn't matter?
+
+---
+
+Ruby Preserves
+==============
+
+Opinions:
+
+* Data Mapper pattern is better than the Active Record pattern
+    * Unless you're just writing a CRUD front-end, with little interesting behavior
+* Declaring attributes in the domain model is better than hiding them elsewhere
+    * Declaring relationships in one place and attributes in another is true madness
+* NoSQL as a main data store is usually misguided
+    * PostgreSQL can do just about anything you need, using SQL
+* Projects are unlikely to need to abstract SQL to allow them to use different RDBMSes
+    * Developer workstations are fast enough to run "full" RDBMSes
+    * If you're not using "interesting" features, then you're probably using "standard" SQL
 
 ---
 
@@ -213,6 +247,22 @@ Advantages
 * Domain class contains everything you need to know
     * Don't have to look elsewhere to understand everything a class contains
 * Better meets the Single Responsibility Principle (SRP)
+* Small, easy to understand
+* Encourages better separation of concerns
+* Encourages better understanding of SQL
+* Experimentation / learning
+
+---
+
+Further Work
+============
+
+* Optimizations / caching
+    * Prepared statements
+* Automatically determine mappings, where possible
+    * Virtus model attribute definitions
+    * Database schema
+* Add a layer to write the SQL for us
 
 ---
 
@@ -228,7 +278,7 @@ Alternatives
 ???
 
 * Ruby Preserves is nowhere near ready for production
-* I still don't have one I'm really happy with
+* I still don't have an ORM I'm really happy with
 * This is the order I'd currently consider them, for my personal projects
     * Obviously, context matters a lot
 
@@ -271,7 +321,8 @@ Feedback
 
 
 [rr-222]: http://devchat.cachefly.net/rubyrogues/transcript-222-rr-rails-5-with-sean-griffin-ruby-rogues.pdf
-[peap]: http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420
+[peap]: http://www.amazon.com/dp/0321127420
+[ddd]: http://www.amazon.com/dp/0321125215
 [no-mongo]: http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/
 [state-of-orm]: http://solnic.eu/2011/11/29/the-state-of-ruby-orm.html
 [datamapper-retro]: http://rhnh.net/2011/11/29/datamapper-retrospective
