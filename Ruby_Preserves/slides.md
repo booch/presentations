@@ -278,11 +278,13 @@ UserRepository = Preserves.repository(model: User) do
   end
 
   def older_than(age)
-    select("SELECT *, username AS id FROM 'users' WHERE age > ? ORDER BY ?", age, :name)
+    SQL = "SELECT *, username AS id FROM 'users' WHERE age > ? ORDER BY ?"
+    select(SQL, age, :name).to_objects
   end
 
   def with_id(id)
-    select("SELECT *, username AS id FROM 'users' WHERE username = ?", id)
+    SQL = "SELECT *, username AS id FROM 'users' WHERE username = ?"
+    select(SQL, id).to_objects
   end
 end
 ~~~
