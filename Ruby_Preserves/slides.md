@@ -9,7 +9,7 @@ class: title, middle, center
 * October 12, 2015
 
 
-http://tinyurl.com/ruby_preserves_stl
+http://tinyurl.com/ruby-preserves-stl
 
 
 ---
@@ -479,7 +479,7 @@ Feedback
 * Project: https://github.com/boochtek/ruby_preserves
 
 
-* Slides: http://tinyurl.com/ruby_preserves_stl
+* Slides: http://tinyurl.com/ruby-preserves-stl
 * Slides: https://github.com/booch/presentations/
 
 
