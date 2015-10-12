@@ -107,6 +107,8 @@ ORM
 
 ???
 
+* Today we're going to talk about ORMs in general
+    * And one I've been writing in particular
 * SQL databases deal with relations
   * Relational algebra
 * Ruby deals with objects
@@ -215,15 +217,48 @@ Repository Architecture
 
 ---
 
+DSLs
+====
+
+* Domain-Specific Languages
+
+
+* Internal DSL
+* External DSL
+
+???
+
+* Someone recently asked me what's the difference between a DSL and an API?
+    * Anyone have any good answers?
+    * Best (but not satisfying) answer was "I know it when I see it"
+* I asked Matthias Felleisen, the creator of Racket, the same questions
+    * He said (at least in Racket) that a DSL gives DSL-specific error messages
+    * I'm not sure we can give DSL-specific error messages in Ruby internal DSLs
+* Who knows what the difference between an internal DSL and an external DSL is?
+    * An internal DSL is written in the same language as the host language
+    * An external DSL is a completely separate language
+* SQL is an external DSL.
+* ActiveRecord is an internal DSL
+
+---
+
 Ruby Preserves
 ==============
 
-Trying to answer 3 questions:
+Trying to answer a few questions:
 
 * How simple can we make an ORM that is still useful?
-* Developers have to know SQL anyway, so why try to hide the SQL from them?
-    * Is the complexity of a typical ORM really better than the complexity of SQL?
-* ORMs are a leaky abstraction. What if we made it so leaky that it doesn't matter?
+* Why do we try so hard to hide SQL?
+    * Is the added complexity worth it?
+* Why don't we just *use* SQL?
+    * We have to know SQL anyway
+    * All ORMs are very leaky abstractions
+
+???
+
+* Is the complexity of a typical ORM really better than the complexity of SQL?
+* A typical ORM uses an internal DSL to generate external DSL code
+* What if we made the leaky abstraction leak all the way?
 
 ---
 
@@ -233,12 +268,22 @@ Ruby Preserves
 Opinions:
 
 * Data Mapper pattern is better than the Active Record pattern
-    * Unless you're just writing a CRUD front-end, with little interesting behavior
-* Declaring attributes in the domain model is better than hiding them elsewhere
-    * Declaring relationships in one place and attributes in another is true madness
+* Regular attributes and relational attributes need to be declared in one place
 * NoSQL as a main data store is usually misguided
-    * PostgreSQL can do just about anything you need, using SQL
-* Projects are unlikely to need to abstract SQL to allow them to use different RDBMSes
+* Abstracting to allow switching RDBMSes is premature optimization
+
+???
+
+* ActiveRecord is fine if you're just writing a CRUD front-end, with little interesting behavior
+* The thing that drives me most crazy about ActiveRecord is having to look in 2 places for things
+    * Relationships are defined in the model
+    * Attributes are defined in the DB schema
+* NoSQL
+    * PostgreSQL can do just about anything you need, including what NoSQL does, using SQL
+    * See Sarah Mei's article on why to never use MongoDB
+    * I spoke w/ someone at Stripe, where MongoDB is their primary DB
+        * They copy everything out of it to PostgreSQL for ad-hoc queries
+* RDBMS = Relational DataBase Management System
     * Developer workstations are fast enough to run "full" RDBMSes
     * If you're not using "interesting" features, then you're probably using "standard" SQL
 
@@ -324,7 +369,7 @@ Further Work
 * Automatically determine mappings, where possible
     * Virtus model attribute definitions
     * Database schema
-* Add a layer to write the SQL for us
+* Add a layer to write the SQL for us?
 
 ---
 
