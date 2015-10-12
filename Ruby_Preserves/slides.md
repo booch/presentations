@@ -30,6 +30,7 @@ About Me
 * Agile practitioner
     * [This Agile Life][tal] podcast
 * Boring slide designer
+* Really need a haircut
 
 ---
 
