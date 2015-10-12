@@ -312,7 +312,37 @@ N+1 Queries
 
 * The 1 is the main query
 * The N is all the queries for all the items in the collection
-* This is of course an anti-pattern
+* This is an anti-pattern, of course
+    * Because if you have 1000 items, you have 1001 SQL queries
+    * SQL queries involve network latency, so are slow
+* ActiveRecord will sometimes give you N+1 queries
+* Usually, this is because you're manually iterating through a collection
+* Use a tool like Bullet in Rails to watch for N+1 queries
+
+---
+
+Wrong Turns
+===========
+
+* I made a mistake trying to make relations work in Ruby Preserves
+* Tried creating proxy objects for every relation
+    * So relations weren't queried until they were used
+* Was generating SQL in the Ruby Preserves code
+* Led to N+1 queries
+
+???
+
+* This was a wrong direction on many fronts
+    * It violated the whole principle of using raw SQL
+    * It was complex code
+    * It generated terrible SQL
+* The core idea was fine
+    * Don't populate the relations unless they're used
+* But it was a learning experience
+* It took me a long time to think about how to do relations
+    * I took several wrong turns before I came up with something reasonable
+    * Even when I was headed in the right direction, it took time to narrow in
+    * I'm pretty happy with what I eventually came up with
 
 ---
 
