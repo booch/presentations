@@ -367,7 +367,14 @@ Further Work
 * Automatically determine mappings, where possible
     * Virtus model attribute definitions
     * Database schema
+* Is this really an ORM?
+* Is this really the DAO pattern?
+* Could this be used in production code?
 * Add a layer to write the SQL for us?
+
+???
+
+* DAO = Data Access Object
 
 ---
 
