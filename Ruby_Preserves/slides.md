@@ -291,6 +291,31 @@ end
 
 ---
 
+Relations
+=========
+
+* Has Many
+* Belongs To
+* Has and Belongs to Many
+* Has Many Through
+
+---
+
+N+1 Queries
+===========
+
+* Main query gets a collection
+* You then iterate through the collection
+    * Running another query for each item in the collection
+
+???
+
+* The 1 is the main query
+* The N is all the queries for all the items in the collection
+* This is of course an anti-pattern
+
+---
+
 Advantages
 ==========
 
@@ -331,6 +356,11 @@ Alternatives
 * I still don't have an ORM I'm really happy with
 * This is the order I'd currently consider them, for my personal projects
     * Obviously, context matters a lot
+* ActiveRecord added attribute declarations in version 4.2
+    * Only popularized in 5.0
+    * There were plugins available before that
+        * Annotate Models and its descendants
+        * My own Virtus::ActiveRecord
 
 ---
 
