@@ -296,10 +296,19 @@ Domain Model
 
 
 ~~~ ruby
-User = Struct.new(:id, :name, :age) do
+User = Struct.new(:id, :name, :age, :addresses) do
 end
 
-craig = User.new("booch", "Craig", 44)
+craig = User.new("booch", "Craig", 44, [])
+
+####
+
+class User
+  attr_accessor :id
+  attr_accessor :name
+  attr_accessor :age
+  attr_accessor :addresses
+end
 ~~~
 
 ???
@@ -319,6 +328,8 @@ UserRepository = Preserves.repository(model: User) do
     map id: 'username'
     # The 'age' field should be mapped to an Integer in the model.
     map :age, Integer
+    # The user has a collection of Address objects.
+    has_many :addresses, repository: AddressRepository, foreign_key: 'username'
   end
 end
 ~~~
@@ -347,6 +358,11 @@ UserRepository = Preserves.repository(model: User) do
   end
 end
 ~~~
+
+???
+
+* Note that we're still creating singletons for repositories
+    * Changing that to a class is on my TODO list
 
 ---
 
@@ -405,6 +421,32 @@ Wrong Turns
 
 ---
 
+Relations
+=========
+
+~~~ ruby
+UserRepository = Preserves.repository(model: User) do
+  mapping do
+    primary_key 'username'
+    map id: 'username'
+    has_many :addresses, repository: AddressRepository, foreign_key: 'user_id'
+  end
+
+  def all
+    users = select("SELECT * FROM users")
+    addresses = repository.select("SELECT * FROM addresses")
+    users.to_objects(mapper, addresses: addresses)
+  end
+end
+~~~
+
+???
+
+* I believe ActiveRecord calls these "associations"
+* Note that we have only 2 very simple queries there
+
+---
+
 Advantages
 ==========
 
@@ -412,9 +454,14 @@ Advantages
     * Don't have to look elsewhere to understand everything a class contains
 * Better meets the Single Responsibility Principle (SRP)
 * Small, easy to understand
+    * Currently about 200 lines of code
 * Encourages better separation of concerns
 * Encourages better understanding of SQL
 * Experimentation / learning
+
+???
+
+* I think most of the disadvantages should be obvious! ;)
 
 ---
 
