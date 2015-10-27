@@ -398,9 +398,35 @@ Advantages
 * Encourages better understanding of SQL
 * Experimentation / learning
 
+---
+
+Disadvantages
+=============
+
+* No composability
+    * `published.by_author("craig")`
+* Tied to a single RDBMS
+    * No in-memory DB option
+* API is slightly less convenient
+    * No `user.save`
+    * No `user.persisted?`
+* No ActiveModel
+
 ???
 
-* I think most of the disadvantages should be obvious! ;)
+* Composability is the biggest disadvantage
+    * So we can't chain scopes like ActiveRecord does:
+        * We have no equivalent to `published.by_author("craig")`
+* We could easily add adapters to support multiple DBs
+    * But you might have to change your SQL
+* Even if we had an in-memory option, you'd need 2 separate repos
+    * One repo with the SQL for PostgreSQL
+    * One repo that does whatevery the in-memory storage needed
+* Adding ActiveModel would probably be possible
+    * Wouldn't be able to use POROs any more though
+    * Implementing `user.save` would require a circular dependency
+        * The model's `save` call would have to call the repo
+        * The repo depends on the model class
 
 ---
 
