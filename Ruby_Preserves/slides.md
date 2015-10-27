@@ -5,11 +5,11 @@ class: title, middle, center
 * by Craig Buchek
 
 
-* STL Ruby
-* October 12, 2015
+* RubyConf
+* November 15, 2015
 
 
-http://tinyurl.com/ruby-preserves-stl
+http://tinyurl.com/ruby-preserves-rubyconf
 
 
 ---
@@ -30,7 +30,6 @@ About Me
 * Agile practitioner
     * [This Agile Life][tal] podcast
 * Boring slide designer
-* Really need a haircut
 
 ---
 
