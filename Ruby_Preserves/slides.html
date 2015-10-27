@@ -341,19 +341,19 @@ Repository Methods
 ~~~ ruby
 UserRepository = Preserves.repository(model: User) do
   def insert(user)
-    result = query("INSERT INTO 'users' (username, name, age) VALUES (?, ?, ?)",
+    result = query("INSERT INTO 'users' (username, name, age) VALUES ($1, $2, $3)",
                    user.id, user.name, user.age)
     raise "Could not insert User #{user.id} into database" unless result.rows == 1
   end
 
   def older_than(age)
-    SQL = "SELECT *, username AS id FROM 'users' WHERE age > ? ORDER BY ?"
-    select(SQL, age, :name).to_objects
+    SQL = "SELECT *, username AS id FROM 'users' WHERE age > $1 ORDER BY $2"
+    select(SQL, age, :name)
   end
 
   def with_id(id)
-    SQL = "SELECT *, username AS id FROM 'users' WHERE username = ?"
-    select(SQL, id).to_objects
+    SQL = "SELECT *, username AS id FROM 'users' WHERE username = $1"
+    select(SQL, id)
   end
 end
 ~~~
@@ -432,9 +432,8 @@ UserRepository = Preserves.repository(model: User) do
   end
 
   def all
-    users = select("SELECT * FROM users")
-    addresses = repository.select("SELECT * FROM addresses")
-    users.to_objects(mapper, addresses: addresses)
+    users = query("SELECT * FROM users")
+    addresses = repository.select("SELECT * FROM addresses", addresses: addresses)
   end
 end
 ~~~
