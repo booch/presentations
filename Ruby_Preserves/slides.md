@@ -448,8 +448,8 @@ Alternatives
 
 ---
 
-Further Info
-============
+Further Reading
+===============
 
 * [The State of Ruby ORM][state-of-orm] (2011)
 * [DataMapper Retrospective][datamapper-retro] (2011)
@@ -457,7 +457,8 @@ Further Info
 * [Why You Should Never Use MongoDB][no-mongo] (Sarah Mei)
 * [ORM Hate][orm-hate] (Martin Fowler)
 * [Data Mapper vs Active Record][dm-v-ar]
-* [Turning the Tables: How to Get Along with your Object-Relational Mapper][turning-tables]
+* [Turning the Tables: How to Get Along with your Object-Relational Mapper][turning-tables] (Brad Urani)
+* [Weird Tricks to Write Faster, More Correct Database Queries][faster-correct-db-queries]
 
 ---
 
@@ -494,6 +495,7 @@ Feedback
 [orm-hate]: http://java.dzone.com/articles/martin-fowler-orm-hate
 [dm-v-ar]: http://jgaskins.org/blog/2012/04/20/data-mapper-vs-active-record/
 [turning-tables]: https://medium.com/@bradurani/turning-the-tables-how-to-get-along-with-your-object-relational-mapper-e5d2d6a76573
+[faster-correct-db-queries]: https://kev.inburke.com/kevin/faster-correct-database-queries/
 
 
 [twitter]: https://twitter.com/CraigBuchek
