@@ -92,6 +92,20 @@ About Me
 
 ---
 
+Ruby Preserves
+==============
+
+I wrote an ORM
+
+---
+
+Ruby Preserves
+==============
+
+I wrote an ORM in 400 lines
+
+---
+
 ORM
 ===
 
@@ -106,12 +120,101 @@ ORM
 
 ???
 
-* Today we're going to talk about ORMs in general
-    * And one I've been writing in particular
 * SQL databases deal with relations
   * Relational algebra
 * Ruby deals with objects
 * Caveat: there's an "impedance mismatch" between the 2 sides
+
+---
+
+Why?
+====
+
+* To explore and learn
+
+???
+
+* I've been interested in writing an ORM for a while
+* My colleague Amos King (@adkron) often tells people to write their own ORM
+
+---
+
+Why?
+====
+
+* I'm not happy with any ORM
+
+???
+
+* Sequel is the ideal ORM implementing the Active Record pattern
+* But I don't think the Active Record pattern is usually the right choice
+* I'm still looking for the ideal ORM implementing the Data Mapper pattern
+* In a way, I'm exploring things so maybe I can write the ideal Data Mapper ORM
+    * This is the "one to throw away"
+
+---
+
+Why?
+====
+
+Trying to answer a few questions:
+
+* How simple can we make an ORM that is still useful?
+
+---
+
+Why?
+====
+
+Trying to answer a few questions:
+
+* Why do we try so hard to hide SQL?
+    * Is the added complexity worth it?
+
+???
+
+* Is the complexity of a typical ORM really better than the complexity of SQL?
+
+---
+
+Why?
+====
+
+Trying to answer a few questions:
+
+* Why don't we just use SQL?
+    * We have to know SQL anyway
+    * All ORMs are very leaky abstractions
+
+???
+
+* A typical ORM uses an internal DSL to generate external DSL code
+* What if we made the leaky abstraction leak all the way?
+
+---
+
+Opinions
+========
+
+* Data Mapper pattern is better than the Active Record pattern
+* Regular attributes and relational attributes need to be declared in one place
+* NoSQL as a main data store is usually misguided
+* Abstracting to allow switching RDBMSes is premature optimization
+
+???
+
+* ActiveRecord is fine if you're just writing a CRUD front-end, with little interesting behavior
+* The thing that drives me most crazy about ActiveRecord is having to look in 2 places for things
+    * Relationships are defined in the model
+    * Attributes are defined in the DB schema
+* NoSQL
+    * PostgreSQL can do just about anything you need, including what NoSQL does, using SQL
+    * See Sarah Mei's article on why to never use MongoDB
+    * I spoke w/ someone at Stripe, where MongoDB is their primary DB
+        * They copy everything out of it to PostgreSQL for ad-hoc queries
+* RDBMS = Relational DataBase Management System
+    * Developer workstations are fast enough to run "full" RDBMSes
+    * If you're not using "interesting" features, then you're probably using "standard" SQL
 
 ---
 
@@ -238,53 +341,6 @@ DSLs
     * An external DSL is a completely separate language
 * SQL is an external DSL.
 * ActiveRecord is an internal DSL
-
----
-
-Ruby Preserves
-==============
-
-Trying to answer a few questions:
-
-* How simple can we make an ORM that is still useful?
-* Why do we try so hard to hide SQL?
-    * Is the added complexity worth it?
-* Why don't we just *use* SQL?
-    * We have to know SQL anyway
-    * All ORMs are very leaky abstractions
-
-???
-
-* Is the complexity of a typical ORM really better than the complexity of SQL?
-* A typical ORM uses an internal DSL to generate external DSL code
-* What if we made the leaky abstraction leak all the way?
-
----
-
-Ruby Preserves
-==============
-
-Opinions:
-
-* Data Mapper pattern is better than the Active Record pattern
-* Regular attributes and relational attributes need to be declared in one place
-* NoSQL as a main data store is usually misguided
-* Abstracting to allow switching RDBMSes is premature optimization
-
-???
-
-* ActiveRecord is fine if you're just writing a CRUD front-end, with little interesting behavior
-* The thing that drives me most crazy about ActiveRecord is having to look in 2 places for things
-    * Relationships are defined in the model
-    * Attributes are defined in the DB schema
-* NoSQL
-    * PostgreSQL can do just about anything you need, including what NoSQL does, using SQL
-    * See Sarah Mei's article on why to never use MongoDB
-    * I spoke w/ someone at Stripe, where MongoDB is their primary DB
-        * They copy everything out of it to PostgreSQL for ad-hoc queries
-* RDBMS = Relational DataBase Management System
-    * Developer workstations are fast enough to run "full" RDBMSes
-    * If you're not using "interesting" features, then you're probably using "standard" SQL
 
 ---
 
