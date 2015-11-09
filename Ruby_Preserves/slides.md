@@ -1,12 +1,13 @@
 layout: true
 
 <header>
+  <p class="left">@CraigBuchek</p>
   <p class="right">RubyConf 2015</p>
 </header>
 
 
 <footer>
-  <p class="left">@CraigBuchek</p>
+  <p class="left">http://boochtek.com/preserves-rubyconf</p>
 </footer>
 
 ---
@@ -14,17 +15,13 @@ class: title, middle, center
 
 # Ruby Preserves
 
-
-http://tinyurl.com/ruby-preserves-rubyconf
-
-
 ---
-class: title, middle, center
+class: middle, center
 
 I wrote an ORM
 
 ---
-class: title, middle, center
+class: middle, center
 
 I wrote an ORM in 350 lines
 
