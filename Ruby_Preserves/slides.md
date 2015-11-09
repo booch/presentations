@@ -19,18 +19,18 @@ http://tinyurl.com/ruby-preserves-rubyconf
 
 
 ---
-
-Ruby Preserves
-==============
+class: title, middle, center
 
 I wrote an ORM
 
 ---
+class: title, middle, center
 
-Ruby Preserves
-==============
+I wrote an ORM in 350 lines
 
-I wrote an ORM in 400 lines
+???
+
+* It was actually under 200 lines before I refactored to clean things up.
 
 ---
 
