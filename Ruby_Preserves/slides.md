@@ -1,23 +1,22 @@
+layout: true
+
+<header>
+  <p class="right">RubyConf 2015</p>
+</header>
+
+
+<footer>
+  <p class="left">@CraigBuchek</p>
+</footer>
+
+---
 class: title, middle, center
 
 # Ruby Preserves
 
-* by Craig Buchek
-
-
-* RubyConf
-* November 15, 2015
-
 
 http://tinyurl.com/ruby-preserves-rubyconf
 
-
----
-layout: true
-
-<footer>
-  <p>@CraigBuchek</p>
-</footer>
 
 ---
 

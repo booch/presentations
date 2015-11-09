@@ -11,14 +11,28 @@
       body {
         font-family: 'Droid Serif';
       }
-      footer {
+      header, footer {
         display: block;
-        bottom: 0;
-        position: absolute;
         color: #888;
-        margin-bottom: -10px;
-        margin-left: -90px;
+        position: absolute;
         font-size: 20px;
+        width: 100%;
+        /* Make up for padding on enclosing .remark-slide-content DIV. */
+        margin-left: -4em;
+      }
+      header {
+        top: 0;
+        margin-top: -10px;
+      }
+      header .left, footer .left {
+      }
+      header .right, footer .right {
+        float: right;
+        margin-right: 2em;
+      }
+      footer {
+        bottom: 0;
+        margin-bottom: -10px;
       }
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
@@ -27,6 +41,7 @@
       .remark-slides-area { background-color: #9B111E; }
       .remark-slide-content {
         font-size: 26px; line-height: 1.6;
+        width: 100%;
       }
       .remark-slide-number { font-size: 18px; }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
@@ -57,26 +72,25 @@
   </head>
   <body>
     <textarea id="source">
+layout: true
+
+<header>
+  <p class="right">RubyConf 2015</p>
+</header>
+
+
+<footer>
+  <p class="left">@CraigBuchek</p>
+</footer>
+
+---
 class: title, middle, center
 
 # Ruby Preserves
 
-* by Craig Buchek
-
-
-* RubyConf
-* November 15, 2015
-
 
 http://tinyurl.com/ruby-preserves-rubyconf
 
-
----
-layout: true
-
-<footer>
-  <p>@CraigBuchek</p>
-</footer>
 
 ---
 
