@@ -551,13 +551,6 @@ Further Reading
 
 ---
 
-Colophon
-========
-
-* [Remark][remark] - JavaScript slide show from Markdown
-
----
-
 Feedback
 ========
 
