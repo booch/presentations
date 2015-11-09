@@ -20,6 +20,10 @@ class: middle, center
 
 I wrote an ORM
 
+???
+
+* I started writing a Ruby ORM last year
+
 ---
 class: middle, center
 
@@ -27,7 +31,9 @@ I wrote an ORM in 350 lines
 
 ???
 
-* Was under 200 lines before I refactored to clean things up.
+* Was under 200 lines before I refactored to clean things up
+    * It had less features, and the code was a mess
+    * It supported has_many relationships in those 200 lines
 
 ---
 
@@ -285,8 +291,9 @@ DSLs
 * Who knows what the difference between an internal DSL and an external DSL is?
     * An internal DSL is written in the same language as the host language
     * An external DSL is a completely separate language
-* SQL is an external DSL.
+* SQL is an external DSL
 * ActiveRecord is an internal DSL
+    * Which generates external DSL code
 
 ---
 
@@ -463,6 +470,17 @@ Advantages
 * Encourages better understanding of SQL
 * Experimentation / learning
 
+???
+
+* And 100 of those 350 lines are just `end`
+* For comparison:
+    * ActiveRecord is 210 kloc
+        * Stats from Sean Griffin, [Ruby Rogues episode 222][rr-222]
+    * Sequel is 31 kloc
+    * Lotus::Model is 2 kloc (plus it uses Sequel)
+    * Perpetuity is 2.5 kloc (with all 3 adapters)
+* I used David A. Wheeler's `sloccount` to get lines of code
+
 ---
 
 Disadvantages
@@ -486,12 +504,7 @@ Disadvantages
     * But you might have to change your SQL
 * Even if we had an in-memory option, you'd need 2 separate repos
     * One repo with the SQL for PostgreSQL
-    * One repo that does whatevery the in-memory storage needed
-* Adding ActiveModel would probably be possible
-    * Wouldn't be able to use POROs any more though
-    * Implementing `user.save` would require a circular dependency
-        * The model's `save` call would have to call the repo
-        * The repo depends on the model class
+    * Another repo that does whatever the in-memory storage needed
 
 ---
 
@@ -500,16 +513,21 @@ Further Work
 
 * Optimizations / caching
     * Prepared statements
+* ActiveModel compatibility
 * Automatically determine mappings, where possible
     * Virtus model attribute definitions
     * Database schema
-* Is this really an ORM?
-* Is this really the DAO pattern?
+* Is this really just the DAO pattern?
 * Could this be used in production code?
 * Add a layer to write the SQL for us?
 
 ???
 
+* Implementing ActiveModel would probably be possible
+    * Wouldn't be able to use POROs any more though
+    * Implementing `user.save` would require a circular dependency
+        * The model's `save` call would have to call the repo
+        * The repo depends on the model class
 * DAO = Data Access Object
 
 ---
