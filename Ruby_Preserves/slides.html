@@ -102,7 +102,7 @@ I wrote an ORM in 350 lines
 
 ???
 
-* It was actually under 200 lines before I refactored to clean things up.
+* Was under 200 lines before I refactored to clean things up.
 
 ---
 
@@ -120,10 +120,24 @@ ORM
 
 ???
 
+* First, I want to make sure everyone knows what an ORM is
 * SQL databases deal with relations
   * Relational algebra
 * Ruby deals with objects
 * Caveat: there's an "impedance mismatch" between the 2 sides
+
+---
+
+Why?
+====
+
+* I'm not happy with any ORM
+
+???
+
+* I don't think the Active Record pattern is usually the right choice
+* I'm still looking for the ideal ORM implementing the Data Mapper pattern
+    * Sequel is the ideal ORM implementing the Active Record pattern
 
 ---
 
@@ -136,58 +150,33 @@ Why?
 
 * I've been interested in writing an ORM for a while
 * My colleague Amos King (@adkron) often tells people to write their own ORM
+* Maybe I can learn enough to write the ideal Data Mapper ORM
+    * Preserves is the "one to throw away"
 
 ---
 
 Why?
 ====
 
-* I'm not happy with any ORM
-
-???
-
-* Sequel is the ideal ORM implementing the Active Record pattern
-* But I don't think the Active Record pattern is usually the right choice
-* I'm still looking for the ideal ORM implementing the Data Mapper pattern
-* In a way, I'm exploring things so maybe I can write the ideal Data Mapper ORM
-    * This is the "one to throw away"
+* See how simple can we make an ORM that is still useful
 
 ---
 
 Why?
 ====
 
-Trying to answer a few questions:
-
-* How simple can we make an ORM that is still useful?
-
----
-
-Why?
-====
-
-Trying to answer a few questions:
+Trying to answer:
 
 * Why do we try so hard to hide SQL?
     * Is the added complexity worth it?
-
-???
-
-* Is the complexity of a typical ORM really better than the complexity of SQL?
-
----
-
-Why?
-====
-
-Trying to answer a few questions:
-
 * Why don't we just use SQL?
     * We have to know SQL anyway
     * All ORMs are very leaky abstractions
 
 ???
 
+* ActiveRecord is pretty complex
+    * Is the complexity really better than the complexity of SQL?
 * A typical ORM uses an internal DSL to generate external DSL code
 * What if we made the leaky abstraction leak all the way?
 
