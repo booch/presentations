@@ -107,25 +107,52 @@ Trying to answer:
 
 ---
 
-Opinions
-========
+Opinion
+=======
 
 * Data Mapper pattern is better than the Active Record pattern
+
+???
+
+* I also started designing the ORM based on a few strong opinions
+* ActiveRecord is fine if you're just writing a CRUD front-end, with little interesting behavior
+
+---
+
+Opinion
+=======
+
 * Regular attributes and relational attributes need to be declared in one place
+
+???
+
+* The thing that drives me most crazy about ActiveRecord is having to look in 2 places for things
+    * Relationships are defined in the model
+    * Attributes are defined in the DB schema
+
+---
+
+Opinion
+=======
+
 * NoSQL as a main data store is usually misguided
+
+???
+
+* PostgreSQL can do just about anything you need, including what NoSQL does, using SQL
+* See Sarah Mei's article on why to never use MongoDB
+* I spoke w/ someone at Stripe, where MongoDB is their primary DB
+    * They copy everything out of it to PostgreSQL for ad-hoc queries
+
+---
+
+Opinion
+=======
+
 * Abstracting to allow switching RDBMSes is premature optimization
 
 ???
 
-* ActiveRecord is fine if you're just writing a CRUD front-end, with little interesting behavior
-* The thing that drives me most crazy about ActiveRecord is having to look in 2 places for things
-    * Relationships are defined in the model
-    * Attributes are defined in the DB schema
-* NoSQL
-    * PostgreSQL can do just about anything you need, including what NoSQL does, using SQL
-    * See Sarah Mei's article on why to never use MongoDB
-    * I spoke w/ someone at Stripe, where MongoDB is their primary DB
-        * They copy everything out of it to PostgreSQL for ad-hoc queries
 * RDBMS = Relational DataBase Management System
     * Developer workstations are fast enough to run "full" RDBMSes
     * If you're not using "interesting" features, then you're probably using "standard" SQL
