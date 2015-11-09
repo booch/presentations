@@ -11,7 +11,7 @@ rule '.html' => ['.md'] do |t|
   template = File.read('slides.html.erb')
   File.open(t.name, 'w') do |file|
     BODY = File.read(t.source)
-    TITLE = BODY.lines.reject{|line| line =~ /^\s$/ || line =~ /^class:\s/ }.first.chomp.sub(/^#*\s*/, '')
+    TITLE = BODY.lines.find{ |line| line =~ /^#+\s*/ }.chomp.sub(/^#+\s*/, '')
     file.write(ERB.new(template).result(binding))
   end
 end
