@@ -175,13 +175,12 @@ ActiveRecord
 
 * Who loves ActiveRecord?
 * Who hates ActiveRecord?
+    * I hate ActiveRecord - mostly
 * Who raised their hand both times?
 * Who has had to manually type SQL in an ActiveRecord class?
     * So ActiveRecord is a leaky abstraction
         * SQL leaked up into the upper layers of abstraction
-* Who thinks it's crazy to have to look at the class for relationships, but the schema for other attributes?
-* I hate ActiveRecord - mostly
-* But ActiveRecord is the 800-pount gorilla
+* ActiveRecord is the 800-pount gorilla
 * Odds are, if you're hired to work on Rails, you'll be using AR
 
 ---
@@ -226,7 +225,8 @@ Data Mapper Pattern
 * Note that the DataMapper Ruby gem didn't actually use the Data Mapper pattern
     * It used the Active Record pattern
 * Python's SQL Alchemy uses the Data Mapper pattern
-    * This library is very highly regarded --- basically *the* Python ORM
+    * This library is very highly regarded
+    * Basically *the* Python ORM
 
 ---
 
@@ -240,7 +240,12 @@ Repository Pattern
 * In ActiveRecord, the class methods often act as the repository
     * But you can't easily have 2 repositories for the same model class with different data stores
     * Class methods are generally problematic
-         * Hard to test
+        * Leads to procedural code instead of OO code
+        * Often indicates that you've missed an abstraction
+        * Limits polymorphism
+        * Hard to test
+        * Hard to refactor
+            * See [this Code Climate article][code-climate-class-methods] for details
 
 ---
 
@@ -362,13 +367,17 @@ end
 
 ---
 
-Relations
-=========
+Relationships
+=============
 
 * Has Many
 * Belongs To
 * Has and Belongs to Many
 * Has Many Through
+
+???
+
+* Relationships aren't usually implemented in micro-ORMs
 
 ---
 
@@ -395,9 +404,9 @@ N+1 Queries
 Wrong Turns
 ===========
 
-* I made a mistake trying to make relations work in Ruby Preserves
-* Tried creating proxy objects for every relation
-    * So relations weren't queried until they were used
+* I made a mistake trying to make relationships work in Ruby Preserves
+* Tried creating proxy objects for every relationship
+    * So relationships weren't queried until they were used
 * Was generating SQL in the Ruby Preserves code
 * Led to N+1 queries
 
@@ -408,17 +417,17 @@ Wrong Turns
     * It was complex code
     * It generated terrible SQL
 * The core idea was fine
-    * Don't populate the relations unless they're used
+    * Don't populate the relationships unless they're used
 * But it was a learning experience
-* It took me a long time to think about how to do relations
+* It took me a long time to think about how to do relationships
     * I took several wrong turns before I came up with something reasonable
     * Even when I was headed in the right direction, it took time to narrow in
     * I'm pretty happy with what I eventually came up with
 
 ---
 
-Relations
-=========
+Relationships
+=============
 
 ~~~ ruby
 UserRepository = Preserves.repository(model: User) do
@@ -437,7 +446,7 @@ end
 
 ???
 
-* I believe ActiveRecord calls these "associations"
+* ActiveRecord calls these "associations"
 * Note that we have only 2 very simple queries there
 
 ---
@@ -449,7 +458,7 @@ Advantages
     * Don't have to look elsewhere to understand everything a class contains
 * Better meets the Single Responsibility Principle (SRP)
 * Small, easy to understand
-    * Currently about 200 lines of code
+    * Currently about 350 lines of code
 * Encourages better separation of concerns
 * Encourages better understanding of SQL
 * Experimentation / learning
@@ -567,6 +576,7 @@ Feedback
 
 [rr-222]: http://devchat.cachefly.net/rubyrogues/transcript-222-rr-rails-5-with-sean-griffin-ruby-rogues.pdf
 [peap]: http://www.amazon.com/dp/0321127420
+[code-climate-class-methods]:  http://blog.codeclimate.com/blog/2012/11/14/why-ruby-class-methods-resist-refactoring/
 [ddd]: http://www.amazon.com/dp/0321125215
 [no-mongo]: http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/
 [state-of-orm]: http://solnic.eu/2011/11/29/the-state-of-ruby-orm.html
