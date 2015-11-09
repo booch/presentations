@@ -21,18 +21,6 @@ layout: true
 
 ---
 
-About Me
-========
-
-* Independent web developer
-    * [BoochTek][boochtek]
-* Ruby / Rails programmer since 2006
-* Agile practitioner
-    * [This Agile Life][tal] podcast
-* Boring slide designer
-
----
-
 Ruby Preserves
 ==============
 
