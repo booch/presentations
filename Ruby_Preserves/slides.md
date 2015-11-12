@@ -217,6 +217,13 @@ Active Record Pattern
 
 ---
 
+Active Record Pattern
+=====================
+
+TODO: Show UML diagram of AR pattern
+
+---
+
 Data Mapper Pattern
 ===================
 
@@ -233,6 +240,14 @@ Data Mapper Pattern
 * Python's SQL Alchemy uses the Data Mapper pattern
     * This library is very highly regarded
     * Basically *the* Python ORM
+
+---
+
+Data Mapper Pattern
+===================
+
+TODO: Show UML diagram of DM pattern
+
 
 ---
 
@@ -268,6 +283,13 @@ Repository Architecture
 * Sometimes we'll call the domain models entities
     * From [Domain-Driven Design][ddd] book
     * Entities implies that the object is defined by its ID
+
+---
+
+Repository Architecture
+=======================
+
+TODO: Show UML diagram of Repository architecture
 
 ---
 
