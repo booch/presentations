@@ -435,6 +435,133 @@ N+1 Queries
 
 ---
 
+Relationships - Has Many
+========================
+
+~~~ ruby
+AddressRepository = Preserves.repository(model: Address) do
+  mapping { map :city, String }
+end
+
+UserRepository = Preserves.repository(model: User) do
+  mapping do
+    primary_key 'username'
+    map id: 'username'
+    has_many :addresses, repository: AddressRepository,
+                         foreign_key: 'user_id'
+  end
+
+  def all
+    addresses = query("SELECT * FROM addresses")
+    repository.select("SELECT * FROM users", addresses: addresses)
+  end
+end
+~~~
+
+???
+
+* Note that we have only 2 very simple queries there
+* We'd probably want to have a `WHERE` clause on the `addresses` query
+    * So we only get the addresses associated with the users we got
+
+---
+
+Relationships - Belongs To
+==========================
+
+~~~ ruby
+GroupRepository = Preserves.repository(model: Group) do
+  mapping { map :name, String }
+end
+
+UserRepository = Preserves.repository(model: User) do
+  mapping do
+    primary_key 'username'
+    map id: 'username'
+    belongs_to :group, repository: GroupRepository
+  end
+
+  def all
+    groups = query("SELECT * FROM groups")
+    repository.select("SELECT * FROM users", groups: groups)
+  end
+end
+~~~
+
+???
+
+* Again, we have only 2 very simple queries
+* We don't support has_many and belongs_to for the same set of repos
+    * It's generally recommended not to do this
+        * Due to circular dependencies
+
+---
+
+Relationships - JOINs
+=====================
+
+* JOINs happen in Ruby, not SQL
+
+???
+
+* This is one part that I'm not 100% comfortable with
+* It's best if we could do JOINs in SQL
+
+---
+
+Relationships - JOINs
+=====================
+
+~~~ sql
+SELECT * FROM users;
+┌──────────┬──────┬─────┬──────────┐
+│ username │ name │ age │ group_id │
+└──────────┴──────┴─────┴──────────┘
+
+SELECT * FROM groups;
+┌────┬──────┐
+│ id │ name │
+└────┴──────┘
+
+SELECT groups.*, users.* FROM groups JOIN users
+ON users.group_id = groups.id;
+┌────┬──────┬──────────┬──────┬─────┬──────────┐
+│ id │ name │ username │ name │ age │ group_id │
+└────┴──────┴──────────┴──────┴─────┴──────────┘
+~~~
+
+???
+
+* Here's where the problem comes in
+    * The result has 2 columns named `name`
+* Unfortunately, SQL doesn't really have a good simple solution for this
+
+---
+
+Relationships - JOINs
+=====================
+
+~~~ sql
+SELECT g.id AS g__id, g.name AS g__name,
+       u.username AS u__username, u.name AS u__username,
+       u.age AS u__age
+FROM groups AS g
+JOIN users AS u ON u.group_id = g.id;
+┌───────┬─────────┬─────────────┬─────────────┬────────┐
+│ g__id │ g__name │ u__username │ u__username │ u__age │
+└───────┴─────────┴─────────────┴─────────────┴────────┘
+~~~
+
+???
+
+* This is how most ORMs solve this
+    * Specifying every column
+        * With a mapping in the SQL
+        * And then another mapping in the Ruby code
+* I didn't want to force that complexity on my API users
+
+---
+
 Wrong Turns
 ===========
 
@@ -457,31 +584,6 @@ Wrong Turns
     * I took several wrong turns before I came up with something reasonable
     * Even when I was headed in the right direction, it took time to narrow in
     * I'm pretty happy with what I eventually came up with
-
----
-
-Relationships
-=============
-
-~~~ ruby
-UserRepository = Preserves.repository(model: User) do
-  mapping do
-    primary_key 'username'
-    map id: 'username'
-    has_many :addresses, repository: AddressRepository, foreign_key: 'user_id'
-  end
-
-  def all
-    users = query("SELECT * FROM users")
-    addresses = repository.select("SELECT * FROM addresses", addresses: addresses)
-  end
-end
-~~~
-
-???
-
-* ActiveRecord calls these "associations"
-* Note that we have only 2 very simple queries there
 
 ---
 
