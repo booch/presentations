@@ -31,6 +31,8 @@ I wrote an ORM in 350 lines
 
 ???
 
+* I suppose I should call it a micro-ORM
+    * Because it's so small
 * Was under 200 lines before I refactored to clean things up
     * It had less features, and the code was a mess
     * It supported has_many relationships in those 200 lines
@@ -407,6 +409,9 @@ Relationships
 ???
 
 * Relationships aren't usually implemented in micro-ORMs
+* I've implemented has_many and belongs_to
+    * They took less than 2 hours each
+        * But it took months to think about how to do it
 
 ---
 
