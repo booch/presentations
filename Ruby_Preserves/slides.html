@@ -294,6 +294,7 @@ Active Record Pattern
 * Note "Active Record" is the pattern and "ActiveRecord" is the ORM
 * Active Record pattern described by Martin Fowler
     * [Patterns of Enterprise Application Architecture][peap]
+    * Discusses the trade-offs involved with the coupling
 * Separation of concerns in important
     * Just like Rails separates M-V-C concerns
     * But ActiveRecord does a terrible job at it
@@ -413,24 +414,15 @@ Domain Model
 
 
 ~~~ ruby
-User = Struct.new(:id, :name, :age, :addresses) do
-end
+User = Struct.new(:id, :name, :age, :addresses)
 
 craig = User.new("booch", "Craig", 44, [])
-
-####
-
-class User
-  attr_accessor :id
-  attr_accessor :name
-  attr_accessor :age
-  attr_accessor :addresses
-end
 ~~~
 
 ???
 
 * PORO = plain old Ruby object
+* Here we're using a Struct
 * Note that I can create my model with no database involved
 
 ---
