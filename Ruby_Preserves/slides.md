@@ -157,13 +157,14 @@ Opinion
 Opinion
 =======
 
-* Abstracting to allow switching RDBMSes is premature optimization
+* Abstracting to allow switching RDBMSes is YAGNI
 
 ???
 
 * RDBMS = Relational DataBase Management System
-    * Developer workstations are fast enough to run "full" RDBMSes
-    * If you're not using "interesting" features, then you're probably using "standard" SQL
+* Developer workstations are fast enough to run "full" RDBMSes
+* If you're not using "interesting" features, then you're probably using "standard" SQL
+* YAGNI = You Ain't Gonna Need It
 
 ---
 
