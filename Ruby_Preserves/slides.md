@@ -113,6 +113,7 @@ Trying to answer:
 * ActiveRecord is pretty complex
     * Is the complexity really better than the complexity of SQL?
 * A typical ORM uses an internal DSL to generate external DSL code
+* Leaky abstraction = sometimes have to use the things underneath the abstraction
 * What if we made the leaky abstraction leak all the way?
 
 ---
@@ -165,6 +166,9 @@ Opinion
 
 * RDBMS = Relational DataBase Management System
 * Developer workstations are fast enough to run "full" RDBMSes
+* It makes sense to do all your development on the same DB as production, if you can
+    * Postgres and MySQL are definitely feasible
+    * Oracle and SQL Server may not be feasible, but now have "Express" versions
 * If you're not using "interesting" features, then you're probably using "standard" SQL
 * YAGNI = You Ain't Gonna Need It
 
@@ -649,7 +653,7 @@ Further Work
 * Automatically determine mappings, where possible
     * Virtus model attribute definitions
     * Database schema
-* Is this really just the DAO pattern?
+* How does this compare with the DAO pattern?
 * Could this be used in production code?
 * Add a layer to write the SQL for us?
 
