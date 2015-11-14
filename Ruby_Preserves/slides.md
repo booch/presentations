@@ -505,6 +505,10 @@ Relationships - JOINs
 
 * This is one part that I'm not 100% comfortable with
 * It's best if we could do JOINs in SQL
+* But I'm not terribly concerned about this
+    * CRUD app usage patterns usually save us
+        * A CRUD app will never want to show 1000s of things on screen
+        * All SQL queries in real apps should have LIMIT clauses
 
 ---
 
@@ -558,6 +562,7 @@ JOIN users AS u ON u.group_id = g.id;
         * With a mapping in the SQL
         * And then another mapping in the Ruby code
 * I didn't want to force that complexity on my API users
+    * It would have changed the whole concept
 
 ---
 
