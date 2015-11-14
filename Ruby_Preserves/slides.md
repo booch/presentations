@@ -15,6 +15,8 @@ class: title, middle, center
 
 # Ruby Preserves
 
+![jar of preserves with a ruby on the label](ruby_preserves.png)
+
 ---
 class: middle, center
 
