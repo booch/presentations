@@ -993,6 +993,20 @@ Alternatives
 * I still don't have an ORM I'm really happy with
 * This is the order I'd currently consider them, for my personal projects
     * Obviously, context matters a lot
+
+---
+
+Alternatives
+============
+
+1. Lotus::Model
+2. Perpetuity
+3. ROM
+4. Sequel
+5. ActiveRecord with declared attributes
+
+???
+
 * Lotus::Model
     * Pretty young and immature (0.5)
     * Implements Data Mapper pattern
@@ -1009,11 +1023,39 @@ Alternatives
             * I'd rather mappings be in the Repository classes
     * Other problems:
         * Scopes are class methods
+
+---
+
+Alternatives
+============
+
+1. Lotus::Model
+2. Perpetuity
+3. ROM
+4. Sequel
+5. ActiveRecord with declared attributes
+
+???
+
 * Perpetuity
     * Jamie Gaskins
     * Small
     * No support for relationships - yet
     * Used in a few production apps
+
+---
+
+Alternatives
+============
+
+1. Lotus::Model
+2. Perpetuity
+3. ROM
+4. Sequel
+5. ActiveRecord with declared attributes
+
+???
+
 * ROM - Ruby Object Mapper
     * Piotr Solnica (primarily)
     * Goes further than Data Mapper pattern
@@ -1022,6 +1064,20 @@ Alternatives
     * A couple problems I have:
         * Requires a **very** different mindset
         * Built bottom-up, less attention to public API
+
+---
+
+Alternatives
+============
+
+1. Lotus::Model
+2. Perpetuity
+3. ROM
+4. Sequel
+5. ActiveRecord with declared attributes
+
+???
+
 * Sequel
     * Jeremy Evans
         * Won a Ruby Hero award earlier this year
@@ -1031,6 +1087,20 @@ Alternatives
     * It's exactly what I'm looking for
         * Except it implements the Active Record pattern
         * I want the Sequel of the Data Mapper pattern
+
+---
+
+Alternatives
+============
+
+1. Lotus::Model
+2. Perpetuity
+3. ROM
+4. Sequel
+5. ActiveRecord with declared attributes
+
+???
+
 * ActiveRecord added attribute declarations in version 4.2
     * Only popularized in 5.0
     * There were plugins available before that
