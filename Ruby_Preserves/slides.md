@@ -723,7 +723,7 @@ Feedback
 * Project: https://github.com/boochtek/ruby_preserves
 
 
-* Slides: http://tinyurl.com/ruby-preserves-stl
+* Slides: http://boochtek.com/preserves-rubyconf
 * Slides: https://github.com/booch/presentations/
 
 
