@@ -45,8 +45,13 @@ I wrote an ORM in 350 lines
 
 ???
 
-* I suppose I should call it a micro-ORM
-    * Because it's so small
+* It's surprisingly small
+* I suppose you could call it a micro-ORM
+    * Missing some features that most ORMs have
+        * Mostly by design
+    * But has some features that other micro-ORMs don't
+
+
 * Was under 200 lines before I refactored to clean things up
     * It had less features, and the code was a mess
     * It supported has_many relationships in those 200 lines
@@ -67,24 +72,29 @@ ORM
 
 ???
 
-* First, I want to make sure everyone knows what an ORM is
+* I want to make sure everyone knows what an ORM is
 * SQL databases deal with relations
   * Relational algebra
 * Ruby deals with objects
+* ORM brings those 2 sides together
 * Caveat: there's an "impedance mismatch" between the 2 sides
+    * What works well on one side might not work well on the other
+    * Some data structures can't be mapped 1-to-1
+    * Example: tree structure
+        * Easy to do in OOP
+        * Several ways to represent in relational algebra
 
 ---
 
 Why?
 ====
 
-* I'm not happy with any ORM
+* I'm not happy with any Ruby ORM
 
 ???
 
-* I don't think the Active Record pattern is usually the right choice
-* I'm still looking for the ideal ORM implementing the Data Mapper pattern
-    * Sequel is the ideal ORM implementing the Active Record pattern
+* Why would I tackle such a daunting task?
+* First, I'm not really happy with any existing Ruby ORM
 
 ---
 
@@ -97,15 +107,27 @@ Why?
 
 * I've been interested in writing an ORM for a while
 * My colleague Amos King (@adkron) often tells people to write their own ORM
-* Maybe I can learn enough to write the ideal Data Mapper ORM
-    * Preserves is the "one to throw away"
+* Maybe I can learn enough to write my ideal ORM someday
+    * They say to write something good, "write one to throw away"
+        * Make mistakes, learn from them
+        * Have a better architecture / design the 2nd try
 
 ---
 
 Why?
 ====
 
-* See how simple can we make an ORM that is still useful
+Trying to answer:
+
+* How simple can we make an ORM?
+* What is the **essence** of an ORM?
+
+???
+
+* ORMs are really complex
+    * But do they have to be?
+* How simple can we make an ORM?
+* What is the **essence** of an ORM?
 
 ---
 
@@ -122,10 +144,12 @@ Trying to answer:
 
 ???
 
-* ActiveRecord is pretty complex
-    * Is the complexity really better than the complexity of SQL?
-* A typical ORM uses an internal DSL to generate external DSL code
-* Leaky abstraction = sometimes have to use the things underneath the abstraction
+* Every ORM I've used has a DSL to help write SQL
+    * DSL = domain specific language
+    * But then you usually end up having to write some SQL
+    * This is a leaky abstraction
+    * Leaky abstraction = it doesn't always work
+    * Leaky abstraction = sometimes you have to go down a level of abstraction
 * What if we made the leaky abstraction leak all the way?
 
 ---
@@ -138,7 +162,6 @@ Opinion
 ???
 
 * I also started designing the ORM based on a few strong opinions
-* ActiveRecord is fine if you're just writing a CRUD front-end, with little interesting behavior
 
 ---
 
@@ -150,7 +173,9 @@ Opinion
 ???
 
 * The thing that drives me most crazy about ActiveRecord is having to look in 2 places for things
-    * Relationships are defined in the model
+    * Relationships (or associations) are defined in the model
+        * `has_many`
+        * `belongs_to`
     * Attributes are defined in the DB schema
 
 ---
@@ -162,9 +187,15 @@ Opinion
 
 ???
 
-* PostgreSQL can do just about anything you need, including what NoSQL does, using SQL
-* See Sarah Mei's article on why to never use MongoDB
-* I spoke w/ someone at Stripe, where MongoDB is their primary DB
+* I don't believe that most uses of NoSQL are legitimate
+    * I don't think most of us know SQL well enough to know when to abandon it
+* PostgreSQL can do just about anything you need
+    * Including most of what NoSQL does
+    * But it still uses SQL
+* Sarah Mei has an excellent article on why to never use MongoDB
+    * You'll paint yourself into a corner a year later
+* I spoke w/ someone at Stripe about this
+    * MongoDB is their primary DB
     * They copy everything out of it to PostgreSQL for ad-hoc queries
 
 ---
@@ -172,17 +203,24 @@ Opinion
 Opinion
 =======
 
-* Abstracting to allow switching RDBMSes is YAGNI
+* Abstracting to allow switching RDBMSes? YAGNI!
 
 ???
 
-* RDBMS = Relational DataBase Management System
-* Developer workstations are fast enough to run "full" RDBMSes
-* It makes sense to do all your development on the same DB as production, if you can
-    * Postgres and MySQL are definitely feasible
-    * Oracle and SQL Server may not be feasible, but now have "Express" versions
-* If you're not using "interesting" features, then you're probably using "standard" SQL
+* How many of you have every switched database vendors?
+    * Was it as easy as just changing your `database.yml` file?
 * YAGNI = You Ain't Gonna Need It
+* Developer workstations are fast enough to run a "full" RDBMS
+    * RDBMS = Relational DataBase Management System
+* It makes sense to do all your development on the same DB as production
+    * If you can
+    * Postgres and MySQL are definitely feasible
+    * Oracle and SQL Server may not be feasible
+        * But "Express" versions will probably work in most cases
+* Even if you do change DBs, it's never easy
+    * Unless your app is simple and uninteresting
+        * In that case, why would you need to change RDBMSes?
+* Don't half-way prepare for something that will probably never happen
 
 ---
 
@@ -202,12 +240,16 @@ ActiveRecord
 
 * Who loves ActiveRecord?
 * Who hates ActiveRecord?
-    * I hate ActiveRecord - mostly
 * Who raised their hand both times?
+* I'm mostly in the hate camp
 * Who has had to manually type SQL in an ActiveRecord class?
     * So ActiveRecord is a leaky abstraction
         * SQL leaked up into the upper layers of abstraction
 * ActiveRecord is the 800-pount gorilla
+    * Every Rubyist knows it
+    * It's well-tested
+    * Frankly, it's just easy to start using it
+        * You don't need to even think
 * Odds are, if you're hired to work on Rails, you'll be using AR
 
 ---
@@ -216,26 +258,22 @@ Active Record Pattern
 =====================
 
 * Domain logic and persistence logic in same class
-* Violates SRP (Single Responsibility Principle)
 
 
 * ActiveRecord ORM uses this pattern
 
 ???
 
-* The biggest problem with AR is that it encourages bad engineering habits
-    * This is mostly because it violates the SRP
-* Note "Active Record" is the pattern and "ActiveRecord" is the ORM
+* Domain logic = logic about the "things" in our application
+    * And the interactions between those things
+* ActiveRecord (the ORM) is based on the Active Record pattern
+    * "Active Record" (with a space) = the pattern
+    * "ActiveRecord" (no space) = the ORM
 * Active Record pattern described by Martin Fowler
     * [Patterns of Enterprise Application Architecture][peap]
-    * Discusses the trade-offs involved with the coupling
-* Separation of concerns in important
-    * Just like Rails separates M-V-C concerns
-    * But ActiveRecord does a terrible job at it
-* My experience is that the sweet spot for AR is about 20 model classes
-    * Data Mapper pattern has a little more overhead in the number of classes/concepts
-        * Pays off a lot as you have more classes
-        * Still has a couple advantages with only a few classes
+    * Discusses the trade-offs
+* A lot of terminology also comes from:
+    * [Domain-Driven Design][ddd] by Eric Evans
 
 ---
 class: diagram
@@ -247,9 +285,57 @@ Active Record Pattern
 
 ???
 
+* Here's the UML diagram for the Active Record pattern
 * Things to note here:
     * `find` is a class method
     * The object knows how to save itself
+    * The model is dependent on the DB
+
+---
+
+Active Record Pattern
+=====================
+
+* Violates SRP (Single Responsibility Principle)
+
+
+* Does 2 things:
+    * Domain model
+    * Persistence
+
+???
+
+* Who didn't "get" MVC before they used Rails?
+    * Rails provided a big "a-ha" moment for most of us
+* MVC is about separation of concerns
+    * Models contain domain logic
+    * Controllers handle web request/response
+    * Views handle output
+* Separation of concerns:
+    * Is important
+    * Is closely related to Single Responsibility Principle
+* My biggest problem with AR is that it encourages bad engineering habits
+    * Mostly SRP violation
+    * Makes it harder to test domain logic without testing
+* My experience - the sweet spot for ActiveRecord:
+    * About 20 or fewer model classes
+    * A fully CRUD app
+
+---
+
+Active Record Pattern
+=====================
+
+* Violates SRP (Single Responsibility Principle)
+
+
+* Does 2 things:
+    * Domain model
+    * Persistence
+
+???
+
+* But most apps are more sophisticated than just CRUD
 
 ---
 
@@ -264,8 +350,15 @@ Data Mapper Pattern
 
 ???
 
-* Note that the DataMapper Ruby gem didn't actually use the Data Mapper pattern
-    * It used the Active Record pattern
+* There was a Ruby ORM called DataMapper
+    * It didn't quite implement the Data Mapper pattern
+    * It was closer to the Active Record pattern
+* Martin Fowler explicitly says (in PEAP):
+    * Active Record is a starting point
+    * Should move to Data Mapper once you get more complex
+* You might see domain model objects called "entities"
+    * Entity = the object is defined by its ID
+    * From [Domain-Driven Design][ddd] by Eric Evans
 * Python's SQL Alchemy uses the Data Mapper pattern
     * This library is very highly regarded
     * Basically *the* Python ORM
@@ -280,6 +373,8 @@ Data Mapper Pattern
 
 ???
 
+* This is **not quite** the UML diagram for the Data Mapper pattern
+    * It actually conflates Data Mapper and Repository patterns
 * Things to note here:
     * The User class knows nothing about the database
     * The repo class knows how to find and save User objects
@@ -293,15 +388,19 @@ Repository Pattern
 
 ???
 
-* In ActiveRecord, the class methods often act as the repository
-    * But you can't easily have 2 repositories for the same model class with different data stores
-    * Class methods are generally problematic
-        * Leads to procedural code instead of OO code
-        * Often indicates that you've missed an abstraction
-        * Limits polymorphism
-        * Hard to test
-        * Hard to refactor
-            * See [this Code Climate article][code-climate-class-methods] for details
+* The Repository pattern represents a collection of domain objects
+    * Can treat the database as an in-memory collection
+* We have something similar in ActiveRecord:
+    * Class methods
+    * Scopes
+* But AR doesn't support 2 different data stores for the same model class
+* Class methods are generally problematic
+    * Leads to procedural code instead of OO code
+    * Often indicates that you've missed an abstraction
+    * Limits polymorphism
+    * Hard to test
+    * Hard to refactor
+        * See [this Code Climate article][code-climate-class-methods] for details
 
 ---
 
@@ -314,10 +413,25 @@ Repository Architecture
 
 ???
 
-* We have a clear separation of concerns
-* Sometimes we'll call the domain models entities
-    * From [Domain-Driven Design][ddd] book
-    * Entities implies that the object is defined by its ID
+* Repository pattern gives a clear separation of concerns
+
+---
+
+Ruby Preserves
+==============
+
+![jar of preserves with a ruby on the label](ruby_preserves.png)
+
+???
+
+* I started Ruby Preserves by writing the README
+    * Or maybe by coming up with a clever name
+* README-driven development
+    * Before writing **any** code
+    * I put all those things in the README
+        * Motivations
+        * Opinions
+        * How I wanted the ORM to be used (the API)
 
 ---
 
@@ -335,9 +449,54 @@ craig = User.new("booch", "Craig", 44, [])
 
 ???
 
-* PORO = plain old Ruby object
+* Here's what that API looks like
+* Start with the domain model
+* We can just use a plain old Ruby object (PORO)
 * Here we're using a Struct
 * Note that I can create my model with no database involved
+    * How much of our app can we write without any persistence?
+        * Probably much more than you think
+* This is a lot simpler than an ActiveRecord model, right?
+    * But it also shows all the field names in one place
+
+---
+
+Repository
+==========
+
+~~~ ruby
+require "preserves"
+
+Preserves.data_store = Preserves.PostgreSQL("rubyconf_example")
+
+UserRepository = Preserves.repository(model: User) do
+end
+~~~
+
+???
+
+* When we get to the point of needing persistence:
+    * Configure Ruby Preserves with the name of the DB
+    * Define a repository associated with the model class
+* As James Edward Gray pointed out:
+    * I need to get rid of requiring the `model` keyword for the argument
+
+---
+
+Relationships
+=============
+
+* Has Many
+* Belongs To
+* Has and Belongs to Many
+* Has Many Through
+
+???
+
+* Relationships aren't usually implemented in micro-ORMs
+* I've implemented has_many and belongs_to
+    * They took less than 2 hours each
+        * But it took months to think about how to do it
 
 ---
 
@@ -347,15 +506,43 @@ Data Mapping
 ~~~ ruby
 UserRepository = Preserves.repository(model: User) do
   mapping do
-    # The database field named 'username' corresponds to the 'id' attribute in the model.
+    primary_key 'username'
     map id: 'username'
-    # The 'age' field should be mapped to an Integer in the model.
     map :age, Integer
-    # The user has a collection of Address objects.
-    has_many :addresses, repository: AddressRepository, foreign_key: 'username'
+    has_many :addresses,
+             repository: AddressRepository,
+             foreign_key: 'username'
+    belongs_to :group, repository: GroupRepository
   end
 end
 ~~~
+
+???
+
+* The next thing we need to do is:
+    * Define mapping between domain model and database table
+* Don't need to define table name, because hand-writing all SQL
+* Define the primary key
+    * So every repo gets a `fetch` method for free
+    * Fetch method takes the ID (or primary key)
+        * Returns the object associated with that ID
+* Database field named `username`
+    * Corresponds to `id` attribute in model
+* `age` field
+    * Has the same name in DB and model
+    * Specify it as an Integer
+    * Specifying the type lets us serialize/coerce the data
+        * As it goes between the DB and the model
+        * Coercing between user input and the model is out of scope for the mapper
+* Collection of `addresses`
+    * This is a `has_many` relationship
+    * In DB, addresses are stored in a separate table
+       * Addresses in that table reference the user table
+           * With foreign key named `username`
+       * Use the `AddressRepository` to new up each address
+* We also have a `group` object, that have to get from another table
+    * This is a `belongs_to` relationship
+    * `GroupRepository` will be used to new up that object
 
 ---
 
@@ -384,45 +571,32 @@ end
 
 ???
 
-* Note that we're still creating singletons for repositories
+* Note we're creating singletons for repositories
     * Changing that to a class is on my TODO list
-
----
-
-Relationships
-=============
-
-* Has Many
-* Belongs To
-* Has and Belongs to Many
-* Has Many Through
-
-???
-
-* Relationships aren't usually implemented in micro-ORMs
-* I've implemented has_many and belongs_to
-    * They took less than 2 hours each
-        * But it took months to think about how to do it
 
 ---
 
 N+1 Queries
 ===========
 
-* Main query gets a collection
-* You then iterate through the collection
-    * Running another query for each item in the collection
+* Main query gets an object that includes a collection
+* Iterating through the collection
+    * Generates a separate query for each item in the collection
+
+
+* If using ActiveRecord: use Bullet
 
 ???
 
-* The 1 is the main query
-* The N is all the queries for all the items in the collection
-* This is an anti-pattern, of course
-    * Because if you have 1000 items, you have 1001 SQL queries
+* N+1 Queries are an anti-pattern
     * SQL queries involve network latency, so are slow
+* If you've got a post with 1000 comments:
+    * You'll have 1 SQL query for the post
+    * You'll have 1000 queries, 1 to get each comment
 * ActiveRecord will sometimes give you N+1 queries
 * Usually, this is because you're manually iterating through a collection
-* Use a tool like Bullet in Rails to watch for N+1 queries
+    * Solution is often to use `include` to eagerly load the collection
+* Bullet is a Rails plugin that watches for N+1 queries in DEV
 
 ---
 
@@ -488,6 +662,37 @@ end
 
 ---
 
+Wrong Turns
+===========
+
+* I made several mistakes building Ruby Preserves
+* Tried creating proxy objects for every relationship
+    * So relationships weren't queried until they were used
+* Was generating SQL in the Ruby Preserves code
+* Led to N+1 queries
+
+???
+
+* I made a few mistakes along the way
+    * Not so sure there aren't some remaining big mistakes
+* Biggest mistake was generating SQL
+    * Violated whole principle of using raw SQL
+    * Complex code
+    * Generated terrible SQL
+    * Created N+1 queries
+* Proxy object sound great at first
+    * Don't populate the relationships unless they're used
+    * But if we know we're going to need something, we should get it
+* Learning experiences
+* It took me a long time to think about how to do relationships
+    * I took several wrong turns before I came up with something reasonable
+    * Even when I was headed in the right direction, it took time to narrow in
+    * Once I narrow in, the implementation was quick
+        * This is how I knew I had found the right abstraction
+    * I'm pretty happy with what I eventually came up with
+
+---
+
 Relationships - JOINs
 =====================
 
@@ -495,11 +700,12 @@ Relationships - JOINs
 
 ???
 
-* This is one part that I'm not 100% comfortable with
+* Maybe
+* The one part that I'm not 100% comfortable with
 * It's best if we could do JOINs in SQL
-* But I'm not terribly concerned about this
-    * CRUD app usage patterns usually save us
-        * A CRUD app will never want to show 1000s of things on screen
+* I think it's OK though
+    * Web app usage patterns usually save us
+        * A web app will never want to show 1000s of things on screen
         * All SQL queries in real apps should have LIMIT clauses
 
 ---
@@ -528,6 +734,7 @@ ON users.group_id = groups.id;
 ???
 
 * Here's where the problem comes in
+    * We've got a JOIN of 2 tables with the same column name
     * The result has 2 columns named `name`
 * Unfortunately, SQL doesn't really have a good simple solution for this
 
@@ -555,31 +762,6 @@ JOIN users AS u ON u.group_id = g.id;
         * And then another mapping in the Ruby code
 * I didn't want to force that complexity on my API users
     * It would have changed the whole concept
-
----
-
-Wrong Turns
-===========
-
-* I made a mistake trying to make relationships work in Ruby Preserves
-* Tried creating proxy objects for every relationship
-    * So relationships weren't queried until they were used
-* Was generating SQL in the Ruby Preserves code
-* Led to N+1 queries
-
-???
-
-* This was a wrong direction on many fronts
-    * It violated the whole principle of using raw SQL
-    * It was complex code
-    * It generated terrible SQL
-* The core idea was fine
-    * Don't populate the relationships unless they're used
-* But it was a learning experience
-* It took me a long time to think about how to do relationships
-    * I took several wrong turns before I came up with something reasonable
-    * Even when I was headed in the right direction, it took time to narrow in
-    * I'm pretty happy with what I eventually came up with
 
 ---
 
@@ -643,17 +825,38 @@ Further Work
     * Virtus model attribute definitions
     * Database schema
 * How does this compare with the DAO pattern?
-* Could this be used in production code?
 * Add a layer to write the SQL for us?
+* Could this be used in production code?
 
 ???
 
+* Mostly a proof of concept at this point
+    * Haven't done any optimizations
+        * Haven't done any performance testing
+* Prepared statements = caching SQL query plan on the DB server
+    * Optimizes queries that runs frequently
 * Implementing ActiveModel would probably be possible
     * Wouldn't be able to use POROs any more though
-    * Implementing `user.save` would require a circular dependency
-        * The model's `save` call would have to call the repo
-        * The repo depends on the model class
+    * Biggest challenge - have to implement `persisted?` predicate
+        * Predicate method = returns a true/false value
+            * By convention ends in `?` in Ruby
+            * Actually can be truthy/falsey in Ruby
+        * Requires a circular dependency
+            * Model class would have to depend on the Repository
+                * To answer if a particular model object has been persisted
+                * But the Repository already depends on the model class
+* I'd like to automatically determine mappings, if we can
+    * Could pull them from the DB
+        * Remember, the Repository already knows about the DB
+    * Could pull them from the model
+        * Virtus has a nice API for defining attributes
+            * Repository could ask the model what those attributes are
 * DAO = Data Access Object
+    * Research for this presentation, found a lot of similarities
+* Layer on top of this to write the SQL for us?
+    * Would give nice separation of concerns **within** the ORM
+        * Separate SQL generation from object-relational mapping
+* I'd like to see if I can get this to the point to be used in production code
 
 ---
 
@@ -672,10 +875,49 @@ Alternatives
 * I still don't have an ORM I'm really happy with
 * This is the order I'd currently consider them, for my personal projects
     * Obviously, context matters a lot
+* Lotus::Model
+    * Pretty young and immature (0.5)
+    * Implements Data Mapper pattern
+    * Can use POROs
+        * Just need to define 3 simple methods
+    * Defines "scopes" similar to how Ruby Preserves does it
+        * All built-in scopes (`where`, `order`, `limit`) are private
+    * Repository adapters/strategies for:
+        * SQL
+        * In-memory
+        * Flat files
+    * Main problem I have with it:
+        * All mapping are done in a single config section
+            * I'd rather mappings be in the Repository classes
+    * Other problems:
+        * Scopes are class methods
+* Perpetuity
+    * Jamie Gaskins
+    * Small
+    * No support for relationships - yet
+    * Used in a few production apps
+* ROM - Ruby Object Mapper
+    * Piotr Solnica (primarily)
+    * Goes further than Data Mapper pattern
+    * Command-Query Separation
+    * Immutability in many places
+    * A couple problems I have:
+        * Requires a **very** different mindset
+        * Built bottom-up, less attention to public API
+* Sequel
+    * Jeremy Evans
+        * Won a Ruby Hero award earlier this year
+        * Also wrote the Excellent
+    * Excellent ORM
+    * Found it when researching a talk on Alternatives to ActiveRecord
+    * It's exactly what I'm looking for
+        * Except it implements the Active Record pattern
+        * I want the Sequel of the Data Mapper pattern
 * ActiveRecord added attribute declarations in version 4.2
     * Only popularized in 5.0
     * There were plugins available before that
         * Annotate Models and its descendants
+            * Adds comments to the model file, with fields listed
         * My own Virtus::ActiveRecord
 
 ---
@@ -691,6 +933,8 @@ Further Reading
 * [Data Mapper vs Active Record][dm-v-ar]
 * [Turning the Tables: How to Get Along with your Object-Relational Mapper][turning-tables] (Brad Urani)
 * [Weird Tricks to Write Faster, More Correct Database Queries][faster-correct-db-queries]
+* [Why Ruby Class Methods Resist Refactoring/][code-climate-class-methods]
+
 
 ---
 
