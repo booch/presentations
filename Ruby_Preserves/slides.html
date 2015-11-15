@@ -565,12 +565,14 @@ Repository
 ==========
 
 ~~~ ruby
-require "preserves"
+require 'preserves'
 
-Preserves.data_store = Preserves.PostgreSQL("rubyconf_example")
+Preserves.data_store = Preserves.PostgreSQL('rubyconf_example')
 
 UserRepository = Preserves.repository(model: User) do
 end
+
+craig = UserRepository.fetch('booch')
 ~~~
 
 ???
@@ -578,25 +580,10 @@ end
 * When we get to the point of needing persistence:
     * Configure Ruby Preserves with the name of the DB
     * Define a repository associated with the model class
+* Assuming we've got something in the DB:
+    * We can retrieve it by its primary key
 * As James Edward Gray pointed out:
     * I need to get rid of requiring the `model` keyword for the argument
-
----
-
-Relationships
-=============
-
-* Has Many
-* Belongs To
-* Has and Belongs to Many
-* Has Many Through
-
-???
-
-* Relationships aren't usually implemented in micro-ORMs
-* I've implemented has_many and belongs_to
-    * They took less than 2 hours each
-        * But it took months to think about how to do it
 
 ---
 
@@ -607,12 +594,6 @@ Data Mapping
 UserRepository = Preserves.repository(model: User) do
   mapping do
     primary_key 'username'
-    map id: 'username'
-    map :age, Integer
-    has_many :addresses,
-             repository: AddressRepository,
-             foreign_key: 'username'
-    belongs_to :group, repository: GroupRepository
   end
 end
 ~~~
@@ -634,15 +615,72 @@ end
     * Specifying the type lets us serialize/coerce the data
         * As it goes between the DB and the model
         * Coercing between user input and the model is out of scope for the mapper
-* Collection of `addresses`
-    * This is a `has_many` relationship
-    * In DB, addresses are stored in a separate table
-       * Addresses in that table reference the user table
-           * With foreign key named `username`
-       * Use the `AddressRepository` to new up each address
-* We also have a `group` object, that have to get from another table
-    * This is a `belongs_to` relationship
-    * `GroupRepository` will be used to new up that object
+
+---
+
+Data Mapping
+============
+
+~~~ ruby
+UserRepository = Preserves.repository(model: User) do
+  mapping do
+    primary_key 'username'
+  end
+end
+~~~
+
+???
+
+* The next thing we need to do is:
+    * Define mapping between domain model and database table
+* Don't need to define table name, because hand-writing all SQL
+* Define the primary key
+    * So every repo gets a `fetch` method for free
+    * Fetch method takes the ID (or primary key)
+        * Returns the object associated with that ID
+
+---
+
+Data Mapping
+============
+
+~~~ ruby
+UserRepository = Preserves.repository(model: User) do
+  mapping do
+    primary_key 'username'
+    map id: 'username'
+  end
+end
+~~~
+
+???
+
+* Database field named `username`
+    * Corresponds to `id` attribute in model
+
+---
+
+Data Mapping
+============
+
+~~~ ruby
+UserRepository = Preserves.repository(model: User) do
+  mapping do
+    primary_key 'username'
+    map id: 'username'
+    map :age, Integer
+  end
+end
+~~~
+
+???
+
+* `age` field
+    * Has the same name in DB and model
+    * Specify it as an Integer
+    * Specifying the type lets us serialize/coerce the data
+        * As it goes between the DB and the model
+        * Coercing between user input and the model is out of scope for the mapper
 
 ---
 
@@ -652,16 +690,32 @@ Repository Methods
 ~~~ ruby
 UserRepository = Preserves.repository(model: User) do
   def insert(user)
-    result = query("INSERT INTO 'users' (username, name, age) VALUES ($1, $2, $3)",
-                   user.id, user.name, user.age)
-    raise "Could not insert User #{user.id} into database" unless result.rows == 1
+    SQL = "INSERT INTO 'users' (username, name, age) VALUES ($1, $2, $3)"
+    result = query(SQL, user.id, user.name, user.age)
+    unless result.size == 1
+      raise "Could not insert User #{user.id} into DB"
+    end
   end
+end
+~~~
 
-  def older_than(age)
-    SQL = "SELECT *, username AS id FROM 'users' WHERE age > $1 ORDER BY $2"
-    select(SQL, age, :name)
-  end
+???
 
+* I haven't implemented any saving yet
+    * But this shows the simplistic API usage
+* `query` just executes some arbitrary SQL
+
+
+* Note we're creating singletons for repositories
+    * Changing that to a class is on my TODO list
+
+---
+
+Repository Methods
+==================
+
+~~~ ruby
+UserRepository = Preserves.repository(model: User) do
   def with_id(id)
     SQL = "SELECT *, username AS id FROM 'users' WHERE username = $1"
     select(SQL, id)
@@ -671,8 +725,8 @@ end
 
 ???
 
-* Note we're creating singletons for repositories
-    * Changing that to a class is on my TODO list
+* Here we're using `select`
+* This is basically equivalent to an ActiveRecord scope
 
 ---
 
@@ -700,6 +754,23 @@ N+1 Queries
 
 ---
 
+Relationships
+=============
+
+* Has Many
+* Belongs To
+* Has and Belongs to Many
+* Has Many Through
+
+???
+
+* Relationships aren't usually implemented in micro-ORMs
+* I've implemented has_many and belongs_to
+    * They took less than 2 hours each
+        * But it took months to think about how to do it
+
+---
+
 Relationships - Has Many
 ========================
 
@@ -712,8 +783,8 @@ UserRepository = Preserves.repository(model: User) do
   mapping do
     primary_key 'username'
     map id: 'username'
-    has_many :addresses, repository: AddressRepository,
-                         foreign_key: 'user_id'
+    has_many :addresses, foreign_key: 'username'
+             repository: AddressRepository
   end
 
   def all
@@ -725,7 +796,15 @@ end
 
 ???
 
+* Collection of `addresses`
+    * This is a `has_many` relationship
+    * In DB, addresses are stored in a separate table
+       * Addresses in that table reference the user table
+           * With foreign key named `username`
+       * Use the `AddressRepository` to new up each address
 * Note that we have only 2 very simple queries there
+    * `query` - creates a result set
+    * `select` - creates a result set, and maps everything to objects
 * We'd probably want to have a `WHERE` clause on the `addresses` query
     * So we only get the addresses associated with the users we got
 
@@ -755,7 +834,13 @@ end
 
 ???
 
+* We've added a `group` object here
+    * Which we have to get from another table
+    * This is a `belongs_to` relationship
+    * `GroupRepository` will be used to new up that object
 * Again, we have only 2 very simple queries
+    * `query` v. `select`
+
 * We don't support has_many and belongs_to for the same set of repos
     * It's generally recommended not to do this
         * Due to circular dependencies
@@ -868,24 +953,47 @@ JOIN users AS u ON u.group_id = g.id;
 Advantages
 ==========
 
-* Domain class contains everything you need to know
-    * Don't have to look elsewhere to understand everything a class contains
 * Better meets the Single Responsibility Principle (SRP)
 * Small, easy to understand
-    * Currently about 350 lines of code
 * Encourages better separation of concerns
 * Encourages better understanding of SQL
 * Experimentation / learning
+* Model class contains everything you need to know
+    * Don't have to look elsewhere to understand domain model
+
+???
+
+* So that's Ruby Preserves
+* I think it has some advantages
+* It's small:
+    * Simple API makes it easy to use
+    * Easy to understand the whole thing
+* Encourages good engineering practices
+
+---
+
+Advantages - Size
+=================
+
+* Ruby Preserves - 350 lines of code
+* Perpetuity - 2500 (with all 3 adapters)
+* Lotus::Model - 2000 (plus it uses Sequel)
+* Sequel - 31,000
+* ActiveRecord - 210,000
+* Sequel is 31 kloc
 
 ???
 
 * And 100 of those 350 lines are just `end`
-* For comparison:
-    * ActiveRecord is 210 kloc
-        * Stats from Sean Griffin, [Ruby Rogues episode 222][rr-222]
-    * Sequel is 31 kloc
-    * Lotus::Model is 2 kloc (plus it uses Sequel)
-    * Perpetuity is 2.5 kloc (with all 3 adapters)
+    * I refactor *mercilessly*
+         * Most of my methods are 1 line
+         * Smaller methods with good names:
+             * Show intent
+             * Easier to read code
+* ActiveRecord stats from Sean Griffin
+    * [Ruby Rogues episode 222][rr-222]
+
+
 * I used David A. Wheeler's `sloccount` to get lines of code
 
 ---
@@ -907,11 +1015,15 @@ Disadvantages
 * Composability is the biggest disadvantage
     * So we can't chain scopes like ActiveRecord does:
         * We have no equivalent to `published.by_author("craig")`
-* We could easily add adapters to support multiple DBs
-    * But you might have to change your SQL
+* We're tightly integrated to PostgreSQL
+    * We could easily add adapters to support multiple DBs
+        * But you might have to change your SQL
 * Even if we had an in-memory option, you'd need 2 separate repos
     * One repo with the SQL for PostgreSQL
     * Another repo that does whatever the in-memory storage needed
+* No ActiveModel support yet
+    * Makes the API slightly harder to work with
+        * Especially in Rails
 
 ---
 
@@ -1025,16 +1137,20 @@ Alternatives
 Further Reading
 ===============
 
+* [Turning the Tables: How to Get Along with your Object-Relational Mapper][turning-tables] (Brad Urani)
+* [Data Mapper vs Active Record][dm-v-ar]
+* [Weird Tricks to Write Faster, More Correct Database Queries][faster-correct-db-queries]
 * [The State of Ruby ORM][state-of-orm] (2011)
 * [DataMapper Retrospective][datamapper-retro] (2011)
 * [Sequel is awesome and much better than ActiveRecord][sequel-awesome]
 * [Why You Should Never Use MongoDB][no-mongo] (Sarah Mei)
-* [ORM Hate][orm-hate] (Martin Fowler)
-* [Data Mapper vs Active Record][dm-v-ar]
-* [Turning the Tables: How to Get Along with your Object-Relational Mapper][turning-tables] (Brad Urani)
-* [Weird Tricks to Write Faster, More Correct Database Queries][faster-correct-db-queries]
 * [Why Ruby Class Methods Resist Refactoring/][code-climate-class-methods]
+* [ORM Hate][orm-hate] (Martin Fowler)
 
+???
+
+* Brad Urani is talking about immutable data structures tomorrow
+* Sarah Mei is one of the organizers of this event
 
 ---
 
@@ -1042,12 +1158,12 @@ Thanks
 ======
 
 * James Edward Gray II
+* Amos King
+* Zubair Chaudary
 * Brian Button
 * Jamie Gaskins
 * Piotr Solnica
 * Charlie Sanders
-* Amos King
-* Zubair Chaudary
 
 
 * [Remark JS][remark] - slide show software
@@ -1055,6 +1171,7 @@ Thanks
 
 ???
 
+* I want to thank all the people who gave me feedback
 * And thank you all for attending
 
 
