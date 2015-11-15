@@ -1,6 +1,6 @@
 task default: %w[slides]
 
-task slides: ['clean', 'slides.html']
+task slides: ['clean', 'slides.html', 'active_record.uml.png', 'data_mapper.uml.png']
 
 task :clean do
   %x[rm -f *.html]
@@ -14,4 +14,8 @@ rule '.html' => ['.md'] do |t|
     TITLE = BODY.lines.find{ |line| line =~ /^#+\s*/ }.chomp.sub(/^#+\s*/, '')
     file.write(ERB.new(template).result(binding))
   end
+end
+
+rule '.png' => ['.ditaa'] do |t|
+  %x[ditaa -E #{t.source} #{t.name}]
 end

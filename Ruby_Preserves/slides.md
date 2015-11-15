@@ -226,11 +226,18 @@ Active Record Pattern
         * Still has a couple advantages with only a few classes
 
 ---
+class: diagram
 
 Active Record Pattern
 =====================
 
-TODO: Show UML diagram of AR pattern
+![UML diagram of Active Record Pattern](active_record.uml.png)
+
+???
+
+* Things to note here:
+    * `find` is a class method
+    * The object knows how to save itself
 
 ---
 
@@ -252,12 +259,18 @@ Data Mapper Pattern
     * Basically *the* Python ORM
 
 ---
+class: diagram
 
 Data Mapper Pattern
 ===================
 
-TODO: Show UML diagram of DM pattern
+![UML diagram of Data Mapper Pattern](data_mapper.uml.png)
 
+???
+
+* Things to note here:
+    * The User class knows nothing about the database
+    * The repo class knows how to find and save User objects
 
 ---
 
@@ -293,13 +306,6 @@ Repository Architecture
 * Sometimes we'll call the domain models entities
     * From [Domain-Driven Design][ddd] book
     * Entities implies that the object is defined by its ID
-
----
-
-Repository Architecture
-=======================
-
-TODO: Show UML diagram of Repository architecture
 
 ---
 
@@ -714,7 +720,8 @@ Thanks
 * Zubair Chaudary
 
 
-* Remark JS - slide show software
+* [Remark JS][remark] - slide show software
+* [Ditaa][ditaa] - UML diagrams
 
 ???
 
@@ -769,3 +776,4 @@ Feedback
 
 
 [remark]: http://remarkjs.com/
+[ditaa]: http://ditaa.sourceforge.net/
