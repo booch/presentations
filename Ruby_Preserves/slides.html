@@ -43,6 +43,10 @@
         font-size: 26px; line-height: 1.6;
         width: 100%;
       }
+      img[src="ruby_preserves.png"] {
+        height: 40%;
+        width: 40%;
+      }
       .remark-slide-number { font-size: 16px; }
       .remark-code, .remark-inline-code { font-family: monospace; line-height: 1.5; font-size: 16px; }
       .remark-slide .title li {
@@ -307,7 +311,7 @@ Opinion
 
 ???
 
-* How many of you have every switched database vendors?
+* How many of you have every switched DB vendors?
     * Was it as easy as just changing your `database.yml` file?
 * YAGNI = You Ain't Gonna Need It
 * Developer workstations are fast enough to run a "full" RDBMS
@@ -316,11 +320,11 @@ Opinion
     * If you can
     * Postgres and MySQL are definitely feasible
     * Oracle and SQL Server may not be feasible
-        * But "Express" versions will probably work in most cases
+        * "Express" versions will probably work
 * Even if you do change DBs, it's never easy
     * Unless your app is simple and uninteresting
         * In that case, why would you need to change RDBMSes?
-* Don't half-way prepare for something that will probably never happen
+* Don't half prepare for something that probably won't happen
 
 ---
 
@@ -516,6 +520,7 @@ Repository Architecture
 * Repository pattern gives a clear separation of concerns
 
 ---
+class: diagram
 
 Ruby Preserves
 ==============
@@ -584,37 +589,6 @@ craig = UserRepository.fetch('booch')
     * We can retrieve it by its primary key
 * As James Edward Gray pointed out:
     * I need to get rid of requiring the `model` keyword for the argument
-
----
-
-Data Mapping
-============
-
-~~~ ruby
-UserRepository = Preserves.repository(model: User) do
-  mapping do
-    primary_key 'username'
-  end
-end
-~~~
-
-???
-
-* The next thing we need to do is:
-    * Define mapping between domain model and database table
-* Don't need to define table name, because hand-writing all SQL
-* Define the primary key
-    * So every repo gets a `fetch` method for free
-    * Fetch method takes the ID (or primary key)
-        * Returns the object associated with that ID
-* Database field named `username`
-    * Corresponds to `id` attribute in model
-* `age` field
-    * Has the same name in DB and model
-    * Specify it as an Integer
-    * Specifying the type lets us serialize/coerce the data
-        * As it goes between the DB and the model
-        * Coercing between user input and the model is out of scope for the mapper
 
 ---
 
@@ -726,31 +700,8 @@ end
 ???
 
 * Here we're using `select`
+    * `select` does a query, then maps result set to objects
 * This is basically equivalent to an ActiveRecord scope
-
----
-
-N+1 Queries
-===========
-
-* Main query gets an object that includes a collection
-* Iterating through the collection
-    * Generates a separate query for each item in the collection
-
-
-* If using ActiveRecord: use Bullet
-
-???
-
-* N+1 Queries are an anti-pattern
-    * SQL queries involve network latency, so are slow
-* If you've got a post with 1000 comments:
-    * You'll have 1 SQL query for the post
-    * You'll have 1000 queries, 1 to get each comment
-* ActiveRecord will sometimes give you N+1 queries
-* Usually, this is because you're manually iterating through a collection
-    * Solution is often to use `include` to eagerly load the collection
-* Bullet is a Rails plugin that watches for N+1 queries in DEV
 
 ---
 
@@ -807,6 +758,7 @@ end
     * `select` - creates a result set, and maps everything to objects
 * We'd probably want to have a `WHERE` clause on the `addresses` query
     * So we only get the addresses associated with the users we got
+* Examples are from acceptance tests
 
 ---
 
@@ -847,6 +799,30 @@ end
 
 ---
 
+N+1 Queries
+===========
+
+* Main query gets an object that includes a collection
+* Iterating through the collection
+    * Generates a separate query for each item in the collection
+
+
+* If using ActiveRecord: use Bullet
+
+???
+
+* N+1 Queries are an anti-pattern
+    * SQL queries involve network latency, so are slow
+* If you've got a post with 1000 comments:
+    * You'll have 1 SQL query for the post
+    * You'll have 1000 queries, 1 to get each comment
+* ActiveRecord will sometimes give you N+1 queries
+* Usually, this is because you're manually iterating through a collection
+    * Solution is often to use `include` to eagerly load the collection
+* Bullet is a Rails plugin that watches for N+1 queries in DEV
+
+---
+
 Wrong Turns
 ===========
 
@@ -867,14 +843,12 @@ Wrong Turns
     * Created N+1 queries
 * Proxy object sound great at first
     * Don't populate the relationships unless they're used
-    * But if we know we're going to need something, we should get it
-* Learning experiences
+    * Eager is usually better with DBs
 * It took me a long time to think about how to do relationships
     * I took several wrong turns before I came up with something reasonable
     * Even when I was headed in the right direction, it took time to narrow in
     * Once I narrow in, the implementation was quick
-        * This is how I knew I had found the right abstraction
-    * I'm pretty happy with what I eventually came up with
+        * I knew I had found the right abstraction
 
 ---
 
@@ -885,13 +859,10 @@ Relationships - JOINs
 
 ???
 
-* Maybe
-* The one part that I'm not 100% comfortable with
-* It's best if we could do JOINs in SQL
-* I think it's OK though
-    * Web app usage patterns usually save us
-        * A web app will never want to show 1000s of things on screen
-        * All SQL queries in real apps should have LIMIT clauses
+* I'm pretty happy with what I eventually came up with
+    * Maybe
+* JOINS are one part I'm not 100% comfortable with
+* It'd be best if we did JOINs in SQL
 
 ---
 
@@ -947,6 +918,10 @@ JOIN users AS u ON u.group_id = g.id;
         * And then another mapping in the Ruby code
 * I didn't want to force that complexity on my API users
     * It would have changed the whole concept
+* I think my solution is OK though
+    * Web app usage patterns usually save us
+        * A web app will never want to show 1000s of things on screen
+        * All SQL queries in real apps should have LIMIT clauses
 
 ---
 
@@ -1032,10 +1007,10 @@ Further Work
 
 * Optimizations / caching
     * Prepared statements
-* ActiveModel compatibility
 * Automatically determine mappings, where possible
     * Virtus model attribute definitions
     * Database schema
+* ActiveModel compatibility
 * How does this compare with the DAO pattern?
 * Add a layer to write the SQL for us?
 * Could this be used in production code?
@@ -1047,6 +1022,30 @@ Further Work
         * Haven't done any performance testing
 * Prepared statements = caching SQL query plan on the DB server
     * Optimizes queries that runs frequently
+* I'd like to automatically determine mappings, if we can
+    * Could pull them from the DB
+        * Remember, the Repository already knows about the DB
+    * Could pull them from the model
+        * Virtus has a nice API for defining attributes
+            * Repository could ask the model what those attributes are
+
+---
+
+Further Work
+============
+
+* Optimizations / caching
+    * Prepared statements
+* Automatically determine mappings, where possible
+    * Virtus model attribute definitions
+    * Database schema
+* ActiveModel compatibility
+* How does this compare with the DAO pattern?
+* Add a layer to write the SQL for us?
+* Could this be used in production code?
+
+???
+
 * Implementing ActiveModel would probably be possible
     * Wouldn't be able to use POROs any more though
     * Biggest challenge - have to implement `persisted?` predicate
@@ -1057,12 +1056,23 @@ Further Work
             * Model class would have to depend on the Repository
                 * To answer if a particular model object has been persisted
                 * But the Repository already depends on the model class
-* I'd like to automatically determine mappings, if we can
-    * Could pull them from the DB
-        * Remember, the Repository already knows about the DB
-    * Could pull them from the model
-        * Virtus has a nice API for defining attributes
-            * Repository could ask the model what those attributes are
+
+---
+Further Work
+============
+
+* Optimizations / caching
+    * Prepared statements
+* Automatically determine mappings, where possible
+    * Virtus model attribute definitions
+    * Database schema
+* ActiveModel compatibility
+* How does this compare with the DAO pattern?
+* Add a layer to write the SQL for us?
+* Could this be used in production code?
+
+???
+
 * DAO = Data Access Object
     * Research for this presentation, found a lot of similarities
 * Layer on top of this to write the SQL for us?
@@ -1137,7 +1147,7 @@ Alternatives
 Further Reading
 ===============
 
-* [Turning the Tables: How to Get Along with your Object-Relational Mapper][turning-tables] (Brad Urani)
+* [Turning the Tables][turning-tables] (Brad Urani)
 * [Data Mapper vs Active Record][dm-v-ar]
 * [Weird Tricks to Write Faster, More Correct Database Queries][faster-correct-db-queries]
 * [The State of Ruby ORM][state-of-orm] (2011)
@@ -1149,7 +1159,8 @@ Further Reading
 
 ???
 
-* Brad Urani is talking about immutable data structures tomorrow
+* Turning the Tables: How to Get Along with your Object-Relational Mapper
+    * Brad Urani is talking about immutable data structures tomorrow
 * Sarah Mei is one of the organizers of this event
 
 ---
