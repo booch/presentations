@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Too Late to Estimate</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+
+      body {
+        font-family: serif;
+      }
+      header, footer {
+        display: block;
+        color: #888;
+        position: absolute;
+        font-size: 18px;
+        width: 100%;
+        /* Make up for padding on enclosing .remark-slide-content DIV. */
+        margin-left: -5em;
+      }
+      header {
+        top: 0;
+        margin-top: -8px;
+      }
+      header .left, footer .left {
+        float: left;
+      }
+      header .right, footer .right {
+        float: right;
+        margin-right: 2em;
+      }
+      footer {
+        bottom: 0;
+        margin-bottom: -10px;
+      }
+      h1, h2, h3 {
+        font-weight: normal;
+      }
+      .remark-slides-area {
+        background-color: #9B111E;
+      }
+      .remark-slide-content {
+        font-size: 26px; line-height: 1.6;
+        width: 100%;
+      }
+      .remark-slide-number {
+        font-size: 18px;
+      }
+      .remark-code, .remark-inline-code {
+        font-family: monospace;
+        line-height: 1.5;
+        font-size: 24px;
+      }
+      .remark-slide .title li {
+        list-style-type: none;
+        font-size: 28px;
+      }
+      .remark-slide .title ul {
+        padding-left: 0px;
+      }
+      .remark-slide .title h1 {
+        font-size: 72px;
+      }
+      .remark-slide .title h2 {
+        font-size: 30px;
+      }
+      .remark-slide li p {
+        margin: 0;
+      }
+      .remark-slide li {
+        font-size: 44px;
+        list-style: none;
+        margin-left: -1em;
+      }
+      .remark-slide li a {
+        font-size: 32px;
+      }
+      a {
+        text-decoration: none;
+        border-bottom: 1px #666666 dashed;
+        color: #202;
+      }
+      a:hover {
+        color: #505;
+        background-color: #DD0;
+      }
+
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+class: middle, center
+
+<header>
+  <p class="left">@CraigBuchek</p>
+  <p class="right">Arch Rails</p>
+</header>
+
+
+<footer>
+  <p class="left">November 12, 2015</p>
+</footer>
+
+---
+class: title, middle, center
+
+# Too Late to Estimate
+
+## Hofstadter’s Law: It always takes longer than you expect, even when you take into account Hofstadter’s Law
+
+---
+
+* Why do we estimate?
+
+???
+
+* I'd like to start by asking the audience some questions
+    * Yell out your answers
+
+
+* Play "5 whys" with the answers
+* Answers:
+    * To know when we'll be done
+    * To know how much it will cost
+        * To know if it will be worth the cost
+
+---
+
+* Why do we want to know how much it will cost?
+
+???
+
+* Play "5 whys" with the answers
+
+* Answers:
+    * To know if it will be worth the cost
+
+---
+
+* How do we know whether it will be worth the cost?
+
+???
+
+* Answers:
+    * Compare the cost with the value
+    * Compute the ROI
+
+---
+
+* ROI - Return on Investment
+
+~~~
+ value - cost       value
+ROI  =  --------------  =  -------  -  1
+    cost            cost
+~~~
+
+---
+
+* What do we want our ROI to be?
+
+???
+
+* Answers:
+    * We want a positive ROI
+    * We want the ROI to be higher than the ROI of other alternatives
+
+---
+
+* How do we know whether we should start a project?
+
+???
+
+* Answers:
+    * It has to have a positive ROI
+    * It has to have higher ROI than alternatives
+
+---
+
+~~~
+ value - cost       value
+ROI  =  --------------  =  -------  -  1
+    cost            cost
+~~~
+
+???
+
+* If we DON'T know the value of a project ...
+    * Can we figure out the ROI?
+        * NO!
+
+---
+
+* So why do we estimate time/cost, if we don't know value?
+
+???
+
+* Once you've started the project, it's too late to determine the ROI
+
+---
+
+* Conclusion:
+
+
+* Don't estimate at fine-grained level
+
+---
+
+* \#NoEstimates
+
+???
+
+* So if we don't estimate at the story level, what can we do?
+
+---
+
+* Estimate only at project or epic level
+
+???
+
+* \#NoEstimates doesn't necessarily mean **NO** estimates
+* I use it to mean no **fine-grained** estimates
+* Estimating at higher levels is still OK
+    * Maybe even necessary
+
+---
+
+* Shorten the feedback loop
+
+???
+
+* The other alternative is short iterations
+* Work on features in order of value (as much as possible)
+* Assess ROI after each iteration
+    * Stop when ROI is no longer worth it
+        * Compared to other projects the team could work on
+
+---
+
+* Try counting stories instead of story points
+
+???
+
+* In most cases, the number of stories can predict as much as story points
+    * So adding points to stories is a waste of time
+
+---
+
+* http://blog.boochtek.com/2015/09/28/no-estimates
+
+    </textarea>
+    <!-- <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"> -->
+    <script src="remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+      for (i = 0; slide = slideshow.getSlides[i]; )
+      {
+        slide.properties.class = "middle, center";
+      }
+    </script>
+  </body>
+</html>

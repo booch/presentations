@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= TITLE %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+
+      body {
+        font-family: serif;
+      }
+      header, footer {
+        display: block;
+        color: #888;
+        position: absolute;
+        font-size: 18px;
+        width: 100%;
+        /* Make up for padding on enclosing .remark-slide-content DIV. */
+        margin-left: -5em;
+      }
+      header {
+        top: 0;
+        margin-top: -8px;
+      }
+      header .left, footer .left {
+        float: left;
+      }
+      header .right, footer .right {
+        float: right;
+        margin-right: 2em;
+      }
+      footer {
+        bottom: 0;
+        margin-bottom: -10px;
+      }
+      h1, h2, h3 {
+        font-weight: normal;
+      }
+      .remark-slides-area {
+        background-color: #9B111E;
+      }
+      .remark-slide-content {
+        font-size: 26px; line-height: 1.6;
+        width: 100%;
+      }
+      .remark-slide-number {
+        font-size: 18px;
+      }
+      .remark-code, .remark-inline-code {
+        font-family: monospace;
+        line-height: 1.5;
+        font-size: 24px;
+      }
+      .remark-slide .title li {
+        list-style-type: none;
+        font-size: 28px;
+      }
+      .remark-slide .title ul {
+        padding-left: 0px;
+      }
+      .remark-slide .title h1 {
+        font-size: 72px;
+      }
+      .remark-slide .title h2 {
+        font-size: 30px;
+      }
+      .remark-slide li p {
+        margin: 0;
+      }
+      .remark-slide li {
+        font-size: 44px;
+        list-style: none;
+        margin-left: -1em;
+      }
+      .remark-slide li a {
+        font-size: 32px;
+      }
+      a {
+        text-decoration: none;
+        border-bottom: 1px #666666 dashed;
+        color: #202;
+      }
+      a:hover {
+        color: #505;
+        background-color: #DD0;
+      }
+
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+<%= BODY %>
+    </textarea>
+    <!-- <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"> -->
+    <script src="remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+      for (i = 0; slide = slideshow.getSlides[i]; )
+      {
+        slide.properties.class = "middle, center";
+      }
+    </script>
+  </body>
+</html>
