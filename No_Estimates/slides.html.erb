@@ -12,10 +12,10 @@
         display: block;
         color: #888;
         position: absolute;
-        font-size: 18px;
+        font-size: 20px;
         width: 100%;
         /* Make up for padding on enclosing .remark-slide-content DIV. */
-        margin-left: -5em;
+        margin-left: -4.5em;
       }
       header {
         top: 0;
@@ -43,7 +43,9 @@
         width: 100%;
       }
       .remark-slide-number {
-        font-size: 18px;
+        font-size: 20px;
+        bottom: 0;
+        margin-bottom: 8px;
       }
       .remark-code, .remark-inline-code {
         font-family: monospace;
@@ -82,6 +84,26 @@
       a:hover {
         color: #505;
         background-color: #DD0;
+      }
+
+      /* Customize presenter mode. */
+      html .remark-container.remark-presenter-mode .remark-slides-area {
+        left: -10%;
+        top: 0;
+        height: 70%;
+        width: 70%;
+      }
+      .remark-presenter-mode .remark-notes-area {
+        left: 50%;
+        z-index: 1;
+        font-size: 150%;
+        line-height: 1.4;
+      }
+      .remark-notes-area .remark-bottom-area .remark-notes-current-area {
+        height: 95%;
+      }
+      html .remark-container.remark-presenter-mode .remark-preview-area, .remark-presenter-mode .remark-notes-preview-area {
+        display: none;
       }
 
     </style>
