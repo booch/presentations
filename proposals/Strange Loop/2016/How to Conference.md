@@ -7,7 +7,8 @@ Abstract
 A lot of us techies are introverts.
 But that shouldn't stop us from getting the most out of the conferences we attend.
 Conferences provide value in 2 main areas - the content and the networking opportunities.
-In this session, we'll provide strategies, tactics, and tips for getting better at networking.
+In this session, you'll learn strategies, tactics, and tips for getting better at networking
+and getting more from your conference experience.
 
 
 Slides
