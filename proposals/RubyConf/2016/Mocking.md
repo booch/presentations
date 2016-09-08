@@ -8,12 +8,12 @@ Stop Mocking Me!
 Abstract (public, 600 characters)
 --------
 
-Ruby's got several mocking frameworks to choose from,
+Ruby has several mocking frameworks to choose from,
 providing all kinds of test doubles — stubs, mocks, spies, and more.
-But one kind of test double gets less attention: fakes.
+Unfortunately, one kind of test double gets less attention than it deserves: fakes.
 You don't even need a mocking framework to use fakes effectively.
 
-In this talk, we'll take a closer look at fakes,
+Let's take a closer look at fakes,
 and how they compare to the other test doubles.
 We'll find some places where stubs and mocks are overused,
 and explore how fakes can provide a better solution.
@@ -110,3 +110,4 @@ Other Notes
 * "Mock only what you own"
 * "Don't mock the class under test"
 * "Mock roles, not objects"
+* Amos calls them "hard" or "concrete" mocks

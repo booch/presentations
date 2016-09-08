@@ -8,10 +8,12 @@ Testing Patterns You're Not Using Yet
 Abstract (public, 600 characters)
 --------
 
-Most of us are familiar with design patterns.
-But we don't usually think of patterns when we're writing tests.
-That's too bad, because there are a lot of useful testing patterns.
-We'll explore some of the patterns that aren't used much in Ruby (yet):
+While we often think about design patterns when writing code,
+we don't usually think of patterns when we're writing tests.
+What would happen if we thought of our tests more like code?
+What patterns would emerge? Let's find out.
+
+We'll explore a few testing patterns in detail:
 
 * Spies
 * Page Objects
@@ -81,6 +83,7 @@ Resources
 Other Things to Cover
 ---------------------
 
+* A big part of the problem is that we don't think of test code as we do other code
 * Output formatters
 * named subjects
 * Nesting expectations within other expectations

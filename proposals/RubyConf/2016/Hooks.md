@@ -8,14 +8,15 @@ A Look at Hooks
 Abstract (public, 600 characters)
 --------
 
-Ruby has several methods that are called implicitly under certain circumstances.
-These methods are called "hooks".
-While hooks provide "spooky action at a distance", they can be really useful.
+Ruby has several methods that are invoked implicitly under certain circumstances.
+These methods are called "hooks", and they provide points to extend behavior.
+While hooks might seem like "spooky action at a distance", they can be really powerful.
 In fact, hooks are one of the primary ways that Ruby provides for meta-programming.
 
 Unfortunately, Ruby's hooks are not all documented very well.
 We'll take a look at what hooks are available and how to use them.
-We'll also talk about when to avoid using hooks and how to troubleshoot when hooks are involved.
+We'll also talk about when to avoid using hooks
+and provide some tips on how to troubleshoot when hooks are involved.
 
 
 Details (outlines, outcomes, intended audience, etc.)
@@ -137,3 +138,14 @@ Full List of What to Cover
     M = m
     puts m.name # => "M"
 * Module#autoload (sort of)
+
+
+Notes
+-----
+
+* Include a picture of Captain Hook
+* Talk about the difference from callbacks
+* Talk about how Rails has some "implicit"
+* Puns:
+    * Grappling
+    * Captain Hook
