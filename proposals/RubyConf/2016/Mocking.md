@@ -1,17 +1,17 @@
-Stop Mocking Me! (Fake it Until You Make It)
+Stop Mocking Me!
 ================
 
-Track: Testing
-Audience: Intermediate, Advanced
+* Track: Testing
+* Audience: Intermediate, Advanced
 
 
 Abstract (public, 600 characters)
 --------
 
 Ruby's got several mocking frameworks to choose from,
-providing all kinds of test doubles -- stubs, mocks, and spies.
-But one kind of test double gets overlooked: fakes.
-The interesting thing about fakes is that you don't even need a mocking framework to use them.
+providing all kinds of test doubles — stubs, mocks, spies, and more.
+But one kind of test double gets less attention: fakes.
+You don't even need a mocking framework to use fakes effectively.
 
 In this talk, we'll take a closer look at fakes,
 and how they compare to the other test doubles.
@@ -53,6 +53,7 @@ I want to get people thinking about ways to simplify their tests using "plain ol
     * Not so common in Ruby
     * Not such a big deal in Ruby
         * Optional arguments
+    * Examples using DI to inject fakes
     * DI frameworks - yuck! why?
 
 
@@ -76,7 +77,7 @@ Gregory Moeck touched on fakes a little in "Why You Don't Get Mock Objects" in 2
 He's got some good important things to say about mocks that I'll need to keep in mind.
 The closest thing I could find talking extensively about fakes would be
 Justin Searls' "To Mock or Not to Mock" from Rocky Mountain Ruby 2012.
-I'll be covering a lot of the same material, but from a different perspective,
+I'll be covering much of the same material, but from a different perspective,
 and focusing more on fakes.
 (In the interest of anonymity, I'm not claiming to be any of those people,
 but I'm not claiming to NOT be any of those people, either.)
@@ -89,7 +90,7 @@ Craig is an independent consultant specializing in helping teams improve the way
 
 Craig started using Ruby and Rails in late 2005, and found a home in the framework, the language, and the community.
 
-When he's not coding, Craig enjoys canoeing, attending concerts, and traveling.
+When he's not coding, Craig enjoys canoeing, attending concerts, traveling, and beekeeping.
 
 
 Previous Pertinent Talks

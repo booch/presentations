@@ -1,8 +1,8 @@
-Let's Look at Hooks (Spooky Action At A Distance)
-===================
+A Look at Hooks
+===============
 
-Track: Ruby Deep Dive
-Audience: Intermediate, Advanced
+* Track: Ruby Deep Dive
+* Audience: Intermediate, Advanced
 
 
 Abstract (public, 600 characters)
@@ -10,9 +10,12 @@ Abstract (public, 600 characters)
 
 Ruby has several methods that are called implicitly under certain circumstances.
 These methods are called "hooks".
-Unfortunately, they're not all documented very well.
+While hooks provide "spooky action at a distance", they can be really useful.
+In fact, hooks are one of the primary ways that Ruby provides for meta-programming.
+
+Unfortunately, Ruby's hooks are not all documented very well.
 We'll take a look at what hooks are available and how to use them.
-More importantly, we'll talk about when NOT to use them.
+We'll also talk about when to avoid using hooks and how to troubleshoot when hooks are involved.
 
 
 Details (outlines, outcomes, intended audience, etc.)
@@ -23,10 +26,10 @@ I want them to be aware of them, because troubleshooting code taking advantage o
 hooks can get pretty hairy.
 
 I'll start out with the basics.
-Even beginning Rubyists should know when `initialize` is called.
+Even beginning Rubyists should know when `initialize` gets called.
 This shouldn't take too long; it'll be more of a gentle introduction to the idea of hooks.
 
-I'll cover the meta-programming basics next --
+I'll cover the meta-programming basics next —
 `method_missing`, `respond_to?`, and `respond_to_missing?`.
 I won't get into too much depth, but I'll show a few examples.
 Of course, I'll make sure they understand that they need to be used in combination.
@@ -49,7 +52,7 @@ I won't have time to go into all of them in detail,
 but want to make sure people know where they can find a full list and more details.
 This list will include some rather obscure methods:
 
-* Kernel#set_trace_func
+* set_trace_func
 * Kernel.trace_var
 * coerce
 * Implicit and explicit conversions:
@@ -78,7 +81,7 @@ Craig is an independent consultant specializing in helping teams improve the way
 
 Craig started using Ruby and Rails in late 2005, and found a home in the framework, the language, and the community.
 
-When he's not coding, Craig enjoys canoeing, attending concerts, and traveling.
+When he's not coding, Craig enjoys canoeing, attending concerts, traveling, and beekeeping.
 
 
 Resources

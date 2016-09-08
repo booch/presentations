@@ -76,3 +76,14 @@ When he's not coding, Craig enjoys canoeing, attending concerts, traveling, and 
 
 Resources
 ---------
+
+
+Other Things to Cover
+---------------------
+
+* Output formatters
+* named subjects
+* Nesting expectations within other expectations
+* Progression to mocks, to partial mocking, away from mocks, to fakes
+* Any other new RSpec features (since 3.0)
+* described_class
