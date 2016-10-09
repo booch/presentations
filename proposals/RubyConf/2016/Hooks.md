@@ -111,6 +111,8 @@ Full List of What to Cover
 * extended
 * prepended
 * inherited
+* append_features / prepend_features
+    * Clearly documented in https://ruby-doc.org/core-2.2.0/Module.html#method-i-append_features as "Ruby calls"
 * method_missing
 * respond_to? and respond_to_missing?
 * const_missing
@@ -122,7 +124,6 @@ Full List of What to Cover
 * initialize_clone, initialize_dup and initialize_copy
 * Kernel#set_trace_func (basically a global method_called)
 * Kernel.trace_var, untrace_var
-* Module#append_features, prepend_features
 * coerce
 * induced_from (deprecated as of 1.9)
 * Implicit and explicit conversions:
