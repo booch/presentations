@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= TITLE %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      header, footer {
+        display: block;
+        color: #888;
+        position: absolute;
+        font-size: 16px;
+        width: 100%;
+        /* Make up for padding on enclosing .remark-slide-content DIV. */
+        margin-left: -5.5em;
+      }
+      header {
+        top: 0;
+        margin-top: -8px;
+      }
+      header .left, footer .left {
+        float: left;
+      }
+      header .right, footer .right {
+        float: right;
+        margin-right: 2em;
+      }
+      footer {
+        bottom: 0;
+        margin-bottom: -10px;
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-slides-area { background-color: #9B111E; }
+      .remark-slide-content {
+        font-size: 26px; line-height: 1.6;
+        width: 100%;
+      }
+      img[src="ruby_preserves.png"] {
+        height: 40%;
+        width: 40%;
+      }
+      .remark-slide-number { font-size: 16px; }
+      .remark-code, .remark-inline-code { font-family: monospace; line-height: 1.5; font-size: 16px; }
+      .remark-slide .title li {
+        list-style-type: none;
+        font-size: 28px;
+      }
+      .remark-slide .title ul {
+        padding-left: 0px;
+      }
+      .remark-slide .title img {
+        height: 40%;
+        width: 40%;
+      }
+      .remark-slide .title h1 {
+        font-size: 60px;
+      }
+      .remark-slide .diagram p {
+        text-align: center;
+      }
+      .remark-slide li p {
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        border-bottom: 1px #666666 dashed;
+        color: #202;
+      }
+      a:hover {
+        color: #505;
+        background-color: #DD0;
+      }
+
+      html .remark-container.remark-presenter-mode .remark-slides-area {
+        left: -10%;
+        top: 0;
+        height: 70%;
+        width: 70%;
+      }
+      .remark-presenter-mode .remark-notes-area {
+        left: 50%;
+        z-index: 1;
+        font-size: 150%;
+        line-height: 1.4;
+      }
+      .remark-notes-area .remark-bottom-area .remark-notes-current-area {
+        height: 95%;
+      }
+      html .remark-container.remark-presenter-mode .remark-preview-area, .remark-presenter-mode .remark-notes-preview-area {
+        display: none;
+      }
+
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+<%= BODY %>
+    </textarea>
+    <!-- <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"> -->
+    <script src="remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+      for (i = 0; slide = slideshow.getSlides[i]; )
+      {
+        slide.properties.class = "middle, center";
+      }
+    </script>
+  </body>
+</html>
