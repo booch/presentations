@@ -1,8 +1,8 @@
 layout: true
 
 <header>
-  <p class="left">STL Ruby</p>
-  <p class="right">2016-10-10</p>
+  <p class="left">RubyConf</p>
+  <p class="right">2016-11-10</p>
 </header>
 
 
@@ -13,7 +13,7 @@ layout: true
 ---
 class: title, middle, center
 
-# Ruby Hooks
+# A Look at Hooks
 
 ---
 
