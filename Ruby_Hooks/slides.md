@@ -17,20 +17,6 @@ class: title, middle, center
 
 ---
 
-# About Me
-
-* Independent web developer
-    * [BoochTek][boochtek]
-* Agile practitioner
-    * [This Agile Life][tal] podcast
-* Boring slide designer
-
-???
-
-* Please feel free to ask questions DURING the talk
-
----
-
 class: title, middle, center
 
 # What Is a Hook?
@@ -335,9 +321,33 @@ A included in B
 
 
 ---
+class: affiliations
 
+# Affiliations
+
+* ![](craigbuchek.png) [BoochTek][boochtek]
+* ![](binary_noggin.png) [Binary Noggin][binary_noggin]
+* ![](this_agile_life.jpg) [This Agile Life][tal]
+
+???
+
+* I have a company called BoochTek
+    * We do:
+        * Web Development
+        * Rails rescue projects
+        * Agile player/coaching
+        * DevOps
+* I do a lot of work through Binary Noggin
+    * We have developers available starting in January
+* I participate in a podcast called This Agile Life
+    * Please subscribe
+
+---
 
 # Feedback
+
+* Please talk to me in the hallway!
+
 
 * Twitter: [@CraigBuchek][twitter]
 * GitHub: [booch][github]
@@ -346,6 +356,9 @@ A included in B
 
 * Slides: https://github.com/booch/presentations/
 
+???
+
+* Please talk to me in the hallway!
 
 
 
@@ -354,6 +367,7 @@ A included in B
 [github]: https://github.com/booch
 [github-boochtek]: https://github.com/boochtek
 [boochtek]: http://boochtek.com
+[binary_noggin]: http://binarynoggin.com/
 [tal]: http://www.thisagilelife.com
 
 
