@@ -244,7 +244,7 @@ end
 ~~~
 
 ~~~ output
-A included in B
+A subclassed in B
 ~~~
 
 ???
