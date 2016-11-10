@@ -49,6 +49,30 @@ x = X.new
 Initializing an instance of X
 ~~~
 
+???
+
+* Who here has used `initialize`?
+    * Pretty much everyone, probably
+* When you call `new` on a class, Ruby calls `allocate`
+    * Ruby then calls `initialize` on the object that was just allocated
+* Documentation implies this should only work for `Object`, not `BasicObject`
+    * It says that `BasicObject.new` does nothing and returns `nil`
+    * But `BasicObject` is a `Class`, so `BasicObject.new` calls `Class#new`
+    * I've proven that a BasicObject instance *does* run `initialize`:
+
+~~~
+class BasicObject
+  def initialize
+    ::Kernel::puts "initializing a BO"
+  end
+end
+bo = BasicObject.new
+~~~
+
+~~~ output
+initializing a BO
+~~~
+
 ---
 
 # Meta-Programming Basics
@@ -117,7 +141,8 @@ false
     * Whether to include private methods
 * Always define `respond_to_missing?` when overriding `method_missing`
 * See a nice explanation at http://blog.marc-andre.ca/2010/11/15/methodmissing-politely/
-
+* Yes, this is on `Object`, while `method_missing` is on `BasicObject`
+    * Because `BasicObject` doesn't have `respond_to?`
 
 ---
 
@@ -268,7 +293,11 @@ A subclassed in B
 
 ???
 
-* You will probably find a good reason to call `remove_method` or `undef_method`
+* The first 3 are on `Method`, because regular instance methods are defined in modules and classes
+* But you can also add methods to individual objects
+    * These are called singleton methods
+    * This is how you define a class method --- it's a singleton method on the class itself
+* You will probably find few good reasons to call `remove_method` or `undef_method`
     * See https://ruby-doc.org/core-2.3.0/Module.html#method-i-undef_method for docs
     * Removing a method will allow any superclass methods to still be called
     * Undefining a method will set the method to return a `NoMethodError`
@@ -313,6 +342,7 @@ A subclassed in B
 ???
 
 * `at_exit` sets a proc to be run on program exit
+    * Can check if `$!` is set to see if programming has crashed due to an exception
 * `coerce` helps find a common type when doing math on mixed types
     * Looks at `self` (the left-hand operand) and the other operand
         * Allows you to "cast" the operands into something compatible
