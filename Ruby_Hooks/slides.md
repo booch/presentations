@@ -421,6 +421,18 @@ A subclassed in B
         * Ruby will then call `z.*(y)`
 
 ---
+class: thanks
+
+# Thanks
+
+![](get_the_hook.png)
+
+???
+
+* Thank YOU for coming
+* Thanks to STL Ruby members for feedback on my first version
+
+---
 
 # Feedback
 
@@ -437,7 +449,7 @@ A subclassed in B
 ???
 
 * Please talk to me in the hallway!
-
+* Pictures from Clipart.co
 
 
 
