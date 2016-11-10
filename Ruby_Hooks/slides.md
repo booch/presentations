@@ -373,10 +373,12 @@ A subclassed in B
     * This is how you define a class method --- it's a singleton method on the class itself
 * You will probably find few good reasons to call `remove_method` or `undef_method`
     * See https://ruby-doc.org/core-2.3.0/Module.html#method-i-undef_method for docs
+    * You can also call `undef method_name` instead of `undef_method :method_name`
 * Removing a method will allow any superclass methods to still be called
     * Only example I can think of is if you dynamically added it
 * Undefining a method will set the method to return a `NoMethodError`
     * Only example I can think of is if you're trying to look like an older Ruby
+
 
 ---
 class: strict_conversion
