@@ -398,8 +398,12 @@ class: affiliations
 # Affiliations
 
 * ![](craigbuchek.png) [BoochTek][boochtek]
-* ![](binary_noggin.png) [Binary Noggin][binary_noggin]
 * ![](this_agile_life.jpg) [This Agile Life][tal]
+* ![](stl_flag.png) St. Louis
+
+* ![](binary_noggin.png) [Binary Noggin][binary_noggin]
+* ![](hands_up_united.jpg) [Tech Institute](http://www.handsupunited.org/techimpact/)
+* ![](ivan.jpg) Ivan
 
 ???
 
@@ -413,6 +417,9 @@ class: affiliations
     * We have developers available starting in January
 * I participate in a podcast called This Agile Life
     * Please subscribe
+* I mentor teaching underprivileged kids
+* I was told there must be at least 1 cat picture
+    * So there's a picture of my cat
 
 ---
 
