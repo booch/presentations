@@ -207,6 +207,8 @@ end
 * NOTE: This code is actually implemented in C
     * It also calls `initialize` via `__send__`
         * So it will work if `initialize` is private
+* NOTE: Understanding that classes are instances of the `Class` class is tricky
+    * If you need to, take some time to work through thinking about it
 
 ---
 
@@ -214,6 +216,10 @@ end
 
 * `method_missing`
 * `respond_to_missing?`
+
+???
+
+* Meta-programming is where you're most likely to use hooks
 
 ---
 
@@ -237,10 +243,18 @@ Method called on an X: another_method, args: []
 
 ???
 
-* Note that we use `*args` to get all the arguments as an Array
-    * Except a block, if it's passed
-* I didn't show using the block here, just how to receive it
-
+* How many of you have used `method_missing`?
+    * Probably a large percentage
+* We're allowing the calling of a method that we never defined
+* Pretty commonly used for meta-programming
+* ActiveRecord uses `method_missing` in several places
+* Biggest downside --- you can't search your code for the method
+* The method name is passed as a `Symbol`
+* We use `*args` to get all the arguments as an `Array`
+    * All arguments except a block (if one is passed in)
+    * The `*` is called "splat"
+* NOTE: The block isn't being used in this example
+    * I just wanted to show the full method signature
 
 ---
 
