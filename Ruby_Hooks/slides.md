@@ -46,6 +46,7 @@ class: affiliations
     * So there's a picture of my cat
 
 ---
+class: what_is_a_hook
 
 # What Is a Hook?
 
