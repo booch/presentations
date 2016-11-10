@@ -33,9 +33,9 @@ class: title, middle, center
 
 ---
 
-# initialize
+# BasicObject#initialize
 
-~~~ Ruby
+~~~ ruby
 class X
   def initialize
     puts "Initializing an instance of X"
@@ -58,7 +58,7 @@ Initializing an instance of X
 
 ---
 
-# method_missing
+# BasicObject#method_missing
 
 ~~~ ruby
 class X
@@ -82,9 +82,10 @@ Method called on an X: another_method, args: []
     * Except a block, if it's passed
 * I didn't show using the block here, just how to receive it
 
+
 ---
 
-# respond_to_missing?
+# Object#respond_to_missing?
 
 ~~~ ruby
 class X
@@ -120,7 +121,7 @@ false
 
 ---
 
-# const_missing
+# Module#const_missing
 
 ???
 
@@ -134,7 +135,7 @@ false
 
 ---
 
-# Inheritence Life-Cycle
+# Inheritance Life-Cycle
 
 * `included`
 * `extended`
@@ -143,7 +144,7 @@ false
 
 ---
 
-# included
+# Module#included
 
 ~~~ ruby
 module A
@@ -164,6 +165,7 @@ A included in B
 ???
 
 * Note that it's `def self.included`
+    * Because it's a method on the module itself
 * Note that we don't need to new up a B
     * The `include` (and the `included` hook) runs as soon as we call it
     * TODO: Maybe in a next slide show how that works with normal code
@@ -176,7 +178,7 @@ A included in B
 
 ---
 
-# extended
+# Module#extended
 
 ~~~ ruby
 module A
@@ -201,7 +203,7 @@ A extended by B
 
 ---
 
-# prepended
+# Module#prepended
 
 ~~~ ruby
 module A
@@ -227,10 +229,11 @@ A prepended in B
     * See https://hashrocket.com/blog/posts/module-prepend-a-super-story for a good example
 * Just like `included`
 * Note that it's `def self.prepended`
+    * Because it's a method on the module itself
 
 ---
 
-# inherited
+# Class#inherited
 
 ~~~ ruby
 class A
@@ -250,17 +253,18 @@ A subclassed in B
 ???
 
 * Note that it's `def self.inherited`
+    * Because it's a method on the class itself
 
 ---
 
 # Method Life-Cycle
 
-* `method_added`
-* `singleton_method_added`
-* `method_removed`
-* `method_undefined`
-* `singleton_method_removed`
-* `singleton_method_undefined`
+* `Module#method_added`
+* `Module#method_removed`
+* `Module#method_undefined`
+* `BasicObject#singleton_method_added`
+* `BasicObject#singleton_method_removed`
+* `BasicObject#singleton_method_undefined`
 
 ???
 
@@ -303,8 +307,8 @@ A subclassed in B
 
 # Others
 
-* `at_exit`
-* `coerce`
+* `Kernel#at_exit`
+* `Numeric#coerce`
 
 ???
 
