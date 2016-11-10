@@ -395,6 +395,8 @@ class: strict_conversion
 * Most of these are used when trying to compare using `==`
     * If types are not the same, will try to convert the right side to the same type as the left
 * `to_str` - used when concatenating strings
+    * A UserName class might be a good place to define this
+        * Because you want to be able to use it anywhere you use a String
 * `to_ary` - assigning to multiple left-hand variables (or block arguments)
     * http://stackoverflow.com/questions/9467395/whats-the-difference-between-to-a-and-to-ary
 * `to_int` - used when performing bit operations (`|`, `&`, `^`)
