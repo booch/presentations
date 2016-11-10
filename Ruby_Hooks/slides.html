@@ -501,14 +501,17 @@ A subclassed in B
 
 ???
 
-* The first 3 are on `Method`, because regular instance methods are defined in modules and classes
+* The first 3 are on `Method`
+    * Because regular instance methods are defined in modules and classes
 * But you can also add methods to individual objects
     * These are called singleton methods
     * This is how you define a class method --- it's a singleton method on the class itself
 * You will probably find few good reasons to call `remove_method` or `undef_method`
     * See https://ruby-doc.org/core-2.3.0/Module.html#method-i-undef_method for docs
-    * Removing a method will allow any superclass methods to still be called
-    * Undefining a method will set the method to return a `NoMethodError`
+* Removing a method will allow any superclass methods to still be called
+    * Only example I can think of is if you dynamically added it
+* Undefining a method will set the method to return a `NoMethodError`
+    * Only example I can think of is if you're trying to look like an older Ruby
 
 ---
 class: strict_conversion
