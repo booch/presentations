@@ -125,12 +125,15 @@ layout: true
 class: title, middle, center
 
 # A Look at Hooks
+### Craig Buchek
 
 ---
 
 # What Is a Hook?
 
-* Anything Ruby calls implicitly
+* A method:
+    * Called implicitly by Ruby
+    * We never call ourselves
 
 ???
 
@@ -138,10 +141,12 @@ class: title, middle, center
     * Can be surprising
     * Can be difficult to troubleshoot
 * "Spooky action at a distance"
-* "Ruby calls"
-    * Sometimes used in Ruby-Doc site
-* Sometimes called "callbacks"
-    * But that has more meanings
+* In Ruby docs, you'll see them referenced as:
+    * "Hook"
+    * "Callback"
+        * But that has more meanings
+    * "Ruby calls"
+* I'm covering only hooks in Ruby itself
 
 ---
 
@@ -165,25 +170,43 @@ Initializing an instance of X
 
 * Who here has used `initialize`?
     * Pretty much everyone, probably
-* When you call `new` on a class, Ruby calls `allocate`
-    * Ruby then calls `initialize` on the object that was just allocated
-* Documentation implies this should only work for `Object`, not `BasicObject`
-    * It says that `BasicObject.new` does nothing and returns `nil`
-    * But `BasicObject` is a `Class`, so `BasicObject.new` calls `Class#new`
-    * I've proven that a BasicObject instance *does* run `initialize`:
+* Notice that we never explicitly called `initialize`
+    * But it got called anyway
+* This is by far the most commonly used hook in Ruby
 
+---
+
+# Class#new: Behind the Scenes
+
+~~~ ruby
+x = X.new
 ~~~
-class BasicObject
-  def initialize
-    ::Kernel::puts "initializing a BO"
+
+~~~ ruby
+class Class
+  def new(*args, &block)
+    object = allocate # Allocate space in memory to hold the object
+    object.initialize(*args, &block) if object.respond_to?(:initialize)
+    return object
   end
 end
-bo = BasicObject.new
 ~~~
 
-~~~ output
-initializing a BO
-~~~
+* `X` is an object of class `Class`
+    * So calling `X.new` calls `Class#new`
+
+???
+
+* So what's really happening when we call `X.new`?
+* `X` is an object of class `Class`
+    * So calling `X.new` calls `Class#new`
+    * Seems weird, but how every method call works
+        * Find the class of what's before the dot
+        * Call the instance method from that class
+* Because the call to `initialize` is hidden, it's a hook
+* NOTE: This code is actually implemented in C
+    * It also calls `initialize` via `__send__`
+        * So it will work if `initialize` is private
 
 ---
 
