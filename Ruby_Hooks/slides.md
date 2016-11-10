@@ -402,15 +402,11 @@ A subclassed in B
 
 ---
 
-# Others
+# Numeric#coerce
 
-* `Kernel#at_exit`
-* `Numeric#coerce`
 
 ???
 
-* `at_exit` sets a proc to be run on program exit
-    * Can check if `$!` is set to see if programming has crashed due to an exception
 * `coerce` helps find a common type when doing math on mixed types
     * Looks at `self` (the left-hand operand) and the other operand
         * Allows you to "cast" the operands into something compatible
@@ -420,6 +416,32 @@ A subclassed in B
         * `x = 1; y = MyNum.new(2); x * y` will call `y.coerce(x)`
         * `NyNum#coerce(x)` will return `[self, z = MyNum.new(x)]`
         * Ruby will then call `z.*(y)`
+
+---
+
+# Kernel#at_exit
+
+* Sets a block or proc to run on program exit
+* If `$!` is set, program is exiting due to an exception
+
+~~~ ruby
+at_exit do
+  if $!
+    puts "We crashed! #{$!.inspect}"
+  else
+    puts "fin"
+  end
+end
+~~~
+
+???
+
+* `at_exit` sets a proc to be run on program exit
+* If called multiple times, they're run in reverse order of registration
+* Can check if `$!` is set to see if programming has crashed due to an exception
+* NOTE: `$!` contains the last exception that was raised
+    * We can convert it to a string or inspect it
+    * If we `require "english"`, it's equivalent to $ERROR_INFO
 
 ---
 class: thanks
