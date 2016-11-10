@@ -151,6 +151,10 @@ class: title, middle, center
 # A Look at Hooks
 ### Craig Buchek
 
+???
+
+* Feel free to ask questions during!
+
 ---
 class: affiliations
 
@@ -191,10 +195,14 @@ class: what_is_a_hook
 
 ???
 
+* Definition I'm using in this talk:
+    * A method that's called implicitly by Ruby
+    * And that we never call ourselves
 * Because it's implicit:
     * Can be surprising
     * Can be difficult to troubleshoot
 * "Spooky action at a distance"
+    * A term from physics
 * In Ruby docs, you'll see them referenced as:
     * "Hook"
     * "Callback"
@@ -495,17 +503,11 @@ A subclassed in B
 * `Module#method_added`
 * `Module#method_removed`
 * `Module#method_undefined`
-* `BasicObject#singleton_method_added`
-* `BasicObject#singleton_method_removed`
-* `BasicObject#singleton_method_undefined`
 
 ???
 
-* The first 3 are on `Method`
+* These are on `Module`
     * Because regular instance methods are defined in modules and classes
-* But you can also add methods to individual objects
-    * These are called singleton methods
-    * This is how you define a class method --- it's a singleton method on the class itself
 * You will probably find few good reasons to call `remove_method` or `undef_method`
     * See https://ruby-doc.org/core-2.3.0/Module.html#method-i-undef_method for docs
     * You can also call `undef method_name` instead of `undef_method :method_name`
@@ -514,6 +516,21 @@ A subclassed in B
 * Undefining a method will set the method to return a `NoMethodError`
     * Only example I can think of is if you're trying to look like an older Ruby
 
+
+---
+
+# Singleton Method Life-Cycle
+
+* `BasicObject#singleton_method_added`
+* `BasicObject#singleton_method_removed`
+* `BasicObject#singleton_method_undefined`
+
+???
+
+* But you can also add methods to individual objects
+    * These are called singleton methods
+    * This is how you define a class method --- it's a singleton method on the class itself
+* These are the equivalent for singleton methods
 
 ---
 class: strict_conversion
@@ -602,9 +619,11 @@ coerce.rb:18:in `+': Quaternion can't be coerced into Fixnum (TypeError)
 ???
 
 * `coerce` helps find a common type when doing math on mixed types
-    * Looks at `self` (the left-hand operand) and the other operand
-        * Allows you to "cast" the operands into something compatible
-    * See http://stackoverflow.com/a/2799899
+    * `Numeric`, its subclasses, and similar things like `Matrix` and `Vector`
+    * Binary operators
+* Looks at `self` (the left-hand operand) and the other operand
+    * Allows you to "cast" the operands into something compatible
+* See http://stackoverflow.com/a/2799899
 
 ---
 
@@ -634,11 +653,23 @@ Quaternion(3)
 ???
 
 * Note that `coerce` returns an `Array`, with `self` as the 2nd element
-* Ruby calls the equivalent of:
-    ~~~ ruby
-      [q2, q1] = q1.coerce(2)
-      q2 + q1
-    ~~~
+
+---
+
+# Numeric#coerce
+
+* Coercion transforms binary operators like this:
+
+~~~ ruby
+q1 = Quaternion.new(1)
+n = 2
+[q2, q1] = q1.coerce(n)
+q1 + q2
+~~~
+
+???
+
+* This only happens after trying without coercion
 
 ---
 
@@ -719,7 +750,7 @@ class: thanks
     <script src="remark-latest.min.js">
     </script>
     <script>
-      var slideshow = remark.create();
+      var slideshow = remark.create({highlightLines: true, highlightLanguage: "ruby"});
       for (i = 0; slide = slideshow.getSlides[i]; )
       {
         slide.properties.class = "middle, center";

@@ -139,7 +139,7 @@
     <script src="remark-latest.min.js">
     </script>
     <script>
-      var slideshow = remark.create();
+      var slideshow = remark.create({highlightLines: true, highlightLanguage: "ruby"});
       for (i = 0; slide = slideshow.getSlides[i]; )
       {
         slide.properties.class = "middle, center";
