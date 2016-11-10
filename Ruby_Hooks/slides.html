@@ -536,6 +536,26 @@ A subclassed in B
 
 # Numeric#coerce
 
+* Find a common type for math with mixed types
+
+~~~ ruby
+class Quaternion
+  def +(other)
+    case other
+    when Quaternion
+      Quaternion.new(self.i + other.i)
+    else
+      Quaternion.new(self.i + other)
+    end
+  end
+end
+q1 = Quaternion.new(1)
+puts 2 + q1
+~~~
+
+~~~ output
+coerce.rb:18:in `+': Quaternion can't be coerced into Fixnum (TypeError)
+~~~
 
 ???
 
@@ -543,11 +563,40 @@ A subclassed in B
     * Looks at `self` (the left-hand operand) and the other operand
         * Allows you to "cast" the operands into something compatible
     * See http://stackoverflow.com/a/2799899
-    * Will happen in you try to multiply a FixNum with your own class
-        * Or several other numeric classes
-        * `x = 1; y = MyNum.new(2); x * y` will call `y.coerce(x)`
-        * `NyNum#coerce(x)` will return `[self, z = MyNum.new(x)]`
-        * Ruby will then call `z.*(y)`
+
+---
+
+# Numeric#coerce
+
+* Add `coerce` to fix the problem:
+
+~~~ ruby
+class Quaternion
+  def coerce(other)
+    puts "Quaternion#coerce called"
+    [Quaternion.new(other), self]
+  end
+  def to_s
+    "Quaternion(#{i})"
+  end
+end
+q1 = Quaternion.new(1)
+puts 2 + q1
+~~~
+
+~~~ output
+Quaternion#coerce called
+Quaternion(3)
+~~~
+
+???
+
+* Note that `coerce` returns an `Array`, with `self` as the 2nd element
+* Ruby calls the equivalent of:
+    ~~~ ruby
+      [q2, q1] = q1.coerce(2)
+      q2 + q1
+    ~~~
 
 ---
 
