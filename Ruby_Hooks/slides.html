@@ -126,6 +126,9 @@
         background-size: 300px 300px;
         background-position: 500px 200px;
       }
+      .strict_conversion_2 ul {
+        column-count: 2;
+      }
     </style>
   </head>
   <body>
@@ -508,15 +511,16 @@ A subclassed in B
     * Undefining a method will set the method to return a `NoMethodError`
 
 ---
+class: strict_conversion
 
-# Implicit (strict) conversion methods
+# Implicit (Strict) Conversion Methods
 
 * `to_str`
 * `to_int`
 * `to_ary`
 * `to_hash`
-* `to_enum`
 * `to_proc`
+* `to_enum`
 
 ???
 
@@ -526,16 +530,42 @@ A subclassed in B
 * Most of these are used when trying to compare using `==`
     * If types are not the same, will try to convert the right side to the same type as the left
 * `to_str` - used when concatenating strings
-    * But note that `to_s` is used in interpolation
-        * So `to_s` could be considered implicit in that case
-* `to_proc` - called when trying to convert to a block using the `&` operator
 * `to_ary` - assigning to multiple left-hand variables (or block arguments)
     * http://stackoverflow.com/questions/9467395/whats-the-difference-between-to-a-and-to-ary
-    * But `*x` calls `to_a(x)` (implicitly, but called an "explicit" conversion)
-        * I think this changed to `to_ary` om Ruby 2.0
 * `to_int` - used when performing bit operations (`|`, `&`, `^`)
 * `to_hash` - used to convert `method_name(**kwargs)`
+* `to_proc` - called when trying to convert to a block using the `&` operator
 * `to_enum` returns an Enumerator, not an Enumerable
+
+---
+class: strict_conversion_2
+
+# Implicit Versus Explicit Conversion
+
+* `to_str`
+* `to_int`
+* `to_ary`
+* `to_hash`
+* `to_proc`
+* `to_enum`
+
+* `to_s`
+* `to_i`
+* `to_a`
+* `to_h`
+* `&`
+
+???
+
+* Here are the explicit equivalents
+* You almost always want to define the explicit versions
+    * Think carefully before defining the implicit variants
+* Important note: `to_s` is used in interpolation
+    * So `to_s` could be considered *implicit* in that case
+        * Even though it seems implicit to me
+* Important note: `*x` calls `to_a(x)` (implicitly)
+    * Once again, called an "explicit" conversion
+    * I think this changed to `to_ary` in Ruby 2.0
 
 ---
 
