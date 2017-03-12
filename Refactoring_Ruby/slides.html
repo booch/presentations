@@ -144,6 +144,12 @@
       .strict_conversion_2 ul {
         column-count: 2;
       }
+      .single-image img {
+        display: block;
+        margin: 0 auto;
+        max-height: 400px;
+        border: 1px solid black;
+      }
     </style>
   </head>
   <body>
@@ -197,6 +203,66 @@ class: affiliations
 * I mentor teaching underprivileged kids
 * I was told there must be at least 1 cat picture
     * So there's a picture of my cat, Ivan
+
+---
+
+# What Is Refactoring?
+
+Modifying code to improve its internal structure,
+without changing its external behavior,
+in order to make it easier to understand and cheaper to modify
+
+???
+
+* Note each piece of that:
+    * MODIFYING code
+    * Improve INTERNAL structure
+    * WITHOUT changing behavior
+    * Easier to UNDERSTAND
+    * CHEAPER to modify
+* Note that NOT all clean-up and restructuring is _refactoring_
+    * We often use the term incorrectly
+
+---
+
+# History of Refactoring
+
+* Term first used by Ralph Johnson in 1990
+* Popularized by Extreme Programming in 1999
+* Martin Fowler's book written in 1999
+
+???
+
+* Ralph Johnson is also one of the "Gang of Four" that wrote the _Design Patterns_ book
+* Sources:
+    * http://wiki.c2.com/?HistoryOfRefactoring
+    * https://en.wikipedia.org/wiki/Code_refactoring
+
+---
+class: single-image
+
+# Refactoring - Canonical Reference
+
+![](refactoring-fowler.jpg)
+
+---
+class: single-image
+
+# Refactoring - Ruby Edition
+
+![](refactoring-ruby.jpg)
+
+---
+class: single-image
+
+# Refactoring - The Other Ruby Book
+
+![](refactoring-ruby-other.jpg)
+
+???
+
+* I can't say as much about this book
+    * I own it, but don't recall reading it
 
 ---
 
