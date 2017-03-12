@@ -176,7 +176,79 @@ class: affiliations
 
 ---
 
+# Smaller Methods - Booleans
 
+* Original
+
+~~~ ruby
+def deletable?
+  if sequential_approvers_enabled?
+    !answered?
+  else
+    true
+  end
+end
+~~~
+
+???
+
+* Amos said:
+    ~~~
+    The `deletable?` logic here seemed a little strange to me.
+    So I converted it to straight logic to see what is going on.
+
+        a = sequential_approvers_enabled?
+        b = answered?
+
+    The above condition is equivalent to:
+
+        (a && !b) || !a # applying the distribution property of the ||
+        (a || !a) && (!b || !a) # side one is a tautology
+        true && (!b || !a) # we can drop the true because true && c is always c
+        (!b || !a) # applying De Morgan's Theorem
+        !(b && a) # we can also use the commutative property to swap those just to look more like the original
+        !(a && b)
+    ~~~
+
+---
+
+# Smaller Methods - Booleans
+
+* Amos's partial refactoring
+
+~~~ ruby
+def deletable?
+  !(sequential_approvers_enabled? && answered?)
+end
+~~~
+
+OR
+
+~~~ ruby
+def deletable?
+  !sequential_approvers_enabled? || !answered?
+end
+~~~
+
+---
+
+# Smaller Methods - Booleans
+
+* Amos's suggested refactoring
+
+~~~ ruby
+def deletable?
+  sequential_approvers_disabled? || unanswered?
+end
+
+def unanswered?
+  !answered?
+end
+
+def sequential_approvers_disabled?
+  !sequential_approvers_enabled?
+end
+~~~
 
 ---
 class: thanks
