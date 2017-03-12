@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Refactoring Ruby</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      header, footer {
+        display: block;
+        color: #888;
+        position: absolute;
+        font-size: 16px;
+        width: 100%;
+        /* Make up for padding on enclosing .remark-slide-content DIV. */
+        margin-left: -5.5em;
+      }
+      header {
+        top: 0;
+        margin-top: -8px;
+      }
+      header .left, footer .left {
+        float: left;
+      }
+      header .right, footer .right {
+        float: right;
+        margin-right: 2em;
+      }
+      footer {
+        bottom: 0;
+        margin-bottom: -10px;
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-slides-area { background-color: #9B111E; }
+      .remark-slide-content {
+        font-size: 26px; line-height: 1.6;
+        width: 100%;
+      }
+      .remark-slide-number { font-size: 16px; }
+      .remark-code, .remark-inline-code { font-family: monospace; line-height: 1.5; font-size: 16px; }
+      .remark-inline-code { font-size: 24px; }
+      .remark-slide .title li {
+        list-style-type: none;
+        font-size: 28px;
+      }
+      .remark-slide .title ul {
+        padding-left: 0px;
+      }
+      .remark-slide .title img {
+        height: 40%;
+        width: 40%;
+      }
+      .remark-slide .title h1 {
+        font-size: 60px;
+      }
+      .remark-slide .diagram p {
+        text-align: center;
+      }
+      .remark-slide li p {
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        border-bottom: 1px #666666 dashed;
+        color: #202;
+      }
+      a:hover {
+        color: #505;
+        background-color: #DD0;
+      }
+
+      html .remark-container.remark-presenter-mode .remark-slides-area {
+        left: -10%;
+        top: 0;
+        height: 70%;
+        width: 70%;
+      }
+      .remark-presenter-mode .remark-notes-area {
+        left: 50%;
+        z-index: 1;
+        font-size: 150%;
+        line-height: 1.4;
+      }
+      .remark-notes-area .remark-bottom-area .remark-notes-current-area {
+        height: 95%;
+      }
+      html .remark-container.remark-presenter-mode .remark-preview-area, .remark-presenter-mode .remark-notes-preview-area {
+        display: none;
+      }
+      .affiliations ul {
+        column-count: 2;
+      }
+      .affiliations li {
+        list-style: none;
+      }
+      .affiliations img {
+        height: 120px;
+        margin: 10px 0;
+        vertical-align: middle;
+      }
+      .thanks img {
+        width: 500px;
+        margin-left: 100px;
+      }
+      .title {
+        background-image: url(ruby.svg);
+        background-size: 300px 300px;
+        background-position-x: 500px;
+      }
+      .title h1, .title h2, .title h3, .title h4, .title h5 {
+        margin-left: -300px;
+      }
+      .strict_conversion_2 ul {
+        column-count: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+
+<header>
+  <p class="left">STL Ruby</p>
+  <p class="right">2017-03-13</p>
+</header>
+
+
+<footer>
+  <p class="left">@CraigBuchek</p>
+</footer>
+
+---
+class: title, middle, center
+
+# Refactoring Ruby
+### Craig Buchek
+
+???
+
+* Feel free to ask questions during!
+
+---
+class: affiliations
+
+# About Me
+
+* ![](craigbuchek.png) [Craig Buchek][craigbuchek]
+* ![](boochtek.svg) [BoochTek][boochtek]
+* ![](this_agile_life.jpg) [This Agile Life][tal]
+
+* ![](stl_flag.png) St. Louis
+* ![](hands_up_united.jpg) [Tech Institute](http://www.handsupunited.org/techimpact/)
+* ![](ivan.jpg) Ivan
+
+
+???
+
+* I have a company called BoochTek
+    * We do:
+        * Web Development
+        * Rails rescue projects
+        * Agile player/coaching
+        * DevOps
+* I participate in a podcast called This Agile Life
+    * Please subscribe
+* I mentor teaching underprivileged kids
+* I was told there must be at least 1 cat picture
+    * So there's a picture of my cat, Ivan
+
+---
+
+
+
+---
+class: thanks
+
+# Thanks
+
+
+???
+
+* Thank YOU for coming
+
+---
+
+# Feedback
+
+* Twitter: [@CraigBuchek][twitter]
+* GitHub: [booch][github]
+* Email: craig@boochtek.com
+
+
+* Slides: https://github.com/booch/presentations/
+    * [Remark][remark] presentation software
+
+???
+
+* Credits:
+    * Clip art from Clipart.co
+* Presentation software:
+    * [Remark][remark]
+
+
+[twitter]: https://twitter.com/CraigBuchek
+[github]: https://github.com/booch
+[github-boochtek]: https://github.com/boochtek
+[craigbuchek]: http://craigbuchek.com
+[boochtek]: https://www.boochtek.com
+[tal]: http://www.thisagilelife.com
+
+
+[remark]: http://remarkjs.com/
+
+    </textarea>
+    <!-- <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"> -->
+    <script src="remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({highlightLines: true, highlightLanguage: "ruby"});
+      for (i = 0; slide = slideshow.getSlides[i]; )
+      {
+        slide.properties.class = "middle, center";
+      }
+    </script>
+  </body>
+</html>
