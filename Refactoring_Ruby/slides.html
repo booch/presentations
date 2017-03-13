@@ -351,6 +351,7 @@ class: single-image
 * Heuristics
     * Sandi Metz's rules
 * Your own _gut feelings_ from experience
+* Test "smells"
 
 ---
 
@@ -416,6 +417,26 @@ class: single-image
     * https://www.youtube.com/watch?v=npOGOmkxuio
     * https://speakerdeck.com/triangleruby/sandi-metz-rules
     * https://robots.thoughtbot.com/sandi-metz-rules-for-developers#100-line-classes
+
+---
+
+# Test Smells
+
+* Too many collaborators
+* Tests mirror code too closely
+* Fragile tests
+* Slow tests
+
+
+* If your tests are hard to write, your code is probably too complex
+
+???
+
+* Your tests will often indicate problems as well
+* These are probably less well-documented than code smells
+    * "XUnit Test Patterns" has a decent amount documented
+        * And the corresponding http://xunitpatterns.com/
+    * Decent examples to work through at https://github.com/testdouble/test-smells
 
 ---
 
