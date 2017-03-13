@@ -265,6 +265,136 @@ class: single-image
 
 ---
 
+# Why Refactor?
+
+* Readability
+* Simplification
+    * DRY - don't repeat yourself
+* Improved extensibility
+* Maintainability
+* Reduced bugs
+
+???
+
+* Reducing bugs can come about in a few ways:
+    * By improving readability, you find the code does not match the intent
+    * By simplifying, you find incorrect edge cases
+    * By DRYing up, you find not all copies are the same
+
+---
+
+# When To Refactor
+
+* Before making requested changes
+    * To clarify what's going on
+* After adding requested changes
+    * Red, Green, Refactor
+
+---
+
+# What Do I Need To Be Able To Refactor?
+
+* Tests for the code in question
+* Knowing what refactorings are available
+* Automated refactoring tools (optional)
+
+???
+
+* You need tests to have confidence that you're not breaking the code
+    * PRO-TIP: Run tests before **and** after your changes
+* IDEs often provide **some** automated refactorings
+
+---
+
+# Refactorings Have Names
+
+* Extract Method
+* Move Method
+* Extract Variable
+* Inline Temp
+* Replace Parameter with Method
+
+[Catalog of refactorings](https://refactoring.com/catalog/)
+
+???
+
+* These are just a few of nearly 100 documented refactorings
+
+---
+
+# How Do I Know What To Refactor?
+
+* Code "smells"
+* Heuristics
+    * Sandi Metz's rules
+
+---
+
+# Code Smells
+
+* Duplicated code
+* God class
+* Feature envy
+* Too many parameters
+* Long method
+* Comment
+
+???
+
+* A smell is something that indicates that there **MAY** be a problem
+* Like refactorings, code smells have names
+* Each smell has a corresponding refactoring or small set of refactorings
+* There are also "design smells" for problems with higher-level designs
+    * These usually require restructure that is NOT refactoring
+* Coined by Kent Beck in 1999
+* Comments are an odd/controversial smell
+    * They're often used to cover up bad smells
+    * Refactoring will often remove the need for the comment
+    * Amos and I have had drawn-out "discussions" about this!
+    * Fowler has this to say:
+    ~~~
+    Don’t worry, we aren’t saying that people shouldn’t write
+    comments. In our olfactory analogy, comments aren’t a bad smell,
+    indeed they are a sweet smell.
+    The reason we mention them here is because comments are often
+    used as a deodorant. It’s surprising how often you look at
+    thickly commented code, and notice that the comments are there
+    because the code is bad.
+    Thus comments lead us to bad code that has all the rotten whiffs
+    we’ve discussed in the rest of this chapter. Our first action to
+    remove the bad smells by refactoring. When we’re done we often
+    find that the comments are now superfluous.
+    ~~~
+
+---
+
+# Sandi Metz's Rules
+
+1. Classes should be no longer than 100 lines of code
+2. Methods should be no longer than 5 lines of code
+3. Methods should take no more than 4 parameters
+    * Hash options count as parameters
+4. Rails views should receive only 1 object from the controller
+5. Rails controller actions should know only 2 other class names
+6. Break the rules only if you can convince your pair
+
+???
+
+* The purpose is "to reduce the cost of software"
+    * "The best way to do this is to make small objects"
+* Sandi says maybe it should be 3 parameters per method
+* The 2 classes that a controller action should know are:
+    * A business-logic class
+    * A presenter class
+* There's even a Ruby gem that will check your code to see if it meets Sandi's rules
+    * https://github.com/makaroni4/sandi_meter
+* Sources:
+    * https://www.youtube.com/watch?v=npOGOmkxuio
+    * https://speakerdeck.com/triangleruby/sandi-metz-rules
+    * https://robots.thoughtbot.com/sandi-metz-rules-for-developers#100-line-classes
+
+---
+
 # Smaller Methods - Booleans
 
 * Original
