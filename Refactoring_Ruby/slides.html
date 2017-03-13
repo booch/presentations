@@ -440,6 +440,97 @@ class: single-image
 
 ---
 
+# Refactoring User Stories
+
+* Thin vertical slices
+* Story splitting
+* Minimal Marketable Feature (MMF)
+* One acceptance criteria per story
+* INVEST
+    * Independent
+    * Negotiable
+    * Valuable
+    * Estimable
+    * Small
+    * Testable
+
+???
+
+* Thin vertical slice - implement full stack, but narrow functionality
+    * Exception - you can implement API first, if it's useful by itself
+* More info on INVEST:
+    * http://wiki.c2.com/?InvestModelForUserStories
+    * https://en.wikipedia.org/wiki/INVEST_%28mnemonic%29
+
+---
+class: single-image
+
+# Vertically Sliced Increments
+
+![Don't deliver a part of a car; deliver a scooter, then a car](incremental-agile-car.png)
+
+---
+
+# Smaller User Stories
+
+* Smaller stories can be estimated more easily
+* Smaller stories can be completed quicker
+    * Delivers value quicker
+    * Making quicker progress leads to more progress
+* It's easier to realize you don't need a smaller story
+
+---
+
+# Thin Vertical Slices - Login
+
+~~~
+As a user,
+I want to log in,
+So that I can use the app
+
+Given an existing user account
+When I log in with correct credentials
+Then I should be logged in
+
+Given an existing user account
+When I log in with incorrect credentials
+Then I should see an error message
+And I should not be logged in
+~~~
+
+???
+
+* Right away, the premise is wrong
+    * The user does NOT want to log in; they just want to use the site
+    * The user might want to log in to keep their info private
+    * The site owner might want the user to log in to track them
+* Good explanations of **how** to split stories:
+    * http://techblog.holidaycheck.com/brilliant-ways-to-slice-user-stories/
+    * http://agileforall.com/wp-content/uploads/2009/10/Story-Splitting-Cheat-Sheet.pdf
+* Other good examples of story spliiting:
+    * https://gojko.net/2012/01/23/splitting-user-stories-the-hamburger-method/
+    * https://confengine.com/agile-india-2015/proposal/880/techniques-for-effectively-slicing-user-stories
+
+---
+
+# Thin Vertical Slices - Point of Sale
+
+~~~
+As a customer,
+I want to buy something from the store,
+So that I can take it home and use it
+
+When I take something to the cash register
+And the cashier rings it up
+Then the cash register should look up the price
+And tax should be added
+And I should be able to pay by cash, check, or credit card
+And a receipt should be printed
+And inventory should be updated
+~~~
+
+---
+
 # Smaller Methods - Booleans
 
 * Original
