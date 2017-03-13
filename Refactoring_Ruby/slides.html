@@ -221,6 +221,7 @@ in order to make it easier to understand and cheaper to modify
     * CHEAPER to modify
 * Note that NOT all clean-up and restructuring is _refactoring_
     * We often use the term incorrectly
+    * https://martinfowler.com/bliki/RefactoringMalapropism.html
 
 ---
 
@@ -244,6 +245,10 @@ class: single-image
 
 ![Book cover - Refactoring: Improving the Design of Existing Code by Martin Fowler](refactoring-fowler.jpg)
 
+???
+
+* https://martinfowler.com/books/refactoring.html
+
 ---
 class: single-image
 
@@ -251,17 +256,24 @@ class: single-image
 
 ![Book cover - Refactoring: Ruby Edition by Jay Fields et al](refactoring-ruby.jpg)
 
+???
+
+* https://martinfowler.com/books/refactoringRubyEd.html
+
 ---
 class: single-image
 
 # Refactoring - The Other Ruby Book
 
-![Boock Cover - Refactoring In Ruby by William Wake and Kevin Rutherford](refactoring-ruby-other.jpg)
+![Book Cover - Refactoring In Ruby by William Wake and Kevin Rutherford](refactoring-ruby-other.jpg)
 
 ???
 
 * I can't say as much about this book
     * I own it, but don't recall reading it
+* Avdi says that it's a good workbook
+    * http://www.virtuouscode.com/2010/04/08/refactoring-in-ruby/
+* https://www.amazon.com/gp/product/0321545044
 
 ---
 
@@ -298,6 +310,7 @@ class: single-image
 * After adding requested changes
     * Red, Green, Refactor
 * When you realize you've got too much tech debt
+* When you see something that's a problem
 
 ???
 
@@ -309,7 +322,8 @@ class: single-image
         * Write the simplest code that you can to make the test pass
     * Refactor the code
         * Clean up any duplication or any other issues
-* Leave the code better than you found it
+* The Boy Scout rule - leave the code better than you found it
+    * https://martinfowler.com/bliki/OpportunisticRefactoring.html
 * As a general rule, **DO NOT** refactor a file that you're not otherwise touching
 
 ---
@@ -440,6 +454,29 @@ class: single-image
 
 ---
 
+# When Am I Done Refactoring?
+
+* When code is as clear as possible
+    * Never?
+* You're likely **not** overdoing it
+* When every method is 1 line long
+    * With no `if`s
+* When you meet the Sandi Metz metrics
+* When you meet the Four Rules of Simple Design
+    * Passes the tests
+    * Reveals intention
+    * No duplication
+    * Fewest elements
+
+???
+
+* Good article on function length: https://martinfowler.com/bliki/FunctionLength.html
+* Four Rules of Simple Design
+    * https://martinfowler.com/bliki/BeckDesignRules.html
+    * Book by Corey Haines: https://leanpub.com/4rulesofsimpledesign
+
+---
+
 # Refactoring User Stories
 
 * Thin vertical slices
@@ -507,7 +544,7 @@ And I should not be logged in
 * Good explanations of **how** to split stories:
     * http://techblog.holidaycheck.com/brilliant-ways-to-slice-user-stories/
     * http://agileforall.com/wp-content/uploads/2009/10/Story-Splitting-Cheat-Sheet.pdf
-* Other good examples of story spliiting:
+* Other good examples of story splitting:
     * https://gojko.net/2012/01/23/splitting-user-stories-the-hamburger-method/
     * https://confengine.com/agile-india-2015/proposal/880/techniques-for-effectively-slicing-user-stories
 
