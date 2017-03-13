@@ -25,13 +25,13 @@ class: affiliations
 
 # About Me
 
-* ![](craigbuchek.png) [Craig Buchek][craigbuchek]
-* ![](boochtek.svg) [BoochTek][boochtek]
-* ![](this_agile_life.jpg) [This Agile Life][tal]
+* ![Craig Buchek avatar](craigbuchek.png) [Craig Buchek][craigbuchek]
+* ![BoochTek logo](boochtek.svg) [BoochTek][boochtek]
+* ![This Agile Life logo](this_agile_life.jpg) [This Agile Life][tal]
 
-* ![](stl_flag.png) St. Louis
-* ![](hands_up_united.jpg) [Tech Institute](http://www.handsupunited.org/techimpact/)
-* ![](ivan.jpg) Ivan
+* ![St. Louis flag](stl_flag.png) St. Louis
+* ![HandsUpUnited logo](hands_up_united.jpg) [Tech Institute](http://www.handsupunited.org/techimpact/)
+* ![My cat Ivan in the grass](ivan.jpg) Ivan
 
 
 ???
@@ -87,21 +87,21 @@ class: single-image
 
 # Refactoring - Canonical Reference
 
-![](refactoring-fowler.jpg)
+![Book cover - Refactoring: Improving the Design of Existing Code by Martin Fowler](refactoring-fowler.jpg)
 
 ---
 class: single-image
 
 # Refactoring - Ruby Edition
 
-![](refactoring-ruby.jpg)
+![Book cover - Refactoring: Ruby Edition by Jay Fields et al](refactoring-ruby.jpg)
 
 ---
 class: single-image
 
 # Refactoring - The Other Ruby Book
 
-![](refactoring-ruby-other.jpg)
+![Boock Cover - Refactoring In Ruby by William Wake and Kevin Rutherford](refactoring-ruby-other.jpg)
 
 ???
 
