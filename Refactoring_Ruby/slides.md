@@ -114,10 +114,12 @@ class: single-image
 
 * Readability
 * Simplification
-    * DRY - don't repeat yourself
+    * DRY - Don't Repeat Yourself
+    * SRP - Single Responsibility Principle
 * Improved extensibility
 * Maintainability
 * Reduced bugs
+* Improved performance
 
 ???
 
@@ -125,6 +127,12 @@ class: single-image
     * By improving readability, you find the code does not match the intent
     * By simplifying, you find incorrect edge cases
     * By DRYing up, you find not all copies are the same
+* Small code often performs better
+    * Does less work
+    * Fits in cache better
+* SRP
+    * A class should have only one reason to change
+    * Each class and method should be responsible for one thing
 
 ---
 
@@ -134,11 +142,26 @@ class: single-image
     * To clarify what's going on
 * After adding requested changes
     * Red, Green, Refactor
+* When you realize you've got too much tech debt
+
+???
+
+* Red, Green, Refactor comes from Test-Driven Development
+    * Write a failing test
+        * Make sure the test fails before writing the code
+            * So you know that the test **will** fail
+    * Make the test pass
+        * Write the simplest code that you can to make the test pass
+    * Refactor the code
+        * Clean up any duplication or any other issues
+* Leave the code better than you found it
+* As a general rule, **DO NOT** refactor a file that you're not otherwise touching
 
 ---
 
 # What Do I Need To Be Able To Refactor?
 
+* Knowing what code needs refactoring
 * Tests for the code in question
 * Knowing what refactorings are available
 * Automated refactoring tools (optional)
@@ -172,6 +195,7 @@ class: single-image
 * Code "smells"
 * Heuristics
     * Sandi Metz's rules
+* Your own _gut feelings_ from experience
 
 ---
 
