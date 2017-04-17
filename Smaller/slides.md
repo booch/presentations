@@ -582,6 +582,13 @@ end
 * Amos says that commit messages should be longer than a Tweet
 
 ---
+class: workshop
+
+# Workshop
+
+https://github.com/boochtek/aatc2017
+
+---
 class: thanks
 
 # Thanks
