@@ -607,7 +607,7 @@ class: thanks
 * Email: craig@boochtek.com
 
 
-* Slides: https://github.com/booch/presentations/
+* Slides: http://boochtek.com/aatc2017
     * [Remark][remark] presentation software
 
 ???
