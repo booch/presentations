@@ -99,7 +99,17 @@ class: affiliations
 
 ---
 
-# Stories
+# Smaller Stories - Why?
+
+* Smaller stories can be estimated more easily
+* Smaller stories can be completed quicker
+    * Delivers value quicker
+    * Making quicker progress leads to more progress
+* It's easier to realize you don't need a smaller story
+
+---
+
+# Smaller Stories - How?
 
 * Thin vertical slices
 * Story splitting
@@ -127,16 +137,6 @@ class: single-image
 # Vertically Sliced Increments
 
 ![Don't deliver a part of a car; deliver a scooter, then a car](incremental-agile-car.png)
-
----
-
-# Smaller User Stories
-
-* Smaller stories can be estimated more easily
-* Smaller stories can be completed quicker
-    * Delivers value quicker
-    * Making quicker progress leads to more progress
-* It's easier to realize you don't need a smaller story
 
 ---
 
@@ -187,6 +187,33 @@ And I should be able to pay by cash, check, or credit card
 And a receipt should be printed
 And inventory should be updated
 ~~~
+
+---
+
+# Smaller Tests
+
+* Arrange, Act, Assert
+    * Do as little as possible in each step
+* One assertion per test
+
+---
+
+# Smaller Methods
+
+* Should do one thing
+* Use more declarative terms
+* Don't have methods that pre-compute values
+    * Just ask for the value when you need it
+        * Memoize if necessary
+    * Don't pretend to tell when you're asking
+        * Don't use `get` or `compute` methods
+
+---
+
+# Smaller Classes
+
+* Single Responsibility Principle (SRP)
+    * A class should have only one reason to change
 
 ---
 
@@ -366,33 +393,6 @@ class: single-image
 
 ---
 
-# Sandi Metz's Rules
-
-1. Classes should be no longer than 100 lines of code
-2. Methods should be no longer than 5 lines of code
-3. Methods should take no more than 4 parameters
-    * Hash options count as parameters
-4. Rails views should receive only 1 object from the controller
-5. Rails controller actions should know only 2 other class names
-6. Break the rules only if you can convince your pair
-
-???
-
-* The purpose is "to reduce the cost of software"
-    * "The best way to do this is to make small objects"
-* Sandi says maybe it should be 3 parameters per method
-* The 2 classes that a controller action should know are:
-    * A business-logic class
-    * A presenter class
-* There's even a Ruby gem that will check your code to see if it meets Sandi's rules
-    * https://github.com/makaroni4/sandi_meter
-* Sources:
-    * https://www.youtube.com/watch?v=npOGOmkxuio
-    * https://speakerdeck.com/triangleruby/sandi-metz-rules
-    * https://robots.thoughtbot.com/sandi-metz-rules-for-developers#100-line-classes
-
----
-
 # Test Smells
 
 * Too many collaborators
@@ -410,6 +410,38 @@ class: single-image
     * "XUnit Test Patterns" has a decent amount documented
         * And the corresponding http://xunitpatterns.com/
     * Decent examples to work through at https://github.com/testdouble/test-smells
+
+---
+
+# Sandi Metz's Rules
+
+1. Classes should be no longer than 100 lines of code
+2. Methods should be no longer than 5 lines of code
+3. Methods should take no more than 4 parameters
+    * Hash options count as parameters
+4. Rails views should receive only 1 object from the controller
+5. Rails controller actions should know only 2 other class names
+6. Break the rules only if you can convince your pair
+
+???
+
+* The purpose is "to reduce the cost of software"
+    * "The best way to do this is to make small objects"
+* There's a joke: If your method has 10 parameters, you probably missed one!
+* These (other than the Rails-specific ones) could/should be modified for other languages
+    * Ruby is a terse language
+    * But I still wouldn't go past 10 lines / 200 lines / 5 parameters
+
+* Sandi says maybe it should be 3 parameters per method
+* The 2 classes that a controller action should know are:
+    * A business-logic class
+    * A presenter class
+* There's even a Ruby gem that will check your code to see if it meets Sandi's rules
+    * https://github.com/makaroni4/sandi_meter
+* Sources:
+    * https://www.youtube.com/watch?v=npOGOmkxuio
+    * https://speakerdeck.com/triangleruby/sandi-metz-rules
+    * https://robots.thoughtbot.com/sandi-metz-rules-for-developers#100-line-classes
 
 ---
 
@@ -509,6 +541,41 @@ def sequential_approvers_disabled?
   !sequential_approvers_enabled?
 end
 ~~~
+
+---
+
+# Smaller Commits - Why?
+
+* Rolling back an atomic unit
+* `git bisect`
+*
+
+---
+
+# Smaller Releases - Why?
+
+* Less to go wrong
+* Practice makes perfect
+
+---
+
+# Smaller Releases - How?
+
+* Build confidence with customers and management
+* Release bug fixes "out of band"
+* Show that smaller changes are less risky
+* Keep decreasing time between releases
+
+---
+
+# Exceptions to the Rule
+
+* Commit messages
+* Others?
+
+???
+
+* Amos says that commit messages should be longer than a Tweet
 
 ---
 class: thanks
