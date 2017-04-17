@@ -32,11 +32,6 @@ class: affiliations
 * ![BoochTek logo](boochtek.svg) [BoochTek][boochtek]
 * ![This Agile Life logo](this_agile_life.jpg) [This Agile Life][tal]
 
-* ![St. Louis flag](stl_flag.png) St. Louis
-* ![HandsUpUnited logo](hands_up_united.jpg) [Tech Institute](http://www.handsupunited.org/techimpact/)
-* ![My cat Ivan in the grass](ivan.jpg) Ivan
-
-
 ???
 
 * I have a company called BoochTek
@@ -47,9 +42,18 @@ class: affiliations
         * DevOps
 * I participate in a podcast called This Agile Life
     * Please subscribe
-* I mentor teaching underprivileged kids
+
+---
+class: single-image
+
+# My Cat
+
+<img alt="My cat Ivan in the grass" src="ivan.jpg" width="400" height="400" />
+
+???
+
 * I was told there must be at least 1 cat picture
-    * So there's a picture of my cat, Ivan
+    * So here's a picture of my cat, Ivan
 
 ---
 
