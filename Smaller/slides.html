@@ -4,11 +4,18 @@
     <title>Smaller!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
-      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext);
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
 
       body {
-        font-family: 'Droid Serif';
+        font-family: Roboto;
+      }
+      body h1, body h2, body h3, body h4, body h5, body h6 {
+        font-family: Roboto;
+        font-weight: bold;
+      }
+      .remark-slide-content h1 {
+        font-size: 45px;
       }
       header, footer {
         display: block;
@@ -33,10 +40,6 @@
       footer {
         bottom: 0;
         margin-bottom: -10px;
-      }
-      h1, h2, h3 {
-        font-family: 'Yanone Kaffeesatz';
-        font-weight: normal;
       }
       .remark-slides-area { background-color: #9B111E; }
       .remark-slide-content {
@@ -477,7 +480,7 @@ class: single-image
 
 ---
 
-# What Do I Need To Be Able To Refactor?
+# What Do I Need to Refactor?
 
 * Knowing what code needs refactoring
 * Tests for the code in question

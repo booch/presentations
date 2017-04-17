@@ -318,7 +318,7 @@ class: single-image
 
 ---
 
-# What Do I Need To Be Able To Refactor?
+# What Do I Need to Refactor?
 
 * Knowing what code needs refactoring
 * Tests for the code in question
