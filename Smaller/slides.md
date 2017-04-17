@@ -341,7 +341,7 @@ class: single-image
 * Inline Temp
 * Replace Parameter with Method
 
-[Catalog of refactorings](https://refactoring.com/catalog/)
+Catalog of refactorings: https://refactoring.com/catalog/
 
 ???
 
