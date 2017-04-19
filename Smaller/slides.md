@@ -79,7 +79,9 @@ class: single-image
 * Momentum - sense of accomplishment that you can build on
 * We refactor to make future changes less expensive
     * More time is spent reading and understanding code than writing it
-    * TODO: Find Sandi Metz quote on this
+* Sandi Metz quote:
+    * The purpose (of refactoring) is "to reduce the cost of software"
+        * "The best way to do this is to make small objects"
 
 ---
 
@@ -423,25 +425,24 @@ Catalog of refactorings: https://refactoring.com/catalog/
 2. Methods should be no longer than 5 lines of code
 3. Methods should take no more than 4 parameters
     * Hash options count as parameters
-4. Rails views should receive only 1 object from the controller
-5. Rails controller actions should know only 2 other class names
-6. Break the rules only if you can convince your pair
+4. Break the rules only if you can convince your pair
 
 ???
 
-* The purpose is "to reduce the cost of software"
-    * "The best way to do this is to make small objects"
-* There's a joke: If your method has 10 parameters, you probably missed one!
-* These (other than the Rails-specific ones) could/should be modified for other languages
+* These were specifically about Ruby
     * Ruby is a terse language
-    * But I still wouldn't go past 10 lines / 200 lines / 5 parameters
+    * Could/should be modified for other languages
+        * But I wouldn't go past 10 lines / 200 lines / 5 parameters
+* Common joke: If your method takes 10 parameters, you probably missed one!
+
+-----
 
 * Sandi says maybe it should be 3 parameters per method
-* The 2 classes that a controller action should know are:
-    * A business-logic class
-    * A presenter class
-* There's even a Ruby gem that will check your code to see if it meets Sandi's rules
-    * https://github.com/makaroni4/sandi_meter
+* There are 2 more rules, specific to Rails:
+    4. Views should receive only 1 object from the controller
+    5. Controller actions should know only 2 other class names
+        * A business-logic class
+        * A presenter class
 * Sources:
     * https://www.youtube.com/watch?v=npOGOmkxuio
     * https://speakerdeck.com/triangleruby/sandi-metz-rules
