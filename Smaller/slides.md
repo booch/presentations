@@ -21,6 +21,8 @@ http://boochtek.com/aatc2017
 
 ???
 
+* Original title was "Keep it Short"
+    * But this title is shorter
 * Feel free to ask questions during!
 * That's the URL for the slides
     * Hit `p` for presenter notes
