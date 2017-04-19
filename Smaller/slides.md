@@ -518,8 +518,12 @@ Catalog of refactorings: https://refactoring.com/catalog/
 * Comments are an odd/controversial smell
     * They're often used to cover up bad smells
     * Refactoring will often remove the need for the comment
-    * Ive had drawn-out "discussions" about this!
-    * Fowler has this to say:
+    * I've had drawn-out "discussions" about this!
+* Robert C Martin has this to say:
+    * "The proper use of comments is to compensate for our failure to express ourselves in code."
+* Martin Fowler has this to say:
+    * When you feel the need to write a comment, first try to refactor the code so that any comment becomes superfluous.
+* Martin Fowler's book has this to say:
     ~~~
     Don’t worry, we aren’t saying that people shouldn’t write
     comments. In our olfactory analogy, comments aren’t a bad smell,
