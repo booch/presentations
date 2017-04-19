@@ -697,6 +697,15 @@ end
 
 ---
 
+# What Else?
+
+* Pair-switching
+    * Every 2 hours
+    * Every hour?
+* Others?
+
+---
+
 # Exceptions to the Rule
 
 * Commit messages
