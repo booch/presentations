@@ -577,10 +577,9 @@ Catalog of refactorings: https://refactoring.com/catalog/
 # When Am I Done Refactoring?
 
 * When code is as clear as possible
-    * Never?
 * You're likely **not** overdoing it
 * When every method is 1 line long
-    * With no `if`s
+    * Preferably with no `if`s
 * When you meet the Sandi Metz metrics
 * When you meet the Four Rules of Simple Design
     * Passes the tests
@@ -592,8 +591,10 @@ Catalog of refactorings: https://refactoring.com/catalog/
 
 * Good article on function length: https://martinfowler.com/bliki/FunctionLength.html
 * Four Rules of Simple Design
+    * Originally from Kent Beck
     * https://martinfowler.com/bliki/BeckDesignRules.html
     * Book by Corey Haines: https://leanpub.com/4rulesofsimpledesign
+    * Ron mentioned these in opening keynote
 
 ---
 
@@ -703,7 +704,7 @@ end
 
 ???
 
-* Amos says that commit messages should be longer than a Tweet
+* Commit messages should be longer than a Tweet (Amos)
 
 ---
 class: workshop
