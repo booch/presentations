@@ -22,6 +22,14 @@ http://boochtek.com/aatc2017
 ???
 
 * Feel free to ask questions during!
+* That's the URL for the slides
+    * Hit `p` for presenter notes
+    * Notes have more info than I'll talk about in some cases
+
+-----
+
+* Image from http://smurfsfanon.wikia.com/wiki/Smurfs_%28LD_Stories%29
+
 
 ---
 class: affiliations
@@ -133,6 +141,9 @@ class: single-image
 
 * Thin vertical slice - implement full stack, but narrow functionality
     * Exception - you can implement API first, if it's useful by itself
+
+-----
+
 * More info on INVEST:
     * http://wiki.c2.com/?InvestModelForUserStories
     * https://en.wikipedia.org/wiki/INVEST_%28mnemonic%29
@@ -143,6 +154,12 @@ class: single-image
 # Vertically Sliced Increments
 
 ![Don't deliver a part of a car; deliver a scooter, then a car](incremental-agile-car.png)
+
+???
+
+-----
+
+* Image from [Henrik Kniberg](http://blog.crisp.se/2016/01/25/henrikkniberg/making-sense-of-mvp)
 
 ---
 
@@ -167,8 +184,12 @@ And I should not be logged in
 
 * Right away, the premise is wrong
     * The user does NOT want to log in; they just want to use the site
-    * The user might want to log in to keep their info private
-    * The site owner might want the user to log in to track them
+        * The user might want to log in to keep their info private
+        * The site owner might want the user to log in to track them
+* But this is a GOOD example of thin vertically-sliced stories
+
+-----
+
 * Good explanations of **how** to split stories:
     * http://techblog.holidaycheck.com/brilliant-ways-to-slice-user-stories/
     * http://agileforall.com/wp-content/uploads/2009/10/Story-Splitting-Cheat-Sheet.pdf
@@ -193,6 +214,12 @@ And I should be able to pay by cash, check, or credit card
 And a receipt should be printed
 And inventory should be updated
 ~~~
+
+???
+
+* Consider breaking each `Then` (`And`) into its own story
+    * At the least, start with 1 `Then`, adding another only after you finish the previous
+* In this example, determine what steps can be done manually for a short time
 
 ---
 
@@ -260,12 +287,15 @@ class: single-image
 
 ???
 
-* https://martinfowler.com/books/refactoring.html
 * Written in 1999
     * Still the canonical book on the topic
 * There are a couple other good books on refactoring
     * Refactoring Ruby Edition
     * Refactoring Workbook
+
+-----
+
+* https://martinfowler.com/books/refactoring.html
 
 ---
 
@@ -609,15 +639,6 @@ class: thanks
 
 * Slides: http://boochtek.com/aatc2017
     * [Remark][remark] presentation software
-
-???
-
-* Credits:
-    * Smurf image from http://smurfsfanon.wikia.com/wiki/Smurfs_%28LD_Stories%29
-    * Incremental Agile Car by [Henrik Kniberg](http://blog.crisp.se/2016/01/25/henrikkniberg/making-sense-of-mvp)
-    * Clip art from Clipart.co
-* Presentation software:
-    * [Remark][remark]
 
 
 [twitter]: https://twitter.com/CraigBuchek
