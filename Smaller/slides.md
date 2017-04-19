@@ -221,7 +221,7 @@ And inventory should be updated
 
 ---
 
-# What Is Refactoring?
+# Refactoring
 
 Modifying code to improve its internal structure,
 without changing its external behavior,
@@ -239,20 +239,15 @@ in order to make it easier to understand and cheaper to modify
     * We often use the term incorrectly
     * https://martinfowler.com/bliki/RefactoringMalapropism.html
 
----
-
-# History of Refactoring
+-----
 
 * Term first used by Ralph Johnson in 1990
-* Popularized by Extreme Programming in 1999
-* Martin Fowler's book written in 1999
-
-???
-
-* Ralph Johnson is also one of the "Gang of Four" that wrote the _Design Patterns_ book
+    * Part of "Gang of Four" that wrote the _Design Patterns_ book
+    * Popularized by Extreme Programming in 1999
 * Sources:
     * http://wiki.c2.com/?HistoryOfRefactoring
     * https://en.wikipedia.org/wiki/Code_refactoring
+
 
 ---
 class: single-image
@@ -264,6 +259,11 @@ class: single-image
 ???
 
 * https://martinfowler.com/books/refactoring.html
+* Written in 1999
+    * Still the canonical book on the topic
+* There are a couple other good books on refactoring
+    * Refactoring Ruby Edition
+    * Refactoring Workbook
 
 ---
 
@@ -552,7 +552,6 @@ end
 
 * Rolling back an atomic unit
 * `git bisect`
-*
 
 ---
 
