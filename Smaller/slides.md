@@ -443,13 +443,62 @@ Catalog of refactorings: https://refactoring.com/catalog/
 * A smell is something that indicates that there **MAY** be a problem
 * Like refactorings, code smells have names
 * Each smell has a corresponding refactoring or small set of refactorings
+
+-----
+
 * There are also "design smells" for problems with higher-level designs
-    * These usually require restructure that is NOT refactoring
+    * These usually require restructuring that is NOT refactoring
 * Coined by Kent Beck in 1999
+
+---
+
+# Code Smells
+
+* Duplicated code
+* <span class="highlight">God class</span>
+* Feature envy
+* Too many parameters
+* Long method
+* Comment
+
+???
+
+* A God class is a class that tries to do way too much
+    * Usually your `User` class
+    * Sometimes a class named similar to the name of the app
+
+---
+
+# Code Smells
+
+* Duplicated code
+* God class
+* <span class="highlight">Feature envy</span>
+* Too many parameters
+* Long method
+* Comment
+
+???
+
+* Feature envy is when one class is doing work that should be done in another class
+
+---
+
+# Code Smells
+
+* Duplicated code
+* God class
+* Feature envy
+* Too many parameters
+* Long method
+* <span class="highlight">Comment</span>
+
+???
+
 * Comments are an odd/controversial smell
     * They're often used to cover up bad smells
     * Refactoring will often remove the need for the comment
-    * Amos and I have had drawn-out "discussions" about this!
+    * Ive had drawn-out "discussions" about this!
     * Fowler has this to say:
     ~~~
     Don’t worry, we aren’t saying that people shouldn’t write
