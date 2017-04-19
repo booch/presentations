@@ -407,11 +407,19 @@ And inventory should be updated
 
 * Should do one thing
 * Use more declarative terms
+    * Don't pretend to tell when you're asking
+        * Don't use `get` or `compute` methods
 * Don't have methods that pre-compute values
     * Just ask for the value when you need it
         * Memoize if necessary
-    * Don't pretend to tell when you're asking
-        * Don't use `get` or `compute` methods
+
+???
+
+-----
+
+* Memoization:
+    * Computing something the first time, and saving the result for any later requests
+
 
 ---
 
