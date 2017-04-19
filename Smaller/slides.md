@@ -716,6 +716,8 @@ end
 
 # What Else?
 
+* Meetings!
+* Feedback loops
 * Pair-switching
     * Every 2 hours
     * Every hour?
@@ -725,6 +727,7 @@ end
 
 # Exceptions to the Rule
 
+* Time spent with the customer
 * Commit messages
 * Others?
 
