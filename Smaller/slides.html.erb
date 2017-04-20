@@ -17,52 +17,70 @@
       .remark-slide-content h1 {
         font-size: 45px;
       }
-      header, footer {
-        display: block;
-        color: #888;
-        position: absolute;
+
+      .remark-slide-content header, .remark-slide-content footer, .remark-slide-content .remark-slide-number {
         font-size: 16px;
-        width: 100%;
-        /* Make up for padding on enclosing .remark-slide-content DIV. */
-        margin-left: -5.5em;
+        color: #444444;
       }
-      header {
-        top: 0;
-        margin-top: -8px;
+      .remark-slide-content header > *, .remark-slide-content footer > *, .remark-slide-content .remark-slide-number {
+        position: absolute;
+        margin: 0;
+        opacity: 0.75;
       }
-      header .left, footer .left {
-        float: left;
+      .remark-slide-content header > * {
+        top: 8px;
       }
-      header .right, footer .right {
-        float: right;
-        margin-right: 2em;
+      .remark-slide-content header .left, .remark-slide-content footer .left, .remark-slide-content .remark-slide-number {
+        left: 20px;
+        right: auto;
       }
-      footer {
-        bottom: 0;
-        margin-bottom: -10px;
+      .remark-slide-content header .right, .remark-slide-content footer .right {
+        right: 20px;
+        left: auto;
       }
-      .remark-slides-area { background-color: #9B111E; }
+      .remark-slide-content footer > *, .remark-slide-content .remark-slide-number {
+        bottom: 8px;
+      }
+
+      .remark-slides-area {
+        background-color: #A7CADD;
+      }
+      .remark-slide-scaler {
+        background-color: white;
+      }
+      .remark-slide-content {
+        background-image: url(AATC2017-background.jpeg);
+        background-size: 1030px 681px;
+        background-position: 0 0;
+      }
       .remark-slide-content {
         font-size: 26px; line-height: 1.6;
         width: 100%;
       }
-      .remark-slide-number { font-size: 16px; }
+
       .remark-code, .remark-inline-code { font-family: monospace; line-height: 1.5; font-size: 16px; }
       .remark-inline-code { font-size: 24px; }
+
+      .remark-slide .title h1 {
+        font-size: 120px;
+        background-image: url(smurf.jpg);
+        background-repeat: no-repeat;
+        background-size: 300px 300px;
+        background-position: 735px 65px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        margin-top: -20px; /* 80px - 100px */
+        margin-bottom: -130px; /* -30px - 100px */
+      }
+      .remark-slide .title h1, .remark-slide .title h2, .remark-slide .title h3, .remark-slide .title h4, .remark-slide .title h5 {
+        margin-left: -300px;
+      }
       .remark-slide .title li {
         list-style-type: none;
         font-size: 28px;
       }
       .remark-slide .title ul {
         padding-left: 0px;
-      }
-      .remark-slide .title img {
-        height: 40%;
-        width: 40%;
-      }
-      .remark-slide .title h1 {
-        font-size: 120px;
-        margin-bottom: -30px;
       }
       .remark-slide .title h3 {
         font-size: 40px;
@@ -137,14 +155,6 @@
       .remark-slide .thanks img {
         width: 500px;
         margin-left: 100px;
-      }
-      .remark-slide .title {
-        background-image: url(smurf.jpg);
-        background-size: 300px 300px;
-        background-position-x: 500px;
-      }
-      .remark-slide .title h1, .remark-slide .title h2, .remark-slide .title h3, .remark-slide .title h4, .remark-slide .title h5 {
-        margin-left: -300px;
       }
       .remark-slide .single-image img {
         display: block;

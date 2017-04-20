@@ -1,13 +1,11 @@
 layout: true
 
 <header>
-  <p class="left">AATC2017</p>
+  <p class="left">@CraigBuchek</p>
   <p class="right">2017-04-21</p>
 </header>
 
-
 <footer>
-  <p class="left">@CraigBuchek</p>
 </footer>
 
 ---

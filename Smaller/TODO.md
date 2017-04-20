@@ -13,7 +13,6 @@ TODO
     * https://www.yoomee.com/media/W1siZiIsIjIwMTUvMDEvMTIvMTQvNDMvNDAvMTYwL2l0ZXJhdGlvbnMuanBnIl1d
     * Don't forget attribution to Jeff Patton
 * Fix italics font ("gut feelings") in PDF
-* Background pictures?
 
 * Update permanent URL from http://boochtek.com/aatc2017
     * Tag and use tag in place of `master`
