@@ -241,43 +241,6 @@ And inventory should be updated
 
 ---
 
-# Smaller Methods
-
-* Should do one thing
-* Refactoring
-    * Extract Method
-    * Replace Parameter with Method
-    * Decompose Conditional
-    * Replace Conditional with Polymorphism
-    * Introduce Null Object
-* Use more declarative terms
-    * Don't pretend to tell when you're asking
-        * Don't use `get` or `compute` methods
-* Don't have methods that pre-compute values
-    * Just ask for the value when you need it
-        * Memoize if necessary
-
-???
-
------
-
-* Memoization:
-    * Computing something the first time, and saving the result for any later requests
-
----
-
-# Smaller Classes
-
-* Single Responsibility Principle (SRP)
-    * A class should have only one reason to change
-* Remove duplication (DRY)
-* Refactoring
-    * Extract Class
-    * Extract Superclass / Subclass
-    * Extract Interface
-
----
-
 # Refactoring
 
 Modifying code to improve its internal structure,
@@ -623,6 +586,31 @@ Catalog of refactorings: https://refactoring.com/catalog/
 
 ---
 
+# Smaller Methods
+
+* Should do one thing
+* Refactoring
+    * Extract Method
+    * Replace Parameter with Method
+    * Decompose Conditional
+    * Replace Conditional with Polymorphism
+    * Introduce Null Object
+* Use more declarative terms
+    * Don't pretend to tell when you're asking
+        * Don't use `get` or `compute` methods
+* Don't have methods that pre-compute values
+    * Just ask for the value when you need it
+        * Memoize if necessary
+
+???
+
+-----
+
+* Memoization:
+    * Computing something the first time, and saving the result for any later requests
+
+---
+
 # Smaller Methods - Booleans
 
 * Original
@@ -696,6 +684,18 @@ def sequential_approvers_disabled?
   !sequential_approvers_enabled?
 end
 ~~~
+
+---
+
+# Smaller Classes
+
+* Single Responsibility Principle (SRP)
+    * A class should have only one reason to change
+* Remove duplication (DRY)
+* Refactoring
+    * Extract Class
+    * Extract Superclass / Subclass
+    * Extract Interface
 
 ---
 
