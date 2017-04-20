@@ -244,6 +244,12 @@ And inventory should be updated
 # Smaller Methods
 
 * Should do one thing
+* Refactoring
+    * Extract Method
+    * Replace Parameter with Method
+    * Decompose Conditional
+    * Replace Conditional with Polymorphism
+    * Introduce Null Object
 * Use more declarative terms
     * Don't pretend to tell when you're asking
         * Don't use `get` or `compute` methods
@@ -258,13 +264,17 @@ And inventory should be updated
 * Memoization:
     * Computing something the first time, and saving the result for any later requests
 
-
 ---
 
 # Smaller Classes
 
 * Single Responsibility Principle (SRP)
     * A class should have only one reason to change
+* Remove duplication (DRY)
+* Refactoring
+    * Extract Class
+    * Extract Superclass / Subclass
+    * Extract Interface
 
 ---
 

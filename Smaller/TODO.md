@@ -3,8 +3,6 @@ TODO
 
 * Remind them to use https://refactoring.com/catalog/
 
-* Smaller Classes:
-    * Anything more I can say?
 * Pictures of MVP thin vertical slices
 * Picture of Feasible, Valuable, Usable, Delightful
 * Pull in Joe's slides 78-79
