@@ -791,6 +791,7 @@ class: thanks
 
 
 * Slides: http://boochtek.com/aatc2017
+    * Source: https://github.com/booch/presentations
     * [Remark][remark] presentation software
 
 
