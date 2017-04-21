@@ -69,6 +69,18 @@ class: single-image
 * Here's my cat, Ivan
 
 ---
+class: single-image
+
+# Bees?
+
+<img alt="Close-up of some bees from my hive" src="bees.jpg" width="400" height="400" />
+
+???
+
+* Here are my other "pets"
+* I took up beekeeping last year
+
+---
 
 # Smaller - Why?
 
