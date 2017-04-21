@@ -770,19 +770,19 @@ Catalog of refactorings: https://refactoring.com/catalog/
     * Decompose Conditional
     * Replace Conditional with Polymorphism
     * Introduce Null Object
+* Ask for values when you need them, not before
+    * Memoize if necessary
 * Use more declarative terms
-    * Don't pretend to tell when you're asking
-        * Don't use `get` or `compute` methods
-* Don't have methods that pre-compute values
-    * Just ask for the value when you need it
-        * Memoize if necessary
+    * Don't use `compute` or `get` methods
 
 ???
 
 -----
 
-* Memoization:
-    * Computing something the first time, and saving the result for any later requests
+* Caveat for pre-computing: sometimes you *do* need to do it (but not often)
+* Using `get` or `compute` - don't pretend that you're telling instead of asking
+* Memoization: compute something, but save the result for any later requests
+* Don't say `getSum`, just say `sum`
 
 ---
 
