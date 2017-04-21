@@ -1,8 +1,6 @@
 TODO
 ====
 
-* Remind them to use https://refactoring.com/catalog/
-
 * Pictures of MVP thin vertical slices
 * Picture of Feasible, Valuable, Usable, Delightful
 * Pull in Joe's slides 78-79

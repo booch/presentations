@@ -437,6 +437,9 @@ Catalog of refactorings: https://refactoring.com/catalog/
 
 -----
 
+* Good lists of smells and the corresponding refactorings:
+    * https://sourcemaking.com/refactoring/smells
+    * http://www.industriallogic.com/wp-content/uploads/2005/09/smellstorefactorings.pdf
 * There are also "design smells" for problems with higher-level designs
     * These usually require restructuring that is NOT refactoring
 * Coined by Kent Beck in 1999
@@ -564,8 +567,9 @@ Catalog of refactorings: https://refactoring.com/catalog/
 
 # When Am I Done Refactoring?
 
-* When code is as clear as possible
 * You're likely **not** overdoing it
+* When code is as clear as possible
+* When there are no more smells
 * When every method is 1 line long
     * Preferably with no `if`s
 * When you meet the Sandi Metz metrics
@@ -749,6 +753,11 @@ class: workshop
 # Workshop
 
 https://github.com/boochtek/aatc2017
+
+???
+
+* Pair (or triple) up and work the exercises at this URL
+* I'll walk around to help answer questions
 
 ---
 class: thanks
