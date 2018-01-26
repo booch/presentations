@@ -95,3 +95,4 @@ References
 * [Boolean Blindness](https://existentialtype.wordpress.com/2011/03/15/boolean-blindness/) article
 * "Don't Make Me Think" by Steve Krug
 * "The Humane Interface" by Jef Raskin
+* https://andycroll.com/ruby/extract-conditionals-into-well-named-methods
