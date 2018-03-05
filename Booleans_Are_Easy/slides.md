@@ -116,6 +116,107 @@ end
     * TODO: Find references to Avdi and Sandi recommending this technique.
 * We still need to use an options hash to support taking a bare Boolean or a Hash.
 
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  if approvers_enabled?
+    !answered?
+  else
+    true
+  end
+end
+~~~
+
+???
+
+* My friend and colleague Amos Kind came across something like this once.
+    * He submitted a pull request to make it more clear.
+* We've got a predicate method, based on 2 other predicate methods.
+    * _Predicate method_ just means that it returns `true` or `false`.
+* Having an explicit `true` or `false` is a bit of a smell.
+    * With possible exception of early `return` statements (guard clauses).
+* Can we improve this code?
+
+---
+
+# Boolean Transformations
+
+~~~ ruby
+true || x == true       # Identity
+false && x == false     # Nullification
+x || y == y || x        # Commutation
+x && y == y && x        # Commutation
+x || !x == true         # Tautology
+x && !x == false        # Contradiction
+(!x || !y) == !(x && y) # De Morgan's laws
+(!x && !y) == !(x || y) # De Morgan's laws
+~~~
+
+???
+
+* The Boolean **and** and **or** operators are commutative.
+    * Note that Ruby has short-cutting — different code might run, depending on order.
+* [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)
+
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  if approvers_enabled?
+    !answered?
+  else
+    true
+  end
+end
+~~~
+
+???
+
+* Now we have tools to refactor this to be more readable.
+
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  !approvers_enabled? || !answered?
+end
+~~~
+
+???
+
+* We can apply some of the transformations to get rid of the `if` and the explicit `true`.
+
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  approvers_disabled? || unanswered?
+end
+
+def unanswered?
+  !answered?
+end
+
+def approvers_disabled?
+  !approvers_enabled?
+end
+~~~
+
+???
+
+* We can refactor to extract some methods to make things more clear.
+* Don't be afraid to extract methods for sub-expressions.
+    * Even if they're used in only 1 place.
+    * Even if it's just to invert the _sense_.
 
 ---
 
@@ -130,7 +231,8 @@ class: thanks
 
 ???
 
-* Thank YOU for coming
+* Thank YOU for coming.
+* Amos King for some examples of Boolean transformations.
 
 ---
 
