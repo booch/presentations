@@ -55,6 +55,20 @@
 
       .remark-code, .remark-inline-code { font-family: monospace; line-height: 1.5; font-size: 16px; }
       .remark-inline-code { font-size: 24px; }
+      .remark-code {
+        counter-reset: code-line-numbers;
+      }
+      .remark-code .remark-code-line {
+        counter-increment: code-line-numbers;
+      }
+      .remark-code .remark-code-line::before {
+        content: counter(code-line-numbers);
+        display: inline-block;
+        width: 1.2em;
+        margin-right: 1em;
+        color: #999999;
+        -webkit-user-select: none; /* The line numbers should not be selectable. */
+      }
 
       .remark-slide .title h1 {
         font-size: 70px;
