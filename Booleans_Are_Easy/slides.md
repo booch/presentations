@@ -100,8 +100,10 @@ random_object.methods(superclass_methods: false)
 ~~~ ruby
 class Object
   def methods(options = [])
-    superclass_methods = !(options == false || options.respond_to?(:[]) && options[:superclass_methods])
-    if superclass_methods
+    show_superclass_methods = options &&
+                              options.respond_to?(:[]) &&
+                              options[:superclass_methods]
+    if show_superclass_methods
       show_all_methods_this_object_responds_to
     else
       show_methods_from_immediate_class_of_this_object
