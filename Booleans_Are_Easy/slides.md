@@ -21,8 +21,23 @@ class: title, middle, center
 ???
 
 * My Twitter is in the upper right corner if you want to tweet at me.
-* The URL for the slides is in the lower right corner.
-* Hit `p` for presenter notes.
+
+---
+class: middle
+
+* Slides: https://craigbuchek.com/booleans
+
+
+* Hit `P` to toggle presenter notes
+    * References
+    * More details than I will talk about
+
+???
+
+* If you want to follow along, or see the slides later, here's the URL.
+    * It'll be in the lower right corner.
+* Hit `P` for presenter notes.
+    * Notes have links to things I reference.
     * Notes have more info than I'll talk about in some cases.
 
 ---
