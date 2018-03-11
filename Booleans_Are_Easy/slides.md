@@ -41,6 +41,38 @@ class: middle
     * Notes have more info than I'll talk about in some cases.
 
 ---
+class: middle, center, image-only
+
+![Strange Loop logo](images/strange_loop_logo.jpg)
+
+???
+
+* I went to Strange Loop last year.
+
+---
+class: middle, center, image-only, percent-70
+
+![Elm logo](images/elm_logo.jpg)
+
+???
+
+* My favorite talk was on the pre-conference day, at Elm-Conf.
+
+---
+class: middle, center, image-only
+
+![Title slide for Jeremy Fairbank's Elm-Conf 2017 talk](images/fairbank-title-slide.jpg)
+
+???
+
+* It was a talk on Booleans by Jeremy Fairbank.
+* That talk inspired me to create this talk.
+* Ruby is very different than Elm, so this talk is very different from Jeremy's.
+* I highly recommend watching Jeremy's talk.
+    * Video: [Solving the Boolean Identity Crisis by Jeremy Fairbank](https://www.youtube.com/watch?v=8Af1bh-BVY8)
+    * Slides: [Slides for "Solving the Boolean Identity Crisis"](https://bit.ly/elm-bool)
+
+---
 
 # Booleans as Parameters
 

@@ -10,7 +10,6 @@ TODO
 * Make sure https://craigbuchek.com/booleans links to slides
 * Example of method taking a Boolean that shows SRP violation
 * Center short code samples better
-* Thank Jeremy Fairbank for the inspiration
 * Add a subtle background (to title slide, at the least)
 * Maybe find some graphics for title slide
     * Perhaps a picture of George Boole
