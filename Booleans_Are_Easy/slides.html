@@ -348,7 +348,7 @@ end
 
 ---
 
-# Booleans as Named Parameters
+# Single Responsibility Principle
 
 ~~~ ruby
 random_object.methods
@@ -360,6 +360,24 @@ random_object.all_methods
 ???
 
 * But really, it'd be best just to have 2 separate methods.
+
+---
+
+# Single Responsibility Principle
+
+~~~ ruby
+random_object.methods(true)
+# => [:id, :first_name, :last_name]
+random_object.methods(false)
+# => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
+~~~
+
+???
+
+* How would you describe what this original method does?
+    * "Show the methods defined for this object OR the methods only defined by its immediate class."
+* Any time you have an "OR" in the description of a method or class, that's a code smell.
+    * There's probably a violation of the Single Responsibility Principle.
 
 ---
 
