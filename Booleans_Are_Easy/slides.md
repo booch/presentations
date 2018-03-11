@@ -120,6 +120,114 @@ end
 
 ---
 
+# Connascence
+
+> _common birth or production of multiple things at the same time_
+
+> _the act of growing together_
+
+???
+
+* We're going to take a short detour here to talk about something called "connascence".
+* Definitions are from Webster's dictionary, 1913.
+
+---
+
+# Connascence
+
+> _measurement of the amount of coupling (dependencies) among components of an OOP software system_
+
+???
+
+* Concept in OOP was first introduced in 1992, by Meilir (may-LEER) Page-Jones.
+    * [Comparing techniques by means of encapsulation and connascence](https://dl.acm.org/citation.cfm?id=130994.131004) in Communications of the ACM, 1992
+        * PDF: [http://wiki.cfcl.com/pub/Projects/Connascence/Resources/p147-page-jones.pdf]
+    * [What Every Programmer Should Know About Object-Oriented Design](https://www.amazon.com/dp/0932633315/), 1996
+    * [Fundamentals of Object-Oriented Design in UML](https://www.amazon.com/dp/020169946X), 1999
+* Additional resources:
+    * [Wikipedia article on connascence](https://en.wikipedia.org/wiki/Connascence)
+    * A nice reference site: [connascence.io](http://connascence.io/)
+    * An excellent [blog post on connascence](https://www.codesai.com/2017/01/about-connascence)
+
+---
+
+# Connascence
+
+> _Two pieces of code share connascence when changing one requires a corresponding change in the other._
+
+> _Excessive connascence means the system is hard to change and hard to maintain._
+
+???
+
+* Jim Weirich brought the idea of connascence to the Ruby community in 2009.
+    * [Grand Unified Theory of Software Design](https://vimeo.com/10837903)
+        * Slides: https://github.com/jimweirich/presentation_connascence
+        * Has a very similar example to my `methods` example.
+        * Another version of the talk, with better audio, but worse video: https://vimeo.com/10837903
+    * [The Building Blocks of Modularity](https://www.youtube.com/watch?v=l780SYuz9DI)
+        * Same slides as above, but shown in video; poor audio
+    * [Connascence Examined](https://www.youtube.com/watch?v=HQXVKHoUQxY) - new talk in 2012
+        * Slides: https://github.com/jimweirich/presentation-connascence-examined
+    * Makes the argument that connascence underlies many other rules of good OOP design.
+        * DRY
+        * Code smells
+        * Race conditions
+
+---
+
+# Connascence
+
+* Connascence of Name
+* Connascence of Type
+* Connascence of Meaning
+* Connascence of Position
+* Connascence of Algorithm
+
+???
+
+* This is a list of the types of static connascence.
+    * There are dynamic types of connascence too.
+* Connascence of Name
+    * Agreement on the name of something
+    * Example: any time we call a method
+    * Example: any time we reference a variable or a constant
+* Connascence of Type
+    * Agreement on the type of something
+* Connascence of Meaning
+    * Agreement on the meaning or interpretation of specific values
+* Connascence of Position
+    * Agreement on the order of values
+* Connascence of Algorithm
+    * Agreement on a particular algorithm
+    * Example: encoding/decoding passwords
+    * Example: checksum on credit card numbers
+* This list is from weakest connascence to strongest.
+    * The dynamic types of connascence are all stronger then these.
+* If we can replace a stronger form of connascence with a weaker form, we've reduced connascence.
+* Increasing locality of connascent components is another way to reduce connascence.
+* Note that Connascence of Name is weaker than Connascence of Meaning.
+
+---
+
+# Connascence
+
+~~~ ruby
+random_object.methods(false)
+~~~
+
+~~~ ruby
+random_object.methods(superclass_methods: false)
+~~~
+
+???
+
+* That's what we did here.
+* We replaced a positional parameter with a named parameter.
+* The positional parameter has a specific meaning, which is more difficult to remember.
+* We decreased connascence by replacing Connascence of Meaning with Connascence of Name.
+
+---
+
 # Readability of Predicate Methods
 
 ~~~ ruby
