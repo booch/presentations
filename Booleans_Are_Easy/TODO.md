@@ -2,7 +2,6 @@ TODO
 ====
 
 * Add example of method taking 3 different Boolean parameters
-* For first example, say that it'd be even better to just have 2 separate methods
 * Add indicator to list of types of connascence showing weak/strong
     * Split into 2 slides, first without the indicator
 * Add picture of Jim Weirich

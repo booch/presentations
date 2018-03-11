@@ -262,7 +262,8 @@ random_object.class
 
 ???
 
-* When I'm in Rails console, IRB, or Pry, I frequently want to see the class of an object
+* On to Ruby!
+* When I'm in Rails console, IRB, or Pry, I frequently want to see the class of an object.
 
 ~~~ ruby
 def random_object(cache: true)
@@ -285,6 +286,7 @@ random_object.methods
 ???
 
 * Often, I'll also want to see what methods the object can respond to.
+* I'll use a method that's on `Object`, named `methods`.
 * Show of hands - who's familiar with this method named `methods`?
 * How many of you (with your hands up) know that it takes an optional parameter?
 * How many of you remember whether to pass `true` or `false` to not show methods from superclasses?
@@ -343,6 +345,21 @@ end
 * In older Ruby versions, we would have to use an options hash to emulate named parameters.
     * TODO: Find references to Avdi and Sandi recommending this technique.
 * We still need to use an options hash to support taking a bare Boolean or a Hash.
+
+---
+
+# Booleans as Named Parameters
+
+~~~ ruby
+random_object.methods
+# => [:id, :first_name, :last_name]
+random_object.all_methods
+# => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
+~~~
+
+???
+
+* But really, it'd be best just to have 2 separate methods.
 
 ---
 
