@@ -324,7 +324,7 @@ end
 
 ???
 
-* My friend and colleague Amos Kind came across something like this once.
+* My friend and colleague Amos King came across something like this once.
     * He submitted a pull request to make it more clear.
 * We've got a predicate method, based on 2 other predicate methods.
     * _Predicate method_ just means that it returns `true` or `false`.
@@ -337,21 +337,36 @@ end
 # Boolean Transformations
 
 ~~~ ruby
-true || x == true       # Identity
-false && x == false     # Nullification
-x || y == y || x        # Commutation
-x && y == y && x        # Commutation
-x || !x == true         # Tautology
-x && !x == false        # Contradiction
-(!x || !y) == !(x && y) # De Morgan's laws
-(!x && !y) == !(x || y) # De Morgan's laws
+x || !x == true                         # Tautology
+x && !x == false                        # Contradiction
+true || x == true                       # Identity law
+false && x == false                     # Nullification law
+x && x == x                             # Idempotent law
+x || x == x                             # Idempotent law
+x || y == y || x                        # Commutative law
+x && y == y && x                        # Commutative law
+x || (y || z) == (x || y) || z          # Associative law
+x && (y && z) == (x && y) && z          # Associative law
+(!x || !y) == !(x && y)                 # De Morgan's law
+(!x && !y) == !(x || y)                 # De Morgan's law
+x && (y || z) == (x && y) || (x && z)   # Distributive Law
+x || (y && z) == (x || y) && (x || z)   # Distributive Law
 ~~~
 
 ???
 
+* There's a set of laws that govern transforming boolean expressions.
+    * We can use these to refactor or simplify code.
+* Note that they come in pairs -- one for **and**, one for **or**.
+    * This is because fundamentally, we could just have one of those, plus **not**.
 * The Boolean **and** and **or** operators are commutative.
     * Note that Ruby has short-cutting — different code might run, depending on order.
+        * But the **result** will be the same either way.
+* That's a lot of transformations for only 2 possible values and 3 operators.
+    * There are actually more than this.
+        * For example, _modus ponens_ and _modus tollens_.
 * [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)
+* [Boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra)
 
 ---
 
