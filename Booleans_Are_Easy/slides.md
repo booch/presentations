@@ -459,6 +459,88 @@ end
 
 ---
 
+# Exponential Complexity
+
+~~~ ruby
+def render_editor(document, error_message, editing, saving, error)
+end
+~~~
+
+???
+
+* Let's say we had a method to render the document, taking each of those 3 boolean options.
+* And for this example, let's say that the states are independent of each other.
+* How many different cases would we have to handle if this method takes 3 boolean values?
+
+---
+
+# Exponential Complexity
+
+~~~ ruby
+def render_editor(document, error_message, editing, saving, error)
+  method1 if editing && !saving && !error
+  method2 if editing && saving && !error
+  method3 if editing && saving && error
+  method4 if editing && !saving && error
+  method5 if !editing && saving && !error
+  method6 if !editing && saving && error
+  method7 if !editing && !saving && error
+  method8 if !editing && !saving && !error
+end
+~~~
+
+???
+
+* We'd have to handle 8 different cases for 3 independent boolean variables.
+* If you're lucky, you'll be able to write it something like this.
+
+---
+
+# Exponential Complexity
+
+~~~ ruby
+def render_editor(document, error_message, editing, saving, error)
+  if editing
+    if saving
+      if error
+        method1
+      else
+        method2
+      end
+    else
+      if error
+        method3
+      else
+        method4
+      end
+    end
+  else
+    if saving
+      if error
+        method5
+      else
+        method6
+      end
+    else
+      if error
+        method7
+      else
+        method8
+      end
+    end
+  end
+end
+~~~
+
+???
+
+* If you're unlucky, it'd probably look more like this.
+* That's a method with 29 lines of code -- too big to fit on the screen here.
+* The formula for the number of conditions is `2^n` for n independent boolean variables.
+    * That's the bad kind of exponential growth.
+
+---
+
 # Readability of Predicate Methods
 
 ~~~ ruby
