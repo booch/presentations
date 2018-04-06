@@ -42,11 +42,25 @@ class: middle
 ---
 class: middle, center, image-only
 
+![Flag of St. Louis, Missouri](images/stl-flag.svg)
+
+???
+
+* I live in St. Louis.
+
+---
+class: middle, center, image-only
+
 ![Strange Loop logo](images/strange_loop_logo.jpg)
 
 ???
 
-* I went to Strange Loop last year.
+* So I can go to Strange Loop without traveling.
+* I went last year.
+
+* Strange Loop is a great conference.
+    * Lots of things will be over your head.
+    * It's inspirational to see all the advanced things going on.
 
 ---
 class: middle, center, image-only, percent-70
