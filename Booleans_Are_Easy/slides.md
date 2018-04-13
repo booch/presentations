@@ -86,8 +86,13 @@ class: middle, center, image-only
     * Slides: [Slides for "Solving the Boolean Identity Crisis"](https://bit.ly/elm-bool)
 
 ---
+class: transition, boolean_parameters
 
-# Booleans as Parameters
+# Boolean Parameters
+
+---
+
+# Boolean Parameters
 
 ~~~ ruby
 random_object.class
@@ -110,7 +115,7 @@ end
 
 ---
 
-# Booleans as Parameters
+# Boolean Parameters
 
 ~~~ ruby
 random_object.methods
@@ -127,7 +132,7 @@ random_object.methods
 
 ---
 
-# Booleans as Parameters
+# Boolean Parameters
 
 ~~~ ruby
 random_object.methods(false)
@@ -142,7 +147,7 @@ random_object.methods(false)
 
 ---
 
-# Booleans as Named Parameters
+# Boolean Named Parameters
 
 ~~~ ruby
 random_object.methods(superclass_methods: false)
@@ -157,7 +162,7 @@ random_object.methods(superclass_methods: false)
 
 ---
 
-# Booleans as Named Parameters
+# Boolean Named Parameters
 
 ~~~ ruby
 class Object
@@ -212,6 +217,11 @@ random_object.methods(false)
     * "Show the methods defined for this object OR the methods only defined by its immediate class."
 * Any time you have an "OR" in the description of a method or class, that's a code smell.
     * There's probably a violation of the Single Responsibility Principle.
+
+---
+class: transition, connascence
+
+# Connascence
 
 ---
 
@@ -332,6 +342,11 @@ random_object.methods(superclass_methods: false)
 * We decreased connascence by replacing Connascence of Meaning with Connascence of Name.
 
 ---
+class: transition, boolean_states
+
+# Boolean States
+
+---
 
 # Boolean States
 
@@ -449,6 +464,11 @@ end
 * If we have a sufficiently-specialized State class, maybe we can just delegate to the state object itself.
 
 ---
+class: transition, primitive_obsession
+
+# Primitive Obsession
+
+---
 
 # Primitive Obsession
 
@@ -479,6 +499,11 @@ end
 * In Ruby, we're more likely to abuse strings in this way.
     * That's often referred to as "stringly typed".
     * But this is an example where we've overused booleans.
+
+---
+class: transition, exponential_complexity
+
+# Exponential Complexity
 
 ---
 
@@ -563,6 +588,11 @@ end
     * That's the bad kind of exponential growth.
 
 ---
+class: transition, readability
+
+# Readability
+
+---
 
 # Readability of Predicate Methods
 
@@ -585,6 +615,11 @@ end
 * Having an explicit `true` or `false` is a bit of a smell.
     * With possible exception of early `return` statements (guard clauses).
 * Can we improve this code?
+
+---
+class: transition, boolean_transformations
+
+# Boolean Transformations
 
 ---
 
@@ -621,6 +656,11 @@ x || (y && z) == (x || y) && (x || z)   # Distributive Law
         * For example, _modus ponens_ and _modus tollens_.
 * [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)
 * [Boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra)
+
+---
+class: transition, readability
+
+# Readability
 
 ---
 
@@ -678,6 +718,11 @@ end
 * Don't be afraid to extract methods for sub-expressions.
     * Even if they're used in only 1 place.
     * Even if it's just to invert the _sense_.
+
+---
+class: transition, conclusion
+
+# Conclusion
 
 ---
 

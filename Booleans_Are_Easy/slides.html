@@ -71,7 +71,7 @@
       }
 
       .remark-slide .title h1 {
-        font-size: 70px;
+        font-size: 75px;
         margin-top: -50px;
       }
       .remark-slide .title li {
@@ -141,14 +141,54 @@
       .remark-presenter-mode .remark-notes-area .remark-notes-preview-area {
         display: none;
       }
-      .remark-slide .affiliations li {
-        list-style: none;
+
+      /* Transitipon Slides */
+      .remark-slide .transition {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        height: 600px; /* Remark "normalizes" pages to 800x600. */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 0 50px;
+        background-size: 100%;
+        opacity: .80;
       }
-      .remark-slide .affiliations img {
-        height: 120px;
-        margin: 10px 0;
-        vertical-align: middle;
+      .remark-slide .transition h1 {
+        padding: 0 20px;
+        font-size: 75px;
+        background-color: rgba(255, 255, 255, .75);
+
       }
+      .remark-slide .transition.boolean_parameters {
+        background-image: url(images/Param_03.jpg);
+      }
+      .remark-slide .transition.connascence {
+        background-image: url(images/TwinsTwins.JPG);
+      }
+      .remark-slide .transition.boolean_states {
+        background-image: url(images/Balkans_regions_map.png);
+      }
+      .remark-slide .transition.primitive_obsession {
+        background-image: url(images/Obsession.png);
+      }
+      .remark-slide .transition.exponential_complexity {
+        background-image: url(images/Exponential.svg);
+      }
+      .remark-slide .transition.readability {
+        background-image: url(images/books_bookshelf_computer_science_programming_computer_language_specialist_literature-1066570.jpg);
+      }
+      .remark-slide .transition.boolean_transformations {
+        background-image: url(images/Bumblebee_Transformer_-_Flickr_-_andrewbasterfield.jpg);
+      }
+      .remark-slide .transition.conclusion {
+        background-image: url(images/6736130025_ac5e197e22_b.jpg);
+      }
+
+
+
+      /* Individual (non-transition) slides */
       .remark-slide .thanks img {
         width: 500px;
         margin-left: 100px;
@@ -265,8 +305,13 @@ class: middle, center, image-only
     * Slides: [Slides for "Solving the Boolean Identity Crisis"](https://bit.ly/elm-bool)
 
 ---
+class: transition, boolean_parameters
 
-# Booleans as Parameters
+# Boolean Parameters
+
+---
+
+# Boolean Parameters
 
 ~~~ ruby
 random_object.class
@@ -289,7 +334,7 @@ end
 
 ---
 
-# Booleans as Parameters
+# Boolean Parameters
 
 ~~~ ruby
 random_object.methods
@@ -306,7 +351,7 @@ random_object.methods
 
 ---
 
-# Booleans as Parameters
+# Boolean Parameters
 
 ~~~ ruby
 random_object.methods(false)
@@ -321,7 +366,7 @@ random_object.methods(false)
 
 ---
 
-# Booleans as Named Parameters
+# Boolean Named Parameters
 
 ~~~ ruby
 random_object.methods(superclass_methods: false)
@@ -336,7 +381,7 @@ random_object.methods(superclass_methods: false)
 
 ---
 
-# Booleans as Named Parameters
+# Boolean Named Parameters
 
 ~~~ ruby
 class Object
@@ -391,6 +436,11 @@ random_object.methods(false)
     * "Show the methods defined for this object OR the methods only defined by its immediate class."
 * Any time you have an "OR" in the description of a method or class, that's a code smell.
     * There's probably a violation of the Single Responsibility Principle.
+
+---
+class: transition, connascence
+
+# Connascence
 
 ---
 
@@ -511,6 +561,11 @@ random_object.methods(superclass_methods: false)
 * We decreased connascence by replacing Connascence of Meaning with Connascence of Name.
 
 ---
+class: transition, boolean_states
+
+# Boolean States
+
+---
 
 # Boolean States
 
@@ -628,6 +683,11 @@ end
 * If we have a sufficiently-specialized State class, maybe we can just delegate to the state object itself.
 
 ---
+class: transition, primitive_obsession
+
+# Primitive Obsession
+
+---
 
 # Primitive Obsession
 
@@ -658,6 +718,11 @@ end
 * In Ruby, we're more likely to abuse strings in this way.
     * That's often referred to as "stringly typed".
     * But this is an example where we've overused booleans.
+
+---
+class: transition, exponential_complexity
+
+# Exponential Complexity
 
 ---
 
@@ -742,6 +807,11 @@ end
     * That's the bad kind of exponential growth.
 
 ---
+class: transition, readability
+
+# Readability
+
+---
 
 # Readability of Predicate Methods
 
@@ -764,6 +834,11 @@ end
 * Having an explicit `true` or `false` is a bit of a smell.
     * With possible exception of early `return` statements (guard clauses).
 * Can we improve this code?
+
+---
+class: transition, boolean_transformations
+
+# Boolean Transformations
 
 ---
 
@@ -800,6 +875,11 @@ x || (y && z) == (x || y) && (x || z)   # Distributive Law
         * For example, _modus ponens_ and _modus tollens_.
 * [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)
 * [Boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra)
+
+---
+class: transition, readability
+
+# Readability
 
 ---
 
@@ -857,6 +937,11 @@ end
 * Don't be afraid to extract methods for sub-expressions.
     * Even if they're used in only 1 place.
     * Even if it's just to invert the _sense_.
+
+---
+class: transition, conclusion
+
+# Conclusion
 
 ---
 
