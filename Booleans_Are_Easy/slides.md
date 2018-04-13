@@ -769,8 +769,11 @@ class: thanks
 
 * Thank YOU for coming.
 * Big thanks to Jeremy Fairbank for inspiring this talk.
+* Thanks to my company, F5, for sponsoring my travel.
+    * I believe we have a few positions open for Web Developers.
 * Amos King for some examples of Boolean transformations.
 * Members of St. Louis Ruby Users group for feedback on a preview of the talk.
+* Members of my team at F5 for feedback on a preview of the talk.
 * Thanks to RailsConf for selecting my talk.
 
 ---
@@ -784,7 +787,13 @@ class: thanks
 
 * Slides: http://craigbuchek.com/booleans
     * Source: https://github.com/booch/presentations
-    * [Remark][remark] presentation software
+
+???
+
+* One reason I give talks at conferences is to start a conversation.
+    * Please don't hesitate to come talk to me any time during the conference.
+
+* [Remark][remark] presentation software
 
 
 

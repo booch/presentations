@@ -43,12 +43,13 @@
       }
 
       .remark-slides-area {
-        background-color: rgb(13, 121, 186);
+        background-color: #C6291C; /* Color of pillarbox on sides of slides */
       }
       .remark-slide-scaler {
         background-color: white;
       }
       .remark-slide-content {
+        background-color: #F4F4F4;
         font-size: 26px; line-height: 1.6;
         width: 100%;
       }
@@ -70,6 +71,7 @@
         -webkit-user-select: none; /* The line numbers should not be selectable. */
       }
 
+      /* Title page */
       .remark-slide .title h1 {
         font-size: 75px;
         margin-top: -50px;
@@ -81,8 +83,14 @@
       .remark-slide .title ul {
         padding-left: 0px;
       }
+      .remark-slide .title {
+        background-image: url(images/f5-logo-gradient-rgb.png);
+        background-position: 150px 400px;
+      }
       .remark-slide .title h3 {
         font-size: 40px;
+        margin-left: 200px;
+        margin-top: 140px;
       }
       .remark-slide .diagram p {
         text-align: center;
@@ -185,8 +193,6 @@
       .remark-slide .transition.conclusion {
         background-image: url(images/6736130025_ac5e197e22_b.jpg);
       }
-
-
 
       /* Individual (non-transition) slides */
       .remark-slide .thanks img {
@@ -988,8 +994,11 @@ class: thanks
 
 * Thank YOU for coming.
 * Big thanks to Jeremy Fairbank for inspiring this talk.
+* Thanks to my company, F5, for sponsoring my travel.
+    * I believe we have a few positions open for Web Developers.
 * Amos King for some examples of Boolean transformations.
 * Members of St. Louis Ruby Users group for feedback on a preview of the talk.
+* Members of my team at F5 for feedback on a preview of the talk.
 * Thanks to RailsConf for selecting my talk.
 
 ---
@@ -1003,7 +1012,13 @@ class: thanks
 
 * Slides: http://craigbuchek.com/booleans
     * Source: https://github.com/booch/presentations
-    * [Remark][remark] presentation software
+
+???
+
+* One reason I give talks at conferences is to start a conversation.
+    * Please don't hesitate to come talk to me any time during the conference.
+
+* [Remark][remark] presentation software
 
 
 
