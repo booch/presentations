@@ -309,6 +309,10 @@ class: transition, boolean_parameters
 
 # Boolean Parameters
 
+???
+
+* On to Ruby!
+
 ---
 
 # Boolean Parameters
@@ -320,8 +324,9 @@ random_object.class
 
 ???
 
-* On to Ruby!
 * When I'm in Rails console, IRB, or Pry, I frequently want to see the class of an object.
+
+* I actually wrote a method to get a random object:
 
 ~~~ ruby
 def random_object(cache: true)
@@ -339,14 +344,22 @@ end
 ~~~ ruby
 random_object.methods
 # => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
+
+random_object.class.instance_methods
+# => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
 ~~~
+
+
 
 ???
 
 * Often, I'll also want to see what methods the object can respond to.
 * I'll use a method that's on `Object`, named `methods`.
-* Show of hands - who's familiar with this method named `methods`?
-* How many of you (with your hands up) know that it takes an optional parameter?
+    * Or a method that's on `Class`, named `instance_methods`.
+* Notice that these usually return a long list of methods.
+    * They're running of the right side of the text box here.
+* Show of hands - who's familiar with either of these methods?
+* How many of you (with your hands up) know that they take an optional parameter?
 * How many of you remember whether to pass `true` or `false` to not show methods from superclasses?
 
 ---
@@ -356,11 +369,14 @@ random_object.methods
 ~~~ ruby
 random_object.methods(false)
 # => [:id, :first_name, :last_name]
+
+random_object.class.instance_methods(false)
+# => [:id, :first_name, :last_name]
 ~~~
 
 ???
 
-* It happens to be `false` for this method.
+* It happens to be `false` for these methods.
 * But to use it properly, you have to remember that.
 * Can we do better?
 
@@ -434,13 +450,17 @@ random_object.methods(false)
 
 * How would you describe what this original method does?
     * "Show the methods defined for this object OR the methods only defined by its immediate class."
-* Any time you have an "OR" in the description of a method or class, that's a code smell.
+* Any time you have an "OR" (or "AND") in the description of a method or class, that's a code smell.
     * There's probably a violation of the Single Responsibility Principle.
 
 ---
 class: transition, connascence
 
 # Connascence
+
+???
+
+* We're going to take a short detour here to talk about something called "connascence".
 
 ---
 
@@ -452,7 +472,6 @@ class: transition, connascence
 
 ???
 
-* We're going to take a short detour here to talk about something called "connascence".
 * Definitions are from Webster's dictionary, 1913.
 
 ---
