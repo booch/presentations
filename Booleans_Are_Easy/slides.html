@@ -283,6 +283,8 @@ class: middle, center, image-only
 * So I can go to Strange Loop without traveling.
 * I went last year.
 
+------
+
 * Strange Loop is a great conference.
     * Lots of things will be over your head.
     * It's inspirational to see all the advanced things going on.
@@ -307,8 +309,11 @@ class: middle, center, image-only
 * That talk inspired me to create this talk.
 * Ruby is very different than Elm, so this talk is very different from Jeremy's.
 * I highly recommend watching Jeremy's talk.
-    * Video: [Solving the Boolean Identity Crisis by Jeremy Fairbank](https://www.youtube.com/watch?v=8Af1bh-BVY8)
-    * Slides: [Slides for "Solving the Boolean Identity Crisis"](https://bit.ly/elm-bool)
+
+------
+
+* Jeremy's video: [Solving the Boolean Identity Crisis by Jeremy Fairbank](https://www.youtube.com/watch?v=8Af1bh-BVY8)
+* Jeremy's slides: [Slides for "Solving the Boolean Identity Crisis"](https://bit.ly/elm-bool)
 
 ---
 class: transition, boolean_parameters
@@ -331,6 +336,8 @@ random_object.class
 ???
 
 * When I'm in Rails console, IRB, or Pry, I frequently want to see the class of an object.
+
+------
 
 * I actually wrote a method to get a random object:
 
@@ -493,6 +500,12 @@ class: transition, connascence
         * PDF: [http://wiki.cfcl.com/pub/Projects/Connascence/Resources/p147-page-jones.pdf]
     * [What Every Programmer Should Know About Object-Oriented Design](https://www.amazon.com/dp/0932633315/), 1996
     * [Fundamentals of Object-Oriented Design in UML](https://www.amazon.com/dp/020169946X), 1999
+* Links to those are in the presentation notes.
+    * I did find a link to the full text of the ACM article.
+    * I also included some links to other articles and sites talking about connascence.
+
+------
+
 * Additional resources:
     * [Wikipedia article on connascence](https://en.wikipedia.org/wiki/Connascence)
     * A nice reference site: [connascence.io](http://connascence.io/)
@@ -712,6 +725,11 @@ class: transition, primitive_obsession
 
 # Primitive Obsession
 
+???
+
+* The original version of that code contains a code smell named "primitive obsession".
+
+
 ---
 
 # Primitive Obsession
@@ -736,7 +754,6 @@ end
 
 ???
 
-* This original code contains a code smell we call "primitive obsession".
 * It's using a primitive type when it'd be better to use a more specialized type.
     * Example: Using a floating point number to represent money
     * Example: Using a string to represent a URL
@@ -865,6 +882,10 @@ class: transition, boolean_transformations
 
 # Boolean Transformations
 
+???
+
+* We're going to need some tools to refactor that to make it more readable.
+
 ---
 
 # Boolean Transformations
@@ -902,11 +923,6 @@ x || (y && z) == (x || y) && (x || z)   # Distributive Law
 * [Boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra)
 
 ---
-class: transition, readability
-
-# Readability
-
----
 
 # Readability of Predicate Methods
 
@@ -922,7 +938,7 @@ end
 
 ???
 
-* Now we have tools to refactor this to be more readable.
+* Now that we have the proper tools, let's get to work.
 
 ---
 
@@ -1018,8 +1034,9 @@ class: thanks
 * One reason I give talks at conferences is to start a conversation.
     * Please don't hesitate to come talk to me any time during the conference.
 
-* [Remark][remark] presentation software
+------
 
+* I used a tool called [Remark][remark] to create and show these slides.
 
 
 [twitter]: https://twitter.com/CraigBuchek
