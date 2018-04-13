@@ -7,7 +7,7 @@ layout: true
 
 <footer>
   <p class="left"><!-- page numbers --></p>
-  <p class="right">https://craigbuchek.com/booleans</p>
+  <p class="right">http://craigbuchek.com/booleans</p>
 </footer>
 
 ---
@@ -24,7 +24,7 @@ class: title, middle, center
 ---
 class: middle
 
-* Slides: https://craigbuchek.com/booleans
+* Slides: http://craigbuchek.com/booleans
 
 
 * Hit `P` to toggle presenter notes
