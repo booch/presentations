@@ -833,9 +833,9 @@ end
     * That's the bad kind of exponential growth.
 
 ---
-class: transition, readability
+class: transition, boolean_transformations
 
-# Readability
+# Boolean Transformations
 
 ---
 
@@ -859,16 +859,7 @@ end
     * _Predicate method_ just means that it returns `true` or `false`.
 * Having an explicit `true` or `false` is a bit of a smell.
     * With possible exception of early `return` statements (guard clauses).
-* Can we improve this code?
-
----
-class: transition, boolean_transformations
-
-# Boolean Transformations
-
-???
-
-* We're going to need some tools to refactor that to make it more readable.
+* We're going to need some tools to refactor this to make it more readable.
 
 ---
 
@@ -877,7 +868,9 @@ class: transition, boolean_transformations
 ~~~ ruby
 x || !x == true                         # Tautology
 x && !x == false                        # Contradiction
-true || x == true                       # Identity law
+true && x == x                          # Identity law
+false || x == x                         # Identity law
+true || x == true                       # Nullification law
 false && x == false                     # Nullification law
 x && x == x                             # Idempotent law
 x || x == x                             # Idempotent law
@@ -896,15 +889,62 @@ x || (y && z) == (x || y) && (x || z)   # Distributive Law
 * There's a set of laws that govern transforming boolean expressions.
     * We can use these to refactor or simplify code.
 * Note that they come in pairs -- one for **and**, one for **or**.
-    * This is because fundamentally, we could just have one of those, plus **not**.
-* The Boolean **and** and **or** operators are commutative.
-    * Note that Ruby has short-cutting — different code might run, depending on order.
-        * But the **result** will be the same either way.
 * That's a lot of transformations for only 2 possible values and 3 operators.
     * There are actually more than this.
-        * For example, _modus ponens_ and _modus tollens_.
-* [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)
+* I want to point out 1 slight gotcha with this list.
+    * Ruby has short-cutting — different code might run, depending on order.
+        * But the **result** will be the same either way.
+
+------
+
+* Other transformations: _modus ponens_ and _modus tollens_.
 * [Boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra)
+
+---
+
+# De Morgan's Laws
+
+~~~ ruby
+(!x || !y) == !(x && y)
+(!x && !y) == !(x || y)
+
+x && y == !(!x || !y)
+x || y == !(!x && !y)
+~~~
+
+???
+
+* I want to call one set out in particular.
+* De Morgan's laws basically show that you can switch **and** and **or** by adding **not**.
+* The 2nd set there is just the first set, with the sides switched and **not** moved to the other side.
+* So we really only need **not** and either **and** or **or**.
+    * We can rewrite the 3rd operation in terms of the other 2.
+        * For clarity sake, I would encourage you NOT to do that though.
+* In electronics, they go even further, using only a "NAND" component ("gate").
+    * For **not**, they just use a single input for both of the inputs.
+* For our purposes, we can use De Morgan's laws to clarify code.
+
+------
+
+* [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws)
+* [NAND logic](https://en.wikipedia.org/wiki/NAND_logic)
+
+---
+
+# Simplification of If/Then/Else
+
+~~~ ruby
+if x; then y; else z; end == (x && y) || ((!x) && z)
+~~~
+
+???
+
+* If we have all Booleans in an `if` statement, we can convert it to use Boolean operators.
+
+---
+class: transition, readability
+
+# Readability
 
 ---
 
@@ -918,11 +958,82 @@ def deletable?
     true
   end
 end
+
+# if x; then y; else z; end == (x && y) || ((!x) && z)
 ~~~
 
 ???
 
 * Now that we have the proper tools, let's get to work.
+* That explicit `true` sticks out to me.
+* But it's easier to get rid of it if we remove the `if` first.
+
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  (approvers_enabled? && !answered?) ||
+      (!approvers_enabled? && true)
+end
+
+# true && x == x                          # Identity law
+~~~
+
+???
+
+* Apply that last rule to remove the `if` statement.
+* Now we can use the Identity law to get rid of that explicit `true` on the right side.
+
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  (approvers_enabled? && !answered?) || !approvers_enabled?
+end
+
+# (y && z) || x == (x || y) && (x || z)   # Distributive Law
+~~~
+
+???
+
+* Next we can use the distributive law to put those 2 `approvers_enabled?` next to each other.
+
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  (!approvers_enabled? || !answered?) &&
+      (!approvers_enabled? || approvers_enabled?)
+end
+
+# x || !x == true                         # Tautology
+~~~
+
+???
+
+* Now we have a tautology on the right side that we can simplify.
+
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  (!approvers_enabled? || !answered?) && true
+end
+
+# true && x == x                          # Identity law
+~~~
+
+???
+
+* We can get rid of the `true` with the identity law.
 
 ---
 
@@ -936,7 +1047,23 @@ end
 
 ???
 
-* We can apply some of the transformations to get rid of the `if` and the explicit `true`.
+* Leaving us with just the 2 terms.
+* We could go one of 2 ways at this point.
+
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  !(approvers_enabled? && answered?)
+end
+~~~
+
+???
+
+* We could apply De Morgan's law.
+* But I don't think that's very intention-revealing.
 
 ---
 
@@ -958,10 +1085,36 @@ end
 
 ???
 
-* We can refactor to extract some methods to make things more clear.
+* Instead, I'd refactor to extract some methods to make things more clear.
 * Don't be afraid to extract methods for sub-expressions.
     * Even if they're used in only 1 place.
     * Even if it's just to invert the _sense_.
+* Note that there were a lot of small steps.
+    * I typically do more than 1 step at a time.
+    * It's **REALLY** helpful to have tests to make sure you don't mess up.
+
+---
+
+# Readability of Predicate Methods
+
+~~~ ruby
+def deletable?
+  if approvers_enabled?
+    !answered?
+  else
+    true
+  end
+end
+
+def deletable?
+  approvers_disabled? || unanswered?
+end
+~~~
+
+???
+
+* Which of these would you rather come across?
+* Which is easier to figure out the meaning of?
 
 ---
 class: transition, conclusion
