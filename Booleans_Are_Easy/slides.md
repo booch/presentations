@@ -122,6 +122,7 @@ b = false
 a = true
 a.class
 # => TrueClass
+
 b = false
 b.class
 # => FalseClass
@@ -137,11 +138,13 @@ b.class
 
 ~~~ ruby
 a = true
-c = true
 a.object_id
 # => 20
+
+c = true
 c.object_id
 # => 20
+
 ( 1 + 1 == 2 ).object_id
 # => 20
 ~~~
@@ -162,6 +165,7 @@ c.object_id
 ~~~ ruby
 TrueClass.new
 # => NoMethodError: undefined method `new' for TrueClass:Class
+
 FalseClass.new
 # => NoMethodError: undefined method `new' for FalseClass:Class
 ~~~
@@ -177,6 +181,7 @@ FalseClass.new
 ~~~ ruby
 Boolean
 # => NameError: uninitialized constant Boolean
+
 TrueClass.ancestors
 # => [TrueClass, Object, Kernel, BasicObject]
 ~~~
@@ -198,12 +203,16 @@ TrueClass.ancestors
 ~~~ ruby
 "this is true" if true
 # => "this is true"
+
 "123 acts like it's true" if 123
 # => "123 acts like it's true"
+
 "this object acts like it's true" if Object.new
 # => "this object acts like it's true"
+
 "this is false" unless false
 # => "this is false"
+
 "nil acts like it's false" unless nil
 # => "nil acts like it's false"
 ~~~
@@ -222,6 +231,7 @@ TrueClass.ancestors
 
 ~~~ ruby
 expect(123).to be_truthy
+
 expect(subject.valid?).to be_falsey
 ~~~
 
@@ -353,6 +363,7 @@ end
 ~~~ ruby
 random_object.methods
 # => [:id, :first_name, :last_name]
+
 random_object.all_methods
 # => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
 ~~~
@@ -368,6 +379,7 @@ random_object.all_methods
 ~~~ ruby
 random_object.methods(true)
 # => [:id, :first_name, :last_name]
+
 random_object.methods(false)
 # => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
 ~~~
@@ -378,6 +390,41 @@ random_object.methods(false)
     * "Show the methods defined for this object OR the methods only defined by its immediate class."
 * Any time you have an "OR" (or "AND") in the description of a method or class, that's a code smell.
     * There's probably a violation of the Single Responsibility Principle.
+
+---
+
+# An Example from Rails
+
+~~~ ruby
+user.things(true)
+
+user.things.reload
+~~~
+
+???
+
+* I came across this a couple months ago, when upgrading to Rails 5.
+* These both do the same thing.
+* The first one was the original API in Rails to reload an association.
+* The 2nd is the current API.
+* The original API is deprecated as of Rails 5, and removed as of Rails 5.1.
+* Not only is the new one clearer, but the old way can lead to some very subtle bugs.
+
+---
+
+# An Example from Rails
+
+~~~ ruby
+@clients.sales(limit: 10)
+~~~
+
+???
+
+* This is [Rails issue #26413](https://github.com/rails/rails/issues/26413)
+* The bug report complains that the sales are being reloaded.
+* Show of hands - anyone see the issue?
+* The `sales` association doesn't take a hash, it takes a boolean.
+* Ruby treats the `limit: 10` hash as `true`, meaning "reload".
 
 ---
 class: transition, connascence
