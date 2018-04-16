@@ -1177,6 +1177,8 @@ class: thanks, f5
 
 ???
 
+* End with a joke:
+    * The best thing about a Boolean is even if you're wrong, you're only off by a bit.
 * One reason I give talks at conferences is to start a conversation.
     * Please don't hesitate to come talk to me any time during the conference.
 
