@@ -268,9 +268,6 @@ class: transition, boolean_parameters
 
 # Boolean Parameters
 
-???
-
-
 ---
 
 # Boolean Parameters
@@ -831,6 +828,211 @@ end
 * That's a method with 29 lines of code -- too big to fit on the screen here.
 * The formula for the number of conditions is `2^n` for n independent boolean variables.
     * That's the bad kind of exponential growth.
+
+---
+class: transition, boolean_operations
+
+# Boolean Operations
+
+???
+
+* Let's move on to Boolean operations and Boolean algebra.
+
+---
+
+# Negation (NOT)
+
+* Boolean algebra: `¬`
+* Ruby: `!`
+* Others: `~`, overline
+
+~~~ ruby
+!false
+# => true
+
+!true
+# => false
+~~~
+
+???
+
+* Let's start out simple.
+
+------
+
+* Note that Ruby has `~` for binary negation, but that's rarely what you want.
+
+---
+
+# Negation (NOT)
+
+<table class="truth-table">
+  <tbody>
+    <tr>
+      <th>x</th>
+      <th>¬x</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+???
+
+* This is the truth table for negation.
+* We often think of **true** and **false** as 1 and 0, or **on** and **off**.
+
+---
+
+# Conjunction (AND)
+
+* Boolean algebra: `∧`
+* Ruby: `&&`
+* Others: `*`, `×`, `⋅`
+
+~~~ ruby
+true && true
+# => true
+
+true && false
+# => false
+
+false && false
+# => false
+~~~
+
+???
+
+* That upside-down "V" is the *conjunction* symbol.
+    * It's much like the upside-down "U" for set intersection.
+        * A ∩ B (intersection) means elements belonging to set A **AND** B.
+* Ruby also has `&` for binary AND, and the `and` keyword.
+    * You'll rarely want to use either of those.
+
+---
+
+# Conjunction (AND)
+
+<table class="truth-table">
+  <tbody>
+    <tr>
+      <th>x</th>
+      <th>y</th>
+      <th>x ∧ y</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th>0</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>0</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th>1</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>1</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+???
+
+* On the last slide, I showed the multiplication sign as an alternative notation.
+* If you treat the inputs as 0s and 1s, you can multiply them to get the conjunction.
+
+---
+
+# Disjunction (OR)
+
+* Boolean algebra: `∨`
+* Ruby: `||`
+* Others: `+`
+
+~~~ ruby
+true || true
+# => true
+
+true || false
+# => true
+
+false || false
+# => false
+~~~
+
+???
+
+* That "V"-like symbol is the *disjunction* symbol.
+    * It's much like the "U"-like symbol for union of sets.
+        * A ∪ B (union) means elements belonging to set A **OR** B.
+* Ruby also has `|` for binary OR, and the `or` keyword.
+    * You'll rarely want to use either of those.
+
+---
+
+# Disjunction (OR)
+
+<table class="truth-table">
+  <tbody>
+    <tr>
+      <th>x</th>
+      <th>y</th>
+      <th>x ∨ y</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th>0</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th>1</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>1</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+???
+
+* On the last slide, I showed the plus sign as an alternative notation.
+* If you treat the inputs as 0s and 1s, you can add them to get the disjunction.
+
+---
+
+# Other Operators
+
+* ⊕ - exclusive or (xor)
+* ⇔ - material equivalence (iff)
+* ⇒ - material implication (implies)
+
+???
+
+* There are actually 16 possible operators of 2 Boolean operands.
+    * Many aren't very interesting.
+        * For example, one returns true no matter what the values you give it.
 
 ---
 class: transition, boolean_transformations
