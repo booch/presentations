@@ -468,6 +468,30 @@ expect(subject.valid?).to be_falsey
 * You might come across those terms in RSpec tests.
 
 ---
+
+# Boolean Basics
+
+~~~ ruby
+"string is empty" if string.empty?
+"string is blank" if string.blank?
+
+"variable is nil" if variable.nil?
+~~~
+
+???
+
+* Please try not to use non-Booleans in `if` statements, though.
+* Use something more intention-revealing that returns a Boolean.
+
+------
+
+* This isn't as big a problem in Ruby as in other languages.
+    * Perl, PHP, and JavaScript interpret empty strings and 0 as `false`.
+* I contend that automatic coercion to Booleans are the 2nd most expensive mistake in computer language design.
+    * The most expensive mistake is null pointers (leading to null pointer exceptions).
+        * See [Null References: The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare)
+
+---
 class: transition, boolean_parameters
 
 # Boolean Parameters
