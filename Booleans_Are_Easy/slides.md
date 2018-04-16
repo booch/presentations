@@ -90,6 +90,145 @@ class: middle, center, image-only
 * Jeremy's video: [Solving the Boolean Identity Crisis by Jeremy Fairbank](https://www.youtube.com/watch?v=8Af1bh-BVY8)
 * Jeremy's slides: [Slides for "Solving the Boolean Identity Crisis"](https://bit.ly/elm-bool)
 
+
+---
+class: transition, boolean_basics
+
+# Boolean Basics
+
+???
+
+* On to Ruby!
+
+---
+
+# Boolean Basics
+
+~~~ ruby
+a = true
+b = false
+~~~
+
+???
+
+* Booleans are pretty simple, right?
+* The value of a Boolean is either true or false.
+
+---
+
+# Boolean Basics
+
+~~~ ruby
+a = true
+a.class
+# => TrueClass
+b = false
+b.class
+# => FalseClass
+~~~
+
+???
+
+* `true` and `false` are instances of classes named `TrueClass` and `FalseClass`.
+
+---
+
+# Boolean Basics
+
+~~~ ruby
+a = true
+c = true
+a.object_id
+# => 20
+c.object_id
+# => 20
+( 1 + 1 == 2 ).object_id
+# => 20
+~~~
+
+???
+
+* In fact, there's only 1 instance of each.
+* No matter how we get `true`, it's always the same object.
+
+------
+
+* From the `object_id` documentation: "no two objects will share an id".
+
+---
+
+# Boolean Basics
+
+~~~ ruby
+TrueClass.new
+# => NoMethodError: undefined method `new' for TrueClass:Class
+FalseClass.new
+# => NoMethodError: undefined method `new' for FalseClass:Class
+~~~
+
+???
+
+* You can't create a new instance of these classes.
+
+---
+
+# Boolean Basics
+
+~~~ ruby
+Boolean
+# => NameError: uninitialized constant Boolean
+TrueClass.ancestors
+# => [TrueClass, Object, Kernel, BasicObject]
+~~~
+
+???
+
+* Interestingly, there's no Boolean class in Ruby.
+* This is apparently due to Ruby's Smalltalk heritage.
+
+------
+
+* This is partially because Ruby is dynamically typed.
+    * There's no need to declare a variable as a Boolean.
+
+---
+
+# Boolean Basics
+
+~~~ ruby
+"this is true" if true
+# => "this is true"
+"123 acts like it's true" if 123
+# => "123 acts like it's true"
+"this object acts like it's true" if Object.new
+# => "this object acts like it's true"
+"this is false" unless false
+# => "this is false"
+"nil acts like it's false" unless nil
+# => "nil acts like it's false"
+~~~
+
+???
+
+* Anywhere Ruby expects a Boolean, you can use any object.
+* Ruby treats `false` and `nil` as false.
+    * Everything else is treated as true.
+* You might hear the terms "truthy" and "falsey".
+    * They express something that Ruby will interpret as true or false in this context.
+
+---
+
+# Boolean Basics
+
+~~~ ruby
+expect(123).to be_truthy
+expect(subject.valid?).to be_falsey
+~~~
+
+???
+
+* You might come across those terms in RSpec tests.
+
 ---
 class: transition, boolean_parameters
 
@@ -97,7 +236,6 @@ class: transition, boolean_parameters
 
 ???
 
-* On to Ruby!
 
 ---
 
@@ -145,7 +283,7 @@ random_object.class.instance_methods
 * I'll use a method that's on `Object`, named `methods`.
     * Or a method that's on `Class`, named `instance_methods`.
 * Notice that these usually return a long list of methods.
-    * They're running of the right side of the text box here.
+    * They're running off the right side of the text box here.
 * Show of hands - who's familiar with either of these methods?
 * How many of you (with your hands up) know that they take an optional parameter?
 * How many of you remember whether to pass `true` or `false` to not show methods from superclasses?
@@ -770,8 +908,8 @@ class: transition, conclusion
 ???
 
 * I hope I've shown that there's more to Booleans than meets the eye.
-* Readability matters.
-* Make it easier for the next person who has to read your code.
+* But the bigger point is that we can make our code easier to read and understand.
+* Take a little time to make it easier for the next person who has to read your code.
     * More often than not, that person will be you.
     * Even if it's not you, helping out your teammates is the right thing to do.
 
