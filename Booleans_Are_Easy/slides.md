@@ -984,6 +984,13 @@ class: transition, boolean_operations
 * We often think of **true** and **false** as 1 and 0, or **on** and **off**.
 
 ---
+class: image-only, percent-50
+
+# NOT Gate (Inverter)
+
+![ANSI NOT gate symbol](images/NOT_ANSI_Labelled.svg)
+
+---
 
 # Conjunction (AND)
 
@@ -1049,6 +1056,13 @@ false && false
 
 * On the last slide, I showed the multiplication sign as an alternative notation.
 * If you treat the inputs as 0s and 1s, you can multiply them to get the conjunction.
+
+---
+class: image-only, percent-50
+
+# AND Gate
+
+![ANSI AND gate symbol](images/AND_ANSI_Labelled.svg)
 
 ---
 
@@ -1117,6 +1131,13 @@ false || false
 * On the last slide, I showed the plus sign as an alternative notation.
 * If you treat the inputs as 0s and 1s, you can add them to get the disjunction.
     * Except you have to know what to do with the 1+1.
+
+---
+class: image-only, percent-50
+
+# OR Gate
+
+![ANSI OR gate symbol](images/OR_ANSI_Labelled.svg)
 
 ---
 
