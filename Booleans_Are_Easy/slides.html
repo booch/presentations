@@ -204,10 +204,6 @@
       }
 
       /* Individual (non-transition) slides */
-      .remark-slide .thanks img {
-        width: 500px;
-        margin-left: 100px;
-      }
       .remark-slide .single-image img {
         display: block;
         margin: 0 auto;
@@ -230,6 +226,9 @@
       }
       .percent-50 img {
         width: 50%;
+      }
+      .percent-30 img {
+        width: 30%;
       }
       .remark-slide .thanks.f5 img {
         display: block;
@@ -260,7 +259,7 @@
 layout: true
 
 <header>
-  <p class="left">RailsConf - 2018-04-17</p>
+  <p class="left">RailsConf 2018</p>
   <p class="right">@CraigBuchek</p>
 </header>
 
@@ -508,8 +507,8 @@ expect(subject.valid?).to be_falsey
 
 ???
 
-* But it's not recommended to rely on that in `if` statements.
-* It's better to use something more intention-revealing that returns a Boolean.
+* I would not recommend relying on that in `if` statements.
+* It's more *idiomatic* to use something more intention-revealing that returns a Boolean.
 
 ------
 
@@ -635,7 +634,6 @@ end
 ???
 
 * In older Ruby versions, we would have to use an options hash to emulate named parameters.
-    * TODO: Find references to Avdi and Sandi recommending this technique.
 * We still need to use an options hash to support taking a bare Boolean or a Hash.
 
 ---
@@ -652,7 +650,7 @@ random_object.all_methods
 
 ???
 
-* But really, it'd be best just to have 2 separate methods.
+* Ideally, it'd be best just to have 2 separate methods.
 
 ---
 
@@ -715,39 +713,45 @@ class: transition, connascence
 
 ???
 
-* We're going to take a short detour here to talk about something called "connascence".
+* I'd like to take a short detour here to talk about something called "connascence".
 
 ---
 
 # Connascence
 
-> _common birth or production of multiple things at the same time_
+> _common birth_
+
+> _production of multiple things at the same time_
 
 > _the act of growing together_
 
 ???
 
-* Definitions are from Webster's dictionary, 1913.
+* *Connascence* was a word before computers were around.
+* Here are some definitions from Webster's dictionary, from 1913.
+* (read through the slide)
 
 ---
+class: single-image
 
 # Connascence
 
-> _measurement of the amount of coupling (dependencies) among components of an OOP software system_
+![What Every Programmer Should Know About Object-Oriented Design](images/Page-Jones-1996.jpg)
 
 ???
 
-* Concept in OOP was first introduced in 1992, by Meilir (may-LEER) Page-Jones.
+* In 1992, Meilir (may-LEER) Page-Jones brought the idea to the OOP community.
     * [Comparing techniques by means of encapsulation and connascence](https://dl.acm.org/citation.cfm?id=130994.131004) in Communications of the ACM, 1992
-        * PDF: [http://wiki.cfcl.com/pub/Projects/Connascence/Resources/p147-page-jones.pdf]
     * [What Every Programmer Should Know About Object-Oriented Design](https://www.amazon.com/dp/0932633315/), 1996
     * [Fundamentals of Object-Oriented Design in UML](https://www.amazon.com/dp/020169946X), 1999
 * Links to those are in the presentation notes.
     * I did find a link to the full text of the ACM article.
-    * I also included some links to other articles and sites talking about connascence.
+* I also shared some links to other articles and sites talking about connascence.
 
 ------
 
+* Full PDF of Meilir Page-Jones's original paper:
+    * PDF: [http://wiki.cfcl.com/pub/Projects/Connascence/Resources/p147-page-jones.pdf]
 * Additional resources:
     * [Wikipedia article on connascence](https://en.wikipedia.org/wiki/Connascence)
     * A nice reference site: [connascence.io](http://connascence.io/)
@@ -757,11 +761,22 @@ class: transition, connascence
 
 # Connascence
 
+> _measurement of the amount of coupling (dependencies) among components of an OOP software system_
+
+???
+
+* Here's (roughly) Meilir's definition of connascence.
+* (read through the slide)
+
+---
+
+# Connascence
+
 ![Jim Weirich](images/jim-weirich-2014.jpg)
 
 ???
 
-* Jim Weirich brought the idea of connascence to the Ruby community in 2009.
+* In 2009, Jim Weirich brought the idea of connascence to the Ruby community.
 
 ---
 
@@ -773,19 +788,27 @@ class: transition, connascence
 
 ???
 
+* Here's (roughly) Jim's definition.
+* (read through the slide)
 * Jim Weirich gave a few different talks on connascence.
     * [Grand Unified Theory of Software Design](https://vimeo.com/10837903)
-        * Slides: https://github.com/jimweirich/presentation_connascence
         * Has a very similar example to my `methods` example.
-        * Another version of the talk, with better audio, but worse video: https://vimeo.com/10837903
-    * [The Building Blocks of Modularity](https://www.youtube.com/watch?v=l780SYuz9DI)
-        * Same slides as above, but shown in video; poor audio
     * [Connascence Examined](https://www.youtube.com/watch?v=HQXVKHoUQxY) - new talk in 2012
         * Slides: https://github.com/jimweirich/presentation-connascence-examined
-    * Makes the argument that connascence underlies many other rules of good OOP design.
-        * DRY
-        * Code smells
-        * Race conditions
+* Jim makes the argument that connascence underlies many other rules of good OO design.
+    * DRY
+    * Code smells
+    * Race conditions
+* So we want to **reduce** connascence, like we want to reduce coupling.
+
+------
+
+* [Grand Unified Theory of Software Design](https://vimeo.com/10837903)
+    * Slides: https://github.com/jimweirich/presentation_connascence
+    * Another version of the talk, with better audio, but worse video:
+        * https://vimeo.com/10837903
+* [The Building Blocks of Modularity](https://www.youtube.com/watch?v=l780SYuz9DI)
+    * Same slides as above, but shown in video; poor audio
 
 ---
 
@@ -799,24 +822,54 @@ class: transition, connascence
 
 ???
 
-* This is a list of the types of static connascence.
-    * There are dynamic types of connascence too.
+* Here's a list of the types of _static_ connascence.
+    * They're ordered from weakest connascence to strongest.
+        * So we should prefer the ones near the top.
+* There are _dynamic_ types of connascence too.
+    * The dynamic types of connascence are all _stronger_ then these.
+
+---
+
+# Connascence
+
+* Connascence of Name
+* Connascence of Type
+* Connascence of Meaning
+* Connascence of Position
+* Connascence of Algorithm
+
+???
+
 * Connascence of Name
     * Agreement on the name of something
     * Example: any time we call a method
     * Example: any time we reference a variable or a constant
 * Connascence of Type
     * Agreement on the type of something
+    * In Ruby, this means duck typing
 * Connascence of Meaning
     * Agreement on the meaning or interpretation of specific values
+        * Including **true** and **false**
 * Connascence of Position
     * Agreement on the order of values
 * Connascence of Algorithm
     * Agreement on a particular algorithm
     * Example: encoding/decoding passwords
     * Example: checksum on credit card numbers
-* This list is from weakest connascence to strongest.
-    * The dynamic types of connascence are all stronger then these.
+
+---
+
+# Connascence
+
+* Connascence of Name
+* Connascence of Type
+* Connascence of Meaning
+* Connascence of Position
+* Connascence of Algorithm
+
+???
+
+* Remember, we always want to try to **reduce** connascence.
 * If we can replace a stronger form of connascence with a weaker form, we've reduced connascence.
 * Increasing locality of connascent components is another way to reduce connascence.
 * Note that Connascence of Name is weaker than Connascence of Meaning.
@@ -836,9 +889,9 @@ random_object.methods(superclass_methods: false)
 ???
 
 * That's what we did here.
-* We replaced a positional parameter with a named parameter.
-* The positional parameter has a specific meaning, which is more difficult to remember.
-* We decreased connascence by replacing Connascence of Meaning with Connascence of Name.
+* We replaced a Boolean parameter with a specific meaning with a named parameter.
+* That specific meaning is more difficult to remember.
+* We reduced connascence by replacing Connascence of Meaning with Connascence of Name.
 
 ---
 class: transition, boolean_states
@@ -1595,6 +1648,10 @@ class: transition, readability
 
 # Readability
 
+???
+
+* Now that we have the proper tools, let's get to work.
+
 ---
 
 # Readability of Predicate Methods
@@ -1613,7 +1670,6 @@ end
 
 ???
 
-* Now that we have the proper tools, let's get to work.
 * That explicit `true` sticks out to me.
 * But it's easier to get rid of it if we remove the `if` first.
 
@@ -1771,12 +1827,32 @@ class: transition, conclusion
 # Conclusion
 
 ---
+class: image-only, percent-30
+
+# The Point
+
+![Exclamation point](images/OCR-A_char_Exclamation_Mark.svg)
+
+???
+
+* The original code we looked at all *worked*.
+* So what was the point in changing it?
+* We read code more than we write it.
+    * So we should optimize for reading.
+    * So we should optimize for **understanding**.
+* Abstractions are meant to help us understand things.
+    * As Sandi says, take the time to find the **right** abstraction.
+    * Sometimes that takes some extra work.
+* Writing good code might take a little longer in the short run.
+    * In the long run, it will pay off to write the code as well as you can.
+
+---
 
 # Conclusions
 
 * Booleans aren't so simple
+* Booleans are often not the best choice
 * Readability matters
-* Empathy
 
 ???
 
@@ -1787,9 +1863,11 @@ class: transition, conclusion
     * Even if it's not you, helping out your teammates is the right thing to do.
 
 ---
-class: thanks
+class: thanks, image-only
 
 # Thanks
+
+![Thank you](images/Thank-you-word-cloud.jpg)
 
 ???
 
@@ -1814,6 +1892,17 @@ class: thanks, f5
 
 ---
 
+# Joke == Funny?
+
+_The best thing about a Boolean is even if you're wrong, you're only off by a bit._
+
+???
+
+* A co-worker told me this joke.
+* The only joke I could find about Booleans.
+
+---
+
 # Feedback
 
 * Twitter: [@CraigBuchek][twitter]
@@ -1826,10 +1915,8 @@ class: thanks, f5
 
 ???
 
-* End with a joke:
-    * The best thing about a Boolean is even if you're wrong, you're only off by a bit.
 * One reason I give talks at conferences is to start a conversation.
-    * Please don't hesitate to come talk to me any time during the conference.
+* Please don't hesitate to come talk to me any time during the conference.
 
 ------
 
