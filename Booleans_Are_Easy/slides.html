@@ -910,6 +910,32 @@ end
 # Boolean States
 
 ~~~ ruby
+class Editor < ApplicationRecord
+  enum state: %w[editing saving error]
+
+  def render
+    if state.editing?
+      render_document
+    elsif state.saving?
+      render_saving
+    elsif state.error?
+      render_error_message
+    end
+  end
+end
+~~~
+
+???
+
+* We can use ActiveRecord::Enum to define the possible states.
+* This allows us to catch bugs earlier.
+    * Because Ruby will catch an incorrect method name more easily than a mis-typed symbol.
+
+---
+
+# Boolean States
+
+~~~ ruby
 class Editor
   attr_accessor :state  # object of class State
 
@@ -927,10 +953,8 @@ end
 
 ???
 
-* We can use a State class, and use methods instead of symbols.
-    * This allows us to catch bugs earlier.
-        * Because Ruby will catch an incorrect method name more easily than a mis-typed symbol.
-* What else can we do?
+* We can use a State class, which is pretty similar to the enum.
+* Except ...
 
 ---
 
