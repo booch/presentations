@@ -807,6 +807,71 @@ end
     * We just replaced Boolean primitives with symbol primitives.
 
 ---
+class: transition, boolean_fields
+
+# Boolean Fields
+
+---
+
+# Boolean Fields
+
+~~~ ruby
+class User < ApplicationRecord
+  include Virtus::ActiveRecord.model
+
+  attribute :deleted, Boolean
+end
+~~~
+
+???
+
+* I want to talk about another case here.
+* We've got a Boolean attribute here to keep track of whether the object has been deleted.
+* I'm using my [Virtus-ActiveRecord](https://github.com/boochtek/virtus-activerecord) gem here.
+    * To show what fields are in the model.
+
+---
+
+# Boolean Fields
+
+~~~ ruby
+class User < ApplicationRecord
+  include Virtus::ActiveRecord.model
+
+  attribute :deleted_at, DateTime, required: false
+
+  def deleted?
+    !deleted_at.nil?
+  end
+end
+~~~
+
+???
+
+* Instead of marking something as deleted, we mark **when** it was deleted.
+
+---
+
+# Boolean Fields
+
+~~~ ruby
+class User < ApplicationRecord
+  include Virtus::ActiveRecord.model
+
+  attribute :deleted_at, DateTime, required: false
+  attribute :deleted_by, User
+
+  def deleted?
+    !deleted_at.nil?
+  end
+end
+~~~
+
+???
+
+* Even better, in this case, we might want to keep track of **who** and **when**.
+
+---
 class: transition, exponential_complexity
 
 # Exponential Complexity
