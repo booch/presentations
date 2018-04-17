@@ -17,10 +17,6 @@ class: title, middle, center
 # True or False?
 ### Craig Buchek
 
-???
-
-* My Twitter is in the upper right corner if you want to tweet at me.
-
 ---
 class: middle
 
@@ -38,6 +34,7 @@ class: middle
 * Hit `P` for presenter notes.
     * Notes have links to things I reference.
     * Notes have more info than I'll talk about in some cases.
+* My Twitter is in the upper right corner if you want to tweet at/about me.
 
 ---
 class: middle, center, image-only
@@ -237,7 +234,7 @@ expect(subject.valid?).to be_falsey
 
 ???
 
-* You might come across those terms in RSpec tests.
+* You might come across those terms ("truthy" and "falsey") in RSpec tests.
 
 ---
 
@@ -252,8 +249,8 @@ expect(subject.valid?).to be_falsey
 
 ???
 
-* Please try not to use non-Booleans in `if` statements, though.
-* Use something more intention-revealing that returns a Boolean.
+* But it's not recommended to rely on that in `if` statements.
+* It's better to use something more intention-revealing that returns a Boolean.
 
 ------
 
@@ -268,6 +265,10 @@ class: transition, boolean_parameters
 
 # Boolean Parameters
 
+???
+
+* Next we'll talk about Booleans used as parameters to methods.
+
 ---
 
 # Boolean Parameters
@@ -279,7 +280,8 @@ random_object.class
 
 ???
 
-* When I'm in Rails console, IRB, or Pry, I frequently want to see the class of an object.
+* I spend a lot of time in Rails console, IRB, or Pry.
+* I'll often want to see the class of an object.
 
 ------
 
@@ -584,6 +586,10 @@ class: transition, boolean_states
 
 # Boolean States
 
+???
+
+* Next we'll talk about Booleans used to represent application state.
+
 ---
 
 # Boolean States
@@ -614,10 +620,16 @@ end
 * And we might have an error condition that we need to show the user.
 * Anyone see the problem with this class?
 * The problem with this that we can end up with a combination of states that makes no sense.
-    * Or what would it mean to be both editing and saving?
+    * What would it mean to be both editing and saving?
     * If `error` is true, then the other fields in the object have no meaning.
 * We should try to ensure that our code can never get into an impossible state.
 * How can we improve this?
+
+------
+
+* There's a great talk by Richard Feldman called [Making Impossible States Impossible](https://www.youtube.com/watch?v=IcgmSRJHu_8)
+    * It's in Elm, though, so the idioms will be different.
+    * But the idea is still worth thinking about. A lot.
 
 ---
 
@@ -645,10 +657,8 @@ end
 ???
 
 * We should use a single field to represent the state.
-* We can use one of the state machine gems, or implement our own.
-    * The gems usually have some other nice features that are also helpful.
 * This doesn't look like a big improvement.
-    * But it prevents us from ever getting into a state that is meaningless or invalid.
+    * It **does** prevent us from ever getting into a state that is meaningless or invalid.
     * It ensures that the order of the options in (what's now) our case statement doesn't matter.
 * Can we do better still?
 
@@ -700,7 +710,9 @@ end
 
 ???
 
-* We can use a State class, which is pretty similar to the enum.
+* We can use one of the state machine gems, or implement our own.
+    * The gems usually have some other nice features that are also helpful.
+* This State class is pretty similar to the enum.
 * Except ...
 
 ---
@@ -734,7 +746,6 @@ class: transition, primitive_obsession
 
 * The original version of that code contains a code smell named "primitive obsession".
 
-
 ---
 
 # Primitive Obsession
@@ -764,12 +775,45 @@ end
     * Example: Using a string to represent a URL
 * In Ruby, we're more likely to abuse strings in this way.
     * That's often referred to as "stringly typed".
+        * A play on "strongly typed" languages.
     * But this is an example where we've overused booleans.
+
+---
+
+# Primitive Obsession
+
+~~~ ruby
+class Editor
+  attr_accessor :state  # symbol
+
+  def render
+    case state
+    when :editing
+      render_document
+    when :saving
+      render_saving
+    when :error
+      render_error_message
+    else
+      fail "This shouldn't happen"
+    end
+  end
+end
+~~~
+
+???
+
+* This version still has primitive obsession.
+    * We just replaced Boolean primitives with symbol primitives.
 
 ---
 class: transition, exponential_complexity
 
 # Exponential Complexity
+
+???
+
+* Next I want to talk about exponential complexity.
 
 ---
 
@@ -805,7 +849,7 @@ end
 
 ???
 
-* We'd have to handle 8 different cases for 3 independent boolean variables.
+* We'd have to handle **8** different cases for **3** independent boolean variables.
 * If you're lucky, you'll be able to write it something like this.
 
 ---
@@ -850,8 +894,34 @@ end
 
 * If you're unlucky, it'd probably look more like this.
 * That's a method with 29 lines of code -- too big to fit on the screen here.
+    * And that's without doing anything interesting in the method itself.
+* And don't forget the 8 different tests cases you'll need!
+    * More likely than not, you'll probably miss some of the cases in the tests and the code.
 * The formula for the number of conditions is `2^n` for n independent boolean variables.
     * That's the bad kind of exponential growth.
+
+---
+
+# Exponential Complexity
+
+~~~ ruby
+def render_editor(document, error_message, state)
+  case state
+  when :editing
+    render_document(document)
+  when :saving
+    render_saving
+  when :error
+    render_error_message(error_message)
+  end
+end
+~~~
+
+???
+
+* Our solution here again is to represent the state with a single variable.
+* Now we only have to handle one case for each possible state.
+* Now we're down to 3 or 4 cases, and a similar number of tests.
 
 ---
 class: transition, boolean_operations
@@ -881,6 +951,7 @@ class: transition, boolean_operations
 ???
 
 * Let's start out simple.
+* (read through most of slide)
 
 ------
 
@@ -933,6 +1004,7 @@ false && false
 
 ???
 
+* (read through most of slide)
 * That upside-down "V" is the *conjunction* symbol.
     * It's much like the upside-down "U" for set intersection.
         * A ∩ B (intersection) means elements belonging to set A **AND** B.
@@ -999,6 +1071,7 @@ false || false
 
 ???
 
+* (read through most of slide)
 * That "V"-like symbol is the *disjunction* symbol.
     * It's much like the "U"-like symbol for union of sets.
         * A ∪ B (union) means elements belonging to set A **OR** B.
@@ -1043,6 +1116,7 @@ false || false
 
 * On the last slide, I showed the plus sign as an alternative notation.
 * If you treat the inputs as 0s and 1s, you can add them to get the disjunction.
+    * Except you have to know what to do with the 1+1.
 
 ---
 
@@ -1062,6 +1136,10 @@ false || false
 class: transition, boolean_transformations
 
 # Boolean Transformations
+
+???
+
+* There's a set of laws that govern transforming boolean expressions.
 
 ---
 
@@ -1112,7 +1190,7 @@ x || (y && z) == (x || y) && (x || z)   # Distributive Law
 
 ???
 
-* There's a set of laws that govern transforming boolean expressions.
+* Here are some of the ways we can transform boolean expressions.
     * We can use these to refactor or simplify code.
 * Note that they come in pairs -- one for **and**, one for **or**.
 * That's a lot of transformations for only 2 possible values and 3 operators.
