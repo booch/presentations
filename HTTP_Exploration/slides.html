@@ -58,43 +58,32 @@ class: title, middle, center
 # http://exploration
 
 * by Craig Buchek
-* with Charlie Sanders
 
-* RailsConf
-* April 23, 2015
+* F5 Silverline
+* June 29, 2018
 
-
-* Please install Vagrant and VirtualBox
-* Please copy `Vagrantfile` and `http_exploration.box`
 
 ---
 
 Feedback
 ========
 
-* Twitter: @CraigBuchek
-* GitHub: booch (personal, presentations)
-* GitHub: boochtek (projects)
-* Email: craig@boochtek.com
+* HipChat: @CraigBuchek
 
 ---
 
 Follow Along
 ============
 
-http://tiny.cc/http_exploration
+http://craigbuchek.com/http-workshop
 
 ---
 
 About Me
 ========
 
-* Independent web developer
-  * BoochTek
 * Ruby / Rails programmer since 2006
-  * Network and System Admin before that
-* Agile practitioner
-  * This Agile Life podcast
+* Network and System Admin before that
 * Boring slide designer
 
 ---
@@ -118,17 +107,13 @@ HTTP History
 
 * HTTP/0.9 (1991)
 * HTTP/1.0 (1996)
-  * RFC 1945
+    * RFC 1945
 * HTTP/1.1 (2007)
-  * RFC 2616
+    * RFC 2616
 * HTTP/1.1 updates (2014)
-  * RFCs 7230, 7231, 7232, 7233, 7234, 7235
+    * RFCs 7230, 7231, 7232, 7233, 7234, 7235
 * HTTP/2 (2015)
-  * http://http2.github.io/
-
-???
-
-* HTTP/2 has been approved, but not yet published as RFCs
+    * RFCs 7540, 7541
 
 ---
 
@@ -160,6 +145,10 @@ scheme            |
 * Path
 * Query string
 * Fragment
+
+???
+
+* Note that most of these are not required.
 
 ---
 class: http-request
@@ -197,6 +186,18 @@ HTTP Methods
 * DELETE
 * HEAD
 
+???
+
+* Sometimes called "verbs"
+* There are a few other methods
+    * OPTIONS
+    * TRACE
+    * CONNECT
+* There are also some extensions to HTTP that add methods
+    * PATCH - RFC 5789
+    * WebDAV - RFCs 2518, 4918, and many more
+* Note that proxies/firewalls might restrict methods you can use
+
 ---
 
 Safe Methods
@@ -207,7 +208,8 @@ Safe Methods
 
 ???
 
-Takeaway = Don't have your app change things when processing `GET` requests (except logging and such)
+* Takeaway = Don't have your app change things when processing `GET` requests.
+    * Except logging and such.
 
 ---
 
@@ -219,7 +221,7 @@ Idempotent Methods
 
 ???
 
-Takeaway = Don't POST the same thing multiple times
+* Takeaway = Don't POST the same thing multiple times.
 
 ---
 
@@ -237,11 +239,11 @@ Request Headers
 
 * Host - the only *required* header (except pre-HTTP/1.0)
 * Accept - lists content types that the browser would like
-  * Can specify relative quality factor for each type
+    * Can specify relative quality factor for each type
 * Content-Length - size of the body (if applicable -- POST and PUT)
 * Content-Type - MIME type of body
-  * Forms: Usually `application/x-www-form-urlencoded` or `multipart/form-data`
-  * APIs: Typically `application/json` or `text/xml`
+    * Forms: Usually `application/x-www-form-urlencoded` or `multipart/form-data`
+    * APIs: Typically `application/json` or `text/xml`
 * Referer (spelled incorrectly) - page with link the user clicked
 * User-Agent - string describing browser (or other HTTP client)
 
@@ -259,6 +261,8 @@ Request Headers
 
 * Authorization - provides login info (for popups)
 * Accept-Encoding - gzip or deflate
+    * New one called Brotli (`br` in the header)
+        * MacOS utility: `brew install zopfli`
 * Connection - keep-alive
 * Cookie - return a cookie that the server has previously handed us
 
@@ -292,11 +296,11 @@ Response Status Codes
 
 * 100s - Informational
 * 200s - Success
-  * 200 - OK
-  * 201 - Created
+    * 200 - OK
+    * 201 - Created
 * 300s - Redirection
-  * 301 - Moved Permanently
-  * 304 - Not Modified
+    * 301 - Moved Permanently
+    * 304 - Not Modified
 
 ---
 
@@ -304,15 +308,15 @@ Response Status Codes
 =====================
 
 * 400s - Client Error
-  * 401 - Unauthorized
-  * 403 - Forbidden
-  * 404 - Not Found
-  * 407 - Proxy Authentication Required
-  * 422 - Unprocessable Entity
+    * 401 - Unauthorized
+    * 403 - Forbidden
+    * 404 - Not Found
+    * 407 - Proxy Authentication Required
+    * 422 - Unprocessable Entity
 * 500s - Server Error
-  * 500 - Internal Server Error
-  * 502 - Bad Gateway
-  * 504 - Gateway Timeout
+    * 500 - Internal Server Error
+    * 502 - Bad Gateway
+    * 504 - Gateway Timeout
 
 ???
 
@@ -336,10 +340,10 @@ Response Headers
 
 * Content-Encoding - body has been gzip or deflated
 * Content-Disposition - used to tell browser to download instead of display
-  * Can also provide a default filename to save as
+    * Can also provide a default filename to save as
 * Location - browser should redirect to the value of this header
 * Set-Cookie - tells browser to remember a token to pass back next time
-  * This is how we get statefulness in a stateless protocol
+    * This is how we get statefulness in a stateless protocol
 * WWW-Authenticate - asks for user to authenticate (via browser popup)
 
 ---
@@ -361,8 +365,8 @@ Proxies
 
 * Good for caching
 * Can add security
-  * SSL termination / offloading
-  * Authentication
+    * SSL termination / offloading
+    * Authentication
 
 
 * Transparent vs. non-transparent
@@ -384,7 +388,7 @@ CDNs
 * Content is distributed
 * Content is placed closer to more clients
 * BGP Anycast for DNS servers
-  * Determines which content server is closest
+    * Determines which content server is closest
 
 
 * DDoS protection
@@ -405,14 +409,14 @@ Troubleshooting
 ???
 
 * Mac `netstat` takes only `-na`, not `-plt`
-  * Pipe it to `grep LISTEN`
+    * Pipe it to `grep LISTEN`
 
 * You can capture with `tcpdump` and view in Wireshark
 
 * Consider the various layers of the OSI model
-  * ping, traceroute = network layer
-  * telnet = transport layer
-  * s_client = presentation layer
+    * ping, traceroute = network layer
+    * telnet = transport layer
+    * s_client = presentation layer
 
 ---
 
@@ -422,13 +426,20 @@ HTTP/2
 * Google SPDY project
 * Header compression (HPACK)
 * TLS required by every implementation
-  * Not really related to HTTP/2
-  * Probably due to use of ALPN TLS extension
+    * Not really related to HTTP/2
+    * Probably due to use of ALPN TLS extension
 * Binary framing instead of text-based
-  * Same semantics as HTTP/1.1 though
+    * Same semantics as HTTP/1.1 though
+* http://http2.github.io/
 
 ???
 
+* HTTP/2 has only been around a couple years
+    * But it's available in almost all browsers now
+    * It's available in most web servers now
+    * Not in most app servers
+        * Use an HTTP/2 proxy
+    * Not in many proxy servers
 * ALPN = Application-Layer Protocol Negotiation
 
 ---
@@ -437,17 +448,17 @@ HTTP/2
 ======
 
 * Multiplexed connections
-  * Grab multiple resources simultaneously
-    * Over a single TCP connection
+    * Grab multiple resources simultaneously
+        * Over a single TCP connection
 * Server push
 * Removes the need to combine JS, CSS, and images
 * Starts with an HTTP/1.1 connection using `Upgrade` and `HTTP2-Settings` headers
-  * Returns a 101 status code (Switching Protocols)
+    * Returns a 101 status code (Switching Protocols)
 
 ???
 
 * Chrome and Google can also use QUIC
-  * Basically best of UDP and TCP transport layer
+    * Basically best of UDP and TCP transport layer
 
 ---
 
@@ -457,18 +468,18 @@ HTTP/2 - Support
 * Chrome 41
 * Firefox 36
 * IE 11 - only in Windows 10
-* Nginx will support it by the end of 2015
-  * 1.5.10 supports SPDY/3.1
+* Nginx 1.9.5
 * cURL 4.x
-  * With `--http2` flag, if feature compiled in
+    * With `--http2` flag, if feature compiled in
 * Wireshark 1.99
-* Apache seems to have no plans, but mod_spdy is available
+* Apache 2.4.17
+    * mod_http2
 
 ???
 
-* Unfortunately, I couldn't get cURL and Nginx to cooperate
-  * Had to compile OpenSSL 1.0.2 and cURL 7.41 with nghttp2
-  * They used NPN instead of ALPN
+* Unfortunately (in 2015), I couldn't get cURL and Nginx to cooperate
+    * Had to compile OpenSSL 1.0.2 and cURL 7.41 with nghttp2
+    * They used NPN instead of ALPN
 
 ---
 class: title, middle, center
@@ -476,7 +487,7 @@ class: title, middle, center
 Exercises
 =========
 
-http://tiny.cc/http_exploration
+http://craigbuchek.com/http-workshop
 
 * Tip: Hit `P` to toggle presenter notes
 
@@ -486,32 +497,17 @@ See? Presenter Notes!
 
 ---
 
-Start Vagrant
-=============
-
-Change to the directory containing `Vagrantfile` and `http_exploration.box`
-
-~~~ bash
-vagrant box add http_exploration ./http_exploration.box
-vagrant up
-vagrant ssh
-~~~
-
-When you're done, stop the VM with `vagrant halt`
-
----
-
 Telnet - HTTP/0.9
 =================
 
 Use telnet, but don't specify a version of HTTP:
 
 ~~~ bash
-telnet localhost 3000
+telnet http-workshop.boochtek.com 80
 ~~~
 
 ~~~
-GET http://localhost/
+GET http://http-workshop.boochtek.com/
 ~~~
 
 Note that you couldn't specify request headers
@@ -525,11 +521,11 @@ Telnet - HTTP/1.0
 Use telnet, and specify HTTP/1.0 in the request:
 
 ~~~ bash
-telnet localhost 3000
+telnet http-workshop.boochtek.com 80
 ~~~
 
 ~~~
-GET http://localhost:3000/ HTTP/1.0
+GET http://http-workshop.boochtek.com/ HTTP/1.0
 Host: localhost
 
 ~~~
@@ -544,12 +540,12 @@ Telnet - HTTP/1.1
 Use telnet, specifying HTTP/1.1:
 
 ~~~ bash
-telnet localhost 3000
+telnet http-workshop.boochtek.com 80
 ~~~
 
 ~~~
 GET / HTTP/1.1
-Host: localhost
+Host: http-workshop.boochtek.com
 
 ~~~
 
@@ -566,12 +562,12 @@ Wget
 Use wget:
 
 ~~~ bash
-wget -d http://localhost:3000/
+wget -d http://http-workshop.boochtek.com/
 ~~~
 
 Where did it put the result?
 
-Tip: Use `-o` to specify the output file
+* Tip: Use `-o` to specify the output file
 
 ???
 
@@ -586,8 +582,8 @@ cURL
 Use cURL:
 
 ~~~ bash
-curl -v http://localhost:3000/
-curl -v http://localhost:3000/reflect
+curl -v http://http-workshop.boochtek.com/
+curl -v http://http-workshop.boochtek.com/reflect
 ~~~
 
 Note the leading `*`, `>`, and `<` characters
@@ -607,12 +603,12 @@ HTTPie
 Use HTTPie:
 
 ~~~ bash
-http -v http://localhost:3000/
-http -v http://localhost:3000/reflect X-RailsConf-Date:2015-04-23
-http --style=xcode -v http://localhost:3000/
+http -v http://http-workshop.boochtek.com/
+http -v http://http-workshop.boochtek.com/reflect X-Extra:Cool
+http --style=xcode -v http://http-workshop.boochtek.com/
 ~~~
 
-What's different about this ouput compared to cURL?
+What's different about this output compared to cURL?
   * Which do you prefer?
 
 ???
@@ -627,8 +623,8 @@ Redirect
 Let's see what a redirect looks like:
 
 ~~~ bash
-curl -v http://localhost:3000/redirect
-http -v --follow http://localhost:3000/redirect
+curl -v http://http-workshop.boochtek.com/reflect
+http -v --follow http://http-workshop.boochtek.com/reflect
 ~~~
 
 Notice the status code and `Location` header
@@ -636,7 +632,7 @@ Notice the status code and `Location` header
 Now let's follow the redirect
 
 ~~~ bash
-curl -v -L http://localhost:3000/redirect
+curl -v -L http://http-workshop.boochtek.com/reflect
 ~~~
 
 ---
@@ -647,8 +643,8 @@ POST
 Let's see what a POST looks like:
 
 ~~~ bash
-curl -v -X POST http://localhost:3000/post -d key=value -d railsconf=fun
-http -v POST http://localhost:3000/post key=value railsconf=fun
+curl -v -X POST http://http-workshop.boochtek.com/post -d key=value -d http=fun
+http -v POST http://http-workshop.boochtek.com/post key=value http=fun
 ~~~
 
 Note the request body being sent
@@ -661,12 +657,12 @@ Caching
 Let's see how a cache would use headers:
 
 ~~~ bash
-URL='http://localhost:3000/etag'
-curl -v http://localhost:3000/etag
+URL='http://http-workshop.boochtek.com/etag'
+curl -v http://http-workshop.boochtek.com/etag
 ETAG=$(curl -v $URL 2>&1 | grep Etag: | sed -e 's/.*"\(.*\)"/\1/')
-curl -v -H "If-None-Match: $ETAG" http://localhost:3000/etag
+curl -v -H "If-None-Match: $ETAG" http://http-workshop.boochtek.com/etag
 MODIFIED=$(curl -v $URL 2>&1 | grep Last-Modified: | sed -e 's/.*: \(.*\)/\1/')
-curl -v -H "If-Modified-Since: $MODIFIED" http://localhost:3000/etag
+curl -v -H "If-Modified-Since: $MODIFIED" http://http-workshop.boochtek.com/etag
 ~~~
 
 Note the status code when we supply the headers
@@ -717,7 +713,7 @@ Host: www.google.com
 
 ~~~
 
-Tip: Check out the `-pause` and `-debug` options to `s_client`
+* Tip: Check out the `-pause` and `-debug` options to `s_client`
 
 ---
 
@@ -749,10 +745,10 @@ Non-Transparent Proxy
 Proxy your requests through Squid (on port 3128):
 
 ~~~ bash
-curl -v --proxy localhost:3128 http://localhost:3000/
-curl -v --proxy localhost:3128 http://localhost:3000/reflect
-http -v --proxy http:http://localhost:3128 http://localhost:3000/
-http_proxy=http://localhost:3128 curl -v http://localhost:3000/
+curl -v --proxy localhost:3128 http://http-workshop.boochtek.com/
+curl -v --proxy localhost:3128 http://http-workshop.boochtek.com/reflect
+http -v --proxy http:http://localhost:3128 http://http-workshop.boochtek.com/
+http_proxy=http://localhost:3128 curl -v http://http-workshop.boochtek.com/
 ~~~
 
 What did the proxy change?
@@ -766,11 +762,11 @@ Bonus: Take a look at the bottom of `/etc/squid3/squid.conf`
 Reverse Proxy
 =============
 
-Use Nginx as a reverse proxy to add TLS security:
+Using Nginx as a reverse proxy to add TLS security:
 
 ~~~ bash
-curl -v --insecure https://localhost/
-http -v --verify=no https://localhost/
+curl -v --insecure https://http-workshop.boochtek.com/
+http -v --verify=no https://http-workshop.boochtek.com/
 ~~~
 
 Note: We're ignoring invalid SSL certs here -- never do this!
@@ -778,11 +774,9 @@ Note: We're ignoring invalid SSL certs here -- never do this!
 
 ???
 
-Note that we've configured Nginx to use SSL and proxy to port 3000
+Note that we've configured Nginx to use SSL and proxy to port 80
 
 Bonus: Take a look at the bottom of `/etc/nginx/nginx.conf`
-
-Bonus: Stop the Rails app and try to hit https://localhost/
 
 ~~~ bash
 sudo service rails_app stop
@@ -813,7 +807,7 @@ Try some of the above exercises using a browser on your host OS
 * The Nginx HTTPS proxy is exposed on port 4444
   * It should have SPDY/3.1 enabled
 
-Tip: Take a look at the Network tab in Developer Tools
+* Tip: Take a look at the Network tab in Developer Tools
 
 ---
 
@@ -861,7 +855,7 @@ Let's capture the raw packets going across the network:
 
 ~~~ bash
 sudo tcpdump -A -i lo -l port 3000 > tcpdump.out &
-curl http://username:password@localhost:3000
+curl http://username:password@http-workshop.boochtek.com
 less tcpdump.out
 ~~~
 
@@ -884,7 +878,7 @@ Pick some previous exercises and run them while watching Rails logs
 
 Hint: Use `tail -f`, `tailf`, or `less +F`
 
-Tip: Use `tmux` to run multiple things in separate "windows"
+* Tip: Use `tmux` to run multiple things in separate "windows"
 
 ???
 
@@ -934,15 +928,9 @@ Colophon
 ========
 
 * [Remark] - JavaScript slide show from Markdown
-* [Debian 8 (Jessie) RC2][debian-installer] - OS image
-* [VirtualBox] - Virtual Machine
-* [Vagrant] - VM provisioning and management
-  * I did a poor job with *automated* provisioning
 
 [Remark]: http://remarkjs.com/
 [debian-installer]: https://www.debian.org/devel/debian-installer/
-[VirtualBox]: https://www.virtualbox.org/
-[Vagrant]: https://www.vagrantup.com/
 
 ---
 
