@@ -4,7 +4,7 @@ class: title, middle, center
 
 * by Craig Buchek
 
-* STL Full Stack Developers
+* Saint Louis Full Stack Web Development
 * July 11, 2018
 
 
@@ -23,7 +23,7 @@ Feedback
 Follow Along
 ============
 
-http://craigbuchek.com/http-workshop
+https://http-workshop.boochtek.com/slides
 
 ---
 
@@ -459,13 +459,13 @@ class: title, middle, center
 Exercises
 =========
 
-http://craigbuchek.com/http-workshop
+https://http-workshop.boochtek.com/slides
 
 * Tip: Hit `P` to toggle presenter notes
 
 ???
 
-See? Presenter Notes!
+* See? Presenter Notes!
 
 ---
 
@@ -544,7 +544,7 @@ Where did it put the result?
 ???
 
 * Mac Homebrew wget doesn't support `-d` out of the box
-  * `brew reinstall wget --with-debug`
+    * `brew reinstall wget --with-debug`
 
 ---
 
@@ -566,6 +566,7 @@ Note the leading `*`, `>`, and `<` characters
 * `>` indicates traffic being sent from client to server
 * `<` indicates traffic being sent back from the server to the client
 * `*` indicates information about the connection between the client and server
+* The response body has no prefix characters
 
 ---
 
@@ -595,8 +596,8 @@ Redirect
 Let's see what a redirect looks like:
 
 ~~~ bash
-curl -v http://http-workshop.boochtek.com/reflect
-http -v --follow http://http-workshop.boochtek.com/reflect
+curl -v http://http-workshop.boochtek.com/redirect
+http -v http://http-workshop.boochtek.com/redirect
 ~~~
 
 Notice the status code and `Location` header
@@ -604,7 +605,8 @@ Notice the status code and `Location` header
 Now let's follow the redirect
 
 ~~~ bash
-curl -v -L http://http-workshop.boochtek.com/reflect
+curl -v -L http://http-workshop.boochtek.com/redirect
+http -v --follow http://http-workshop.boochtek.com/redirect
 ~~~
 
 ---
@@ -643,11 +645,11 @@ Note that when we get a `304`, there's no body content included
 
 ???
 
-That crazy complicated stuff is just grabbing the content of the appropriate headers
+* That crazy complicated stuff is just grabbing the content of the appropriate headers
 
-Note how the names of the request tags and response tags go together
-  * Response: `ETag` -> Request: `If-None-Match`
-  * Response: `Last-Modified` -> Request: `If-Modified-Since`
+* Note how the names of the request tags and response tags go together
+    * Response: `ETag` -> Request: `If-None-Match`
+    * Response: `Last-Modified` -> Request: `If-Modified-Since`
 
 ---
 
@@ -662,11 +664,22 @@ telnet www.google.com 443
 
 ~~~
 GET / HTTP/1.0
-Host: www.google.com
+~~~
 
+~~~ bash
+telnet http-workshop.boochtek.com 443
+~~~
+
+~~~
+GET / HTTP/1.0
+Host: http-workshop.boochtek.com
 ~~~
 
 What happens? Why?
+
+???
+
+* Note that Nginx is smarter about this than Google
 
 ---
 
@@ -676,12 +689,12 @@ HTTPS - OpenSSL
 Try using OpenSSL `s_client` instead:
 
 ~~~ bash
-openssl s_client -connect www.google.com:443
+openssl s_client -connect http-workshop.boochtek.com:443
 ~~~
 
 ~~~
 GET / HTTP/1.0
-Host: www.google.com
+Host: http-workshop.boochtek.com
 
 ~~~
 
@@ -695,7 +708,7 @@ HTTPS - HTTPie
 Try using HTTPie instead:
 
 ~~~ bash
-http -v HEAD https://www.google.com/
+http -v HEAD https://http-workshop.boochtek.com
 ~~~
 
 ---
@@ -706,7 +719,7 @@ HTTPS - cURL
 Try using cURL instead:
 
 ~~~ bash
-curl -v -X HEAD https://www.google.com/
+curl -v -X HEAD https://http-workshop.boochtek.com
 ~~~
 
 ---
@@ -727,57 +740,33 @@ What did the proxy change?
 
 ???
 
-Bonus: Take a look at the bottom of `/etc/squid3/squid.conf`
+* Bonus: Take a look at the bottom of `/etc/squid3/squid.conf`
 
 ---
 
 Reverse Proxy
 =============
 
-Using Nginx as a reverse proxy to add TLS security:
+We're using Nginx as a reverse proxy to add TLS security.
+If you're on the server, you can bypass that:
 
 ~~~ bash
-curl -v --insecure https://http-workshop.boochtek.com/
-http -v --verify=no https://http-workshop.boochtek.com/
+curl -v https://localhost:3000/
+http -v https://localhost:3000/
 ~~~
-
-Note: We're ignoring invalid SSL certs here -- never do this!
-  * You would be vulnerable to a man-in-the-middle attack
 
 ???
 
-Note that we've configured Nginx to use SSL and proxy to port 80
-
-Bonus: Take a look at the bottom of `/etc/nginx/nginx.conf`
-
-~~~ bash
-sudo service rails_app stop
-~~~
-
----
-
-HTTP/2
-======
-
-Use cURL to hit Google using HTTP/2:
-
-~~~ bash
-curl -v --http2 -X HEAD https://www.google.com/
-~~~
-
-Note: We had to manually compile OpenSSL and cURL to make this work
-  * We still couldn't get it to work against Nginx's SPDY
+* Bonus: Take a look at `/etc/nginx/sites-enabled/http-workshop.boochtek.com.conf`
 
 ---
 
 Web Browsers
 ============
 
-Try some of the above exercises using a browser on your host OS
+Try some of the above exercises using a browser
 
-* The Rails app is exposed on port 3333
-* The Nginx HTTPS proxy is exposed on port 4444
-  * It should have SPDY/3.1 enabled
+The response from https://http-workshop.boochtek.com is especially interesting
 
 * Tip: Take a look at the Network tab in Developer Tools
 
@@ -798,7 +787,8 @@ What are the differences between these browsers?
 
 ???
 
-TUI = Text-based User Interface, basically a GUI in the terminal
+* TUI = Text-based User Interface
+    * Basically a GUI in the terminal
 
 ---
 
@@ -808,15 +798,16 @@ Netstat
 See what services are listening on what ports:
 
 ~~~ bash
-sudo netstat -plant
+sudo netstat -plnet
+sudo netstat -panet
 ~~~
 
 ???
 
-This is helpful in determining if your app is listening on the port you think it is
+* This is helpful in determining if your app is listening on the port you think it is
 
-Mac `netstat` takes only `-na`, not `-plt`
-  * Pipe it to `grep LISTEN`
+* Mac `netstat` takes only `-na`, not `-plt`
+    * Pipe it to `grep LISTEN`
 
 ---
 
@@ -828,6 +819,7 @@ Let's capture the raw packets going across the network:
 ~~~ bash
 sudo tcpdump -A -i lo -l port 3000 > tcpdump.out &
 curl http://username:password@http-workshop.boochtek.com
+fg ; # Hit Ctrl+C to exit
 less tcpdump.out
 ~~~
 
@@ -839,7 +831,7 @@ cat tcpdump.out | grep Basic | cut -d' ' -f3 | base64 -d
 
 ???
 
-You can capture with `tcpdump` and view in Wireshark
+* Tip: You can capture with `tcpdump` and view in Wireshark
 
 ---
 
@@ -854,7 +846,7 @@ Hint: Use `tail -f`, `tailf`, or `less +F`
 
 ???
 
-Bonus: Do the same for the Nginx and Squid proxy logs
+* Bonus: Do the same for the Nginx and Squid proxy logs
 
 ---
 
