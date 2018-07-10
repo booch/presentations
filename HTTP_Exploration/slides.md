@@ -4,8 +4,8 @@ class: title, middle, center
 
 * by Craig Buchek
 
-* F5 Silverline
-* June 29, 2018
+* STL Full Stack Developers
+* July 11, 2018
 
 
 ---
@@ -13,7 +13,10 @@ class: title, middle, center
 Feedback
 ========
 
-* HipChat: @CraigBuchek
+* Twitter: @CraigBuchek
+* GitHub: booch (personal, presentations)
+* GitHub: boochtek (projects, workshop)
+* Email: craig@boochtek.com
 
 ---
 
@@ -29,6 +32,7 @@ About Me
 
 * Ruby / Rails programmer since 2006
 * Network and System Admin before that
+* HTML since 1995
 * Boring slide designer
 
 ---
@@ -386,6 +390,7 @@ HTTP/2
         * Use an HTTP/2 proxy
     * Not in many proxy servers
 * ALPN = Application-Layer Protocol Negotiation
+    * Earlier implementations used NPN
 
 ---
 
@@ -402,8 +407,8 @@ HTTP/2
 
 ???
 
-* Chrome and Google can also use QUIC
-    * Basically best of UDP and TCP transport layer
+* Chrome and Google can also use QUIC transport layer
+    * Basically best of UDP and TCP
 
 ---
 
@@ -413,18 +418,40 @@ HTTP/2 - Support
 * Chrome 41
 * Firefox 36
 * IE 11 - only in Windows 10
-* Nginx 1.9.5
+* Edge
 * cURL 4.x
     * With `--http2` flag, if feature compiled in
+    * Default in 7.47.0
 * Wireshark 1.99
-* Apache 2.4.17
-    * mod_http2
 
 ???
 
+* All the major browsers have good HTTP/2 support now
 * Unfortunately (in 2015), I couldn't get cURL and Nginx to cooperate
     * Had to compile OpenSSL 1.0.2 and cURL 7.41 with nghttp2
     * They used NPN instead of ALPN
+
+---
+HTTP/2 - Support
+================
+
+* Nginx 1.9.5
+* Apache 2.4.17
+    * mod_http2
+* HAProxy - NO
+
+???
+
+* Current versions of servers have pretty good support
+* Nginx 1.13.9 and newer have server push
+    * Can specify directly within Nginx config file
+    * Can user HTTP response headers to tell Nginx what to push
+* Need to have OpenSSL 1.0.2 for APLN though
+    * Debian 9 and Ubuntu 16.04+ are good
+    * RHEL/CentOS 7.4 should be good
+* HAProxy 1.7 can speak HTTP/2 to a back-end
+    * But won't work as an HTTP/2 proxy
+        * Unclear when it will be supported
 
 ---
 class: title, middle, center
@@ -884,4 +911,5 @@ Feedback
 
 * Twitter: @CraigBuchek
 * GitHub: booch
+* GitHub: boochtek
 * Email: craig@boochtek.com
