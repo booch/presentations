@@ -660,11 +660,13 @@ Let's see how a cache would use headers:
 
 ~~~ bash
 URL='http://http-workshop.boochtek.com/etag'
-curl -v http://http-workshop.boochtek.com/etag
-ETAG=$(curl -v $URL 2>&1 | grep Etag: | sed -e 's/.*"\(.*\)"/\1/')
-curl -v -H "If-None-Match: $ETAG" http://http-workshop.boochtek.com/etag
+http -v $URL
+ETAG=$(curl -v $URL 2>&1 | grep ETag: | cut -d' ' -f3)
+curl -v -H "If-None-Match: $ETAG" $URL
+http -v $URL "If-None-Match: $ETAG"
 MODIFIED=$(curl -v $URL 2>&1 | grep Last-Modified: | sed -e 's/.*: \(.*\)/\1/')
-curl -v -H "If-Modified-Since: $MODIFIED" http://http-workshop.boochtek.com/etag
+curl -v -H "If-Modified-Since: $MODIFIED" $URL
+http -v $URL "If-Modified-Since: $MODIFIED"
 ~~~
 
 Note the status code when we supply the headers
