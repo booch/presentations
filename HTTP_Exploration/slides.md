@@ -614,7 +614,7 @@ What's different about this output compared to cURL?
 
 ???
 
-* Note: You can use `http` in place of `curl` in most of the following exercises if you want
+* Note: You can use `curl` in place of `http` in most of the following exercises if you want
 
 ---
 
@@ -758,10 +758,11 @@ Non-Transparent Proxy
 Proxy your requests through Squid (on port 3128):
 
 ~~~ bash
-curl -v --proxy localhost:3128 http://http-workshop.boochtek.com/
-curl -v --proxy localhost:3128 http://http-workshop.boochtek.com/reflect
-http -v --proxy http:http://localhost:3128 http://http-workshop.boochtek.com/
-http_proxy=http://localhost:3128 curl -v http://http-workshop.boochtek.com/
+URL='http://http-workshop.boochtek.com/reflect'
+http -v --proxy http://localhost:3128 $URL
+export http_proxy=http://localhost:3128
+http -v $URL
+unset http_proxy
 ~~~
 
 What did the proxy change?
@@ -846,7 +847,7 @@ Let's capture the raw packets going across the network:
 
 ~~~ bash
 sudo tcpdump -A -i lo -l port 3000 > tcpdump.out &
-curl http://username:password@http-workshop.boochtek.com
+http http://username:password@http-workshop.boochtek.com
 fg ; # Hit Ctrl+C to exit
 less tcpdump.out
 ~~~
