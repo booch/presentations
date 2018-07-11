@@ -378,14 +378,14 @@ Troubleshooting
 * ping
 * traceroute
 * telnet
-* netstat -plant (on servers)
+* netstat -plnet (on servers)
 * openssl s_client (HTTPS)
 * tcpdump
 * Wireshark
 
 ???
 
-* Mac `netstat` takes only `-na`, not `-plt`
+* Mac `netstat` takes only `-na`, not `-plet`
     * Pipe it to `grep LISTEN`
 
 * You can capture with `tcpdump` and view in Wireshark
