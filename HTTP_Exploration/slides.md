@@ -328,7 +328,6 @@ Proxies
     * SSL termination / offloading
     * Authentication
 
-
 * Transparent vs. non-transparent
 * Reverse vs. forward
 
@@ -460,6 +459,7 @@ HTTP/2 - Support
     * They used NPN instead of ALPN
 
 ---
+
 HTTP/2 - Support
 ================
 
@@ -480,6 +480,34 @@ HTTP/2 - Support
 * HAProxy 1.7 can speak HTTP/2 to a back-end
     * But won't work as an HTTP/2 proxy
         * Unclear when it will be supported
+
+---
+
+HTTP/2 Resources
+================
+
+* [HTTP/2 Official Site][http2]
+* [Video on benefits of HTTP/2][http2-video]
+* [Nginx HTTP/2 Support][nginx-http2]
+
+---
+
+Further Info
+============
+
+* [What Happens When][whw]
+    * Covers every step involved in showing a page in a browser
+        * From entering the URL to the page rendering
+        * Hardware, operating system, networking, ...
+        * Very detailed and thorough
+* [Common HTTP Headers][http-headers]
+
+[rfc2616]: http://www.rfc-editor.org/rfc/rfc2616.txt
+[whw]: https://github.com/alex/what-happens-when
+[http-headers]: http://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+[http2]: http://http2.github.io/
+[http2-video]: https://www.youtube.com/watch?v=eunWfaTeodc
+[nginx-http2]: http://nginx.com/blog/how-nginx-plans-to-support-http2/
 
 ---
 class: title, middle, center
@@ -503,7 +531,9 @@ Telnet - HTTP/0.9
 Use telnet, but don't specify a version of HTTP:
 
 ~~~ bash
-telnet http-workshop.boochtek.com 80
+URL_HOST='http-workshop.boochtek.com'
+HTTP_PORT=80
+telnet $URL_HOST $HTTP_PORT
 ~~~
 
 ~~~
@@ -521,7 +551,9 @@ Telnet - HTTP/1.0
 Use telnet, and specify HTTP/1.0 in the request:
 
 ~~~ bash
-telnet http-workshop.boochtek.com 80
+URL_HOST='http-workshop.boochtek.com'
+HTTP_PORT=80
+telnet $URL_HOST $HTTP_PORT
 ~~~
 
 ~~~
@@ -540,7 +572,9 @@ Telnet - HTTP/1.1
 Use telnet, specifying HTTP/1.1:
 
 ~~~ bash
-telnet http-workshop.boochtek.com 80
+URL_HOST='http-workshop.boochtek.com'
+HTTP_PORT=80
+telnet $URL_HOST $HTTP_PORT
 ~~~
 
 ~~~
@@ -562,10 +596,12 @@ Wget
 Use wget:
 
 ~~~ bash
-wget -d http://http-workshop.boochtek.com/
+REFLECT_URL='http://http-workshop.boochtek.com/reflect'
+wget $REFLECT_URL
+wget -d $REFLECT_URL
 ~~~
 
-Where did it put the result?
+Where did it put the results?
 
 * Tip: Use `-o` to specify the output file
 
@@ -582,8 +618,10 @@ cURL
 Use cURL:
 
 ~~~ bash
-curl -v http://http-workshop.boochtek.com/
-curl -v http://http-workshop.boochtek.com/reflect
+REFLECT_URL='http://http-workshop.boochtek.com/reflect'
+curl $REFLECT_URL
+curl -v $REFLECT_URL
+curl -v $REFLECT_URL -H X-STL-FSWD:Smart -H X-Extra:Cool
 ~~~
 
 Note the leading `*`, `>`, and `<` characters
@@ -604,9 +642,10 @@ HTTPie
 Use HTTPie:
 
 ~~~ bash
-http -v http://http-workshop.boochtek.com/
-http -v http://http-workshop.boochtek.com/reflect X-Extra:Cool
-http --style=xcode -v http://http-workshop.boochtek.com/
+REFLECT_URL='http://http-workshop.boochtek.com/reflect'
+http -v $REFLECT_URL
+http --style=xcode -v $REFLECT_URL
+http -v $REFLECT_URL X-STL-FSWD:Smart X-Extra:Cool
 ~~~
 
 What's different about this output compared to cURL?
@@ -614,6 +653,14 @@ What's different about this output compared to cURL?
 
 ???
 
+* Tip: To see all the available styles:
+~~~ bash
+http --help | grep -B 1 -A 11 style
+~~~
+* Pro Tip: If you want to always use a style:
+~~~ bash
+alias http='http --style=solarized'
+~~~
 * Note: You can use `curl` in place of `http` in most of the following exercises if you want
 
 ---
@@ -624,8 +671,9 @@ Redirect
 Let's see what a redirect looks like:
 
 ~~~ bash
-curl -v http://http-workshop.boochtek.com/redirect
-http -v http://http-workshop.boochtek.com/redirect
+REDIRECT_URL='http://http-workshop.boochtek.com/redirect'
+curl -v $REDIRECT_URL
+http -v $REDIRECT_URL
 ~~~
 
 Notice the status code and `Location` header
@@ -633,8 +681,9 @@ Notice the status code and `Location` header
 Now let's follow the redirect
 
 ~~~ bash
-curl -v -L http://http-workshop.boochtek.com/redirect
-http -v --follow http://http-workshop.boochtek.com/redirect
+REDIRECT_URL='http://http-workshop.boochtek.com/redirect'
+curl -v -L $REDIRECT_URL
+http -v --follow $REDIRECT_URL
 ~~~
 
 ---
@@ -645,8 +694,9 @@ POST
 Let's see what a POST looks like:
 
 ~~~ bash
-curl -v -X POST http://http-workshop.boochtek.com/post -d key=value -d http=fun
-http -v POST http://http-workshop.boochtek.com/post key=value http=fun
+POST_URL='http://http-workshop.boochtek.com/post'
+curl -v -X POST $POST_URL -d key=value -d http=fun
+http -v POST $POST_URL key=value http=fun
 ~~~
 
 Note the request body being sent
@@ -659,14 +709,14 @@ Caching
 Let's see how a cache would use headers:
 
 ~~~ bash
-URL='http://http-workshop.boochtek.com/etag'
-http -v $URL
-ETAG=$(curl -v $URL 2>&1 | grep ETag: | cut -d' ' -f3)
-curl -v -H "If-None-Match: $ETAG" $URL
-http -v $URL "If-None-Match: $ETAG"
-MODIFIED=$(curl -v $URL 2>&1 | grep Last-Modified: | sed -e 's/.*: \(.*\)/\1/')
-curl -v -H "If-Modified-Since: $MODIFIED" $URL
-http -v $URL "If-Modified-Since: $MODIFIED"
+ETAG_URL='http://http-workshop.boochtek.com/etag'
+http -v $ETAG_URL
+ETAG=$(curl -v $ETAG_URL 2>&1 | grep ETag: | cut -d' ' -f3)
+curl -v -H "If-None-Match: $ETAG" $ETAG_URL
+http -v $ETAG_URL "If-None-Match: $ETAG"
+MODIFIED=$(curl -v $ETAG_URL 2>&1 | grep Last-Modified: | cut -d' ' -f 3-)
+curl -v -H "If-Modified-Since: $MODIFIED" $ETAG_URL
+http -v $ETAG_URL "If-Modified-Since: $MODIFIED"
 ~~~
 
 Note the status code when we supply the headers
@@ -689,7 +739,9 @@ HTTPS - Telnet
 Try to telnet to an HTTPS server:
 
 ~~~ bash
-telnet www.google.com 443
+URL_HOST='www.google.com'
+HTTPS_PORT=443
+telnet $URL_HOST $HTTPS_PORT
 ~~~
 
 ~~~
@@ -697,7 +749,9 @@ GET / HTTP/1.0
 ~~~
 
 ~~~ bash
-telnet http-workshop.boochtek.com 443
+URL_HOST='http-workshop.boochtek.com'
+HTTPS_PORT=443
+telnet $URL_HOST $HTTPS_PORT
 ~~~
 
 ~~~
@@ -719,7 +773,9 @@ HTTPS - OpenSSL
 Try using OpenSSL `s_client` instead:
 
 ~~~ bash
-openssl s_client -connect http-workshop.boochtek.com:443
+URL_HOST='http-workshop.boochtek.com'
+HTTPS_PORT=443
+openssl s_client -connect $URL_HOST:$HTTPS_PORT
 ~~~
 
 ~~~
@@ -738,7 +794,8 @@ HTTPS - HTTPie
 Try using HTTPie instead:
 
 ~~~ bash
-http -v HEAD https://http-workshop.boochtek.com
+URL='https://http-workshop.boochtek.com'
+http -v HEAD $URL
 ~~~
 
 ---
@@ -749,7 +806,8 @@ HTTPS - cURL
 Try using cURL instead:
 
 ~~~ bash
-curl -v -X HEAD https://http-workshop.boochtek.com
+URL='https://http-workshop.boochtek.com'
+curl -v -X HEAD $URL
 ~~~
 
 ---
@@ -760,10 +818,11 @@ Non-Transparent Proxy
 Proxy your requests through Squid (on port 3128):
 
 ~~~ bash
-URL='http://http-workshop.boochtek.com/reflect'
-http -v --proxy http://localhost:3128 $URL
-export http_proxy=http://localhost:3128
-http -v $URL
+REFLECT_URL='http://http-workshop.boochtek.com/reflect'
+PROXY_URL=http://localhost:3128
+http -v --proxy $PROXY_URL $REFLECT_URL
+export http_proxy=$PROXY_URL
+http -v $REFLECT_URL
 unset http_proxy
 ~~~
 
@@ -782,8 +841,9 @@ We're using Nginx as a reverse proxy to add TLS security.
 If you're on the server, you can bypass that:
 
 ~~~ bash
-curl -v https://localhost:3000/
-http -v https://localhost:3000/
+LOCAL_URL=https://localhost:3000/
+curl -v $LOCAL_URL
+http -v $LOCAL_URL
 ~~~
 
 ???
@@ -798,13 +858,17 @@ Bad Gateway
 Have the instructor stop the application server
 
 ~~~ bash
-http -v http://http-workshop.boochtek.com/reflect
+REFLECT_URL='http://http-workshop.boochtek.com/reflect'
+LOCAL_URL=https://localhost:3000/
+http -v $LOCAL_URL
+http -v $REFLECT_URL
 ~~~
 
 What does the error mean?
 
 ???
 
+* Instructor will use this command to stop the service:
 ~~~ bash
 sudo systemctl stop http-workshop-app.service
 ~~~
@@ -816,9 +880,9 @@ Web Browsers
 
 Try some of the above exercises using a browser
 
-The response from https://http-workshop.boochtek.com is especially interesting
+The response from the `/reflect` page is especially interesting
 
-* Tip: Take a look at the Network tab in Developer Tools
+* Tip: Look at the Network tab in Developer Tools
 
 ---
 
@@ -839,6 +903,9 @@ What are the differences between these browsers?
 
 * TUI = Text-based User Interface
     * Basically a GUI in the terminal
+* Just this week, I learned about another - [Browsh](https://www.brow.sh/)
+    * Even does images and video with ANSI escape codes
+    * Requires Firefox -- seems to just screen-scape its output in headless mode
 
 ---
 
@@ -848,8 +915,15 @@ Netstat
 See what services are listening on what ports:
 
 ~~~ bash
+netstat -lnet
 sudo netstat -plnet
-sudo netstat -panet
+~~~
+
+See what's connected to your services:
+
+~~~ bash
+netstat -net
+sudo netstat -pnet
 ~~~
 
 ???
@@ -890,17 +964,17 @@ Logs
 
 Pick some previous exercises and run them while watching Rails logs
 
-Rails logs are at `/var/www/http-workshop.boochtek.com/log/production.log`
+Rails logs are in:
+`/var/www/http-workshop.boochtek.com/log`
 
 Hint: Use `tail -f`, `tailf`, or `less +F`
-
-* Tip: Use `tmux` to run multiple things in separate "windows"
 
 ???
 
 * Bonus: Do the same for the Nginx and Squid proxy logs
     * `/var/log/nginx`
     * `/var/log/squid`
+* Pro Tip: Use `tmux` to run multiple things in separate "windows"
 
 ---
 
@@ -908,37 +982,12 @@ Thanks
 ======
 
 * Charlie Sanders
-  * Feedback
-  * Several exercises
-  * Lab assistant
+    * Feedback
+    * Several exercises
 * Julian Simioni
-  * Feedback
-  * Lab assistant
+    * Feedback
 * Olivier Lacan
-  * Feedback
-
----
-
-Further Info
-============
-
-* [RFC 2616][rfc2616]
-* [What Happens When][whw]
-  * Covers every step involved in showing a page in a browser
-    * From entering the URL to the page rendering
-    * Hardware, operating system, networking, ...
-    * Very detailed and thorough
-* [Common HTTP Headers][http-headers]
-* [HTTP/2 Official Site][http2]
-* [Video on benefits of HTTP/2][http2-video]
-* [Nginx HTTP/2 Support][nginx-http2]
-
-[rfc2616]: http://www.rfc-editor.org/rfc/rfc2616.txt
-[whw]: https://github.com/alex/what-happens-when
-[http-headers]: http://en.wikipedia.org/wiki/List_of_HTTP_header_fields
-[http2]: http://http2.github.io/
-[http2-video]: https://www.youtube.com/watch?v=eunWfaTeodc
-[nginx-http2]: http://nginx.com/blog/how-nginx-plans-to-support-http2/
+    * Feedback
 
 ---
 
