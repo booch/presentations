@@ -340,6 +340,23 @@ Proxies
 
 ---
 
+Proxies for Troubleshooting
+===========================
+
+* [Charles proxy](https://www.charlesproxy.com)
+* [Fiddler](https://www.telerik.com/fiddler)
+* [mitmproxy](https://mitmproxy.org/)
+* [Zed Attack Proxy](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project)
+* [Proxy.app](https://www.proxyapp.io/) (MacOS)
+* [Slowy](http://slowyapp.com/) (MacOS)
+
+???
+
+* View *all* of the HTTP/HTTPS traffic between your machine and the Internet
+* Slowy slows down your network connection, to test under those conditions
+
+---
+
 CDNs
 ====
 
