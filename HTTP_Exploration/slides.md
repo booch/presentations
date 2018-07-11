@@ -792,6 +792,25 @@ http -v https://localhost:3000/
 
 ---
 
+Bad Gateway
+===========
+
+Have the instructor stop the application server
+
+~~~ bash
+http -v http://http-workshop.boochtek.com/reflect
+~~~
+
+What does the error mean?
+
+???
+
+~~~ bash
+sudo systemctl stop http-workshop-app.service
+~~~
+
+---
+
 Web Browsers
 ============
 
