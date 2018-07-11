@@ -890,6 +890,8 @@ Logs
 
 Pick some previous exercises and run them while watching Rails logs
 
+Rails logs are at `/var/www/http-workshop.boochtek.com/log/production.log`
+
 Hint: Use `tail -f`, `tailf`, or `less +F`
 
 * Tip: Use `tmux` to run multiple things in separate "windows"
@@ -897,6 +899,8 @@ Hint: Use `tail -f`, `tailf`, or `less +F`
 ???
 
 * Bonus: Do the same for the Nginx and Squid proxy logs
+    * `/var/log/nginx`
+    * `/var/log/squid`
 
 ---
 
