@@ -56,13 +56,13 @@ class: middle, center
 ???
 
 * I first came up with the idea for this talk while attending Emerging Languages Camp.
-* Basically some thought experiments about what Ruby would have looked like if desinged today.
+* Basically some thought experiments about what Ruby would have looked like if designed today.
     * What if Matz had made some different choices?
     * Especially big things like immutability, types, and concurrency.
 
 ---
 
-* TODO: Matz doing Q&A (RubyCOnf 2017?)
+* TODO: Matz doing Q&A (RubyConf 2017?)
 
 ???
 
@@ -105,33 +105,137 @@ But...
 # What Was Matz Thinking?
 
 ~~~ ruby
-* Perl-style globals
-* Global variables (at least the Perl-derived ones)
+$foo = 123
+$: << "./lib"  # Add a directory to the load path.
+$LOAD_PATH  # See the load path.
+$*  # ARGV (command-line arguments).
+%w[a b c].join  # => "abc"
+$, = ", "  # Set join string.
+%w[a b c].join  # => "a, b, c"
+$_  # Last line read via `gets` or `readline`.
 ~~~
+
+???
+
+* In general, global variables are frowned upon.
+    * They lead to non-local effects.
+        * Breaks encapsulation.
+        * Makes things very difficult to troubleshoot.
+    * Global constants are fine -- they don't have most of the issues.
+* That last one isn't technically even global.
+    * It's one of a few that are lexically scoped.
+* Perl-style (symbolic) globals are especially ugly.
+    * If you *have* to use them, use the English variants.
+        * Now included automatically.
+            * Used to have to `require "english"` to get them.
+        * See https://ruby-doc.org/stdlib-2.0.0/libdoc/English/rdoc/English.html.
+* See https://ruby-doc.org/core-2.5.1/doc/globals_rdoc.html for the full list.
 
 ---
 
 # What Was Matz Thinking?
 
 ~~~ ruby
-* Class (`@@`) variables
+=begin
+This is a comment.
+=end
+
+def my_method
+  =begin
+  This is NOT a comment.
+  The `=begin` is a syntax error.
+  =end
+end
 ~~~
+
+???
+
+* Ruby has block comments, but they're ugly and hard to use.
+    * So weird - they have to start at the beginning of the line.
+* Has anyone here ever used these?
+* Who even knew these existed?
+
+
+* Surprisingly, Atom knows how to correctly syntax highlight them.
+    * The syntax highlighting in the presentation doesn't get it quite right.
 
 ---
 
 # What Was Matz Thinking?
 
 ~~~ ruby
-* Block comments (`=begin`, `=end`)
+puts DATA.read
+__END__
+The interpreter will ignore all of this text.
+This will be part of the output.
+Everything to the end of the file is part of `DATA`.
 ~~~
+
+???
+
+* This program will print lines 3 through 5.
+* Note that you can only have 1 data block in a file.
+    * It always reads EVERYTHING from __END__ to the end of the file.
+* I can see a use for data blocks, but they're kinda weird.
+    * Why not just load the text from a separate file?
+* Who knew about this feature?
+    * How often have you used it?
 
 ---
 
 # What Was Matz Thinking?
 
 ~~~ ruby
-* Data blocks (`DATA` and `__END__`)
+class Polygon
+  @@sides = 10
+  def self.sides
+    @@sides
+  end
+end
+
+Polygon.sides # => 10
+
+class Triangle < Polygon
+  @@sides = 3
+end
+
+Triangle.sides # => 3
+Polygon.sides # => 3
 ~~~
+
+???
+
+* Class variables aren't very useful.
+    * They interact poorly with inheritance.
+    * They're shared between the class and all its subclasses.
+* Class variables are available to both instance methods and class methods.
+
+---
+
+# What Was Matz Thinking?
+
+~~~ ruby
+class Polygon
+  @sides = 10
+  def self.sides
+    @sides
+  end
+end
+
+Polygon.sides # => 10
+
+class Triangle < Polygon
+  @sides = 3
+end
+
+Triangle.sides # => 3
+Polygon.sides # => 10
+~~~
+
+???
+
+* Use "class instance variables" instead.
+    * Note that they can only be referenced from class methods.
 
 ---
 
