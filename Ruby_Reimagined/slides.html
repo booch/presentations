@@ -482,13 +482,78 @@ Polygon.sides # => 10
 
 # Planned Obsolescence
 
-* Obsolete keywords (like `BEGIN`, `END`, `for`, `in`)
+~~~ ruby
+for i in 1..6
+  puts i
+end
+
+(1..6).each do |i|
+  puts i
+end
+
+1.upto(6).each do |i|
+  puts i
+end
+~~~
+
+???
+
+* How many times have you used `for` / `in` in the past year?
+    * I've not used it once I learned about `each`.
+    * I'm not even planning to put `for` loops in my own Ruby-derived language.
 
 ---
 
 # Planned Obsolescence
 
-* Character literals (`?a`)
+~~~ ruby
+END { puts "END" }
+puts "hello"
+BEGIN { puts "BEGIN" }
+
+# Prints "BEGIN", then "hello", then "END".
+~~~
+
+???
+
+* Has anyone ever used `BEGIN` or `END`?
+* They're used to run code before/after the program starts/finishes.
+* A program may include multiple BEGIN and END blocks.
+    * `BEGIN` blocks are executed in the order they are encountered.
+    * `END` blocks are executed in reverse order.
+* Usually used when using Ruby to process text like Awk.
+    * I.e. when running `ruby -n`.
+        * Puts an implicit `while gets(); ... end` around the code.
+
+---
+
+# Planned Obsolescence
+
+Ruby 2.0+
+
+~~~ ruby
+?a  # => "a"
+?a + ?b  # => "ab"
+?a.class  # String
+??  # => "?"
+?\t  # => "\t"
+?\111  # => "I" (octal)
+?\C-x  # => "\u0018" (control-X)
+~~~
+
+Ruby 1.8
+
+~~~ ruby
+?a  # => 65 #TODO: Check this
+?a + ?b  # => "ab" #TODO: Check this
+?a.class  # Character #TODO: Check this
+"test"[0]  # 116
+~~~
+
+???
+
+* Character literals are just strings in Ruby 1.9 and newer.
+* They used to be Integers.
 
 ---
 
@@ -517,15 +582,62 @@ Polygon.sides # => 10
 
 # Immutable strings
 
+~~~ ruby
+s = "Hello, Craig"
+s.gsub("Craig", "Ruby!")
+s  # => "Hello, Craig"
+s.gsub!("Craig", "Ruby!")
+s  # => "Hello, Ruby!"
+~~~
+
+~~~ ruby
+s = "Hello, Craig".freeze
+s.gsub!("Craig", "Ruby!") #! FrozenError: can't modify frozen String
+~~~
+
+~~~ ruby
+# frozen_string_literal: true
+s = "Hello, Craig"
+s.gsub!("Craig", "Ruby!")  #! FrozenError: can't modify frozen String
+buffer = ""
+buffer << "Craig"  #! FrozenError: can't modify frozen String
+buffer += "Craig"
+buffer  # => "Craig"
+~~~
+
+???
+
+* TODO: Talk about `freeze`.
+* We have immutable strings as of Ruby 2.3 -- sort of.
+    * Requires a "magic" comment.
+        * Note that it's **singular** `literal`.
+            * Which I can never remember.
+    * Or `--enable-frozen-string-literal` from command line.
+        * But that will break **many** existing gems.
+    * Might become the default in Ruby 3.0.
+* TODO: This is actually **only** string literals.
+    * I'm actually talking about *all* strings.
 
 ---
 
 # Immutable Arrays and Hashes
 
+~~~ ruby
+h = {a: 1, b: 2}
+h[:a]  # => 1
+h[:a] = 2
+h[:a]  # => 2
+~~~
+
+???
+
 
 ---
 
 # Static Null Checking
+
+
+???
 
 * Like Crystal
 
