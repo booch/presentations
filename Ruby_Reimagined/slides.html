@@ -532,22 +532,21 @@ BEGIN { puts "BEGIN" }
 Ruby 2.0+
 
 ~~~ ruby
-?a  # => "a"
-?a + ?b  # => "ab"
+?a        # => "a"
+?a + ?b   # => "ab"
 ?a.class  # String
-??  # => "?"
-?\t  # => "\t"
-?\111  # => "I" (octal)
-?\C-x  # => "\u0018" (control-X)
+??        # => "?"
+?\t       # => "\t"
+?\111     # => "I" (octal)
+?\C-x     # => "\u0018" (control-X)
 ~~~
 
 Ruby 1.8
 
 ~~~ ruby
-?a  # => 65 #TODO: Check this
-?a + ?b  # => "ab" #TODO: Check this
-?a.class  # Character #TODO: Check this
-"test"[0]  # 116
+?a         # => 97
+?a.class   # => Fixnum
+"test"[0]  # => 116
 ~~~
 
 ???
@@ -561,19 +560,19 @@ Ruby 1.8
 
 ~~~ ruby
 square = proc{ |x| x * x }
-square.(2)  # => 4
+square.(2)      # => 4
 square.call(2)  # => 4
 square = Proc.new{ |x| x * x }
-square.(2)  # => 4
+square.(2)      # => 4
 square.call(2)  # => 4
 ~~~
 
 ~~~ ruby
 square = ->(x){x * x}
-square.(2)  # => 4
+square.(2)      # => 4
 square.call(2)  # => 4
 square = lambda{ |x| x * x }
-square.(2)  # => 4
+square.(2)      # => 4
 square.call(2)  # => 4
 ~~~
 
