@@ -89,8 +89,6 @@
       }
       .remark-slide .title h3 {
         font-size: 40px;
-        margin-left: 200px;
-        margin-top: 140px;
       }
       .remark-slide .diagram p {
         text-align: center;
@@ -169,39 +167,6 @@
         background-color: rgba(255, 255, 255, .75);
 
       }
-      .remark-slide .transition.boolean_basics {
-        background-image: url(images/pexels-photo-259943.jpeg);
-      }
-      .remark-slide .transition.boolean_parameters {
-        background-image: url(images/Param_03.jpg);
-      }
-      .remark-slide .transition.connascence {
-        background-image: url(images/TwinsTwins.JPG);
-      }
-      .remark-slide .transition.boolean_states {
-        background-image: url(images/Balkans_regions_map.png);
-      }
-      .remark-slide .transition.primitive_obsession {
-        background-image: url(images/Obsession.png);
-      }
-      .remark-slide .transition.boolean_fields {
-        background-image: url(images/cornfield_sky_trees_cereals_summer_nature_field_clouds-450526.jpg);
-      }
-      .remark-slide .transition.exponential_complexity {
-        background-image: url(images/Exponential.svg);
-      }
-      .remark-slide .transition.boolean_operations {
-        background-image: url(images/operation.jpg);
-      }
-      .remark-slide .transition.boolean_transformations {
-        background-image: url(images/Bumblebee_Transformer_-_Flickr_-_andrewbasterfield.jpg);
-      }
-      .remark-slide .transition.readability {
-        background-image: url(images/books_bookshelf_computer_science_programming_computer_language_specialist_literature-1066570.jpg);
-      }
-      .remark-slide .transition.conclusion {
-        background-image: url(images/6736130025_ac5e197e22_b.jpg);
-      }
 
       /* Individual (non-transition) slides */
       .remark-slide .single-image img {
@@ -217,9 +182,22 @@
       .remark-slide .remark-slide-content .highlight {
         background-color: yellow;
       }
+      .remark-slide .remark-slide-content.craig-heart-ruby img {
+        width: 25%;
+      }
+      .remark-slide .remark-slide-content.craig-heart-ruby > p {
+      }
+      .remark-slide .remark-slide-content.image-only {
+        margin: auto;
+      }
+      .remark-slide .remark-slide-content.image-only p {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
+      }
       .image-only img {
-        width: 100%;
-        vertical-align: middle;
+        max-width: 90%;
+        max-height: 70%;
       }
       .percent-70 img {
         width: 70%;
@@ -295,9 +273,9 @@ class: middle
 * My Twitter is in the upper right corner if you want to tweet at/about me.
 
 ---
-class: middle, center
+class: middle, center, craig-heart-ruby
 
-* TODO: Images for Ruby + Craig = Heart
+![Craig](images/booch.png) + ![Ruby](images/Ruby_logo.svg) = ![Heart](images/heart.svg)
 
 ???
 
@@ -308,19 +286,24 @@ class: middle, center
         * I'm not even confident I'll like *it* more than Ruby.
 
 ---
+class: image-only
 
-* TODO: Image for Emerging Languages Camp
+![Strange Loop logo](images/strange-loop-logo.jpg)
 
 ???
 
 * I first came up with the idea for this talk while attending Emerging Languages Camp.
+    * In 2013.
+        * ELC was co-located with Strange Loop in 2012 and 2013.
+            * I don't think I attended in 2012.
 * Basically some thought experiments about what Ruby would have looked like if designed today.
     * What if Matz had made some different choices?
     * Especially big things like immutability, types, and concurrency.
 
 ---
+class: image-only
 
-* TODO: Matz doing Q&A (RubyConf 2017?)
+![Matz doing Q&A at RubyConf 2017](images/matz-rubyconf-2017-q-and-a.jpg)
 
 ???
 
@@ -328,8 +311,9 @@ class: middle, center
     * Matz was answering a question about what features he regretted adding to Ruby.
 
 ---
+class: image-only
 
-* TODO: Stone logo
+![Stone programming language logo](images/stone-logo.jpg)
 
 ???
 
@@ -340,10 +324,9 @@ class: middle, center
     * It's about more realistic changes that might be applied to Ruby.
 
 ---
+class: middle, center, craig-heart-ruby
 
-class: middle, center
-
-* TODO: Images for Ruby + Craig = Heart
+![Craig](images/booch.png) + ![Ruby](images/Ruby_logo.svg) = ![Heart](images/heart.svg)
 
 ???
 
@@ -351,12 +334,12 @@ class: middle, center
 
 ---
 
-But...
+# But...
 
 ???
 
 * But not EVERYTHING about Ruby.
-* Ruby has some bad parts.
+* Ruby has some things that aren't so great.
 
 ---
 
@@ -522,6 +505,8 @@ Polygon.sides # => 10
 ---
 
 # But...
+
+![Matz, Ruby author](images/Ruby_matz_03.jpg)
 
 ???
 

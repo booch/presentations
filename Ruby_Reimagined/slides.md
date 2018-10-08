@@ -37,9 +37,9 @@ class: middle
 * My Twitter is in the upper right corner if you want to tweet at/about me.
 
 ---
-class: middle, center
+class: middle, center, craig-heart-ruby
 
-* TODO: Images for Ruby + Craig = Heart
+![Craig](images/booch.png) + ![Ruby](images/Ruby_logo.svg) = ![Heart](images/heart.svg)
 
 ???
 
@@ -50,19 +50,24 @@ class: middle, center
         * I'm not even confident I'll like *it* more than Ruby.
 
 ---
+class: image-only
 
-* TODO: Image for Emerging Languages Camp
+![Strange Loop logo](images/strange-loop-logo.jpg)
 
 ???
 
 * I first came up with the idea for this talk while attending Emerging Languages Camp.
+    * In 2013.
+        * ELC was co-located with Strange Loop in 2012 and 2013.
+            * I don't think I attended in 2012.
 * Basically some thought experiments about what Ruby would have looked like if designed today.
     * What if Matz had made some different choices?
     * Especially big things like immutability, types, and concurrency.
 
 ---
+class: image-only
 
-* TODO: Matz doing Q&A (RubyConf 2017?)
+![Matz doing Q&A at RubyConf 2017](images/matz-rubyconf-2017-q-and-a.jpg)
 
 ???
 
@@ -70,8 +75,9 @@ class: middle, center
     * Matz was answering a question about what features he regretted adding to Ruby.
 
 ---
+class: image-only
 
-* TODO: Stone logo
+![Stone programming language logo](images/stone-logo.jpg)
 
 ???
 
@@ -82,10 +88,9 @@ class: middle, center
     * It's about more realistic changes that might be applied to Ruby.
 
 ---
+class: middle, center, craig-heart-ruby
 
-class: middle, center
-
-* TODO: Images for Ruby + Craig = Heart
+![Craig](images/booch.png) + ![Ruby](images/Ruby_logo.svg) = ![Heart](images/heart.svg)
 
 ???
 
@@ -264,6 +269,8 @@ Polygon.sides # => 10
 ---
 
 # But...
+
+![Matz, Ruby author](images/Ruby_matz_03.jpg)
 
 ???
 
