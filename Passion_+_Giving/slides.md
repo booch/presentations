@@ -12,6 +12,13 @@ class: title, middle, center
 
 ### Craig Buchek
 
+???
+
+* Introduction
+* Twitter in lower left corner
+* Link to slides in lower right corner
+* I'm going to tell a story about finding my purpose
+
 ---
 class: single-image
 
@@ -19,13 +26,68 @@ class: single-image
 
 ???
 
-* August 9, 2014
-* I read a (re)tweet from Angela (now Alex) Harms about a shooting and unrest in Ferguson
+* My story starts on August 9, 2014
+* I read a (re)tweet from Angela Harms about a shooting and unrest in Ferguson
+    * (She goes by Alex Harms now)
 * My first thought was "please don't be Ferguson, Missouri"
-* An unarmed 18-year-old black kid had been shot and killed by police
 
 
 * NOTE: This is a recreation of the tweet; I can't find the original
+
+---
+class: single-image
+
+![Map showing Ferguson, where Michael Brown was shot, and where I grew up](images/map-ferguson-home-new.png)
+
+???
+
+* I grew up in North St. Louis County
+* A few miles Ferguson
+* Show of hands - who's familiar with North County?
+* My parents' house, where I grew up - purple pin in northeast corner
+* Today we're at UMSL - deep blue pin in middle bottom
+* Mike Brown shooting - deep red pin in southeast corner of Ferguson
+
+---
+class: single-image
+
+![Sound Warehouse](images/sound-warehouse.jpg)
+
+???
+
+* There was a record store Chambers and West Florissant
+* Me and my best friend from high school (Kai) went there often
+
+---
+class: single-image
+
+![Barber shop](images/barber-shop.jpg)
+
+???
+
+* My grandpa and great-grandfather had barber shops in Ferguson
+
+
+* NOTE: This picture is just of a generic barber shop
+
+---
+class: single-image
+
+![My great-grandma's house on Tiffin](images/house-on-tiffin.png)
+
+???
+
+* I remember visiting my great-grandma there
+* My mom said she liked to visit there when she was a kid, because they had squirrels
+
+---
+class: single-image
+
+![Tweet I first saw referring to Ferguson](images/angela-harms-tweet.png)
+
+???
+
+* Unfortunately, it *was* Ferguson, Missouri
 
 ---
 class: single-image
@@ -34,7 +96,11 @@ class: single-image
 
 ???
 
-* Mike Brown
+* An unarmed 18-year-old black kid had been shot and killed by police
+* Michael Brown
+* (pause)
+* He had just graduated from high school the previous week
+* He was supposed to start college at Vatterott the following week
 
 ---
 class: single-image
@@ -49,45 +115,6 @@ class: single-image
 * !["Tanks" in the streets of Ferguson](TODO)
 * ![Ferguson burning](TODO)
 * ![TODO: MLK write about violence of the oppressed](TODO)
-
----
-class: single-image
-
-![Map showing Ferguson, where Michael Brown was shot, and where I grew up](images/map-ferguson-home-new.png)
-
-???
-
-* I grew up 6 miles from Ferguson
-
----
-class: single-image
-
-![Sound Warehouse](images/sound-warehouse.jpg)
-
-???
-
-* Me and my best friend from high school liked to go to the record store nearby
-    * It was at Chambers and West Florissant
-
----
-class: single-image
-
-![Barber shop](images/barber-shop.jpg)
-
-???
-
-* My grandpa and great-grandfather had barber shops in Ferguson
-* (This picture is just of a generic barber shop)
-
----
-class: single-image
-
-![My great-grandma's house on Tiffin](images/house-on-tiffin.png)
-
-???
-
-* I remember visiting my great-grandma there
-* My mom said she liked to visit there when she was a kid, because they had squirrels
 
 ---
 class: single-image
@@ -112,8 +139,9 @@ class: single-image
 
 ???
 
-* The next Sunday, I went to my dad's church (at that time)
-    * This is the church you can see from I-70 between downtown and North Grand
+* The next Sunday, I went to my dad's church
+* Most Holy Trinity Catholic church
+* You can see it from I-70 between downtown and North Grand
 
 ---
 class: single-image
@@ -136,7 +164,9 @@ class: single-image
 ???
 
 * On my way home, I was passing by Ferguson
-* I decided to stop at the Krispy Kreme at 270 and West Florissant
+* I decided to stop at the Krispy Kreme at I-270 and West Florissant
+* I don't often pass up a donut store
+* Traffic was crazy across from the store
 
 ---
 class: single-image
@@ -145,7 +175,7 @@ class: single-image
 
 ???
 
-* Traffic was crazy - I'd accidentally stumbled across Mike Brown's funeral service
+* I'd accidentally stumbled across Mike Brown's funeral service
 
 ---
 class: single-image
@@ -155,8 +185,8 @@ class: single-image
 ???
 
 * So I bought a dozen donuts
-    * I ate a couple myself
-    * I handed out the rest as I walked half a mile from where I had parked
+* I ate a couple myself
+* I handed out the rest as I walked half a mile from where I had parked
 
 ---
 class: single-image
@@ -166,6 +196,7 @@ class: single-image
 ???
 
 * The church was packed to overflowing
+* I wasn't able to get inside
 
 ---
 class: single-image
@@ -175,43 +206,40 @@ class: single-image
 ???
 
 * The parking lot was packed with even more people
-* They had radio trucks with speakers for us to hear outside
+* They had trucks from radio stations, with speakers for us to hear outside
+* I learned a lot that day, listening to and talking to people in the crowd
 
 ---
-class: single-image
-
-![Collage of pictures I took in the parking lot](TODO)
-
-???
-
-* I learned a lot that day
-
----
-class: big-words, xl, white-on-black
+class: big-words, xl
 
 BLACK LIVES MATTER
 
 ???
 
-* This is what I believe
+* One of the slogans from the protest movement is "BLACK LIVES MATTER"
+* I believe those words to be true
 
 ---
-class: big-words, white-on-black
+class: big-words
 
 BLACK LIVES MATTER AS MUCH AS WHITE LIVES
 
 ???
 
-* When we say it, we mean this
+* When we say it, we mean that black lives matter as much as white lives
 
 ---
-class: big-words, white-on-black
+class: big-words
 
 ONLY BLACK LIVES MATTER
 
 ???
 
-* Not this
+* Some people think it means this
+* But that would be silly for someone like me to believe
+* And nobody I know involved in the movement thinks that
+* I've asked how people feel about white people participating
+* They're happy to have us
 
 ---
 class: single-image
@@ -241,7 +269,7 @@ class: single-image
 ???
 
 * I was there mainly to support the voices who aren't being heard
-* I learned a lot
+* Again, I learned a lot
 * But I didn't feel like I was really making an impact, or using my talents
 
 ---
@@ -252,24 +280,28 @@ class: single-image
 ???
 
 * One of the chants in Ferguson was "hands up, don't shoot"
-* It's clear to me that Mike Brown's hands were up when he was shot
+* (pause)
 
 ---
 class: single-image
 
-![White construction worker saying "he had his hands up"](TODO - clip from http://www.cnn.com/2014/09/10/us/ferguson-michael-brown-shooting-witnesses/index.html)
+![White construction worker saying "he had his hands up"](images/construction-worker.png)
 
 ???
 
+* It's clear to me that Mike Brown's hands were up when he was shot
 * Here's why I believe that
     * This witness didn't know he was on video, shortly after the shooting
     * He was a contractor working in the area
-    * He says "his fucking hands were up"
+    * He says "his f'ing hands were up"
 * But even if they weren't, police are not judge, jury, and executioner
 * There's no good reason to "shoot to kill" an unarmed person
 
+
+* This is from video at http://www.cnn.com/2014/09/10/us/ferguson-michael-brown-shooting-witnesses/index.html
+
 ---
-class: single-image
+class: single-image, hands-up-united
 
 ![Hands Up United logo](images/hands-up-united.png)
 
@@ -281,11 +313,22 @@ class: single-image
 ---
 class: single-image
 
-![ThoughtWorks logo](images/thoughtworks.png)
+<div class="white-background">
+  <img src="images/thoughtworks.png" alt="ThoughtWorks logo" />
+</div>
 
 ???
 
 * ThoughtWorks sent down some of their employees to help the organizers
+
+---
+class: single-image
+
+![Idalin "Abby" Bobé](images/abby-bobe.jpg)
+
+???
+
+* Abby Bobé was one of the main ThoughtWorkers helping
 
 ---
 class: single-image
@@ -312,30 +355,61 @@ class: single-image
     * It allowed me to apply my experience and skills
     * It felt like something that could make a difference
     * It was so compelling - a calling
+* Abby Bobé was the organizer
+    * I got in contact with her to help
+
 
 * NOTE: This is a recreation of the actual (re)tweet; I couldn't find the original
 
 ---
 class: single-image
 
-### Mentoring the kids
+![Hands Up Unite Tech Impact](images/tech-impact.png)
 
+???
+
+* Mentoring the kids was awesome
 * Hard work and lots of hours
 * Had to give up some of the time I spent elsewhere
 
 ---
 class: single-image
 
-![the light-bulb moment](images/light-bulb.svg)
+![Hands Up Unite Tech Impact](images/cameron.png)
+
+???
+
+* Story about Cameron
 
 ---
-class: big-words, white-on-black
+class: single-image
+
+![the light-bulb moment](images/light-bulb.svg)
+
+???
+
+* Story about Cameron
+
+---
+class: big-words
+
+I don't know <br />
+Let's find out
+
+???
+
+* Probably the 6 most powerful word I've ever spoken in my life
+* Or at least influential
+
+---
+class: big-words
 
 OPPORTUNITY
 
 ???
 
-* My goal was to give the kids an opportunity that they would not have had otherwise - a chance to learn enough to decide if this was a path for them or not
+* My goal was to give the kids an opportunity that they would not have had otherwise
+    * A chance to learn enough to decide if this was a path for them or not
 * Opportunity is the biggest thing missing in most of these kids' lives
 * They probably don't have the privilege of knowing anyone in their network, or their parents' network that could introduce them to this as a career path
 * I didn't expect a very high chance that any of the kids would pursue this as a career
@@ -358,7 +432,8 @@ class: single-image
 
 ???
 
-* I'd met Alex Harms at Midwest Ruby 2011
+* I'd met Angela Harms at Midwest Ruby 2011
+* (She goes by Alex Harms now)
 
 ---
 class: single-image
@@ -390,7 +465,9 @@ class: single-image
 ---
 class: single-image
 
-![ThoughtWorks logo](images/thoughtworks.png)
+<div class="white-background">
+  <img src="images/thoughtworks.png" alt="ThoughtWorks logo" />
+</div>
 
 ???
 
@@ -423,9 +500,7 @@ COMMUNITY
     * Many of us are trying to improve diversity and inclusion
 
 ---
-class: single-image
-
-![Approximately 700,000 pixels, representing each hour of my life](images/andy-kroll-pixelated-life.png)
+<div class="life" style="background: white; height: 600px; width: 100%; margin-top: 30px;">&nbsp;</div>
 
 ???
 
@@ -433,8 +508,22 @@ class: single-image
     * 24 hours/day * 365 days/year * 80 years/life = 700,800 hours
     * Which is pretty close to the number of pixels on a 1024x768 screen (786,432)
         * Which is also about what a (non-retina) phone screen has
-* The black pixels on the right represent sleep
-* The black pixels on the top represent your childhood
+
+---
+
+<div class="life" style="background: white; height: 600px; width: 67%; margin-top: 30px;">&nbsp;</div>
+
+???
+
+* But you're going to sleep 1/3 of that
+
+---
+
+<div class="life" style="background: white; height: 500px; width: 67%; margin-top: 130px;">&nbsp;</div>
+
+???
+
+* And you have to spend some time as a kid, growing up
 * So you've only got a small number of hours
 * So use each pixel wisely
 * Find your community
@@ -447,7 +536,7 @@ class: single-image
 * Make every pixel - every hour - count
 
 ---
-class: big-words, xl, white-on-black
+class: big-words, xl
 
 BLACK LIVES MATTER
 

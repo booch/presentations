@@ -53,13 +53,14 @@
       }
 
       .remark-slides-area {
-        background-color: #000000; /* Color of pillarbox on sides of slides */
+        background-color: black; /* Color of pillarbox on sides of slides */
       }
       .remark-slide-scaler {
-        background-color: white;
+        background-color: black;
       }
       .remark-slide-content {
-        background-color: #F4F4F4;
+        color: white;
+        background-color: black;
         font-size: 26px; line-height: 1.6;
         width: 100%;
       }
@@ -179,26 +180,22 @@
       }
 
       /* Individual (non-transition) slides */
-      .remark-slide .single-image {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      .remark-slide div.life {
+        display: block;
+        margin: 0;
         padding: 0;
-        /* height: 600px; /* Remark "normalizes" pages to 800x600. */
+        border: 0;
+        width: 100%;
+      }
+      .remark-slide .single-image {
+        display: flex;  /* NOTE: Main axis defaults to horizontal axis. */
+        justify-content: center; /* Align contained items along main axis. */
+        align-items: center; /* Align contained items along cross axis. Use `flex-end` or `flex-start` (default) to move to top/left or bot> */
+        padding: 0;
         height: 100%;
       }
       .remark-slide .single-image > p:first-of-type {
-        /* display: flex;  /* NOTE: Main axis defaults to horizontal axis. */
-        /* justify-content: center; /* Align contained items along main axis. */
-        /* align-items: center; /* Align contained items along cross axis. Use `flex-end` or `flex-start` (default) to move to top/left or bot> */
-        /* height: 100%;
         width: 100%;
-        resize: both;
-        overflow: auto; */
-        /* display: grid;
-        height: 100%;
-        width: 100%;
-        margin: 0; */
       }
       .remark-slide .single-image img {
         display: block;
@@ -207,21 +204,23 @@
         border: 0;
         width: 100%;
       }
-      .remark-slide .white-on-black {
-        color: white;
-        background-color: black;
+      .remark-slide .white-background {
+        background-color: white;
+        border: solid white 25px;
       }
-      .remark-slide .big-words {
-        font-size: 120px;
+      .remark-slide .hands-up-united {
+        margin-top: -150px;
+      }
+
+      .remark-slide .big-words > p {
+        font-size: 116px;
         padding: 0;
-        display: inline-block;  /* NOTE: Main axis defaults to horizontal axis. */
-        justify-content: center; /* Align contained items along main axis. */
-        align-items: center; /* Align contained items along cross axis. Use `flex-end` or `flex-start` (default) to move to top/left or bot> */
+        display: inline-block;
         height: 100%;
         width: 100%;
         line-height: 1;
       }
-      .remark-slide .big-words.xl {
+      .remark-slide .big-words.xl > p {
         font-size: 150px;
       }
       .remark-slide .remark-slide-content.workshop > p:first-of-type {
