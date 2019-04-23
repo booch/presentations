@@ -156,6 +156,8 @@ ORM
 ---
 class: single-image, sequel
 
+# Sequel
+
 ![Sequel ORM logo](images/Sequel.svg)
 
 ---
@@ -246,7 +248,9 @@ Post.where{num_comments < 7}.delete
     * Doesn't solve the SRP issues
 
 ---
-class: single-image
+class: single-image, rom
+
+# ROM
 
 ![ROM.rb logo](images/ROM.svg)
 
@@ -292,7 +296,9 @@ ROM
     * End up taking longer than expected, but really high quality code
 
 ---
-class: single-image
+class: single-image, hanami
+
+# Hanami
 
 ![Hanami logo](images/Hanami.jpg)
 
@@ -418,6 +424,15 @@ Repository Architecture
 ---
 TODO: Recreate DITAA diagram from Ruby Preserves talk.
 
+
+---
+class: single-image, activerecord-repository
+
+# ActiveRecord-Repository
+
+![ActiveRecord-Repository logo (3 books stacked)](images/ActiveRecord-Repository.svg)
+
+
 ---
 # Model with ActiveRecord
 
@@ -450,7 +465,7 @@ end
 # Repository with ActiveRecord-Repository
 
 ~~~ ruby
-class User::Repo
+class User::Repository
   include ActiveRecord.repository()
   scope :over_18, -> { where(age: 18..) }
 end
@@ -482,7 +497,7 @@ class UsersController
   def create
     user = User.create(params[:user])
     if user.valid?
-      User::Repo.save(user)
+      User::Repository.save(user)
       respond_with user
     else
       render :new, errors: user.errors
@@ -498,17 +513,23 @@ end
     * Would need to handle an exception on the `save` if you need uniqueness
 
 ---
-class: single-image
+class: single-image, thanks
+
+# Thanks!
 
 ![Thanks!](images/Thank You - word cloud.jpg)
 
 ---
-class: single-image
+class: single-image, weedmaps
+
+# Sponsored By
 
 ![Weedmaps logo](images/Weedmaps.png)
 
 ---
 class: single-image, cropped-square
+
+# Podcast
 
 ![This Agile Life podcast logo](images/This Agile Life.jpg)
 

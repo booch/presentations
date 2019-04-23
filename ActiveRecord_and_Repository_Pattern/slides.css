@@ -77,8 +77,7 @@ a:hover {
 }
 
 .remark-slides-area {
-    background-color: #B02222;
-    /* Color of pillarbox on sides of slides */
+    background-color: #B02222; /* Color of pillarbox on sides of slides */
 }
 
 .remark-slide-scaler {
@@ -141,9 +140,6 @@ a:hover {
 
 /* Transitipon Slides */
 .remark-slide .transition {
-    /* display: flex;
-  justify-content: center;
-  align-items: center; */
     padding: 0;
     height: 600px;
     /* Remark "normalizes" pages to 800x600. */
@@ -180,6 +176,7 @@ a:hover {
 
 .remark-slide .single-image>p:first-of-type {
     margin: 0;
+    margin-top: -2em;
 }
 
 .remark-slide .single-image img {
@@ -196,15 +193,14 @@ a:hover {
 }
 
 .remark-slide .single-image h1 {
-    position: absolute;
-    margin-top: -8em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     padding: 0.5em 1em;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.remark-slide .white-background {
-    background-color: white;
-    border: solid white 25px;
+    background-color: rgba(0, 0, 0, 0.15);
+    text-align: center;
+    z-index: 1;
 }
 
 .remark-slide .big-words>p {
@@ -218,11 +214,6 @@ a:hover {
 
 .remark-slide .big-words.xl>p {
     font-size: 150px;
-}
-
-.remark-slide .remark-slide-content.workshop>p:first-of-type {
-    margin-top: 150px;
-    text-align: center;
 }
 
 .remark-slide .remark-slide-content .highlight {
@@ -258,15 +249,27 @@ a:hover {
 
 
 /* Presentation-specific rules. */
-.remark-slide .thanks.weedmaps img {
-    display: block;
-    margin: auto;
-    padding-top: 50px;
-    width: auto;
-    height: 250px;
-    border: 0;
+.remark-slide .single-image.sequel img {
+    margin-top: -110px;
 }
 
-.remark-slide .single-image.sequel img {
-    margin-top: -140px;
+.remark-slide .single-image.rom img {
+    transform: scale(0.9);
+    margin-top: 90px;
+}
+
+.remark-slide .single-image.hanami img {
+    margin-top: 75px;
+}
+
+.remark-slide .single-image.activerecord-repository img {
+    margin-top: 100px;
+}
+
+.remark-slide .single-image.weedmaps img {
+    margin-top: 100px;
+}
+
+.remark-slide .single-image.thanks img {
+    margin-top: 100px;
 }
