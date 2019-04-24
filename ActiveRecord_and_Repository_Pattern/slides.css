@@ -10,6 +10,15 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
     font-weight: bold;
 }
 
+blockquote {
+    font-style: italic;
+    margin-left: 40px;
+}
+cite {
+    font-style: normal;
+    margin-left: 40px;
+}
+
 .remark-slide-content h1 {
     font-size: 45px;
 }
@@ -138,7 +147,7 @@ a:hover {
     margin: 0;
 }
 
-/* Transitipon Slides */
+/* Transition Slides */
 .remark-slide .transition {
     padding: 0;
     height: 600px;

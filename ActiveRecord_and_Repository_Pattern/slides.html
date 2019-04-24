@@ -33,6 +33,29 @@ class: title, middle, center
 # The Repository Pattern
 # And You
 
+???
+
+* Welcome!
+* Today we're going to dig into Active Record
+* Slides are available online
+    * Link in lower right
+    * You can press `P` to see my presenter notes
+        * Some extra info in there I won't talk about
+* If you want tweet at me or about me, it's just my name
+    * Lower left corner
+    * Use the hashtag `#railsconf` (or `#railsconf2019`)
+
+---
+
+Agenda
+======
+
+* The problem with Active Record
+* Alternatives to Active Record
+* Problems with the alternatives
+* The Repository pattern
+* A solution to the problem
+
 ---
 
 Active Record
@@ -49,58 +72,119 @@ Active Record
 
 ???
 
-* Who here uses ActiveRecord?
-* Who hasn't used ActiveRecord?
+* Who here uses Active Record?
+* Who hasn't used Active Record?
 * Who has used a different Ruby ORM?
-* Who loves ActiveRecord?
-* Who hates ActiveRecord?
-* Who both loves and hates ActiveRecord?
-* I hate ActiveRecord - mostly
-* But ActiveRecord is the 800-pount gorilla
-* Odds are, if you're hired to work on Rails, you'll be using AR
+* Who loves Active Record?
+* Who hates Active Record?
+* Who both loves and hates Active Record?
+* I personally have a love/hate relationship with Active Record
+* But Active Record is the 800-pound gorilla
+* Odds are, if you're hired to work on Rails, you'll be using it
 
 ---
 
-# Active Record
+# Active Record Pattern
+
+> An object that wraps a row in a database table or view,
+> encapsulates the database access,
+> and adds domain logic on that data.
+
+<cite>— [Martin Fowler, Patterns of Enterprise Application Architecture][PEAA]</cite>
+
+???
+
+* Note that he lists 3 separate things there:
+    * Object that wraps a database table
+    * Encapsulates database access
+    * Adds domain logic
+* Having that "and" in there indicates a violation of the Single Responsibility Principle
+* Maybe you could argue that that wapping and encapsulating are a single responsibility
+    * But adding domain logic is clearly a separate concern
+
+---
+
+# Active Record - Problems
+
+* Violates SRP
+* Implements several concerns
+* Model classes do too much
+* BIG!!
+* Too much "magic"
 
 ???
 
 * The biggest problem is that it encourages bad engineering habits
     * This is mostly because it violates the SRP
+        * Co-mingles persistence and domain logic
 * Active Record pattern described by Martin Fowler
     * [Patterns of Enterprise Application Architecture][peap]
 * Separation of concerns in important
     * Just like Rails separates M-V-C concerns
-    * But ActiveRecord does a terrible job at it
-* My experience is that the sweet spot for AR is about 20 model classes
+    * But Active Record does a terrible job at it
+* My experience is that the sweet spot for Active Record is about 20 model classes
 
 ---
 
-Active Record - Size
-====================
+# Active Record - Size
 
-* Rails is 270 kloc
-* Active Record is 210 kloc
+* Rails 5.2 is 75 kloc
+* Active Record is 30 kloc
+    * 430 files
 * Adds about 300 instance methods
-* Adds about 400 class methods
+* Adds about 600 class methods
 
 ???
 
-* ActiveRecord is **big**
+* Active Record is **BIG**
     * The size of AR is just a symptom of the SRP violation
     * It tries to do too much in one place, conflating multiple concerns
-* kloc = 1000 lines of code
 * For comparison:
-    * Sequel is 31 kloc
-    * Hanami::Entity is 2 kloc
+    * Sequel is 33 kloc
+    * ROM is 8.2 kloc (plus several DRY.rb libraries)
+    * Hanami::Entity is 2.1 kloc
+        * Sits atop Sequel or ROM
     * Perpetuity is 2.5 kloc (with all 3 adapters)
-* AR LOC stats are from Sean Griffin, [Ruby Rogues episode 222][rr-222]
-* Method stats are from a Rails 4.2 model w/ 1 field
+* Method stats are from a Rails 5.2.3 model w/ 1 field
+* For comparison:
+    * Enumerable has 33 methods
+    * String has 256 methods
+    * Array has 239 methods
+    * Object has 86 methods
+
+-----
+
+* kloc = 1000 lines of code
+* Using `cloc`:
+    * `*-5.2.3` - 76.6k
+    * AR - 23.2k
+    * ARel - 3.9k
+    * AModel - 3.1k
+    * Railties - 8.6k
+    * ActionPack - 12.6k
+        * Controller - 3.5k
+        * View - 7.3k
+
+~~~ ruby
+require "active_record"
+ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
+ActiveRecord::ConnectionAdapters::ConnectionPool.new(
+  ActiveRecord::ConnectionAdapters::ConnectionSpecification.new("primary", {adapter: "sqlite3", database: ":memory:"}, "sqlite3_connection")
+)
+ActiveRecord::Schema.define do
+  create_table :users, force: true do |t|
+    t.string :name, nil: false
+  end
+end
+class User < ActiveRecord::Base; end
+User.methods.count  # => 612
+User.instance_methods.count  # => 312
+~~~
+
 
 ---
 
-Active Record - Insanity
-========================
+# Active Record - Insanity
 
 * Attributes and relationships defined different places
     * Attributes are defined in DB schema
@@ -109,7 +193,7 @@ Active Record - Insanity
 
 ???
 
-* The thing that drives me most crazy about ActiveRecord is having to look in 2 places for things
+* The thing that drives me most crazy about Active Record is having to look in 2 places for things
     * Relationships (or associations) are defined in the model
         * `has_many`
         * `belongs_to`
@@ -119,7 +203,9 @@ Active Record - Insanity
     * But it doesn't mean to put related things in different places
 * True madness to have to look in 2 places for all details about a model
     * This is a case of too much magic for me
-    * Work-arounds like model-annotations helped
+    * Work-arounds like model-annotations help
+        * I also use an Atom package to toggle showing a model's attributes from the schema
+            * But it's currently broken
 * Attributes API actually debuted in Rails 4.2, but was not publicized
 * I had also released a couple gems to define attributes in AR models
     * Virtus-ActiveRecord
@@ -152,6 +238,7 @@ ORM
     * Example: tree structure
         * Easy to do in OOP
         * Several ways to represent in relational algebra
+* I dove more in-depth into the essence of an ORM in [my RubyConf 2015 talk][RubyConf2015]
 
 ---
 class: single-image, sequel
@@ -242,9 +329,9 @@ Post.where{num_comments < 7}.delete
 
 ???
 
-* Like ActiveRecord, attributes are derived from the database schema
+* Like Active Record, attributes are derived from the database schema
     * But also like AR, not relationships
-* Seems like a small advantage over ActiveRecord
+* Seems like a small advantage over Active Record
     * Doesn't solve the SRP issues
 
 ---
@@ -382,11 +469,12 @@ ArticleRepository.for("Craig")
 
 # Downsides of the Alternatives
 
-* Everyone uses ActiveRecord
+* Everyone uses Active Record
     * Have to learn something new
-* Rails add-on gems assume you're using ActiveRecord
+* Rails add-on gems assume you're using Active Record
 
 ---
+
 Repository Pattern
 ==================
 
@@ -396,7 +484,7 @@ Repository Pattern
 
 * The Repository pattern represents a collection of domain objects
     * Can treat the database as an in-memory collection
-* We have something similar in ActiveRecord:
+* We have something similar in Active Record:
     * Class methods
     * Scopes
 * But AR doesn't support 2 different data stores for the same model class
@@ -432,16 +520,45 @@ class: single-image, activerecord-repository
 
 ![ActiveRecord-Repository logo (3 books stacked)](images/ActiveRecord-Repository.svg)
 
+???
+
+* I've spent several years looking for a way to both:
+    * Keep using Active Record
+    * Separating the domain model from the database
+* One Saturday morning, I was thinking about it again
+    * I came up with a solution I thought could work
+    * In Rails 3, they split out Active Record into several modules
+        * Except I might have mis-remembered
+            * I think it was Action Controller that got modularized
+        * Active Model got pulled out of Active Record
+    * I'd use the various modules that Active Record uses
+* It wasn't quite as easy as I expected
+    * All the modules have a lot of interdependencies
+    * There's no real documentation on how to use each module
+        * Or what the dependencies look like
+* It turned out that the domain model is just *most* of Active Model
+    * So I actually call the model part of my gem "ActiveModel::Entity"
+    * And the repository is *most* of Active Record
 
 ---
-# Model with ActiveRecord
+
+# Model with Active Record
 
 ~~~ ruby
 class User < ActiveRecord::Base
+  belongs_to :company
   has_many :roles
+
+  validates :age, numericality: { greater_than: 0 }
+
   scope :over_18, -> { where(age: 18..) }
 end
 ~~~
+
+???
+
+* I'm going to show the difference between using normal Active Record and ActiveRecord-Repository
+* Here's a typical Active Record model
 
 ---
 
@@ -450,13 +567,42 @@ end
 ~~~ ruby
 class User
   include ActiveModel.entity()
+
   attribute :name, :string
   attribute :age, :integer
+
+  belongs_to :company
   has_many :roles
+
+  validates :age, numericality: { greater_than: 0 }
 end
 ~~~
 
 ???
+
+* Here's the same thing in ActiveRecord-Repository
+* Instead of subclassing, we're including a module
+    * But we're dynamically generating that module through the call to the `ActiveModel.entity` method
+        * This is a trick I learned from Virtus
+        * I talked about this trick in [my RubyConf talk on Ruby idioms in 2014][RubyConf2014]
+            * That topic starts on slide 30
+        * I call it Parameterized Module Inclusion, or the Module Factory pattern
+        * It allows passing parameters
+            * We could specify a different name for the implicit `id` field
+            * We could specify whether to include date stamps for create and update
+* I call the module we mix in "ActiveModel::Entity"
+    * I realized that there's really no Active Record involved in this part
+        * It's almost all Active Model
+    * The term "entity" comes from Eric Evans's [Domain-Driven Design][DDD]
+    * An entity is an object that has an identity
+        * Even if 2 items have all the same attributes (other than ID), they could still be different things
+* The other major difference is that we declare the attributes (name and type) here
+* We still have the `belongs_to`, `has_many`, and validation declarations
+* We'd still have any instance methods we'd have in a model class
+* What we don't have here is the scope
+    * That will be in the repository
+
+-----
 
 * I had `date_of_birth`, with a computed age, but the calendar math was too complex to show on screen
 
@@ -467,13 +613,32 @@ end
 ~~~ ruby
 class User::Repository
   include ActiveRecord.repository()
+
   scope :over_18, -> { where(age: 18..) }
 end
 ~~~
 
+???
+
+* Here's the repository for that same class
+* Note that we *could* have more than 1 repository for a given model
+    * For sharding
+    * For soft-deleted items
+    * For read/write segregation
+    * For in-memory "persistence" for tests
+* Again, we're including a module instead of subclassing
+    * We could pass some parameters
+        * Model class we're working with
+            * We get the attributes from the model, to ensure our database schema matches up
+            * We can derive the default following the naming pattern of ModelName::Repository
+        * The database table name, if it can't be easily derived
+* We have the scope in the repository
+    * Because we use it on the collection of model objects
+        * Not any individual model object
+
 ---
 
-# Controller with ActiveRecord
+# Controller with Active Record
 
 ~~~ ruby
 class UsersController
@@ -508,9 +673,55 @@ end
 
 ???
 
-* Only 2 lines change
+* Only 2 lines changed
+* We explicitly test to see if the model is valid
+* We tell the repository to save the model object
 * One caveat: validations can't check for uniqueness without a race condition
-    * Would need to handle an exception on the `save` if you need uniqueness
+    * Would still need to handle an exception on the `save` if you need uniqueness
+
+---
+
+TODO: Show some code from the gem
+* My implementation of the repository pattern with Active Record
+    * Really just an overview, showing the use of the Active Record sub-modules
+    * Challenges
+    * Ask for help
+
+---
+
+# Testing
+
+TODO: Show some testing benefits
+* Fast tests (without stubs/mocks)!
+
+---
+
+# Future Work
+
+* Add validations to `attributes` declarations
+    * `required: false`
+* Automatically-generated migrations
+* How to deal with ActiveModel's `persisted?` properly
+
+???
+
+* Go see Matt Duszynski's talk on migrations
+    * My teammate/colleague
+    * Following time-slot
+    * In room 101 F-H
+
+---
+
+# I Need Your Help
+
+* Star the repo
+    * So I know people are interested
+* Feedback
+    * Twitter
+    * GitHub Issue
+    * Email
+    * In person
+* Pull requests
 
 ---
 class: single-image, thanks
@@ -535,40 +746,44 @@ class: single-image, cropped-square
 
 ---
 
+# Resources
+
+* ActiveRecord-Repository
+    * https://github.com/boochtek/activerecord-repository
+
+
+* Me
+    * Twitter: @CraigBuchek
+    * GitHub: booch
+
+???
+
+* The source for this presentation is on GitHub
+    * In my `presentations` repo
+
 ---
 
 # TODO:
 
 * The Active Record pattern
+* The Repository pattern
 * What does an ORM do?
-* Logos
-    * Sequel: https://groups.google.com/forum/#!forum/sequel-talk
 * Downsides of the alternatives
 * Business logic vs domain model/logic
-* The Repository pattern
-* Using the Repository pattern with ActiveRecord
-    * What does a controller look like?
-        * Manually testing for valid?
-        * Still checking for failures on save
-            * Note that uniqueness (without race conditions) can only be done by the DB
-* Fast tests (without stubs/mocks)!
-* Future
-    * Automatically-generated migrations
-        * Mention Matt's talk on migrations
-            * Following session, in 101F-H
-* My implementation of the repository pattern with ActiveRecord
-    * Really just an overview, showing the use of the ActiveRecord sub-modules
-    * Challenges
-    * Ask for help
-* My affiliations:
-    * This Agile Life
-    * Weedmaps
-* References:
-    * My talk on Ruby Preserves
-    * My talk on Ruby Idioms
-    * Domain-Driven Design
-        * https://www.amazon.com/dp/0321125215
-        * by Eric Evans
+* Use same title layout/style for every slide?
+* References
+* Credits
+    * Books SVG from https://commons.wikimedia.org/wiki/File:MediaWiki-Virtual-Library-icon.svg
+        * Maybe use a modified version of this instead: https://commons.wikimedia.org/wiki/File:Building2.svg
+        * Would really like it to look more like https://www.istockphoto.com/vector/red-library-cartoon-building-icon-gm695924018-128844785
+        * Also like something like https://www.iconfinder.com/icons/2002876/databank_database_repository_server_storage_icon
+        * Also like something like https://www.maxpixel.net/Shelves-Library-Interior-Cornell-University-Books-82344
+
+
+[PEAA]: https://martinfowler.com/books/eaa.html
+[DDD]: http://dddcommunity.org/book/evans_2003/
+[RubyConf2014]: https://booch.github.io/presentations/ruby_idioms/slides.htm
+[RubyConf2015]: https://booch.github.io/presentations/Ruby_Preserves/slides.html
 
     </textarea>
   </body>

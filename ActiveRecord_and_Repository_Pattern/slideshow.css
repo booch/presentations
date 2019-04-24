@@ -31,7 +31,7 @@ html .remark-container.remark-presenter-mode .remark-slides-area {
   display: none;
 }
 .remark-presenter-mode .remark-preview-area {
-  top: 55%;
+  top: 56%;
 }
 .remark-presenter-mode .remark-preview-area .remark-slide-container {
   transform: scale(0.5);
