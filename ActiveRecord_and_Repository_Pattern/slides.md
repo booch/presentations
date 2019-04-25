@@ -81,10 +81,11 @@ Active Record
     * But adding domain logic is clearly a separate concern
 
 ---
+class: image-only, active-record-pattern
 
 # Active Record Pattern
 
-TODO: DITAA
+![UML diagram of Active Record pattern](images/active_record.uml.png)
 
 ---
 
@@ -481,9 +482,20 @@ Repository Pattern
         * See [this Code Climate article][code-climate-class-methods] for details
 
 ---
+class: image-only
 
-Repository Architecture
-=======================
+# Repository Pattern
+
+![UML diagram of Repository pattern](images/repository.uml.png)
+
+???
+
+* Note the arrows
+    * The domain model is not dependent on anything else
+
+---
+
+# Repository Architecture
 
 * Domain model class handles business logic
 * Repository class handles persistence
@@ -494,7 +506,8 @@ Repository Architecture
 * Repository pattern gives a clear separation of concerns
 
 ---
-TODO: Recreate DITAA diagram from Ruby Preserves talk.
+
+
 
 
 ---

@@ -21,6 +21,7 @@ cite {
 
 .remark-slide-content h1 {
     font-size: 45px;
+    z-index: 1;
 }
 
 a {
@@ -209,7 +210,6 @@ a:hover {
     padding: 0.5em 1em;
     background-color: rgba(0, 0, 0, 0.15);
     text-align: center;
-    z-index: 1;
 }
 
 .remark-slide .big-words>p {
@@ -239,10 +239,20 @@ a:hover {
     align-self: center;
 }
 
+/* Make sure the image takes up all the space, but doesn't run outside the frame. */
 .image-only img {
-    max-width: 90%;
-    max-height: 70%;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
+.image-only.active-record-pattern img {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 140px;
+}
+
+
 
 .percent-70 img {
     width: 70%;
