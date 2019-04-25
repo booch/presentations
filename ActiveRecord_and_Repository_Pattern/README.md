@@ -3,6 +3,8 @@ Active Record, the Repository Pattern, and You
 
 This is my presentation for [RailsConf 2019][railsconf].
 
+This talk is about (among other things) my [ActiveRecord-Repository][ar-repo] project.
+
 
 Abstract
 --------
@@ -28,5 +30,6 @@ Resources
 ---
 
 [railsconf]: https://www.railsconf.com/
+[ar-repo]: https://github.com/boochtek/activerecord-repository
 [current_slides]: https://booch.github.io/presentations/ActiveRecord_and_Repository_Pattern/slides.html#1
 [remark]: https://remarkjs.com/
