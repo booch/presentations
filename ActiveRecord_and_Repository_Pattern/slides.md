@@ -92,7 +92,7 @@ class: image-only, active-record-pattern
 
 # Active Record Pattern
 
-![UML diagram of Active Record pattern](images/active_record.uml.png)
+![UML diagram of Active Record pattern](images/active_record.uml.svg)
 
 ???
 
@@ -630,7 +630,7 @@ class: image-only
 
 # Repository Pattern
 
-![UML diagram of Repository pattern](images/repository.uml.png)
+![UML diagram of Repository pattern](images/repository.uml.svg)
 
 ???
 
