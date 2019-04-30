@@ -61,8 +61,37 @@ class: title, middle, center
 * Who hates Active Record?
 * Who both loves and hates Active Record?
 * I have a love/hate relationship with Active Record
-* But Active Record is the 800-pound gorilla
-* Odds are, if you're hired to work on Rails, you'll be using it
+* Active Record is the 800-pound gorilla
+    * Odds are, if you're hired to work on Rails, you'll be using it
+
+---
+
+# ORM
+
+* Object-Relational Mapper (ORM)
+
+
+* Connects your app to your database
+
+
+* Ruby - objects
+* SQL - relations
+
+???
+
+* First, I want to make sure everyone knows what an ORM is
+* SQL databases deal with relations
+    * Relational algebra
+* Ruby deals with objects
+* ORM brings those 2 sides together
+    * Maps between objects and relations
+* Caveat: There's an "impedance mismatch" between the 2 sides
+    * What works well on one side might not work well on the other
+    * Some data structures can't be mapped 1-to-1
+    * Example: tree structure
+        * Easy to do in OOP
+        * Several ways to represent in relational algebra
+* I dove more in-depth into the essence of an ORM in [my RubyConf 2015 talk][RubyConf2015]
 
 ---
 
@@ -92,11 +121,11 @@ class: image-only, active-record-pattern
 
 # Active Record Pattern
 
-![UML diagram of Active Record pattern](images/active_record.uml.svg)
+![UML class diagram of Active Record pattern](images/active_record.uml.svg)
 
 ???
 
-* Here's a UML diagram of the Active Record pattern
+* Here's a UML class diagram of the Active Record pattern
 * Note that there are 2 kinds of things going on
     * Find and save deal with persistent storage
     * Name, age, and address deal with domain logic
@@ -134,6 +163,7 @@ class: image-only, active-record-pattern
 * Active Record is 30 kloc
     * 430 files
     * About 40 main modules
+        * 50, including ActiveModel
 * Adds about 300 instance methods
 * Adds about 600 class methods
 
@@ -169,7 +199,7 @@ class: image-only, active-record-pattern
     * ActionPack - 12.6k
         * Controller - 3.5k
         * View - 7.3k
-* Counting methods:
+* Counting methods/modules:
     ~~~ ruby
     require "active_record"
     ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
@@ -188,11 +218,12 @@ class: image-only, active-record-pattern
     class User < ActiveRecord::Base; end
     User.methods.count  # => 612
     User.instance_methods.count  # => 312
+    ActiveRecord::Base.ancestors.size  # => 64 (7 of which are `Object` or above)
     ~~~
 
 ---
 
-# Active Record - Insanity
+# Active Record - Bifurcation
 
 * Attributes and relationships defined different places
     * Attributes are defined in DB schema
@@ -201,8 +232,7 @@ class: image-only, active-record-pattern
 
 ???
 
-* Other thing that drives me most crazy about Active Record
-    * Having to look in 2 places for things
+* Other thing I find super *frustrating* about Active Record
     * Relationships (or associations) are defined in the model
         * `has_many`
         * `belongs_to`
@@ -210,13 +240,13 @@ class: image-only, active-record-pattern
 * This is a terrible abuse of the DRY principle
     * DRY says there should be one place to look for any piece of info
     * But it doesn't mean to put related things in different places
-* True madness to have to look in 2 places for all details about a model
+* Have to look in 2 places for all details about a model
     * This is a case of too much magic for me
     * Work-arounds like model-annotations help
         * I also use an Atom package to toggle showing a model's attributes from the schema
             * But it's currently broken
 * Attributes API actually debuted in Rails 4.2, but was not publicized
-* I had also released a couple gems to define attributes in AR models
+* I had also released a couple gems to define attributes in Active Record models
     * Virtus-ActiveRecord
     * ActiveRecord-AttributeDeclarations
 
@@ -226,34 +256,26 @@ class: image-only, active-record-pattern
     * For details, see [The Pragmatic Programmer]
 
 ---
+class: single-image
 
-ORM
-===
+# Architecture: The Lost Years
 
-* Object-Relational Mapper (ORM)
-
-
-* Connects your app to your database
-
-
-* Ruby - objects
-* SQL - relations
+![Screen grab from Uncle Bob's Architecture: The Lost Years talk](images/Architecture: The Lost Years.png)
 
 ???
 
-* I want to make sure everyone knows what an ORM is
-* SQL databases deal with relations
-    * Relational algebra
-* Ruby deals with objects
-* ORM brings those 2 sides together
-    * Maps between objects and relations
-* Caveat: There's an "impedance mismatch" between the 2 sides
-    * What works well on one side might not work well on the other
-    * Some data structures can't be mapped 1-to-1
-    * Example: tree structure
-        * Easy to do in OOP
-        * Several ways to represent in relational algebra
-* I dove more in-depth into the essence of an ORM in [my RubyConf 2015 talk][RubyConf2015]
+* Who's seen this talk by Uncle Bob?
+    * "Architecture: The Lost Years"
+* Was anyone else by chance there at Ruby Midwest 2011?
+* After almost 10 years, he wrote a book on the topic
+    * [Clean Architecture]
+* Since this talk, I've struggled:
+    * To find a way to get Rails to implement all the architectural suggestions
+    * Interactors gem
+        * Splits Rails controller and business logic
+        * Works well for that part
+    * Never found a great answer for splitting Entities and DB
+        * This is the qeust I'll be talking about
 
 ---
 class: single-image, sequel
@@ -261,6 +283,10 @@ class: single-image, sequel
 # Sequel
 
 ![Sequel ORM logo](images/Sequel.svg)
+
+???
+
+* The first stop on my journey is the Sequel ORM
 
 ---
 
@@ -276,10 +302,13 @@ class: single-image, sequel
 
 ???
 
-* _(Read bullet points)_
 * Biggest surprise when I did research for the an earlier related talk
 * Written by Jeremy Evans
     * Winner of a Ruby Hero award
+* Has tons of plugins, leveraging database features
+    * Especially for Postgres
+* Supports almost any SQL database you can think of
+* Nicely documented
 
 ---
 
@@ -356,8 +385,8 @@ class: single-image, hanami
 
 ???
 
-* Next I'll talk about the model layer of Hanami
-* Hanami is a web framework
+* Next on my quest is the model layer of Hanami
+* Hanami is a full web framework
     * An alternative to Rails
 
 ---
@@ -374,13 +403,15 @@ class: single-image, hanami
 
 ???
 
-* _(Read first 3 bullet points)_
-* Entity = model, without persistence or validations
-* Repository = mostly like class methods on an AR model class
-    * Allows easily changing the storage layer
-    * create, update, persist, delete
-    * all, find, first, last
-* Mapper = declaration of how to map between DB records and object attributes
+* Follows the Data Mapper pattern
+* Supports SQL (via Sequel), memory, and file adapters
+* Follows Data-Driven Design architecture
+    * Entity = model, without persistence or validations
+    * Repository = mostly like class methods on an AR model class
+        * Allows easily changing the storage layer
+        * `create`, `update`, `persist`, `delete`
+        * `all`, `find`, `first`, `last`
+    * Mapper = declaration of how to map between DB records and object attributes
 
 ---
 
@@ -457,6 +488,10 @@ class: single-image, rom
 # ROM
 
 ![ROM.rb logo](images/ROM.svg)
+
+???
+
+* Next ORM in my journey of exploration: ROM
 
 ---
 
@@ -630,10 +665,11 @@ class: image-only
 
 # Repository Pattern
 
-![UML diagram of Repository pattern](images/repository.uml.svg)
+![UML class diagram of Repository pattern](images/repository.uml.svg)
 
 ???
 
+* Here's the UML class diagram of the Repository pattern
 * Note the arrows
     * The domain model is not dependent on anything else
 * Clear separation of concerns
@@ -1040,6 +1076,13 @@ class: single-image, weedmaps
 
 ![Weedmaps logo](images/Weedmaps.png)
 
+???
+
+* Thanks to my employer, Weedmaps, for paying for my trip here
+* We're hiring!
+* There are about 20 of us here
+* Come see us at our booth
+
 ---
 
 # Resources
@@ -1068,7 +1111,7 @@ class: single-image, weedmaps
     * [Remark][Remark] slide show (Markdown to HTML)
         * Customized CSS
         * Customized presenter notes layout
-    * [DITAA][DITAA] ASCII diagramming
+    * [DITAA][DITAA] convert ASCII diagrams to SVG (or PNG)
 
 
 [PEAA]: https://martinfowler.com/books/eaa.html
