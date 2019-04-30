@@ -252,6 +252,10 @@ a:hover {
     margin-left: 225px;
     width: auto;
 }
+.image-only.rom-overview img {
+    margin-top: -48px;
+    width: auto;
+}
 
 
 

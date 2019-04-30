@@ -618,6 +618,17 @@ users_relation
 ~~~
 
 ---
+class: image-only, rom-overview
+
+# ROM Overview
+
+![ROM Overview diagram](images/ROM Overview.jpg)
+
+???
+
+* I found ROM to be really complex
+
+---
 
 # ROM Downsides
 
@@ -634,8 +645,7 @@ users_relation
 
 * I *want* to like ROM
     * But I find it too complex and confusing
-    * I couldn't actually get things set up right to test the code I just showed you
-* TODO: Show diagram from https://rom-rb.org/4.0/learn/getting-started/core-concepts/
+    * I couldn't actually get things set up right to run the code I showed
 
 ---
 
