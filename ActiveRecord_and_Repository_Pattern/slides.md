@@ -267,15 +267,27 @@ class: single-image
 * Who's seen this talk by Uncle Bob?
     * "Architecture: The Lost Years"
 * Was anyone else by chance there at Ruby Midwest 2011?
-* After almost 10 years, he wrote a book on the topic
-    * [Clean Architecture]
 * Since this talk, I've struggled:
     * To find a way to get Rails to implement all the architectural suggestions
     * Interactors gem
         * Splits Rails controller and business logic
         * Works well for that part
     * Never found a great answer for splitting Entities and DB
-        * This is the qeust I'll be talking about
+        * This is the quest I'll be talking about
+
+---
+class: image-only, clean-architecture
+
+# Clean Architecture
+
+![Clean Architecture book](images/Clean Architecture book.jpg)
+
+???
+
+* After almost 10 years, he wrote a book on the topic
+    * [Clean Architecture]
+    * It doesn't really help me with this problem
+* [Clean Architecture blog article] is a good succinct explanation
 
 ---
 class: single-image, sequel
@@ -286,7 +298,7 @@ class: single-image, sequel
 
 ???
 
-* The first stop on my journey is the Sequel ORM
+* The first stop on my quest is the Sequel ORM
 
 ---
 
@@ -1102,6 +1114,7 @@ class: single-image, weedmaps
     * In my `presentations` repo
 * There's the link to the ActiveRecord-Repository gem
     * But it's easier to get there from my GitHub page
+* Feel free to stop me in the hall to ask me questions
 
 -----
 
@@ -1124,3 +1137,6 @@ class: single-image, weedmaps
 [Code Climate - Class Methods]:  http://blog.codeclimate.com/blog/2012/11/14/why-ruby-class-methods-resist-refactoring/
 [Remark]: http://remarkjs.com/
 [DITAA]: http://ditaa.sourceforge.net/
+[The Pragmatic Programmer]: https://pragprog.com/book/tpp/the-pragmatic-programmer
+[Clean Architecture]: https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure-ebook/dp/B075LRM681
+[Clean Architecture blog article]: https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
