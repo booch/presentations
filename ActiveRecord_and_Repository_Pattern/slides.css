@@ -87,7 +87,7 @@ a:hover {
 }
 
 .remark-slides-area {
-    background-color: #B02222; /* Color of pillarbox on sides of slides */
+    background-color: #AE8857; /* Color of pillarbox on sides of slides */
 }
 
 .remark-slide-scaler {
@@ -135,6 +135,12 @@ a:hover {
 }
 
 /* Title page */
+.remark-slide .title {
+    background-image: url(images/RailsConf2019-mini-logo.svg);
+    background-repeat: no-repeat;
+    background-position-x: left 50px;
+    background-position-y: bottom 70px;
+}
 .remark-slide .title h1 {
     font-size: 75px;
     margin-top: -50px;

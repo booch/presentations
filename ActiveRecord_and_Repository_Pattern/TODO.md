@@ -1,14 +1,24 @@
 TODO
 ====
 
-* DITAA - generate SVGs instead of PNGs
+* Can add a couple minutes more content
+
+
+* Make sure to show URLs of all the gems I talk about
+* How do I want my audience changed?
+* 1-slide example to wrap up the 5 together?
+
+
 * Add class method and instance method to Active Record model examples
 * Use the same examples everywhere
+* https://github.com/makandra/active_type
+* Make sure Sequel and Hanami examples use the latest versions
+
 * Testing
     * Show some testing benefits
     * Fast tests (without stubs/mocks)!
-* Make sure Sequel and Hanami examples use the latest versions
 * Make sure I covered what I said I would in the proposal
+
 * Use same title layout/style for every slide?
     * The one from the single picture slides
 * References

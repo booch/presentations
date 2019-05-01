@@ -37,12 +37,13 @@ class: title, middle, center
 
 * Welcome!
 * Today we're going to dig into Active Record
-* Link to slides in lower right
-    * You can press `P` to see my presenter notes
-        * Some extra info in there I won't talk about
+    * With a couple detours
+* Lower right: Link to slides
+    * Press `P` to see my presenter notes
+        * Links and extra notes I won't talk about
 * My Twitter handle is in the lower left corner
-    * Feel free to tweet at me or about me
-    * Use the hashtag `#railsconf` (or `#railsconf2019`)
+    * Feel free to tweet *at* me or *about* me
+    * Use the hashtag `#railsconf`
 
 ---
 
@@ -60,6 +61,7 @@ class: title, middle, center
 * We'll look at some alternatives
     * But then talk about why you might not want to use the alternatives
 * Then I'll talk about a potential solution
+    * And the pattern that I think we should all be using
 
 ---
 
@@ -77,12 +79,12 @@ class: title, middle, center
 ???
 
 * Who here uses Active Record?
-* Who hasn't used Active Record?
+* Anyone who hasn't used Active Record?
 * Who has used a different Ruby ORM?
+    * A different non-Ruby ORM?
 * Who loves Active Record?
 * Who hates Active Record?
-* Who both loves and hates Active Record?
-* I have a love/hate relationship with Active Record
+* Anyone besides me that has a love/hate relationship with Active Record?
 * Active Record is the 800-pound gorilla
     * Odds are, if you're hired to work on Rails, you'll be using it
 
@@ -102,17 +104,20 @@ class: title, middle, center
 ???
 
 * First, I want to make sure everyone knows what an ORM is
+* Ruby deals with objects, Obviously
 * SQL databases deal with relations
-    * Relational algebra
-* Ruby deals with objects
-* ORM brings those 2 sides together
+    * There's actually a relational algebra they work with
+        * How cool is that?
+        * I'm not aware of any such mathematical foundations of NoSQL databases
+* An ORM brings those 2 sides together
     * Maps between objects and relations
-* Caveat: There's an "impedance mismatch" between the 2 sides
+* NOTE: There's an "impedance mismatch" between the 2 sides
     * What works well on one side might not work well on the other
     * Some data structures can't be mapped 1-to-1
-    * Example: tree structure
+    * One canonical example: tree structure
         * Easy to do in OOP
         * Several ways to represent in relational algebra
+        * Difficult to map between those 2 very different representations
 * I dove more in-depth into the essence of an ORM in [my RubyConf 2015 talk][RubyConf2015]
 
 ---
@@ -149,8 +154,8 @@ class: image-only, active-record-pattern
 
 * Here's a UML class diagram of the Active Record pattern
 * Note that there are 2 kinds of things going on
-    * Find and save deal with persistent storage
-    * Name, age, and address deal with domain logic
+    * `find` and `save` deal with persistent storage
+    * `name`, `age`, and `address` deal with domain logic
 
 ---
 
@@ -185,7 +190,7 @@ class: image-only, active-record-pattern
 * Active Record is 30 kloc
     * 430 files
     * About 40 main modules
-        * 50, including ActiveModel
+        * Over 50 with ActiveModel
 * Adds about 300 instance methods
 * Adds about 600 class methods
 
@@ -196,12 +201,13 @@ class: image-only, active-record-pattern
     * The size is another symptom of a violation of the Single Responsibility Principle
     * It tries to do too much in one place
     * It conflates multiple concerns
-* Method stats are from a Rails 5.2.3 model w/ 1 field
-* For comparison:
+* Showing some method stats are from a Rails 5.2.3 model w/ 1 field
+* For comparison on the number of methods:
     * Object has 86 methods
-    * String has 256 methods
-    * Array has 239 methods
-    * Enumerable has 33 methods
+    * String and Array have about 250 methods
+* The number of instance methods is pretty bad
+    * But the number of class methods is *really* bad
+        * Recall all the issues I mentioned about class methods
 
 -----
 
@@ -211,6 +217,8 @@ class: image-only, active-record-pattern
     * Hanami::Entity is 2.1 kloc
         * Sits atop Sequel or ROM
     * Perpetuity is 2.5 kloc (with all 3 adapters)
+    * Array has 239 methods
+    * Enumerable has 33 methods
 * kloc = 1000 lines of code
 * Using `cloc`:
     * `*-5.2.3` - 76.6k
@@ -258,19 +266,25 @@ class: image-only, active-record-pattern
     * Relationships (or associations) are defined in the model
         * `has_many`
         * `belongs_to`
-    * Attributes are defined in the DB schema
-* This is a terrible abuse of the DRY principle
+    * Attributes are defined in the database schema
+* I think this is a terrible abuse of the DRY principle
     * DRY says there should be one place to look for any piece of info
-    * But it doesn't mean to put related things in different places
+    * I feel like attributes and relations are similar kinds of things
+        * Clue: I often want to see them at the same time
+    * Putting related things in different places seems counter to DRY guidance
 * Have to look in 2 places for all details about a model
     * This is a case of too much magic for me
-    * Work-arounds like model-annotations help
+    * Work-arounds like `model-annotations` help
         * I also use an Atom package to toggle showing a model's attributes from the schema
             * But it's currently broken
-* Attributes API actually debuted in Rails 4.2, but was not publicized
+* Attributes API is a big help here
+    * Actually debuted in Rails 4.2, but was not publicized
+    * But we have to *use* it, and hardly anyone does
+        * Anyone here use annotations for model attributes?
 * I had also released a couple gems to define attributes in Active Record models
     * Virtus-ActiveRecord
     * ActiveRecord-AttributeDeclarations
+    * These are now unnecessary, due to the new Attributes API
 
 -----
 
@@ -289,7 +303,10 @@ class: single-image
 * Who's seen this talk by Uncle Bob?
     * "Architecture: The Lost Years"
 * Was anyone else by chance there at Ruby Midwest 2011?
-* Since this talk, I've struggled:
+    * It's a seminal talk
+    * Oddly, it seems to have only been given once
+        * Maybe because he never showed the details
+* Since this talk (and earlier), I've struggled:
     * To find a way to get Rails to implement all the architectural suggestions
     * Interactors gem
         * Splits Rails controller and business logic
@@ -306,7 +323,7 @@ class: image-only, clean-architecture
 
 ???
 
-* After almost 10 years, he wrote a book on the topic
+* After almost 10 years, Uncle Bob wrote a book on the topic
     * [Clean Architecture]
     * It doesn't really help me with this problem
 * [Clean Architecture blog article] is a good succinct explanation
@@ -336,9 +353,10 @@ class: single-image, sequel
 
 ???
 
-* Biggest surprise when I did research for the an earlier related talk
+* Biggest surprise when I did research for the an earlier **related** talk
 * Written by Jeremy Evans
     * Winner of a Ruby Hero award
+    * Is Jeremy here, by chance?
 * Has tons of plugins, leveraging database features
     * Especially for Postgres
 * Supports almost any SQL database you can think of
@@ -365,6 +383,11 @@ DB.create_table :items do
 end
 ~~~
 
+???
+
+* Sequel has 2 separate APIs that you can use
+* Here's the code used to set up Sequel for the next couple slides
+
 ---
 
 # Sequel Dataset
@@ -373,14 +396,17 @@ end
 DB[:items].insert(name: "abc", price: 1.23)
 DB[:items].where("price < ?", 100).update(active: true)
 DB[:managers].where(salary: (50_000)..(100_000)).order(:name)
-DB[:managers].where{salary > (100_000)}.order(:salary).limit(10)
-DB[:managers].each{|mgr| puts mgr[:name], mgr[:salary]}
+DB[:managers].where{ salary > (100_000) }.order(:salary).limit(10)
+DB[:managers].each{ |mgr| puts mgr[:name], mgr[:salary] }
 ~~~
 
 ???
 
 * Sequel's syntax is really nice
+    * Line 4: Note the block that lets you use bare column names
+        * And greater than
 * Datasets are enumerable, with each element a hash-like object
+    * Line 5
 * I haven't come across anything that Sequel can't do well
 
 ---
@@ -404,117 +430,13 @@ Post.where{num_comments < 7}.delete
 
 ???
 
+* Here's a higher-level API, using objects
+    * You'd probably be more likely to use this layer in Rails
 * Like Active Record, attributes are derived from the database schema
     * But also like Active record, relationships have to be specified manually
 * I really like Sequel
     * I wish Active Record was more like Sequel
     * But Sequel doesn't solve the problem I'm trying to address
-
----
-class: single-image, hanami
-
-# Hanami
-
-![Hanami logo](images/Hanami.jpg)
-
-???
-
-* Next on my quest is the model layer of Hanami
-* Hanami is a full web framework
-    * An alternative to Rails
-
----
-
-# Hanami Model
-
-* Data Mapper pattern
-* SQL (via Sequel), memory, and file adapters
-* Follows Data-Driven Design architecture
-    * Entity
-    * Repository
-    * Mapper
-    * Query
-
-???
-
-* Follows the Data Mapper pattern
-* Supports SQL (via Sequel), memory, and file adapters
-* Follows Data-Driven Design architecture
-    * Entity = model, without persistence or validations
-    * Repository = mostly like class methods on an AR model class
-        * Allows easily changing the storage layer
-        * `create`, `update`, `persist`, `delete`
-        * `all`, `find`, `first`, `last`
-    * Mapper = declaration of how to map between DB records and object attributes
-
----
-
-# Hanami Model Configuration
-
-~~~ ruby
-Hanami::Entity.configure do
-  adapter type: :sql, uri: 'postgres://localhost/database'
-  mapping do
-    collection :articles do
-      repository ArticleRepository
-      entity Article
-      attribute :id, Integer
-      attribute :author, String
-      attribute :text, String
-      attribute :date, Date
-    end
-  end
-end
-
-Hanami::Entity.load!
-~~~
-
-???
-
-* Here's the configuration of Hanami Model
-* Note that the mapper is included here
-* I think Hanami is my favorite Ruby ORM
-    * But I feel like the mapper includes too much duplication
-
----
-
-# Hanami Entity
-
-~~~ ruby
-class Article
-  include Hanami::Entity
-  attributes :author, :text, :date
-end
-
-article = Article.new(author: "Craig", text: "Hello", date: Date.today)
-~~~
-
-???
-
-* Inheriting from `Hanami::Entity` adds `id`, `id=`, `initialize`, plus `attributes` class method
-    * That's **all** it adds!
-    * Default initializer takes a hash of attributes to set the entity's attributes
-
----
-
-# Hanami Repository
-
-~~~ ruby
-class ArticleRepository
-  include Hanami::Repository
-  def self.for(name)
-    query{where(author: name).order(:date)}
-  end
-end
-
-ArticleRepository.create(Article.new(author: "Craig", text: "Hello", date: Date.today))
-ArticleRepository.find(12)
-ArticleRepository.for("Craig")
-~~~
-
-???
-
-* Persistence is done by the repository class
 
 ---
 class: single-image, rom
@@ -526,6 +448,7 @@ class: single-image, rom
 ???
 
 * Next ORM in my journey of exploration: ROM
+    * Ruby Object Mapper
 
 ---
 
@@ -639,6 +562,14 @@ users_relation
   .commit
 ~~~
 
+???
+
+* To save an object, we start with the relation
+    * Then we pass a changeset
+        * Includes `:create` or `:update`
+        * Pass all the attributes as a hash
+    * Then we have to explicitly commit the changes
+
 ---
 class: image-only, rom-overview
 
@@ -649,6 +580,8 @@ class: image-only, rom-overview
 ???
 
 * I found ROM to be really complex
+* Here's their overview diagram
+* I honestly can't follow everything that's going on there
 
 ---
 
@@ -670,6 +603,93 @@ class: image-only, rom-overview
     * I couldn't actually get things set up right to run the code I showed
 
 ---
+class: single-image, hanami
+
+# Hanami
+
+![Hanami logo](images/Hanami.jpg)
+
+???
+
+* Last on my quest is the model layer of Hanami
+* Hanami is a full web framework
+    * An alternative to Rails
+
+---
+
+# Hanami Model
+
+* SQL (via Sequel), memory, and file adapters
+* Follows Data-Driven Design architecture
+    * Entity
+    * Repository
+    * Mapper
+    * Query
+
+???
+
+* Hanami supports SQL (via Sequel), memory, and file adapters
+* Follows Data-Driven Design architecture
+    * Entity = model, without persistence or validations
+    * Repository = mostly like class methods on an AR model class
+        * `create`, `update`, `persist`, `delete`
+        * `all`, `find`, `first`, `last`
+    * Mapper = declaration of how to map between DB records and object attributes
+
+---
+
+# Hanami Entity
+
+~~~ ruby
+class Article < Hanami::Entity
+  attributes do
+    attribute :id, Types::Int
+    attribute :author, Types::String
+    attribute :text, Types::String
+    attribute :date, Types::Date
+  end
+end
+
+article = Article.new(author: "Craig", text: "Hello", date: Date.today)
+article.text  # => "Hello"
+~~~
+
+???
+
+* Here's the first part of a Hanami model
+* Inheriting from `Hanami::Entity` adds only a few methods:
+    * `id`, `id=`, `initialize`, plus `attributes` class method
+    * That's **all** it adds!
+* The default initializer takes a hash of attributes to set the entity's attributes
+* Types come from the dry-types library
+* We could also let the model pull the schema from the database
+    * Like Active Record
+
+---
+
+# Hanami Repository
+
+~~~ ruby
+class ArticleRepository < Hanami::Repository
+  def by_author(name)
+    query{ where(author: name).order(:date) }
+  end
+end
+
+articles = ArticleRepository.new
+articles.create(Article.new(author: "Craig", text: "Hello", date: Date.today))
+articles.find(12)
+articles.by_author("Craig")
+~~~
+
+???
+
+* Persistence is done by the repository class
+* Note that things like `where` and `order` are private
+    * Can only use them within queries
+        * Queries are analogous to scopes in Active Record
+
+---
 
 # Downsides of the Alternatives
 
@@ -677,20 +697,31 @@ class: image-only, rom-overview
     * Have to learn something new
 * Rails add-on gems assume you're using Active Record
 
+???
+
+* I think Hanami is my favorite Ruby ORM
+    * If I had my choice, I'd probably use it in Rails
+* But it's not a very realistic option
+    * Requires everyone to learn something new
+    * Not much documentation on using it with Rails
+    * Rails add-ons assume you're using Active Record
+        * They may or may not work with another ORM
+
 ---
 
 # Repository Pattern
 
 * Represents a collection of domain objects
+* Used in Hanami::Repository
 
 ???
 
+* Hanami Model implements the Repository pattern
 * The Repository pattern represents a collection of domain objects
     * Can treat the database as an in-memory collection
-* We already saw this in the Hanami examples
 * We have something similar in Active Record:
     * Class methods
-        * create, where, find, all
+        * `create`, `where`, `find`, `all`
         * Scopes
 * Class methods are generally problematic
     * Leads to procedural code instead of OO code
@@ -747,7 +778,7 @@ class: single-image, activerecord-repository
     * I think it was Action Controller that got modularized
     * Active Model got pulled out of Active Record
     * Modules in Active Record maybe weren't meant to be used separately
-* Wasn't quite as easy as I expected
+* Wasn't quite as easy to make it work as I expected
     * All the modules have a lot of interdependencies
     * There's no real documentation on how to use each module
         * Or what the dependencies look like
@@ -800,16 +831,19 @@ end
 
 * Here's the same thing using ActiveRecord-Repository
 * Instead of subclassing, include a module
-    * We're dynamically generating that module through the call to the `ActiveModel.entity` method
+    * Module is dynamically generated through the call to the `ActiveModel.entity` method
         * So we can pass parameters
         * I'll talk about this some more when I show the implementation
 * I call the module we mix in "ActiveModel::Entity"
     * The term "entity" comes from Eric Evans's [Domain-Driven Design][DDD]
     * An entity is an object that has an identity
-        * Even if 2 items have all the same attributes (other than ID), they could still be different things
+        * We could have 2 items with all the same attributes, but different IDs
+            * Then those would be considered different entities
+        * If 2 items of the same type have the same ID
+            * Then those would be considered to be the same thing
 * The other major difference is that we declare the attributes (name and type) here
-    * Fixes my 2nd biggest issue with Active Record
-* We still have the `belongs_to`, `has_many`, and validation declarations
+    * Fixes my 2nd biggest gripe with Active Record
+* Still have the `belongs_to`, `has_many`, and validation declarations
 * If we had any instance methods, they'd still be here
 * What we don't have here is the scope
     * And you won't be able to call `User.all` or `User.where` or the like
@@ -837,12 +871,13 @@ end
     * We could pass some parameters
         * Model class we're working with
             * We get the attributes from the model, to ensure our database schema matches up
-            * Defaults to the `User` here
-                * Because naming convention of `User::Repository` was followed
+            * Here it default to the `User` entity model
+                * Because `User::Repository` naming convention was followed
         * Database table name
             * If it can't be easily derived
         * Primary key
-* We have the scope in the repository
+        * Mapping of database column names to entity attribute names
+* Scope is in the repository side
     * Because we use it on the collection of model objects
         * Not any individual model object
 
@@ -853,7 +888,7 @@ end
 ~~~ ruby
 class UsersController
   def create
-    user = User.create(params[:user])
+    user = User.new(params[:user])
     if user.save
       respond_with user
     else
@@ -862,6 +897,12 @@ class UsersController
   end
 end
 ~~~
+
+???
+
+* Here's a typical controller in Rails with Active Record
+* Note that we tell the user model to save itself
+* The `save` method will return false if it failed to save
 
 ---
 
@@ -883,9 +924,11 @@ end
 
 ???
 
+* Here's the same thing with my ActiveRecord-Repository gem
 * Only 2 lines changed
-* We explicitly test to see if the model is valid
-* We tell the repository to save the model object
+    * Line 4 - explicitly test to see if the model is valid
+    * Line 5 - tell the repository to save the model object
+        * Instead of telling the model object to save itself
 * One caveat: validations can't check for uniqueness without a race condition
     * Would still need to handle an exception on the `save` if you need uniqueness
 
@@ -915,6 +958,7 @@ end
 
 ???
 
+* Here's a bit of the implementation of the Entity module
 * I'm using the Parameterized Module pattern here
     * This is the simplest implementation of the pattern (I believe)
     * Basically, we're creating a list of modules
@@ -1003,8 +1047,11 @@ end
 ???
 
 * This side is all ActiveRecord
-    * And *A LOT* of it
-    * But not quite *ALL* of ActiveRecord
+    * Plus some custom code
+        * Mostly making sure ActiveRecord still works
+            * Despite the pieces we've taken away
+    * It uses **most** of ActiveRecord
+        * But not quite *ALL*
 
 ---
 
@@ -1015,7 +1062,9 @@ module ActiveRecord
   module Repository
     def self.included(mod)
       def mod.save(entity)
-        new(entity.to_h).save
+        mirror_object = new(entity.attributes.transform_keys(&:to_sym))
+        mirror_object.save
+        entity.id = mirror_object.id
       end
     end
   end
@@ -1025,7 +1074,13 @@ end
 ???
 
 * We've also got some helper methods that call into ActiveRecord
-    * This one just lets you do `User::Repostiory.save(user)`
+* This method lets you do `User::Repository.save(user)`
+* This one's a bit tricky
+    * We have to create an ActiveRecord model object to save
+* We update the entity's ID when we save
+    * This lets us know that the entity has been persisted
+        * Allows us to implement `ActiveModel#persisted?`
+            * Which I *think* is required
 
 ---
 
@@ -1037,6 +1092,8 @@ end
 
 ???
 
+* There were quite a few more challenges than I had expected
+    * Probably due to the fact that I mis-remembered which thing got modularized
 * It didn't occur to me for quite a while how to separate the modules
 * It turned out:
     * The entity side is all ActiveModel
@@ -1044,7 +1101,10 @@ end
 * We're not subclassing ActiveRecord::Base
     * Active Record uses that to figure some things out
     * ActiveRecord::Base includes info about the connection to the database
-    * Had to tell ActiveRecord that the repository class is not an `abstract_class`
+    * Had to tell Active Record that the repository class is not an `abstract_class`
+* Currently fighting with Active Record and relations
+    * Getting an error that doesn't seem directly related to the code I added
+    * Really hard to troubleshoot
 
 ---
 
@@ -1072,9 +1132,10 @@ end
     * Only thing we're really missing is indexing
 * Go see Matt Duszynski's talk on migrations
     * My teammate/colleague
-    * Covers a lot of "gotchas"
+    * Covers a lot of "gotchas" with migrations
     * Following time-slot
-    * In room 101 F-H
+    * In room 101 F
+    * I plan to look at those gotchas if I get to automating migrations
 
 ---
 
@@ -1091,8 +1152,10 @@ end
 
 ???
 
-* Please star the repo on GitHub
+* I need some help from all of you
+* Please star the repo on GitHub if you're interested
     * So I know people are interested
+    * The more interest, the more likely I am to complete the project
 * I'm easy to find
     * On the Internet
     * In person
@@ -1105,6 +1168,12 @@ class: single-image, thanks
 # Thanks!
 
 ![Thanks!](images/Thank You - word cloud.jpg)
+
+???
+
+* I'd like to thank you all for coming and watching
+* I'd like to especially thank my coworkers who watched a preview of this talk
+    * And provided valuable feedback
 
 ---
 class: single-image, this-agile-life
@@ -1122,10 +1191,12 @@ class: single-image, weedmaps
 
 ???
 
-* Thanks to my employer, Weedmaps, for paying for my trip here
-* We're hiring!
+* A huge thanks to my employer, Weedmaps, for sponsoring this talk
 * There are about 20 of us here
+    * Most of us are wearing Weedmaps t-shirts
+* We're hiring!
 * Come see us at our booth
+    * We will have t-shirts
 
 ---
 
