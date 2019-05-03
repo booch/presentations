@@ -136,14 +136,24 @@ a:hover {
 
 /* Title page */
 .remark-slide .title {
-    background-image: url(images/RailsConf2019-mini-logo.svg);
-    background-repeat: no-repeat;
-    background-position-x: left 50px;
-    background-position-y: bottom 70px;
+    padding-top: 150px;
 }
 .remark-slide .title h1 {
     font-size: 75px;
     margin-top: -50px;
+}
+.remark-slide .title h1:first {
+    margin-top: 5px;
+}
+.remark-slide .title img[alt="Craig Buchek's avatar"] {
+    height: 200px;
+    margin-top: -100px;
+    float: left;
+}
+.remark-slide .title img[alt="RailsConf 2019 logo"] {
+    height: 200px;
+    margin-top: -100px;
+    float: right;
 }
 
 .remark-slide .diagram p {

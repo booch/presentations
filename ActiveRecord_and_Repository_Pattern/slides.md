@@ -11,6 +11,9 @@ class: title, middle, center
 # The Repository Pattern
 # And You
 
+![Craig Buchek's avatar](images/CraigBuchek-avatar.png)
+![RailsConf 2019 logo](images/RailsConf2019-mini-logo.svg)
+
 ???
 
 * Welcome!
@@ -383,6 +386,8 @@ DB[:managers].each{ |mgr| puts mgr[:name], mgr[:salary] }
 * Sequel's syntax is really nice
     * Line 4: Note the block that lets you use bare column names
         * And greater than
+        * There's a gem called [Squeel][Squeel] to add this to Active Record
+            * But it's fragile, and breaks when new versions of Active Record come out
 * Datasets are enumerable, with each element a hash-like object
     * Line 5
 * I haven't come across anything that Sequel can't do well
@@ -1215,6 +1220,7 @@ class: single-image, weedmaps
 [Ruby Module Builder Pattern]: https://dejimata.com/2017/5/20/the-ruby-module-builder-pattern
 [includable-activerecord]: https://github.com/boochtek/includable-activerecord
 [virtus]: https://github.com/solnic/virtus
+[Squeel]: https://github.com/activerecord-hackery/squeel
 [Code Climate - Class Methods]:  http://blog.codeclimate.com/blog/2012/11/14/why-ruby-class-methods-resist-refactoring/
 [Remark]: http://remarkjs.com/
 [DITAA]: http://ditaa.sourceforge.net/
