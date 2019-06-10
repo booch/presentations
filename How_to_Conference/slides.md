@@ -76,6 +76,12 @@ _ambivert_ - a person with a balance of extroverted and introverted traits
     * Really was **on** during the company-sponsored after-party
 * Still more progress I can make
 
+-----
+
+* Carl Jung coined the terms "introvert" and "extrovert"
+    * He identified the 3rd category, but did not name it
+* Various sources put ambiverts at 20% to 70% of the population
+
 ---
 
 Introverts tend to recharge by spending time alone.
@@ -245,6 +251,18 @@ class: single-image, expand-height
     * Sometimes doesn't pay for a conference pass
 
 ---
+class: single-image, expand-height
+
+![RubyConf 2017 attendees posing with props](images/RubyConf 2017 props.jpg)
+
+???
+
+* Take part in any structured or non-structured activities
+* RubyConf 2017 had a "photo booth" with a bunch of props
+* Strange Loop always has a party at City Museum
+* RailsConf always has an "after party" one night
+
+---
 class: single-image
 
 ![Buddy Guy playing guitar in his blues club](images/BuddyGuy_at_Legends.jpg)
@@ -263,7 +281,7 @@ class: single-image
 ---
 class: single-image
 
-Pic of my badge addition - Ask Me About / Tell Me About
+![conference name tag with "ask me about" and "tell me about" items written in](images/badge - ask me, tell me.jpg)
 
 ???
 
@@ -409,10 +427,11 @@ class: single-image, this-agile-life
 
 ---
 
-* Me
-    * GitHub: booch
-    * Twitter: @CraigBuchek
-    * Email: craig@boochtek.com
+# Contact
+
+* GitHub: booch
+* Twitter: @CraigBuchek
+* Email: craig@boochtek.com
 
 ???
 
@@ -440,6 +459,7 @@ class: single-image, this-agile-life
     * [people gathered around a restaurant table](https://www2.naz.edu/dept/religious-studies/faculty-and-staff/muhammad-shafiq/)
     * [people with hands raised](https://blog.gotomeeting.com/common-webinar-questions-we-hear-gotowebinar/)
     * [RubyConf 2008 hallway track](https://www.flickr.com/photos/danbenjamin/3012059893/)
+    * [RubyConf 2017 attendees posing with props](https://twitter.com/getFretless/status/931655821867569152)
     * [Buddy Guy playing in his blues club](https://en.wikipedia.org/wiki/File:BuddyGuy_at_Legends.jpg)
     * [Aaron Kalin giving a talk at Windy City Rails in a Stormtrooper costume](https://vimeo.com/140433168)
     * [Jamey and John at RubyConf 2018](http://www.jameybash.com/2018/12/03/conf-report-rubyconf-2018/)
