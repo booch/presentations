@@ -1,0 +1,320 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+
+body {
+    font-family: Roboto;
+}
+
+body h1, body h2, body h3, body h4, body h5, body h6 {
+    font-family: Roboto;
+    font-weight: bold;
+}
+
+blockquote {
+    font-style: italic;
+    margin-left: 40px;
+}
+cite {
+    font-style: normal;
+    margin-left: 40px;
+}
+
+.remark-slide-content h1 {
+    font-size: 44px;
+    z-index: 1;
+}
+
+a {
+    text-decoration: none;
+    border-bottom: 1px #666666 dashed;
+    color: #202;
+}
+
+a:hover {
+    color: #505;
+    background-color: #DD0;
+}
+
+/* Turn off shadow around content (in pillarbox bars). */
+.remark-slide-scaler {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+/* Less padding on the sides. */
+.remark-slide-content {
+    padding: 1em;
+}
+
+/* Less top margin. */
+.remark-slide-content h1 {
+    margin-top: 0;
+}
+
+/* Turn off slide numbers. */
+.remark-slide-content .remark-slide-number {
+    display: none;
+}
+
+.remark-slide-content header, .remark-slide-content footer, .remark-slide-content .remark-slide-number {
+    font-size: 16px;
+    color: #444444;
+}
+
+.remark-slide-content header>*, .remark-slide-content footer>*, .remark-slide-content .remark-slide-number {
+    position: absolute;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2px 10px;
+}
+
+.remark-slide-content header>* {
+    top: 8px;
+}
+
+.remark-slide-content header .left, .remark-slide-content footer .left, .remark-slide-content .remark-slide-number {
+    left: 20px;
+    right: auto;
+}
+
+.remark-slide-content header .right, .remark-slide-content footer .right {
+    right: 20px;
+    left: auto;
+}
+
+.remark-slide-content footer>*, .remark-slide-content .remark-slide-number {
+    bottom: 8px;
+}
+
+.remark-slides-area {
+    background-color: #AE8857; /* Color of pillarbox on sides of slides */
+}
+
+.remark-slide-scaler {
+    background-color: black;
+}
+
+.remark-slide-content {
+    /* color: white; */
+    /* background-color: black; */
+    font-size: 26px;
+    line-height: 1.6;
+    width: 100%;
+}
+
+.remark-code, .remark-inline-code {
+    font-family: monospace;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+.remark-inline-code {
+    font-size: 24px;
+}
+
+.remark-code {
+    counter-reset: code-line-numbers;
+}
+
+.remark-code .remark-code-line {
+    counter-increment: code-line-numbers;
+}
+
+/* Show line numbers for code blocks. */
+.remark-code .remark-code-line::before {
+    content: counter(code-line-numbers);
+    display: inline-block;
+    width: 1.5em;
+    padding-right: 0.5em;
+    margin-right: 1em;
+    border-right: 1px solid #ddd;
+    color: #999999;
+    -webkit-user-select: none;
+    /* The line numbers should not be selectable. */
+    text-align: right;
+}
+
+/* Title page */
+.remark-slide .title {
+    padding-top: 150px;
+}
+.remark-slide .title h1 {
+    font-size: 75px;
+    margin-top: -50px;
+}
+.remark-slide .title h1:first {
+    margin-top: 5px;
+}
+.remark-slide .title img[alt="Craig Buchek's avatar"] {
+    height: 200px;
+    margin-top: -100px;
+    float: left;
+}
+.remark-slide .title img[alt="RailsConf 2019 logo"] {
+    height: 200px;
+    margin-top: -100px;
+    float: right;
+}
+
+.remark-slide .diagram p {
+    text-align: center;
+}
+
+.remark-slide li p {
+    margin: 0;
+}
+
+/* Transition Slides */
+.remark-slide .transition {
+    padding: 0;
+    height: 600px;
+    /* Remark "normalizes" pages to 800x600. */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0 50px;
+    background-size: 100%;
+    opacity: .80;
+}
+
+.remark-slide .transition h1 {
+    padding: 0 20px;
+    font-size: 75px;
+    background-color: rgba(255, 255, 255, .75);
+}
+
+/* Individual (non-transition) slides */
+.remark-slide div.life {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+}
+
+/* Slides with just an image. */
+.remark-slide .single-image {
+    padding: 0;
+    margin: 10px auto 10px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.remark-slide .single-image>p:first-of-type {
+    margin: 0;
+    margin-top: -2em;
+}
+
+.remark-slide .single-image img {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.remark-slide .single-image h1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5em 1em;
+    background-color: rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.remark-slide .big-words>p {
+    font-size: 116px;
+    padding: 0;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    line-height: 1;
+}
+
+.remark-slide .big-words.xl>p {
+    font-size: 150px;
+}
+
+.remark-slide .remark-slide-content .highlight {
+    background-color: yellow;
+}
+
+.remark-slide .remark-slide-content.image-only {
+    margin: auto;
+}
+
+.remark-slide .remark-slide-content.image-only p {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+}
+
+.image-only img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+.image-only.active-record-pattern img {
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 140px;
+}
+.image-only.clean-architecture img {
+    margin-left: 225px;
+    width: auto;
+}
+.image-only.rom-overview img {
+    margin-top: -48px;
+    width: auto;
+}
+
+
+
+
+.percent-70 img {
+    width: 70%;
+}
+
+.percent-50 img {
+    width: 50%;
+}
+
+.percent-30 img {
+    width: 30%;
+}
+
+
+/* Presentation-specific rules. */
+.remark-slide .single-image.sequel img {
+    margin-top: -110px;
+}
+
+.remark-slide .single-image.rom img {
+    transform: scale(0.9);
+    margin-top: 90px;
+}
+
+.remark-slide .single-image.hanami img {
+    margin-top: 75px;
+}
+
+.remark-slide .single-image.activerecord-repository img {
+    margin-top: 100px;
+}
+
+.remark-slide .single-image.weedmaps img {
+    margin-top: 100px;
+}
+
+.remark-slide .single-image.thanks img {
+    margin-top: 100px;
+}
+
+.remark-slide .single-image.this-agile-life img {
+    margin-top: -12.5%;
+}

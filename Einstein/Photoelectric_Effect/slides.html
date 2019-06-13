@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Photoelectric Effect</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+
+      body {
+        font-family: Roboto;
+      }
+      body h1, body h2, body h3, body h4, body h5, body h6 {
+        font-family: Roboto;
+        font-weight: bold;
+      }
+      .remark-slide-content h1 {
+        font-size: 45px;
+      }
+
+      /* Turn off shadow around content (in pillarbox bars). */
+      .remark-slide-scaler {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
+
+      .remark-slide-content .remark-slide-number {
+        display: none;
+      }
+      .remark-slide-content header, .remark-slide-content footer, .remark-slide-content .remark-slide-number {
+        font-size: 16px;
+        color: #444444;
+      }
+      .remark-slide-content header > *, .remark-slide-content footer > *, .remark-slide-content .remark-slide-number {
+        position: absolute;
+        margin: 0;
+        background-color: rgba(255, 255, 255, 0.8 );
+        padding: 2px 10px;
+      }
+      .remark-slide-content header > * {
+        top: 8px;
+      }
+      .remark-slide-content header .left, .remark-slide-content footer .left, .remark-slide-content .remark-slide-number {
+        left: 20px;
+        right: auto;
+      }
+      .remark-slide-content header .right, .remark-slide-content footer .right {
+        right: 20px;
+        left: auto;
+      }
+      .remark-slide-content footer > *, .remark-slide-content .remark-slide-number {
+        bottom: 8px;
+      }
+
+      .remark-slides-area {
+        background-color: black; /* Color of pillarbox on sides of slides */
+      }
+      .remark-slide-scaler {
+        background-color: black;
+      }
+      .remark-slide-content {
+        /* color: white; */
+        /* background-color: black; */
+        font-size: 26px; line-height: 1.6;
+        width: 100%;
+      }
+
+      .remark-code, .remark-inline-code { font-family: monospace; line-height: 1.5; font-size: 16px; }
+      .remark-inline-code { font-size: 24px; }
+      .remark-code {
+        counter-reset: code-line-numbers;
+      }
+      .remark-code .remark-code-line {
+        counter-increment: code-line-numbers;
+      }
+      .remark-code .remark-code-line::before {
+        content: counter(code-line-numbers);
+        display: inline-block;
+        width: 1.2em;
+        margin-right: 1em;
+        color: #999999;
+        -webkit-user-select: none; /* The line numbers should not be selectable. */
+      }
+
+      /* Title page */
+      .remark-slide .title h1 {
+        font-size: 75px;
+        margin-top: -50px;
+      }
+      .remark-slide .title li {
+        list-style-type: none;
+        font-size: 28px;
+      }
+      .remark-slide .title ul {
+        padding-left: 0px;
+      }
+      .remark-slide .title {
+        background-image: url(images/f5-logo-gradient-rgb.png);
+        background-position: 150px 400px;
+      }
+      .remark-slide .title h3 {
+        font-size: 40px;
+      }
+      .remark-slide .diagram p {
+        text-align: center;
+      }
+      .remark-slide li p {
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        border-bottom: 1px #666666 dashed;
+        color: #202;
+      }
+      a:hover {
+        color: #505;
+        background-color: #DD0;
+      }
+
+      html .remark-container.remark-presenter-mode .remark-slides-area {
+        left: -10%;
+        top: 0;
+        height: 70%;
+        width: 70%;
+      }
+      .remark-presenter-mode .remark-notes-area {
+        left: 50%;
+        z-index: 1;
+        font-size: 150%;
+        line-height: 1.4;
+      }
+      .remark-notes-area .remark-top-area .remark-toolbar-link {
+        display: none;
+      }
+      .remark-notes-area .remark-top-area .remark-toolbar-timer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+      }
+      .remark-notes-area .remark-bottom-area .remark-notes-current-area {
+        height: 95%;
+      }
+      .remark-notes-area .remark-bottom-area .remark-notes-current-area .remark-notes {
+        border-top: none;
+      }
+      .remark-notes-area .remark-bottom-area {
+        top: 0;
+      }
+      .remark-notes-area .remark-bottom-area .remark-toggle {
+        display: none;
+      }
+      .remark-presenter-mode .remark-preview-area {
+        top: 55%;
+      }
+      .remark-presenter-mode .remark-preview-area .remark-slide-container {
+        transform: scale(0.5);
+      }
+      .remark-presenter-mode .remark-notes-area .remark-notes-preview-area {
+        display: none;
+      }
+
+      /* Transitipon Slides */
+      .remark-slide .transition {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        height: 600px; /* Remark "normalizes" pages to 800x600. */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 0 50px;
+        background-size: 100%;
+        opacity: .80;
+      }
+      .remark-slide .transition h1 {
+        padding: 0 20px;
+        font-size: 75px;
+        background-color: rgba(255, 255, 255, .75);
+
+      }
+
+      /* Individual (non-transition) slides */
+      .remark-slide div.life {
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        width: 100%;
+      }
+      .remark-slide .single-image {
+        display: flex;  /* NOTE: Main axis defaults to horizontal axis. */
+        justify-content: center; /* Align contained items along main axis. */
+        align-items: center; /* Align contained items along cross axis. Use `flex-end` or `flex-start` (default) to move to top/left or bot> */
+        padding: 0;
+        height: 100%;
+      }
+      .remark-slide .single-image h1 {
+        position: absolute;
+        margin-top: -8em;
+        padding: 0.5em 1em;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+      .remark-slide .single-image > p:first-of-type {
+        width: 100%;
+      }
+      .remark-slide .single-image img {
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        width: 100%;
+      }
+      .remark-slide .white-background {
+        background-color: white;
+        border: solid white 25px;
+      }
+      .remark-slide .hands-up-united {
+        margin-top: -150px;
+      }
+
+      .remark-slide .big-words > p {
+        font-size: 116px;
+        padding: 0;
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        line-height: 1;
+      }
+      .remark-slide .big-words.xl > p {
+        font-size: 150px;
+      }
+      .remark-slide .remark-slide-content.workshop > p:first-of-type {
+        margin-top: 150px;
+        text-align: center;
+      }
+      .remark-slide .remark-slide-content .highlight {
+        background-color: yellow;
+      }
+      .remark-slide .remark-slide-content.craig-heart-ruby img {
+        width: 25%;
+      }
+      .remark-slide .remark-slide-content.craig-heart-ruby > p {
+      }
+      .remark-slide .remark-slide-content.image-only {
+        margin: auto;
+      }
+      .remark-slide .remark-slide-content.image-only p {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
+      }
+      .image-only img {
+        max-width: 90%;
+        max-height: 70%;
+      }
+      .percent-70 img {
+        width: 70%;
+      }
+      .percent-50 img {
+        width: 50%;
+      }
+      .percent-30 img {
+        width: 30%;
+      }
+      .remark-slide .thanks.f5 img {
+        display: block;
+        margin: auto;
+        padding-top: 50px;
+        width: auto;
+        height: 250px;
+        border: 0;
+      }
+      table.truth-table {
+        background-color: #f8f9fa;
+        border-collapse: collapse;
+        margin: 1em 0;
+        border: 1px solid #a2a9b1;
+      }
+      table.truth-table th, table.truth-table td {
+        text-align: center;
+        border: 1px solid #a2a9b1;
+        padding: 0 0.4em;
+      }
+      table.truth-table th {
+        background-color: #eaecf0;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+
+<header>
+  <p class="left">Papers We Love, Saint Louis Chapter</p>
+  <p class="right">@CraigBuchek</p>
+</header>
+
+<footer>
+  <p class="left"><!-- page numbers --></p>
+  <p class="right">March 18, 2019</p>
+</footer>
+
+---
+class: title, middle, center
+# The Photoelectric Effect
+### by Albert Einstein
+#### presented by Craig Buchek
+
+---
+
+### Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt
+### On a Heuristic Viewpoint Concerning the Production and Transformation of Light
+
+* [Original German](https://www.zbp.univie.ac.at/dokumente/einstein1.pdf)
+* [English translation](https://en.wikisource.org/?curid=59468)
+* [English translation (older)](http://users.physik.fu-berlin.de/~kleinert/files/eins_lq.pdf)
+
+---
+class: single-image
+
+# Annus Mirabilis
+
+![cover of _Annalen der Physik_, 1905](images/Annalen_der_Physik-1905.jpg)
+
+---
+
+# Annus Mirabilis
+
+1905
+
+* Publications of 4 major papers (June through November)
+
+???
+
+Latin for "extraordinary year"
+
+---
+
+# Annus Mirabilis
+
+* Photoelectric Effect
+* Brownian Motion
+* Special Relativity
+* Mass-Energy Equivalence
+
+???
+
+* Oh, and he also completed his thesis for his PhD on April 30, 1905
+    * German: Eine neue Bestimmung der Moleküldimensionen
+    * English: On a New Determination of Molecular Dimensions
+    * Thesis was accepted July 1905; published in 1907
+
+---
+
+# Publication
+
+_Annalen der Physik_
+
+June 9, 1905
+
+17 pages
+
+???
+
+* Sent March 17, 1905
+    * Received March 18, 1905
+* Einstein was 26 (as of March 14)
+* Was not his first or last paper published there
+* Einstein's 5th-most referenced paper
+    * The journal's 12-most referenced paper
+* Seemed to be his favorite journal to publish in
+    * At least between 1901 and 1916
+        * Capillary action (1901)
+        * General relativity (1916)
+
+---
+class: single-image
+
+# Annalen der Physik
+
+
+![cover of _Annalen der Physik_, March 2019](images/Annalen_der_Physik-2019.jpg)
+
+---
+
+# Annalen der Physik
+
+* Published since 1799
+    * Still [exists](https://onlinelibrary.wiley.com/journal/15213889)
+* Lots of well-known physicists published there
+    * Max Planck
+    * Heinrich Hertz
+
+???
+
+* English translation: Annals of Physics
+* Hertz published a paper on the photoelectric effect in 1887
+* Was in German until 1950
+    * English and German between 1950 and 1990
+    * All English as of 1990
+* Peer reviewed
+    * But not in Einstein's days
+
+---
+class: single-image
+
+# Photoelectric Effect
+
+![photons hitting a metal surface, and electrons being emitted from that surface](images/Photoelectric_Effect.png)
+
+---
+
+# Photoelectric Effect
+
+* When atoms absorb energy from light, electrons are emitted
+
+
+* Mostly seen in metals
+* Discovered by Heinrich Hertz in 1887
+
+???
+
+* Other related effects:
+    * photoconductive effect (photoconductivity/photoresistivity)
+    * photovoltaic effect
+    * photoelectrochemical effect
+
+---
+
+# Photoelectric Effect
+
+* Photosynthesis
+* Used to make solar cells
+* Photodiodes
+
+---
+
+# Photoelectric Effect
+
+* Causes spacecraft exposed to sunlight to develop a positive charge
+* Light from the sun hitting lunar dust causes it to become positively charged
+
+???
+
+* Imbalance can discharge through delicate electrical components
+
+* Charged dust then repels itself and lifts off the surface of the moon by electrostatic levitation
+    * Smallest particles might be repelled kilometers from the surface in "fountains"
+
+---
+
+# Photoelectric Effect
+
+* Energy of individual emitted electrons increased with the *frequency* of the light
+    * Discovered by Philipp Lenard in 1902
+    * At odds with Maxwell's wave theory of light
+        * It predicted that electron energy would be proportional to *intensity* of the light
+
+---
+class: single-image
+
+# Black Body Radiation
+
+![Thermal image of a house](images/Thermal_Imaging.jpg)
+
+---
+
+# Black Body Radiation
+
+* Idealized physical body that absorbs all incoming electromagnetic radiation
+    * Regardless of frequency or angle of incidence
+    * Can emit radiation
+        * Cannot reflect or transmit electromagnetic radiation
+
+---
+
+# Black Body Radiation
+
+* A black body in thermal equilibrium emits electromagnetic radiation
+    * The light emitted is called black-body radiation
+    * Radiation is emitted according to Planck's law
+    * It has a spectrum that is determined by the temperature alone
+
+---
+
+# Introduction
+
+* Matter is built of atoms and electrons
+    * Discrete particles
+
+---
+
+# Introduction
+
+* Light (per Maxwell's theory) is described by wave functions
+    * Continuous waves
+    * Energy of a light wave emitted from a point source gets increasingly spread out and diffuse over an ever larger volume
+
+---
+
+# Introduction
+
+* Generation and transformation of light seem better modeled by quantized particles
+    * Finite number of energy quanta
+    * Spatially localized at points of space,
+    * Move without dividing
+    * Absorbed or generated only as a whole
+
+???
+
+* "The wave theory of light with its continuous spatial functions has proven to be an excellent model of purely optical phenomena,
+and presumably will never be replaced by another theory."
+
+* "Despite the perfect agreement of Maxwell's theory with experiment,
+the use of continuous spatial functions to describe light may lead to contradictions with experiments,
+especially when applied to the generation and transformation of light."
+
+---
+
+# Introduction
+
+* Proposes that "photons" are real
+    * Previously proposed by Planck
+    * Term "photon" was not coined until 1926
+
+???
+
+He then goes on to propose that light may instead be made up of quanta
+
+---
+
+# Einstein's Thought Experiment
+
+* Imagine a room with perfectly reflecting walls
+* In the room is a "black body", some gas molecules, and some free electrons
+*
+*
+
+---
+class: single-image
+
+# Nobel Prize
+
+![Nobel Prize medal](images/Nobel_Prize.png)
+
+---
+
+# Nobel Prize
+
+1921 Nobel Prize in Physics
+
+For his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect
+
+???
+
+* Announced November 9, 1922
+    * Awarded December 10, 1922
+* The committee did not issue the award in 1921
+    * Awarded it the following year
+* Max Planck had received it 3 years earlier
+    * "for discovery of energy quanta"
+* Niels Bohr received it for 1922
+    * "for investigation of the structure of atoms and of the radiation"
+* Robert Millikan received it in 1924
+    * "for work on the elementary charge of electricity and on the photoelectric effect"
+* Einstein was unable to attend the December 10 Nobel Prize Award Ceremony in Stockholm
+    * He was "on tour" in Asia, giving lectures
+    * He presented his Nobel speech on July 11, 1923, in Gothenburg
+* Other prizes:
+    * Barnard Medal (1920)
+    * Copley Medal (1925)
+    * Max Planck Medal (1929)
+    * Matteucci Medal (1921)
+
+---
+class: single-image
+
+# Einstein
+
+![Albert Einstein](images/Albert_Einstein.jpg)
+
+---
+
+# Einstein
+
+* Multiple citizenships
+* Friends with many other physicists
+* Institute for Advanced Study
+* Interest in plumbing
+* NAACP
+
+???
+
+* Citizenship:
+    * German (renounced to avoid military service)
+    * none (1896-1901)
+    * Swiss (1901-)
+    * Austrian (1911-?)
+    * German (1914-1933)
+    * USA (1940-)
+* Nazis had a $5000 bounty on him
+    * They burned his books
+    * In London, he had 2 armed guards
+    * They raided his cottage, turned it into a Hitler Youth camp
+    * Sold his boat
+* Got Churchill to bring Jewish scientists to Britain
+
+---
+
+# Einstein
+
+* Multiple citizenships
+* Friends with many other physicists
+* Institute for Advanced Study
+* Interest in plumbing
+* NAACP
+
+???
+
+* Friends
+    * Bohr
+    * Oppenheim
+* First 4 members of IAS along with:
+    * John von Neumann
+    * Kurt Gödel
+    * Hermann Weyl
+* IAS is now on 1 Einstein Drive
+* He considered racism America's "worst disease"
+    * Corresponded with civil rights activist W. E. B. Du Bois
+        * Du Bois was on trial for not registering the Peace Information Center as a foreign agent
+            * Einstein offered to be a character witness for Du Bois
+                * The judge decided to drop the case
+
+    </textarea>
+    <!-- <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script> -->
+    <script src="remark-latest.min.js"></script>
+    <script>
+      var slideshow = remark.create({highlightLines: true, highlightLanguage: "ruby"});
+    </script>
+  </body>
+</html>
