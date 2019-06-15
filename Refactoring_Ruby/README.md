@@ -12,4 +12,4 @@ Resources
 
 ---
 
-[current_slides]: https://rawgit.com/booch/presentations/master/Refactoring_Ruby/slides.html
+[current_slides]: https://booch.github.io/presentations/Refactoring_Ruby/slides.html

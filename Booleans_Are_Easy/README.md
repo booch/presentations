@@ -23,5 +23,5 @@ Resources
 ---
 
 [railsconf]: https://www.railsconf.com/
-[current_slides]: https://rawgit.com/booch/presentations/master/Booleans_Are_Easy/slides.html
+[current_slides]: https://booch.github.io/presentations/Booleans_Are_Easy/slides.html
 [remark]: https://remarkjs.com/

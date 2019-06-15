@@ -43,6 +43,6 @@ rake
 
 [aatc2017]: https://www.agilealliance.org/agile-alliance-technical-conference-2017/
 [aatc2017_buchek]: https://aatc2017.sched.com/event/9PB0/keep-it-short-craig-buchek
-[current_slides]: https://rawgit.com/booch/presentations/master/Smaller/slides.html
+[current_slides]: https://booch.github.io/presentations/Smaller/slides.html
 [remark]: https://remarkjs.com/
 [decktape]: https://github.com/astefanutti/decktape#readme

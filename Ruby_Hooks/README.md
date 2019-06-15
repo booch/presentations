@@ -12,4 +12,4 @@ Resources
 
 ---
 
-[current_slides]: https://rawgit.com/booch/presentations/master/Ruby_Hooks/slides.html
+[current_slides]: https://booch.github.io/presentations/Ruby_Hooks/slides.html

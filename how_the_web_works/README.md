@@ -11,7 +11,7 @@ Part 1
 * St. Louis UNIX Users Group (SLUUG)
 * March 11, 2015
 
-* [Slides](http://rawgit.com/booch/presentations/master/how_the_web_works/HTWW1.html)
+* [Slides](https://booch.github.io/presentations/how_the_web_works/HTWW1.html)
 * [Video]() - Coming Soon
 * [Source](HTWW1.md)
 
@@ -22,7 +22,7 @@ Part 2
 * St. Louis GNU/Linux Users Group (STLLUG)
 * March 19, 2015
 
-* [Slides](http://rawgit.com/booch/presentations/master/how_the_web_works/HTWW2.html)
+* [Slides](https://booch.github.io/presentations/how_the_web_works/HTWW2.html)
 * [Video]() - Coming Soon
 * [Source](HTWW2.md)
 
@@ -32,5 +32,5 @@ HTTP
 
 * St. Louis Ruby Users Group (STL Ruby)
 
-* [Slides](http://rawgit.com/booch/presentations/master/how_the_web_works/HTTP.html)
+* [Slides](https://booch.github.io/presentations/how_the_web_works/HTTP.html)
 * [Source](HTTP.md)

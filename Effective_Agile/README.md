@@ -14,4 +14,4 @@ Resources
 ---
 
 [book]: https://github.com/boochtek/effective_agile
-[current_slides]: https://rawgit.com/booch/presentations/master/Effective_Agile/slides.html
+[current_slides]: https://booch.github.io/presentations/Effective_Agile/slides.html
