@@ -1,5 +1,5 @@
-All Architecture Big and Small
-==============================
+All Architectures Big and Small
+===============================
 
 Abstract
 --------
