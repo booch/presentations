@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= TITLE %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="slideshow.css">
+    <link rel="stylesheet" type="text/css" href="slides.css">
+    <!-- <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script> -->
+    <script src="remark-latest.min.js"></script>
+    <script>
+      var slideshow;
+      if (document.readyState !== 'loading') {
+        slideshow = remark.create({highlightLines: true, highlightLanguage: "ruby"});
+      } else {
+        document.addEventListener('DOMContentLoaded', function(){
+          slideshow = remark.create({highlightLines: true, highlightLanguage: "ruby"});
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <textarea id="source">
+<%= BODY %>
+    </textarea>
+  </body>
+</html>
