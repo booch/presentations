@@ -136,7 +136,7 @@ class: transition, copyright
 
 # Copyright
 
-* Any "work" in a fixed format
+* Most "works" fixed in a tangible format
 * Authorized by the US Constitution
 * Majority of this talk will cover copyright
     * And licensing of copyrighted works
@@ -179,13 +179,18 @@ class: middle
 
 <blockquote>
 <p>
-The Congress shall have power to [...] promote the progress of science and useful arts, by securing for
-limited times to authors and inventors the exclusive right to their respective writings and discoveries.
+The Congress shall have power [...]
+To promote the Progress of Science and useful Arts,
+by securing for limited Times to Authors and Inventors
+the exclusive Right to their respective Writings and Discoveries
 </p>
-<cite>— US Constitution, Article I Section 8</cite>
+<cite>— US Constitution, Article I, Section 8, Clause 8</cite>
 </blockquote>
 
 ???
+
+* The "Copyright Clause" or "Copyright and Patent Clause"
+* One of the "enumerated powers" of Congress
 
 ---
 
@@ -210,12 +215,13 @@ limited times to authors and inventors the exclusive right to their respective w
 
 * Titles, names, short phrases, slogans, URLs
     * May be trademarked
-* Ideas, procedures, methods, processes, concepts, principles, discoveries
+* Ideas, procedures, methods, processes, principles, discoveries
     * May be patented
 * Familiar symbols or designs
 * Typefaces, fonts, and lettering
 * Layout, formatting, design
-* Blank forms such as time cards, scorecards, address books, date books
+* Blank forms
+    * Time cards, scorecards, address books, date books
 * Recipes, listings of ingredients or contents
 
 ???
@@ -297,7 +303,8 @@ limited times to authors and inventors the exclusive right to their respective w
 
 # Fair Use
 
-* Limitations to the rights of the copyright holders
+* Permitted use of copyright-protected works in certain circumstances
+    * Without requiring a license
 
 
 * Purpose and character of the use
@@ -305,6 +312,11 @@ limited times to authors and inventors the exclusive right to their respective w
 * The nature of the copyrighted work
 * Amount and substantiality of the portion used in relation to the work as a whole
 * The effect of the use upon the potential market for or value of the copyrighted work
+
+???
+
+* Four factors are considered to determine "fair use"
+* These come from Section 107 of the Copyright Act
 
 ---
 class: transition, trademark
