@@ -18,10 +18,11 @@ Resources
 ---------
 
 * [Slide show][current_slides] (current/working version)
-
+* [Video][video_railsconf] from RailsConf 2018
 
 ---
 
 [railsconf]: https://www.railsconf.com/
 [current_slides]: https://booch.github.io/presentations/Booleans_Are_Easy/slides.html
+[video_railsconf]: https://www.youtube.com/watch?v=PkXTIfVN-3E
 [remark]: https://remarkjs.com/
