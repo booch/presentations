@@ -7,6 +7,7 @@ These are (most of) the talks that I've given at various venues (or that I'm wor
 I try to make all my presentation materials available on this page, but that's not always possible.
 Also note that I tend to provide additional material verbally that's not included in the text of the presentations.
 So you should always attend live when I'm presenting! ;)
+My presenter notes also contain additional information; hit `p` to see them.
 
 Presentations are listed in chronological order, with the most recent listed first.
 
