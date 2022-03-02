@@ -6,7 +6,8 @@ It's highly recommended to create Rally tickets to track your team's progress le
 Presentations
 -------------
 
-I've attached a PowerPoint that I've given to teams introducing all the concepts involved in TDD. Be sure to look at the presenter notes.
+A PowerPoint that I've given to teams introducing all the concepts involved in TDD: https://booch.github.io/presentations/TDD/Intro%20to%20TDD.pptx
+(Be sure to look at the presenter notes.)
 
 A PowerPoint from "Uncle" Bob Martin, showing all the steps using Java to do the bowling kata: http://butunclebob.com/files/downloads/Bowling%20Game%20Kata.ppt
 
