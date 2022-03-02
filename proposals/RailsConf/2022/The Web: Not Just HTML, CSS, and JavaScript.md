@@ -13,7 +13,7 @@ But there's much more to the web than that!
 
 We'll explore the different layers of Internet network traffic.
 We'll dig in deep on HTTP, the language web servers and web browsers use to communicate.
-We'll practice using several tools to troubleshoot web traffic.
+We'll practice using several tools to view and troubleshoot web traffic between our Rails server and the browser.
 
 
 Details (outlines, outcomes, intended audience, etc.)
@@ -43,7 +43,7 @@ I plan to start with a brief introductory presentation:
     * Reverse
 * CSRF, XSS
 
-We'll then start up a Rails app and use some tools to view HTTP connections to the server:
+We'll then start up a Rails app and use various tools to view HTTP connections to the server:
 
 * ping
 * nslookup, dig
@@ -56,7 +56,7 @@ We'll then start up a Rails app and use some tools to view HTTP connections to t
 
 We'll then start a proxy to see how it affects traffic between the client and server. This can have major consequences for caching, so we'll take a look at how caching works, and what we can do to influence how our content gets cached. We'll explore headers like Cache-Control, ETags, If-Modified-Since, and Vary.
 
-Finally, we'll take a quick look at HTTP/2, and how it affects our tools.
+Finally, we'll take a quick look at how HTTP/2 affects our tools.
 
 
 Pitch (why this talk, why me?)
@@ -66,7 +66,7 @@ I've given a similar workshop at several local meetups. They've gone over well w
 
 In a previous life, I was a network admin, maintaining firewalls at a Fortune 500 company. One of my roles was troubleshooting traffic as it was going through the firewalls. Often this involved tracing HTTP packets, and understanding how the protocol and the web apps worked together.
 
-
+The exercises will be mostly self-paced. I'll encourage attendees to pair up to work together on the exercises.
 
 Bio
 ---

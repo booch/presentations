@@ -45,6 +45,7 @@ Learning Outcomes
 -----------------
 
 * Smaller increments help us focus at every level
+* Determining when to consider refactoring
 * Techniques to help write more readable code
 * Techniques for refactoring to smaller methods and classes
 * Writing smaller stories

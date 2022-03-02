@@ -4,9 +4,9 @@
 Abstract
 --------
 
-Xerox PARC was founded in 1970. Alan Kay was one of its first employees, working on programming languages, among other things. He first came up with the ideas behind Smalltalk in 1970.
+Xerox PARC was founded in 1970. Alan Kay was one of its first employees, working on programming languages, among other things. He first came up with the ideas behind Smalltalk in 1970, releasing it in 1972.
 
-While Ruby was not directly derived from Smalltalk, the two are surprisingly similar. We'll walk through the history of Ruby as it echos the history of Smalltalk. How did we get here? What can that tell us about where we are headed?
+While Ruby was not directly derived from Smalltalk, the two are surprisingly similar. We'll walk through the history of Ruby as it echoes the history of Smalltalk. How did we get here? What can that tell us about where we are headed?
 
 
 Details
@@ -18,7 +18,7 @@ This is definitely a "how did we get here" talk. It builds on this talk from 199
 
 I actually plan to start in 1968, touching on Engelbart's "Mother of All Demos", and how it influenced Kay and PARC.
 
-Depending on the source, the Smalltalk project was started in 1969 or 1970. Since this talk is playing on the loosey-goosey counting from "25 Years of Smalltalk", it really doesn't matter exactly when. The title is mainly a vehicle to talk explore similarities between the languages, and see what lessons we can pull from the history of Smalltalk.
+Depending on the source, the Smalltalk project was started in 1969 or 1970. Since this talk is playing on the loosey-goosey counting from "25 Years of Smalltalk", it really doesn't matter exactly when. The title is mainly a vehicle to explore similarities between the languages, and see what lessons we can pull from the history of Smalltalk.
 
 Current outline of what I plan to cover:
 
@@ -58,7 +58,7 @@ Current outline of what I plan to cover:
 Pitch
 -----
 
-I've been thinking about this talk for a couple years. Probably since the first time I came across "25 Years of Smalltalk". Combining that talk with the premise from Avi's keynote from way back when seemed like a really neat idea.
+I've been thinking about this talk for a couple years. Probably since the first time I came across "25 Years of Smalltalk". Combining that talk with the premise from Avi Bryant's keynote from way back in 2007 seemed like a really neat idea.
 
 I'm basically trying to help everyone get a better understanding of where OOP came from, in order to have a better understanding of OOP itself, and how it fits in with other programming paradigms.
 

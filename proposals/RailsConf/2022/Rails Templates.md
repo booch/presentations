@@ -1,8 +1,6 @@
 Rails Application Templates
 ===========================
 
-Track: Unpacking Rails
-
 
 Abstract
 --------
@@ -22,6 +20,7 @@ Details
 I'll cover the application template (Thor) DSL in some detail,
 based on my own application templates.
 This will include:
+
 * adding gems
 * adding files
 * modifying files
@@ -41,6 +40,3 @@ especially when participating in hackathons.
 Recently, I realized that I could actually divide up my big monolithic template into smaller pieces.
 So I can start with a more basic app, and add pieces as needed, for things like authentication,
 different ORM options, or special-purpose JavaScript libraries.
-
-Before Rails templates were a thing, I had a "base" Rails app that I used for the same purpose.
-It was a lot harder to maintain though.
