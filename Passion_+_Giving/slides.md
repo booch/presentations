@@ -12,6 +12,8 @@ class: title, middle, center
 
 ### Craig Buchek
 
+##### (hit P to see presenter notes)
+
 ???
 
 * Introduction
