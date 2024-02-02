@@ -11,15 +11,15 @@
 
 ## Submissions
 
-- [How to Conference](How to Conference.md)
+- [How to Conference](How-to-Conference.md)
     - https://www.papercall.io/talks/148693
-- [Nil - Nothing is Easy, Is It?](Nothing is Easy.md)
+- [Nil - Nothing is Easy, Is It?](Nothing-is-Easy.md)
     - https://www.papercall.io/talks/76932
 - [Laziness is a Virtue](Laziness.md)
     - https://www.papercall.io/talks/263960
-- [Fifty Years of Smalltalk](Fifty Years of Smalltalk.md)
+- [Fifty Years of Smalltalk](Fifty-Years-of-Smalltalk.md)
     - https://www.papercall.io/talks/263962
-- [Relentlessly Refactoring Ruby](Relentlessly Refactoring Ruby.md)
+- [Relentlessly Refactoring Ruby](Relentlessly-Refactoring-Ruby.md)
     - https://www.papercall.io/talks/263964
 - [All Architectures Big and Small](Architecture.md)
     - https://www.papercall.io/talks/263969
