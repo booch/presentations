@@ -13,13 +13,9 @@ layout: true
 ---
 class: title, middle, center
 
-# Nil
-
 # Nothing Is Easy, Is It?
 
-#### or
-
-## A Talk About Nothing
+## A Talk About Nothing (Nil)
 
 ---
 class: middle
@@ -39,6 +35,10 @@ class: middle
     * Notes have more info than I'll talk about in some cases.
 * My Twitter is in the upper right corner if you want to tweet at/about me.
     * I'm also on Mastodon, same username, @ruby.social
+* AUDIENCE QUESTION: Who knows the costliest mistake in computer programming?
+    * ANSWER: Null pointers, according to Tony Hoare (who invented them)
+        * It has probably cost businesses several billion dollars over the years
+    * Second most costly mistake is automatic coercion to Booleans
 * AUDIENCE QUESTION: Who has seen a talk on Nil by Sandi Metz or Avdi Grimm?
     * I've got some big boots to fill!
 
@@ -49,14 +49,20 @@ class: agenda
 
 * Basics
 * Nil Parameters
-* Safe Navigation
-* The $Billion Mistake
 * NoMethodError
     * Ruby's take on NullPointerException
+* The Billion Dollar Mistake
+* Safe Navigation
 * Other Anti-Patterns
 * Null Object and Special Case
 * Refactoring
 * Type Safety
+
+???
+
+* I'm going to start with the basics
+* Then some anti-patterns, and why they're problematic
+* Then some better alternatives, and refactoring
 
 ---
 class: transition, basics
