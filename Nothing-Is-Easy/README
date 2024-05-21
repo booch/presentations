@@ -1,15 +1,44 @@
 # Nothing Is Easy
 
+- See if I can get my "business cards" printed in time
+
 ## TODO
 
+- Have ChatGPT help
+    - Generate some ideas for engaging the audience
+    - Generate some background images for the slides
+        - Title page especially
+    - Generate some ideas for the talk
+        - Make up some "real-world" examples
+- Talk about my booleans talk
+- The reason `nil` causes so much trouble is that it has no single meaning
+    - it can mean different things in different contexts
+    - And in Ruby, loose typing means that pretty much **any** value you have could be `nil`
+    - So we want to do everything we can to avoid the problems with `nil`
+        - And that means understanding what `nil` means in each context
+            - And replacing it with a more meaningful value in many places
+        - Understand when we might have a `nil`
+            - But be confident when we know that a value cannot be `nil` within a context
+                - Otherwise, we'll end up with a ton of `nil` checks
 
+### How to get the audience to engage
+
+0. Hand out snacks?
 1. Hook
     - Start with a story
-    - Ask a question 
-    - Analogy or metaphor 
+    - Ask a question
+    - Analogy or metaphor
     - Shocking statistic
 2. Transition from the hook into the topic
-3. Introduce myself 
+3. Introduce myself
 4. Preview/agenda
-    - Remember that many people will be watching the video 
+    - Remember that many people will be watching the video
 5. Tell the audience what to expect to gain
+
+### Before Conference
+
+- Make sure http://craigbuchek.com/nil works
+    - Will have to move off of GitHub Pages
+        - Netlify seems like a good option
+            - Just add a `_redirects` file with `/path http://booch.github.io/presentations/ 302`
+    - Or just add META and JavaScript redirects to the GitHub Pages site for `/nil`
