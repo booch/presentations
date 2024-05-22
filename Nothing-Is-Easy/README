@@ -4,12 +4,6 @@
 
 ## TODO
 
-- Have ChatGPT help
-    - Generate some ideas for engaging the audience
-    - Generate some background images for the slides
-        - Title page especially
-    - Generate some ideas for the talk
-        - Make up some "real-world" examples
 - The reason `nil` causes so much trouble is that it has no single meaning
     - it can mean different things in different contexts
     - And in Ruby, loose typing means that pretty much **any** value you have could be `nil`
@@ -19,6 +13,15 @@
         - Understand when we might have a `nil`
             - But be confident when we know that a value cannot be `nil` within a context
                 - Otherwise, we'll end up with a ton of `nil` checks
+- [Null Object](#null-object)
+- [Special Case](#special-case) patterns
+- Have ChatGPT help
+    - Generate some ideas for engaging the audience
+    - Generate some background images for the slides
+        - Title page especially
+    - Generate some ideas for the talk
+        - Make up some "real-world" examples
+
 
 ### How to get the audience to engage
 

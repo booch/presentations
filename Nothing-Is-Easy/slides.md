@@ -23,9 +23,6 @@ class: title, middle, center
 * My Twitter is in the upper right corner if you want to tweet at/about me.
     * I'm also on Mastodon, same username, @ruby.social
     * I'm rarely on Twitter any more, nor Mastodon
-* AUDIENCE QUESTION: Who knows the costliest mistake in computer programming?
-    * ANSWER: Null pointers, according to Tony Hoare (who invented them)
-        * It has probably cost businesses several billion dollars over the years
 * AUDIENCE QUESTION: Who has seen a talk on Nil by Sandi Metz or Avdi Grimm?
     * I've got some big boots to fill!
 
@@ -45,6 +42,34 @@ class: middle
 * Hit `P` for presenter notes.
     * The notes have links to resources I reference in the talk.
     * The notes have more details than I have time to talk about.
+
+* AUDIENCE QUESTION: Who knows the costliest mistake in computer programming?
+
+---
+class: middle
+
+> I call it my billion-dollar mistake. It was the invention of the null reference in 1965. [....] This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
+
+  -- Tony Hoare, inventor of null references, 2009
+
+???
+
+* ANSWER: Null pointers
+    * According to Tony Hoare (who invented them)
+    * It has probably cost businesses several billion dollars over the years
+* Also:
+    * "I couldn't resist the temptation to put in a null reference"
+        * "simply because it was so easy to implement"
+* Hoare was also the inventor of the Quicksort algorithm
+* He won the Turing Award in 1980
+    * The "Nobel Prize" of computer science
+
+------
+
+* Source: https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/
+* Elided text:
+
+> At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement.
 
 ---
 class: middle, center, image-only
@@ -90,7 +115,6 @@ class: agenda
 * Nil Parameters
 * [NoMethodError](#nomethoderror)
 * [Other Anti-Patterns](#other-anti-patterns)
-* [The Billion Dollar Mistake](#billion-dollar-mistake)
 * [Solutions](#solutions)
 * [Safe Navigation](#safe-navigation)
 * [Null Object](#null-object) and [Special Case](#special-case) patterns
@@ -317,19 +341,10 @@ v = nil
 * It's more *idiomatic* to use something more explicitly intention-revealing that returns a Boolean.
     * Like `nil?`, `empty?`, or `blank?`
 
-------
-
 * This isn't as big a problem in Ruby as in other languages.
+
 * I contend that implicit coercion to Booleans is the 2nd most expensive mistake in computer language design.
     * 0 and empty arrays are equal to false in many languages.
-    * The most expensive mistake is null pointers (leading to null pointer exceptions).
-        * See [Null References: The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare)
-* Other programming mistakes that have likely crossed the billion dollar mark:
-    * C string libraries
-        * Major cause of buffer overflows
-    * SQL injection
-    * Bad cryptographic hygiene
-    * Time zones
 
 ---
 
@@ -749,7 +764,22 @@ class: transition, readability
 * Now that we have the proper tools, let's get to work.
 
 ---
-class: transition, conclusion
+
+# Other Billion-Dollar Mistakes
+
+* Implicit coercion to Booleans
+* C string libraries
+    * Major cause of buffer overflows
+* SQL injection
+* Bad cryptographic hygiene
+* Time zones
+
+???
+
+* There are several other programming mistakes that have likely crossed the billion dollar mark
+* Time zones, am I right? :D
+
+---
 
 # Conclusion
 
