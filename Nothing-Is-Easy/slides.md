@@ -773,21 +773,30 @@ user.name
 
 * Null Object pattern is a special case of the Special Case pattern
     * Used to represent the absence of an object
+* Special Case classes handle other special conditions and edge cases
 
 ---
 class: transition, root_causes
 
 # Root Causes
 
+---
+
+# Root Causes
+
+* There's no single meaning of `nil`
+
+???
+
+* The problem at the root of it all is that `nil` has **many** meanings
 
 ---
 
 # Multiple Meanings
 
-* Nil doesn't have a single meaning
 * It's often used to represent multiple things
     * Missing value
-    * Empty value
+    * Empty
     * False
     * Not found
     * Not applicable
@@ -797,7 +806,63 @@ class: transition, root_causes
     * Default value
     * Sentinel value
     * Placeholder value
-    * Empty set
+
+???
+
+* Nil doesn't have a single meaning
+* It's often used for these various reasons
+* Some of these are rare in Ruby
+    * False
+        * Although `nil` is the only other "falsey" value than `false`
+    * Failure
+        * We use exceptions instead
+        * Exceptions usually also cover "not found" in Ruby
+* TODO: Remove a few from this list
+
+---
+
+# Unset Variable
+
+~~~ ruby
+x
+# !> NameError("undefined local variable or method `x'")
+~~~
+
+???
+
+* Trying to use an unset variable in Ruby raises a NameError
+* Note the exception message
+    * Ruby doesn't know until runtime whether `x` is a local variable or a method
+* I often refactor local variables, extracting them to private methods
+    * Abstracts the implementation behind a name
+        * I don't have to think or worry about the implementation
+            * Unless/until I need to
+    * At least, if the method doesn't require passing an argument
+        * I usually take that to mean that I'm missing an abstraction
+
+---
+
+# Multiple Meanings
+
+???
+
+* We need to understanding what `nil` means in each context
+    * Then replace it with a more meaningful value in many places
+
+---
+
+# Multiple Meanings
+
+???
+
+* We also need to understand **when** we might have a `nil`
+    * Otherwise, we'll end up with a ton of `nil` checks
+        * Or worse, miss an edge case
+* Use guard clauses or Null Objects to eliminate the possibility
+    * Then we can be confident knowing that a value cannot be `nil`
+        * Within that context
+* Reducing the number of `nil` checks reduces the chances of bugs
+    * Makes the code more readable
 
 ---
 class: transition, primitive_obsession
@@ -821,16 +886,6 @@ class: transition, primitive_obsession
 
 ---
 
-# Primitive Obsession
-
-*
-
-???
-
-* This version still has primitive obsession.
-    * We just replaced Boolean primitives with symbol primitives.
-
----
 class: transition, readability
 
 # Readability
@@ -907,10 +962,9 @@ class: thanks, image-only
 * Thank YOU for coming.
 * Big thanks to Jeremy Fairbank for inspiring this talk.
 * Avdi and Sandi for leading the way
-    * And reviewing the talk
-* Members of St. Louis Ruby Users group for feedback on a preview of the talk.
+    * And reviewing the talk?
+* Members of LA Ruby meetup for feedback on a preview of the talk.
 * Thanks to Blue Ridge Ruby for selecting my talk.
-
 
 ---
 
