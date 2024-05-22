@@ -112,14 +112,11 @@ class: agenda
 # Agenda
 
 * [Basics](#basics)
-* Nil Parameters
 * [NoMethodError](#nomethoderror)
 * [Other Anti-Patterns](#other-anti-patterns)
 * [Solutions](#solutions)
 * [Safe Navigation](#safe-navigation)
 * [Null Object](#null-object) and [Special Case](#special-case) patterns
-* Refactoring
-* Type Safety
 
 ???
 
@@ -700,9 +697,78 @@ address = params.dig(:account, :owner, :address)
 * TODO: More on the Law of Demeter
 
 ---
+
+# Null Object
+
+* Replace `nil` with an object that provides default behavior
+
+~~~ ruby
+class NullUser
+  def name
+    "Guest"
+  end
+end
+
+def find_user(_id)
+  nil
+end
+
+user = find_user(123) || NullUser.new
+user.name
+# => "Guest"
+~~~
+
+???
+
+* The Null Object pattern is another excellent solution
+* Instead of `nil`, we use an object
+    * The object responds to the same methods as objects of the main class its associated with
+        * The User class, in this case
+    * Calling the methods on the Null Object results in "default" behavior
+
+---
+
+# Null Object
+
+* Replace `nil` with an object that provides default behavior
+
+~~~ ruby
+class User
+  def self.null
+    NullUser.new
+  end
+
+  def find(id)
+    DB.find(:users, id) || User.null
+  end
+end
+
+user = User.find(123)
+user.name
+# => "Guest"
+~~~
+
+???
+
+* It's best if you have the *callee* return the "null object"
+    * Don't let the caller get a `nil`
+        * This follows the "Make Impossible States Impossible" principle
+            * AKA "Make Impossible States Unrepresentable"
+* TODO: The NullUser class should actually be a singleton
+
+------
+
+* [Make Impossible States Impossible](https://kentcdodds.com/blog/make-impossible-states-impossible)
+    * Kent C Dodds (2018)
+* [Making Impossible States Impossible](https://www.youtube.com/watch?v=IcgmSRJHu_8)
+    * video by Richard Feldman (2016)
+
+---
+
 class: transition, root_causes
 
 # Root Causes
+
 
 ---
 

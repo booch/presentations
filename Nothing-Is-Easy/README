@@ -4,7 +4,8 @@
 
 ## TODO
 
-- The reason `nil` causes so much trouble is that it has no single meaning
+- [Special Case](#special-case) patterns
+- Root causes: The reason `nil` causes so much trouble is that it has no single meaning
     - it can mean different things in different contexts
     - And in Ruby, loose typing means that pretty much **any** value you have could be `nil`
     - So we want to do everything we can to avoid the problems with `nil`
@@ -13,8 +14,13 @@
         - Understand when we might have a `nil`
             - But be confident when we know that a value cannot be `nil` within a context
                 - Otherwise, we'll end up with a ton of `nil` checks
-- [Null Object](#null-object)
-- [Special Case](#special-case) patterns
+- Result/Option/Monads
+- Refactoring
+- Type Safety
+- Nil Parameters
+- More Null Object examples
+    - NullLineItems (from GPT)
+    - NullLogger
 - Have ChatGPT help
     - Generate some ideas for engaging the audience
     - Generate some background images for the slides
