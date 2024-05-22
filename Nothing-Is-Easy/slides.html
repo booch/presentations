@@ -970,6 +970,12 @@ user.name
 
 ???
 
+* The Null Object pattern is another excellent solution
+* Instead of `nil`, we use an object
+    * The object responds to the same methods as objects of the main class its associated with
+        * The User class, in this case
+    * Calling the methods on the Null Object results in "default" behavior
+
 ---
 
 # Null Object
@@ -1009,6 +1015,16 @@ user.name
 
 ---
 
+# Special Case
+
+* Null Object pattern < Special Case pattern
+
+???
+
+* Null Object pattern is a special case of the Special Case pattern
+    * Used to represent the absence of an object
+
+---
 class: transition, root_causes
 
 # Root Causes

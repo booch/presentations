@@ -765,6 +765,16 @@ user.name
 
 ---
 
+# Special Case
+
+* Null Object pattern < Special Case pattern
+
+???
+
+* Null Object pattern is a special case of the Special Case pattern
+    * Used to represent the absence of an object
+
+---
 class: transition, root_causes
 
 # Root Causes
