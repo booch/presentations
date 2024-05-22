@@ -17,6 +17,18 @@ class: title, middle, center
 
 ## A Talk About Nothing (Nil)
 
+???
+
+* This is a talk I'll be giving next Thursday at Blue Ridge Ruby
+* My Twitter is in the upper right corner if you want to tweet at/about me.
+    * I'm also on Mastodon, same username, @ruby.social
+    * I'm rarely on Twitter any more, nor Mastodon
+* AUDIENCE QUESTION: Who knows the costliest mistake in computer programming?
+    * ANSWER: Null pointers, according to Tony Hoare (who invented them)
+        * It has probably cost businesses several billion dollars over the years
+* AUDIENCE QUESTION: Who has seen a talk on Nil by Sandi Metz or Avdi Grimm?
+    * I've got some big boots to fill!
+
 ---
 class: middle
 
@@ -33,14 +45,41 @@ class: middle
 * Hit `P` for presenter notes.
     * Notes have links to things I reference.
     * Notes have more info than I'll talk about in some cases.
-* My Twitter is in the upper right corner if you want to tweet at/about me.
-    * I'm also on Mastodon, same username, @ruby.social
-* AUDIENCE QUESTION: Who knows the costliest mistake in computer programming?
-    * ANSWER: Null pointers, according to Tony Hoare (who invented them)
-        * It has probably cost businesses several billion dollars over the years
-    * Second most costly mistake is automatic coercion to Booleans
-* AUDIENCE QUESTION: Who has seen a talk on Nil by Sandi Metz or Avdi Grimm?
-    * I've got some big boots to fill!
+
+---
+class: middle, center, image-only
+
+![Title slide for Jeremy Fairbank's Elm-Conf 2017 talk](images/fairbank-title-slide.jpg)
+
+???
+
+* One of my favorite conference talks was by Jeremy Fairbank.
+    * He talked about Booleans
+    * I wondered how he could talk about true and false for 40 minutes
+    * It turned out to be a great talk
+    * His talk was about Elm
+
+------
+
+* I highly recommend watching Jeremy's talk.
+    * video: [Solving the Boolean Identity Crisis by Jeremy Fairbank](https://www.youtube.com/watch?v=8Af1bh-BVY8)
+    * slides: [Slides for "Solving the Boolean Identity Crisis"](https://bit.ly/elm-bool)
+
+---
+class: middle, center, image-only
+
+![Title slide for Craig Buchek's RailsConf 2018 talk about Booleans in Ruby](images/Booleans-talk.jpg)
+
+
+???
+
+* That talk inspired me to give a talk on Booleans
+* And **that** talk inspired me to write this talk
+
+------
+
+* In my own opinion, this is the best conference talk I've given
+* http://craigbuchek.com/booleans
 
 ---
 class: agenda
@@ -52,8 +91,8 @@ class: agenda
 * NoMethodError
     * Ruby's take on NullPointerException
 * The Billion Dollar Mistake
-* Safe Navigation
 * Other Anti-Patterns
+* Safe Navigation
 * Null Object and Special Case
 * Refactoring
 * Type Safety
@@ -124,7 +163,7 @@ c.object_id
         * true:   2
         * nil:    4
 
-------
+--
 
 * From the `object_id` documentation: "no two objects will share an id".
 
@@ -278,7 +317,7 @@ v = nil
 * It's more *idiomatic* to use something more explicitly intention-revealing that returns a Boolean.
     * Like `nil?`, `empty?`, or `blank?`
 
-------
+--
 
 * This isn't as big a problem in Ruby as in other languages.
 * I contend that automatic coercion to Booleans is the 2nd most expensive mistake in computer language design.
@@ -314,6 +353,18 @@ nil.to_h
 ---
 
 # NoMethodError
+
+* Raised when a method is called on an object that does not support it
+* Nil has only a few methods
+
+~~~ ruby
+nil.to_s
+# => ""
+
+nil.
+~~~
+
+???
 
 ---
 
@@ -433,228 +484,44 @@ address = params.dig(:account, :owner, :address)
 * TODO: More on the Law of Demeter
 
 ---
-class: transition, parameters
+class: transition, root_causes
 
-# Parameters
-
-???
-
-* Next we'll talk about `nil` used in parameters to methods.
+# Root Causes
 
 ---
 
-# Parameters
+# Multiple Meanings
 
-~~~ ruby
-random_object.class
-# => User
-~~~
-
-???
-
-* I spend a lot of time in Rails console, IRB, or Pry.
-* I'll often want to see the class of an object.
-
-------
-
-* I actually wrote a method to get a random object:
-
-~~~ ruby
-def random_object(cache: true)
-  return @random_object if cache && @random_object_defined
-  @random_object_defined = true
-  random_object_index = Random.rand(ObjectSpace.each_object.count)
-  @random_object = ObjectSpace.each_object.drop(random_object_index).take(1)
-end
-~~~
-
----
-
-# Parameters
-
-~~~ ruby
-random_object.methods
-# => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
-
-random_object.class.instance_methods
-# => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
-~~~
-
-???
-
-* Often, I'll also want to see what methods the object can respond to.
-* I'll use a method that's on `Object`, named `methods`.
-    * Or a method that's on `Class`, named `instance_methods`.
-* Notice that these usually return a long list of methods.
-    * They're running off the right side of the text box here.
-* Show of hands - who's familiar with either of these methods?
-* How many of you (with your hands up) know that they take an optional parameter?
-* How many of you remember whether to pass `true` or `false` to not show methods from superclasses?
-
----
-
-# Parameters
-
-~~~ ruby
-random_object.methods(false)
-# => [:id, :first_name, :last_name]
-
-random_object.class.instance_methods(false)
-# => [:id, :first_name, :last_name]
-~~~
-
-???
-
-* It happens to be `false` for these methods.
-* But to use it properly, you have to remember that.
-* Can we do better?
-
----
-
-# Named Parameters
-
-~~~ ruby
-random_object.methods(superclass_methods: false)
-# => [:id, :first_name, :last_name]
-~~~
-
-???
-
-* The best way to fix this API is to use a named parameter to *describe* the parameter.
-* This method pre-dates named parameters in Ruby, though.
-* It also needs to retain backwards compatibility.
-
----
-
-# Named Parameters
-
-~~~ ruby
-class Object
-  def methods(options = [])
-    show_superclass_methods = options &&
-                              options.respond_to?(:[]) &&
-                              options[:superclass_methods]
-    if show_superclass_methods
-      show_all_methods_this_object_responds_to
-    else
-      show_methods_from_immediate_class_of_this_object
-    end
-  end
-end
-~~~
-
-???
-
-* In older Ruby versions, we would have to use an options hash to emulate named parameters.
-* We still need to use an options hash to support taking a bare Boolean or a Hash.
-
----
-
-# Single Responsibility Principle
-
-~~~ ruby
-random_object.methods
-# => [:id, :first_name, :last_name]
-
-random_object.all_methods
-# => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
-~~~
-
-???
-
-* Ideally, it'd be best just to have 2 separate methods.
-
----
-
-# Single Responsibility Principle
-
-~~~ ruby
-random_object.methods(true)
-# => [:id, :first_name, :last_name]
-
-random_object.methods(false)
-# => [:can?, :cannot?, :paper_trail_originator, :paper_trail_enabled_for_model?, :whodunnit]
-~~~
-
-???
-
-* How would you describe what this original method does?
-    * "Show the methods defined for this object OR the methods only defined by its immediate class."
-* Any time you have an "OR" (or "AND") in the description of a method or class, that's a code smell.
-    * There's probably a violation of the Single Responsibility Principle.
-
----
-
-# An Example from Rails
-
-~~~ ruby
-user.things(true)
-
-user.things.reload
-~~~
-
-???
-
-* I came across this a couple months ago, when upgrading to Rails 5.
-* These both do the same thing.
-* The first one was the original API in Rails to reload an association.
-* The 2nd is the current API.
-* The original API is deprecated as of Rails 5, and removed as of Rails 5.1.
-* Not only is the new one clearer, but the old way can lead to some very subtle bugs.
-
----
-
-# An Example from Rails
-
-~~~ ruby
-@clients.sales(limit: 10)
-~~~
-
-???
-
-* This is [Rails issue #26413](https://github.com/rails/rails/issues/26413)
-* The bug report complains that the sales are being reloaded.
-* Show of hands - anyone see the issue?
-* The `sales` association doesn't take a hash, it takes a boolean.
-* Ruby treats the `limit: 10` hash as `true`, meaning "reload".
-
+* Nil doesn't have a single meaning
+* It's often used to represent multiple things
+    * Missing value
+    * Empty value
+    * False
+    * Not found
+    * Not applicable
+    * Not supported
+    * Uninitialized / unset variable
+    * Failure
+    * Default value
+    * Sentinel value
+    * Placeholder value
+    * Empty set
 
 ---
 class: transition, primitive_obsession
 
 # Primitive Obsession
 
-???
-
-* The original version of that code contains a code smell named "primitive obsession".
-
 ---
 
 # Primitive Obsession
 
-~~~ ruby
-class Editor
-  attr_accessor :editing  # boolean
-  attr_accessor :saving   # boolean
-  attr_accessor :error    # boolean
-
-  def render
-    if editing
-      render_document
-    elsif saving
-      render_saving
-    elsif error
-      render_error_message
-    end
-  end
-end
-~~~
+* Using a primitive type when it'd be better to use a more specialized type
 
 ???
 
-* It's using a primitive type when it'd be better to use a more specialized type.
-    * Example: Using a floating point number to represent money
-    * Example: Using a string to represent a URL
+* Example: Using a floating point number to represent money
+* Example: Using a string to represent a URL
 * In Ruby, we're more likely to abuse strings in this way.
     * That's often referred to as "stringly typed".
         * A play on "strongly typed" languages.
@@ -664,24 +531,7 @@ end
 
 # Primitive Obsession
 
-~~~ ruby
-class Editor
-  attr_accessor :state  # symbol
-
-  def render
-    case state
-    when :editing
-      render_document
-    when :saving
-      render_saving
-    when :error
-      render_error_message
-    else
-      fail "This shouldn't happen"
-    end
-  end
-end
-~~~
+*
 
 ???
 
@@ -773,7 +623,7 @@ class: thanks, image-only
 * One reason I give talks at conferences is to start a conversation.
 * Please don't hesitate to come talk to me any time during the conference.
 
-------
+--
 
 * I used a tool called [Remark][remark] to create and show these slides.
 

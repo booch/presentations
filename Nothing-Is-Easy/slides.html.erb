@@ -43,21 +43,23 @@
       }
 
       .remark-slides-area {
-        background-color: #C6291C; /* Color of pillarbox on sides of slides */
+        background-color: #2672B5; /* Color of pillarbox on sides of slides */
       }
       .remark-slide-scaler {
         background-color: white;
       }
       .remark-slide-content {
-        background-color: #F4F4F4;
+        background-color: initial;
         font-size: 26px; line-height: 1.6;
         width: 100%;
       }
 
+      /* Code */
       .remark-code, .remark-inline-code { font-family: monospace; line-height: 1.5; font-size: 16px; }
       .remark-inline-code { font-size: 24px; }
-      .remark-code {
+      pre code.remark-code {
         counter-reset: code-line-numbers;
+        background-color: rgba(240, 240, 240, 0.5) !important;
       }
       .remark-code .remark-code-line {
         counter-increment: code-line-numbers;
@@ -71,27 +73,27 @@
         -webkit-user-select: none; /* The line numbers should not be selectable. */
       }
 
+      .remark-slide .remark-slide-content {
+        background-image: url(images/background2.webp);
+      }
+
       /* Title page */
-      .remark-slide .title h1 {
-        font-size: 70px;
-        margin-top: 0px;
+      .remark-slide .remark-slide-content.title {
+        background-image: url(images/blue-ridge-ruby.svg), url(images/background2.webp);
+        background-position: 10% 80px, center;
+        background-size: 100%, auto;
+        background-origin: content-box;
+
       }
-      .remark-slide .title li {
-        list-style-type: none;
-        font-size: 28px;
+      .remark-slide .remark-slide-content.title h1 {
+        font-size: 72px;
+        margin-top: 160px;
+        color: #0C2866;
       }
-      .remark-slide .title ul {
-        padding-left: 0px;
+      .remark-slide .remark-slide-content.title h2 {
+        color: #0C2866;
       }
-      .remark-slide .title {
-        background-image: url(images/f5-logo-gradient-rgb.png);
-        background-position: 150px 400px;
-      }
-      .remark-slide .title h3 {
-        font-size: 40px;
-        margin-left: 200px;
-        margin-top: 140px;
-      }
+
       .remark-slide .diagram p {
         text-align: center;
       }
@@ -169,31 +171,13 @@
         background-color: rgba(255, 255, 255, .75);
 
       }
-      .remark-slide .transition.boolean_basics {
+      .remark-slide .transition.basics {
         background-image: url(images/pexels-photo-259943.jpeg);
-      }
-      .remark-slide .transition.boolean_parameters {
-        background-image: url(images/Param_03.jpg);
-      }
-      .remark-slide .transition.connascence {
-        background-image: url(images/TwinsTwins.JPG);
-      }
-      .remark-slide .transition.boolean_states {
-        background-image: url(images/Balkans_regions_map.png);
       }
       .remark-slide .transition.primitive_obsession {
         background-image: url(images/Obsession.png);
       }
-      .remark-slide .transition.boolean_fields {
-        background-image: url(images/cornfield_sky_trees_cereals_summer_nature_field_clouds-450526.jpg);
-      }
-      .remark-slide .transition.exponential_complexity {
-        background-image: url(images/Exponential.svg);
-      }
-      .remark-slide .transition.boolean_operations {
-        background-image: url(images/operation.jpg);
-      }
-      .remark-slide .transition.boolean_transformations {
+      .remark-slide .transition.transformations {
         background-image: url(images/Bumblebee_Transformer_-_Flickr_-_andrewbasterfield.jpg);
       }
       .remark-slide .transition.readability {
