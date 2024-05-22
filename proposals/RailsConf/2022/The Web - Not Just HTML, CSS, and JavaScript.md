@@ -1,5 +1,4 @@
-The Web: Not Just HTML, CSS, and JavaScript
-=======
+# The Web - Not Just HTML, CSS, and JavaScript
 
 Type: workshop
 Track: General

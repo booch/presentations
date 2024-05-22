@@ -4,7 +4,7 @@
 
 * How the Web Works
 * How does the Web work?
-* Maybe "The Web: Everything Besides HTML, CSS, and JavaScript"
+* Maybe "The Web - Everything Besides HTML, CSS, and JavaScript"
 * Maybe "The Web, minus HTML, CSS, and JavaScript"
 
 
