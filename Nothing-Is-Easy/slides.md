@@ -36,15 +36,15 @@ class: middle
 
 * Hit `P` to toggle presenter notes
     * References
-    * More details than I will talk about
+    * Details I don't have time to cover
 
 ???
 
 * If you want to follow along, or see the slides later, here's the URL.
     * It'll be in the lower right corner.
 * Hit `P` for presenter notes.
-    * Notes have links to things I reference.
-    * Notes have more info than I'll talk about in some cases.
+    * The notes have links to resources I reference in the talk.
+    * The notes have more details than I have time to talk about.
 
 ---
 class: middle, center, image-only
@@ -68,7 +68,7 @@ class: middle, center, image-only
 ---
 class: middle, center, image-only
 
-![Title slide for Craig Buchek's RailsConf 2018 talk about Booleans in Ruby](images/Booleans-talk.jpg)
+![Title slide for Craig Buchek's RailsConf 2018 talk about Booleans in Ruby](images/Booleans-talk.png)
 
 
 ???
@@ -86,14 +86,14 @@ class: agenda
 
 # Agenda
 
-* Basics
+* [Basics](#basics)
 * Nil Parameters
-* NoMethodError
-    * Ruby's take on NullPointerException
-* The Billion Dollar Mistake
-* Other Anti-Patterns
-* Safe Navigation
-* Null Object and Special Case
+* [NoMethodError](#nomethoderror)
+* [Other Anti-Patterns](#other-anti-patterns)
+* [The Billion Dollar Mistake](#billion-dollar-mistake)
+* [Solutions](#solutions)
+* [Safe Navigation](#safe-navigation)
+* [Null Object](#null-object) and [Special Case](#special-case) patterns
 * Refactoring
 * Type Safety
 
@@ -317,13 +317,19 @@ v = nil
 * It's more *idiomatic* to use something more explicitly intention-revealing that returns a Boolean.
     * Like `nil?`, `empty?`, or `blank?`
 
---
+------
 
 * This isn't as big a problem in Ruby as in other languages.
-* I contend that automatic coercion to Booleans is the 2nd most expensive mistake in computer language design.
+* I contend that implicit coercion to Booleans is the 2nd most expensive mistake in computer language design.
     * 0 and empty arrays are equal to false in many languages.
     * The most expensive mistake is null pointers (leading to null pointer exceptions).
         * See [Null References: The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare)
+* Other programming mistakes that have likely crossed the billion dollar mark:
+    * C string libraries
+        * Major cause of buffer overflows
+    * SQL injection
+    * Bad cryptographic hygiene
+    * Time zones
 
 ---
 
@@ -361,10 +367,205 @@ nil.to_h
 nil.to_s
 # => ""
 
-nil.
+1.6.ceil
+# => 2
+
+nil.ceil
+# !> NoMethodError("undefined method `ceil' for nil")
 ~~~
 
 ???
+
+---
+
+# NoMethodError
+
+* Java: NullPointerError (NPE)
+* Python: AttributeError
+* JavaScript: TypeError
+* C: segmentation fault
+
+???
+
+* Other languages have similar errors
+    * With similar names
+* Note that all of these languages are dynamically typed
+* Statically-typed languages catch most of these errors at compile time
+    * QUESTION: Isn't Java statically typed?
+        * ANSWER: Yes, but it has a special case for `null` that allows it to be assigned to any reference type (per Copilot)
+
+------
+
+~~~ javascript
+let x = "abc, def, ghi";
+x.split()
+# => ["abc,", "def,", "ghi"]
+
+let y = "abc, def, ghi";
+y.split()
+# !> Uncaught TypeError: x is null
+~~~
+
+---
+class: transition, solutions
+
+# Solutions
+
+???
+
+* How do we solve these problems?
+
+* More importantly: How do we solve these problems without causing other problems?
+
+---
+
+# Nil Check
+
+* Check for `nil` before calling methods on it
+
+~~~ ruby
+user = User.find(123)
+
+unless user.nil?
+  puts "Hello, #{user.name}!"
+else
+  fail "user not found"
+end
+~~~
+
+~~~ ruby
+user = User.find(123)
+
+if user
+  puts "Hello, #{user.name}!"
+else
+  fail "user not found"
+end
+~~~
+
+???
+
+* The 1st example is more explicit
+    * It's more clear that we're checking for `nil`
+* The 2nd example is more *idiomatic*, more concise, and more readable
+    * Community standards prefer `if` over `unless`
+        * Because `unless` is usually harder to read and understand
+    * We think of `if user` as "if there is a user"
+        * As opposed to the former reading as "unless there is not a user"
+* The 2nd example will also raise an exception if `user` is `false`
+    * This is rarely a problem
+        * It's **extremely** bad practice for a method to return `nil`, `false`, or a "normal" object
+            * Unless the object is only returned to represent "truthy"
+    * But it is something to be aware of
+        * Mostly arises in caching scenarios
+
+---
+
+# Nil Check
+
+* Check for `nil` before calling methods on it
+
+~~~ ruby
+user = User.find(123)
+
+if user.nil?
+  fail "user not found"
+else
+  puts "Hello, #{user.name}!"
+end
+~~~
+
+~~~ ruby
+user = User.find(123)
+
+unless user
+  fail "user not found"
+else
+  puts "Hello, #{user.name}!"
+end
+~~~
+
+???
+
+* These are less idiomatic/readable than the previous examples
+* It's idiomatic to put the "positive" case first
+    * When using an `if`/`else` statement
+    * Because it's easier to read and understand
+
+---
+
+# Nil Check - Trinary
+
+* Check for `nil` using the trinary operator
+
+~~~ ruby
+user = User.find(123)
+
+puts user ? "Hello, #{user.name}!" : "Sorry, could not find user"
+~~~
+
+~~~ ruby
+user = User.find(123)
+
+puts user ? "Hello, #{user.name}!" : fail("user not found")
+puts user ? "Hello, #{user.name}!" : fail "user not found"
+~~~
+
+???
+
+* Using a trinary operator is often a good choice
+    * When the "positive" and "negative" cases are simple
+
+---
+
+# Nil Check - Guard Clause
+
+* Check for `nil` using a guard clause
+
+~~~ ruby
+user = User.find(123)
+return if user.nil?
+puts "Hello, #{user.name}!"
+~~~
+
+~~~ ruby
+user = User.find(123)
+return unless user
+puts "Hello, #{user.name}!"
+~~~
+
+~~~ ruby
+user = User.find(123)
+fail "user not found" if user.nil?
+puts "Hello, #{user.name}!"
+~~~
+
+???
+
+* A guard clause is usually the best solution
+* Oddly, in a guard clause, we **have** to cover the "negative" case first
+    * Because we don't want to do anything (interesting) in that case
+* There's no strong community preference between the first 2
+    * Because there's no "double negative" like with `unless user.nil?`
+    * Because they're both easy to read and understand
+* The 3rd option is appropriate if an exception is the right response
+
+---
+
+# Rescue Nil - DON'T
+
+~~~ ruby
+user = User.find(123)
+username = company.account.users.first.name rescue "[missing]"
+~~~
+
+???
+
+* This looks like a nice solution!
+* Don't do this!
+    * It will rescue **any** exception
+        * Not just `NoMethodError`
+    * You should not rescue exceptions you aren't expecting
 
 ---
 

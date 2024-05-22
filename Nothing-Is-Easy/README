@@ -10,7 +10,6 @@
         - Title page especially
     - Generate some ideas for the talk
         - Make up some "real-world" examples
-- Talk about my booleans talk
 - The reason `nil` causes so much trouble is that it has no single meaning
     - it can mean different things in different contexts
     - And in Ruby, loose typing means that pretty much **any** value you have could be `nil`
@@ -37,8 +36,8 @@
 
 ### Before Conference
 
+
+## DONE
+
+- Talk about my booleans talk
 - Make sure http://craigbuchek.com/nil works
-    - Will have to move off of GitHub Pages
-        - Netlify seems like a good option
-            - Just add a `_redirects` file with `/path http://booch.github.io/presentations/ 302`
-    - Or just add META and JavaScript redirects to the GitHub Pages site for `/nil`
