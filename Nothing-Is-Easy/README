@@ -4,7 +4,7 @@
 
 ## TODO
 
-- Result/Option (monads)
+- Empty arrays (or other Enumerable)
 - More code examples
 - Refactoring examples - before, after
 - Replacing with an exception
@@ -18,6 +18,7 @@
 - More on root causes
     - In Ruby, loose typing means that pretty much **any** value you have could be `nil`
     - So we want to do everything we can to avoid the problems with `nil`
+- Better background images
 - Have ChatGPT help
     - Generate some ideas for engaging the audience
     - Generate some background images for the slides

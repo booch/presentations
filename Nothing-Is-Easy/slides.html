@@ -368,6 +368,7 @@ class: agenda
 * [Solutions](#solutions)
 * [Safe Navigation](#safe-navigation)
 * [Null Object](#null-object) pattern
+* [Option Types](#option-types) and [Result Objects](#result-objects)
 
 ???
 
@@ -1116,6 +1117,84 @@ user.name
 * Null Object pattern is a special case of the Special Case pattern
     * Used to represent the absence of an object
 * Special Case classes handle other special conditions and edge cases
+
+---
+
+# Option Types
+
+* Wraps a value that can may contain a value or not
+
+~~~ ruby
+class Option
+  attr_reader :value
+
+  def initialize(value) = @value = value
+
+  def self.some(value) = new(value)
+  def self.none = new(nil)
+
+  def some? = !value.nil?
+  def none? = value.nil?
+end
+
+name = Option.some('Alice')
+empty_name = Option.none
+
+puts name.value      # => 'Alice'
+puts empty_name.none?  # => true
+~~~
+
+???
+
+* We can make optional values explicit with an Option type
+    * This is a common pattern in functional programming languages
+    * It's also common in statically-typed languages
+* TODO: Show better real-world examples
+* TODO: Add a `map` or `fmap` method?
+
+------
+
+* AKA the Option monad, or the Maybe monad
+    * A monad is a design pattern that allows chaining of operations
+    * Think of it as a wrapper around a value
+* NOTE: This is a very simple implementation
+    * There are many libraries that provide more features
+    * Including the `dry-monads` gem
+
+---
+
+# Result Objects
+
+~~~ ruby
+class Result
+  attr_reader :value
+
+  def initialize(value) = @value = value
+
+  def self.success(value) = new(value)
+  def self.failure(value) = new(value)
+
+  def success? = !value.nil?
+  def failure? = value.nil?
+end
+
+success = Result.success('Alice')
+failure = Result.failure('Error message')
+
+puts success.success?   # => true
+puts success.value      # => 'Alice'
+puts failure.failure?   # => true
+puts failure.value      # => 'Error message'
+~~~
+
+???
+
+* Result objects are similar to Option types
+    * They wrap a value that can be a success or a failure
+        * Instead of `some` or `none`
+    * They provide methods to handle both cases
+* TODO: Show better real-world examples
+* TODO: Add a `map` or `fmap` method?
 
 ---
 class: transition, primitive_obsession
