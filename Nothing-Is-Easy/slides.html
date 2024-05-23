@@ -1197,6 +1197,39 @@ puts failure.value      # => 'Error message'
 * TODO: Add a `map` or `fmap` method?
 
 ---
+
+# Arrays
+
+* Return an empty array instead of `nil`
+
+~~~ ruby
+def find_users
+  users = DB.find(:users)
+  users || []
+end
+
+users = find_users
+users.each { |user| puts user.name }
+~~~
+
+???
+
+* You can often save yourself the hassle of Option/Result types
+    * Just return arrays instead of single objects
+    * It's a different way of thinking of the results
+    * Or other classes that act like arrays
+        * ie the Enumerable module in Ruby
+* An empty array does nothing when iterated over
+    * Exactly what we were looking for
+* This is a common pattern in Ruby
+    * It's idiomatic
+    * It's more readable
+    * It's more intention-revealing
+* jQuery was the first to popularize this pattern (in JavaScript)
+    * The primary data type is an array-like object of DOM elements
+        * You work with that instead of individual DOM elements
+
+---
 class: transition, primitive_obsession
 
 # Primitive Obsession
