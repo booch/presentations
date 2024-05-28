@@ -599,9 +599,9 @@ end
 
 ---
 
-# Nil Check - Trinary
+# Nil Check - Ternary
 
-* Check for `nil` using the trinary operator
+* Check for `nil` using the ternary operator
 
 ~~~ ruby
 user = User.find(123)
@@ -618,7 +618,7 @@ puts user ? "Hello, #{user.name}!" : fail "user not found"
 
 ???
 
-* Using a trinary operator is often a good choice
+* Using a ternary operator is often a good choice
     * When the "positive" and "negative" cases are simple
 
 ---
