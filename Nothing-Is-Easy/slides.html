@@ -671,6 +671,54 @@ y.split()
 ~~~
 
 ---
+class: transition, nil_parameters
+
+# Nil Parameters
+
+---
+
+# Nil Parameters
+
+* Optional parameters are usually given the value `nil`
+
+~~~ ruby
+def greet(name = nil)
+  name ||= "Guest"
+  "Hello, #{name}!"
+end
+~~~
+
+???
+
+* It's idiomatic to use `nil` as a default value for optional parameters
+    * Here we use the "conditional assignment operator" (`||=`)
+    * Note that we could have just used `name = "Guest"` in the parameter list
+
+---
+
+# Nil Parameters
+
+* Warning: `nil` is not the same as "no value"
+
+~~~ ruby
+def example_default_params(d = 1000)
+  d.inspect
+end
+
+example_default_params()
+# => "1000"
+
+example_default_params(nil)
+# => "nil"
+~~~
+
+???
+
+* Nil isn't actually special here
+* Nil is a valid value here
+    * So `d` does not get assigned the default value here
+
+---
 class: transition, root_causes
 
 # Root Causes
