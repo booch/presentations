@@ -679,44 +679,6 @@ class: transition, problems
 
 ---
 
-# NoMethodError
-
-* Raised when a method is called on an object that does not support it
-* Nil has only a few methods
-
-~~~ ruby
-nil.to_s
-# => ""
-
-1.6.ceil
-# => 2
-
-nil.ceil
-# !> NoMethodError("undefined method `ceil' for nil")
-~~~
-
-???
-
----
-
-# ASIDE: Other Languages
-
-* Java: NullPointerError (NPE)
-* Python: AttributeError
-* JavaScript: TypeError
-* C: segmentation fault
-
-???
-
-* Other languages have similar exceptions
-    * With similar names
-* Note that all of these languages are dynamically typed
-* Statically-typed languages catch most of these errors at compile time
-    * QUESTION: Isn't Java statically typed?
-        * ANSWER: Yes, but it has a special case for `null` that allows it to be assigned to any reference type (per Copilot)
-
----
-
 # Nil Parameters
 
 * Optional parameters are usually given the value `nil`
@@ -733,8 +695,6 @@ end
 * It's idiomatic to use `nil` as a default value for optional parameters
     * Here we use the "conditional assignment operator" (`||=`)
     * Note that we could have just used `name = "Guest"` in the parameter list
-
-* TODO: Move these 3 slides?
 
 ---
 
@@ -787,21 +747,49 @@ example_default_params(nil)
 * In this case,
     * Passing `nil` **does** have the same result as not supplying the argument
 
-* TODO: Show the solution:
-    * Use a different sentinel value
+---
+
+# NoMethodError
+
+* Raised when a method is called on an object that does not support it
+* Nil has only a few methods
 
 ~~~ ruby
-def example_default_params(d = :not_provided)
-  d = "1000" if d == :not_provided
-  d.inspect
-end
+nil.to_s
+# => ""
 
-example_default_params()
-# => "1000"
+1.6.ceil
+# => 2
 
-example_default_params(nil)
-# => "nil"
+nil.ceil
+# !> NoMethodError("undefined method `ceil' for nil")
 ~~~
+
+???
+
+* TODO: More!
+
+---
+
+# ASIDE: Other Languages
+
+* Java: NullPointerError (NPE)
+* Python: AttributeError
+* JavaScript: TypeError
+* C: segmentation fault
+
+???
+
+* Other languages have similar exceptions
+    * With similar names
+* Note that all of these languages are dynamically typed
+* Statically-typed languages catch most of these errors at compile time
+
+------
+
+* QUESTION: Isn't Java statically typed?
+    * ANSWER: Yes, but it has a special case for `null` that allows it to be assigned to any reference type
+        * per Copilot
 
 ---
 class: transition, root-causes
@@ -843,7 +831,11 @@ class: transition, root-causes
 * We need to understanding what `nil` means in each context
     * Then replace it with a more meaningful value in many places
 
-* TODO: Talk about most of these in this slide
+* How we fix a `nil` depends on the context
+    * If it's representing an empty value or "not found", we could replace it with an empty array
+    * If it's a sentinel value, we might replace it with a symbol
+    * If it's a missing value, we might replace it with an empty string
+    * If it's a default value, we should replace it with the actual default value
 
 ---
 
@@ -1069,8 +1061,29 @@ account&.owner&.address&.zip_code
     * Matz says it looks like a person standing alone, looking around for someone to talk to.
     * The person is looking at the `.` operator.
         * JavaScript and other languages use `?.` for this operator.
-* TODO: Show the difference between `&.` and `&&`
-* TODO: https://thoughtbot.com/blog/ruby-safe-navigation
+
+---
+
+# Safe Navigation
+
+~~~ ruby
+account = nil
+
+account&.owner&.address&.zip_code
+# => nil
+
+account && account.owner && account.owner.address
+  && account.owner.address.zip_code
+# => nil
+~~~
+
+???
+
+* The lonely operator `&.` effectively replaces a chain of growing `&&`s
+
+------
+
+* https://thoughtbot.com/blog/ruby-safe-navigation
 
 ---
 
@@ -1078,7 +1091,17 @@ account&.owner&.address&.zip_code
 
 > Note that `&.` skips only one next call, so for a longer chain it is necessary to add operator on each level
 
+~~~ ruby
+account&.owner.address.zip_code
+# !> NoMethodError: undefined method `address' for nil:NilClass
+~~~
+
 ???
+
+* Don't forget to use the safe navigation operator on each level of the chain
+    * It only skips 1 call, not the whole chain
+
+------
 
 * Source: https://docs.ruby-lang.org/en/master/syntax/calling_methods_rdoc.html
 
@@ -1108,26 +1131,66 @@ account.try(:owner).try(:address).try(:zip_code)
     * Try will return `nil` if any of the methods raise an exception
     * It's a method call that uses some metaprogramming
     * It might return `false` instead of `nil` in some cases
-    * It can take a block???
-    * It can take multiple arguments???
-    * It's still useful in some cases
 
 ---
 
 # Try
 
 ~~~ ruby
-account.try(:owner).try(:address).try(:zip_code) { "00000" }
-# => "00000"
+Account = Data.define(:owner)
+Owner = Data.define(:address)
+Address = Data.define(:zip_code)
+account = Account.new(Owner.new(Address.new("90802")))
 
-account && account.owner && account.owner.address
-# => false
+account.try(:owner).try(:address).try(:zip_code) || "00000"
+# => "90802"
+
+account = nil
+account.try(:owner).try(:address).try(:zip_code) || "00000"
+# => "00000"
 ~~~
 
 ???
 
-* TODO: See https://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/
-* TODO: See https://stackoverflow.com/a/45825498/26311
+* Here's an example that provides a default value
+
+* There's also `try!`
+    * Equivalent to the safe navigation operator
+
+* That's it for **handling** `nil`
+
+------
+
+* [The Safe Navigation Operator (&.) in Ruby](https://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/)
+* [What's the difference between `try` and `&.`](https://stackoverflow.com/a/45825498/26311)
+
+---
+
+# Sentinel Parameters
+
+* Use a sentinel value to indicate "not provided"
+
+~~~ ruby
+def example_default_params(d = :not_provided)
+  d = "1000" if d == :not_provided
+  d.inspect
+end
+
+example_default_params()
+# => "1000"
+
+example_default_params(nil)
+# => "nil"
+~~~
+
+???
+
+* Now let's look at **replacing** `nil`
+
+* In the case where we used `nil` as a default value for a parameter, ...
+    * We were using `nil` as a sentinel value to indicate "not provided"
+* We can replace the sentinel value with a different value
+    * Here we use a symbol
 
 ---
 
@@ -1274,6 +1337,117 @@ address = params.dig(:account, :owners, 0, :address)
 
 ---
 
+# Result Type
+
+* Represents a result that is a `Success` or a `Failure`
+
+~~~ ruby
+require 'resonad'
+extend Resonad::Mixin
+
+def divide(a, b)
+  Success(a / b)
+rescue ZeroDivisionError
+  Failure('Division by zero')
+end
+
+divide_10_by_2 = divide(10, 2)
+
+divide_10_by_2.success?    # => true
+divide_10_by_2.failure?    # => false
+divide_10_by_2.value       # => 5
+divide_10_by_2.error       # => Resonad::NonExistentError
+~~~
+
+???
+
+* Using the "resonad" gem
+* If we have a Success, we can get the value of the result
+    * But we can't get the error message, because there is none
+
+------
+
+* I chose this gem over dry-monads, because it's easier to understand
+
+---
+
+# Result Type
+
+* Represents a result that is a `Success` or a `Failure`
+
+~~~ ruby
+require 'resonad'
+extend Resonad::Mixin
+
+def divide(a, b)
+  Success(a / b)
+rescue ZeroDivisionError
+  Failure('Division by zero')
+end
+
+divide_10_by_0 = divide(10, 0)
+
+divide_10_by_0.success?    # => false
+divide_10_by_0.failure?    # => true
+divide_10_by_0.error       # => "Division by zero"
+divide_10_by_0.value       # => Resonad::NonExistentValue
+~~~
+
+???
+
+* This all seems pretty straight-forward
+* If we have a Failure, we can get the error message
+    * But we can't get the value, because there is none
+
+* Failure is often used in a `rescue` clause
+
+---
+
+# Result Type
+
+* Represents a result that is a `Success` or a `Failure`
+
+~~~ ruby
+# ...
+
+divide_10_by_2.map { _1 + 1 }.value
+# => 6
+
+divide_10_by_2.and_then { Success(_1 + 2) }
+  .on_success { _1 }
+  .on_failure { logger.warn(_1) }
+# => 7
+# => Success(7)
+
+divide_10_by_0.and_then { Success(_1 + 2) }
+  .on_success { _1 }
+  .on_failure { logger.warn(_1) }
+# Logs "Division by zero"
+# => Failure("Division by zero")
+~~~
+
+???
+
+* In the first example, we add 1 to the value
+    * We get 6
+
+* In the second example, we add 2 to the value
+    * We can use the value in an `on_success` block
+    * Then we skip the `on_failure` block
+    * But then return the Success object
+
+* In the `divide_by_0` example, ...
+    * Because we have a Failure, the `on_success` block is skipped
+    * Then we log the error in an `on_failure` block
+    * But return the Failure object
+
+* Result objects are a good solution if:
+    * an operation can fail in multiple different ways
+    * a series of operations are chained together
+        * and any of them might fail
+
+---
+
 # Option Types
 
 * Wraps a value that can may contain a value or not
@@ -1300,55 +1474,25 @@ puts empty_name.none?  # => true
 
 ???
 
-* We can make optional values explicit with an Option type
-    * This is a common pattern in functional programming languages
-    * It's also common in statically-typed languages
-* TODO: Show better real-world examples
-* TODO: Add a `map` or `fmap` method?
+* An Option Type is similar
+    * Instead of a success of failure, ...
+        * It can contain a value or nothing
+* An option type makes it clear that you may or may not have a value
+
+* AKA Maybe
+
+* This is a common pattern in statically-typed languages
+    * Especially in functional programming languages
 
 ------
 
-* AKA the Option monad, or the Maybe monad
+* AKA the Option (or Maybe) monad,
     * A monad is a design pattern that allows chaining of operations
     * Think of it as a wrapper around a value
+
 * NOTE: This is a very simple implementation
     * There are many libraries that provide more features
     * Including the `dry-monads` gem
-
----
-
-# Result Objects
-
-~~~ ruby
-class Result
-  attr_reader :value
-
-  def initialize(value) = @value = value
-
-  def self.success(value) = new(value)
-  def self.failure(value) = new(value)
-
-  def success? = !value.nil?
-  def failure? = value.nil?
-end
-
-success = Result.success('Alice')
-failure = Result.failure('Error message')
-
-puts success.success?   # => true
-puts success.value      # => 'Alice'
-puts failure.failure?   # => true
-puts failure.value      # => 'Error message'
-~~~
-
-???
-
-* Result objects are similar to Option types
-    * They wrap a value that can be a success or a failure
-        * Instead of `some` or `none`
-    * They provide methods to handle both cases
-* TODO: Show better real-world examples
-* TODO: Add a `map` or `fmap` method?
 
 ---
 
@@ -1408,9 +1552,10 @@ user.name
     * Don't let the caller get a `nil`
         * This follows the "Make Impossible States Impossible" principle
             * AKA "Make Impossible States Unrepresentable"
-* TODO: The NullUser class should actually be a singleton
 
 ------
+
+* The NullUser class should probably be a singleton here.
 
 * [Make Impossible States Impossible](https://kentcdodds.com/blog/make-impossible-states-impossible)
     * Kent C Dodds (2018)
@@ -1497,11 +1642,18 @@ null_log.info "Logs to the void"
 ???
 
 * Null Object pattern is a special case of the Special Case pattern
-    * Used to represent the absence of an object
+    * The less than (`<`) is used to notate that the Null Object pattern is a subclass of the Special Case pattern
+    * Used to represent the absence of some object
     * The line can get a little fuzzy
         * Is a NullLogger really a Null Object, or just a Special Case?
 * Special Case classes handle other special conditions and edge cases
-    *
+    * They can be used to handle special cases that don't fit the Null Object pattern
+
+* AKA Exceptional Case
+
+------
+
+* The Special Case pattern can be considered to be a refinement of the Strategy pattern
 
 ---
 
@@ -1528,6 +1680,39 @@ end
 * Special cases can be really simple
 * The key is that we use polymorphism to handle the special case
     * Create a new class that responds to the same methods as the original class
+        * Could be a subclass
+        * Could be a completely different class
+            * Implementing the same (pertinent) methods
+
+---
+class: transition, conclusion
+
+# Conclusions
+
+---
+
+# Primitive Obsession
+
+* We overuse primitive types
+* It's often be better to use a more specialized type
+
+???
+
+* Programmers have a tendency to reach for language primitives
+    * Even when there is a better solution using the language features
+* Example: Using a floating point number to represent money
+* Example: Using a string to represent a URL
+* Objects allow us to have a richer, more consistent API
+    * More methods
+    * Constraints
+    * Validations
+
+------
+
+* In Ruby, we're more likely to abuse strings in this way.
+    * That's often referred to as "stringly typed".
+        * A play on "strongly typed" languages.
+* But our examples overuse `nil` a lot.
 
 ---
 
@@ -1549,39 +1734,16 @@ end
 
 ???
 
-* TODO: Move this to conclusions
-
-* Remember this?
+* Remember this from Rubinius?
 * This is also an example of the Special Case pattern
 * Barely even feels like a "pattern"
     * It's just using polymorphic classes
+        * Classes that respond to the same methods
+            * Ie. they have the same interface
 * Specialization is really what OOP is all about
-
----
-class: transition, conclusion
-
-# Conclusions
-
----
-
-# Primitive Obsession
-
-* Using a primitive type when it'd be better to use a more specialized type
-
-???
-
-* Programmers have a tendency to reach for language primitives
-    * Even when there is a better solution using the language features
-* Example: Using a floating point number to represent money
-* Example: Using a string to represent a URL
-* Objects allow us to have a
-
-------
-
-* In Ruby, we're more likely to abuse strings in this way.
-    * That's often referred to as "stringly typed".
-        * A play on "strongly typed" languages.
-    * But this is an example where we've overused `nil`.
+    * Eliminating conditionals is a good way to get there
+        * Or isolate the conditionals in one place
+            * Often a factory method
 
 ---
 class: image-only, percent-30
@@ -1606,6 +1768,24 @@ class: image-only, percent-30
 
 ---
 
+# Conclusions
+
+* There's a lot of nuance reguarding `nil`
+    * It isn't always so simple
+* Nil is often **not** the best choice
+    * It's usually better to replace it (with a more specialized type)
+        * Rather than handling it
+* OOP polymorphism **FTW!**
+* Learn how to use your tools **well**
+
+???
+
+* I hope I've shown that there's more to `nil` than meets the eye.
+* Lean into OOP and polymorphism!
+    * It's a powerful tool for using Ruby well
+
+---
+
 # Other Billion-Dollar Mistakes
 
 * Implicit coercion to Booleans
@@ -1627,28 +1807,24 @@ class: image-only, percent-30
 
 ---
 
-# Conclusions
+# Resources
 
-* Nil isn't always so simple
-* Nil is often not the best choice
-* OOP polymorphism FTW!
-* Learn how to use your tools well
+* Sandi Metz: [Nothing is Something](https://www.youtube.com/watch?v=OMPfEXIlTVE)
+* Avdi Grimm: [Confident Code](https://youtu.be/T8J0j2xJFgQ?si=t9LgTxijJB7sLBbC)
+* Avdi Grimm: [Confident Ruby](https://store.avdi.codes/l/rrWapR)
+* David Copeland: [Eliminating branching, nil, and attributes](https://youtu.be/inU7MEtI51g?si=hHFjRHO_Yrany-eO)
+* Source Making: [Null Object](https://sourcemaking.com/design_patterns/null_object)
+    * Great site for design patterns, refactoring, and anti-patterns
 
 ???
 
-* I hope I've shown that there's more to Nil than meets the eye.
-* Lean into OOP and polymorphism!
-    * It's a powerful tool for using Ruby well
+* If you want to dig into the Null Object pattern more, ...
 
----
-
-# Resources
-
-* [Null Object @ Source Making](https://sourcemaking.com/design_patterns/null_object)
-    * Great site for design patterns, refactoring, and anti-patterns
-* TODO: Sandi talk
-* TODO: Avdi talk
-* TODO: Avdi book
+* Sandi's talk is amazing
+* Avdi's talk and book are great
+    * Shows how to use the Null Object pattern within a larger context
+* David Copland has a talk that starts by eliminating all branching
+    * Including `nil` checks
 
 ---
 class: thanks, image-only
@@ -1669,16 +1845,37 @@ class: thanks, image-only
 
 ---
 
+# Open to Opportunities
+
+* Staff or Principal Software Engineer
+
+* Ruby: 18 years
+* Devops: 11 years
+* Network Security: 7 years
+
+* LinkedIn: https://www.linkedin.com/in/craigbuchek
+* Resume: https://resume.craigbuchek.com
+* GitHub: https://github.com/booch
+
+???
+
+* I'm currently wrapping up a short-term contract
+* Looking for my next great opportunity
+
+---
+
 # Feedback
 
 * GitHub: [booch][github]
 * Mastadon: [@CraigBuchek@ruby.social][mastadon]
 * Twitter: [@CraigBuchek][twitter]
-* Email: <craig@boochtek.com>
+* Email: craig.buchek@gmail.com
+* LinkedIn: https://www.linkedin.com/in/craigbuchek
+* Resume: https://resume.craigbuchek.com
 
 
-* Slides: <http://craigbuchek.com/nil>
-    * Source: <https://github.com/booch/presentations>
+* Slides: http://craigbuchek.com/nil
+    * Source: https://github.com/booch/presentations
 
 ???
 
@@ -1689,50 +1886,17 @@ class: thanks, image-only
 
 * I used a tool called [Remark][remark] to create and show these slides.
 
-
 [github]: https://github.com/booch
 [mastadon]: https://ruby.social/@CraigBuchek
 [twitter]: https://twitter.com/CraigBuchek
-
-
 [remark]: http://remarkjs.com/
 
 ---
-class: transition, extra-slides
 
-# Extra Unused Slides
+# Image Credits
 
----
-
-# ASIDE: Nil vs. Null
-
-* In Ruby, `nil` is the only "null" value
-* In other languages, `null` is a separate concept
-    * In Java, `null` is a reference to no object
-    * In C, `NULL` is a pointer to no memory address
-    * In JavaScript, `null` is a reference to no object
-    * In SQL, `NULL` is a special value that represents "no value"
-    * In Lisp, `nil` is a symbol that represents "no value"
-
----
-
-# Law of Demeter
-
-* The Law of Demeter is a design guideline for object-oriented programming
-* It's often summarized as "only talk to your immediate friends"
-    * Don't talk to strangers
-    * Don't talk to your friends' friends
-    * Don't talk to your friends' friends' friends
-* The safe navigation operator is often used to follow the Law of Demeter
-* But it's not a silver bullet
-    * It can lead to long chains of method calls
-    * It can lead to "train wrecks"
-* Sometimes it's OK to break the Law of Demeter
-    * But it's a code smell
-    * It's a sign that you might need to refactor
-
-???
-
-* TODO: More on the Law of Demeter
-
----
+* https://www.flickr.com/photos/83633410@N07/7658225516
+* https://commons.wikimedia.org/wiki/File:Chemical_solutions.jpg
+* https://freerangestock.com/sample/125787/new-born-baby-.jpg
+* https://www.flickr.com/photos/38071164@N00/211042959/
+*
