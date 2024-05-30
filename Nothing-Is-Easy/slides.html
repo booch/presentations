@@ -549,8 +549,8 @@ empty_method
 
 ~~~ ruby
 def implicit_else
-  if false
-    "false"
+  if true
+    "true"
   end
 end
 
@@ -1040,7 +1040,6 @@ example_default_params(nil)
 # NoMethodError
 
 * Raised when a method is called on an object that does not support it
-* Nil has only a few methods
 
 ~~~ ruby
 nil.to_s
@@ -1055,7 +1054,33 @@ nil.ceil
 
 ???
 
-* TODO: More!
+* Here's the main problem
+* `nil` has only a few methods defined
+* If you try to call any _other_ methods, ...
+    * You get a `NoMethodError`
+
+---
+
+# NoMethodError
+
+* Not particular to `nil`
+
+~~~ ruby
+1.6.ceil
+# => 2
+
+"1.6".ceil
+# !> NoMethodError("undefined method `ceil' for an instance of String")
+~~~
+
+???
+
+* There's nothing particularly special about `nil` and NoMethodError
+    * It happens **any** time you tell **any** object ...
+        * to do something it doesn't know how to do
+
+* The biggest problem with NoMethodError:
+    * Exception is usually **raised** nowhere near where the value was **set**
 
 ---
 
@@ -1071,13 +1096,14 @@ nil.ceil
 * Other languages have similar exceptions
     * With similar names
 * Note that all of these languages are dynamically typed
-* Statically-typed languages catch most of these errors at compile time
+    * Statically-typed languages catch most of these errors at compile time
 
 ------
 
 * QUESTION: Isn't Java statically typed?
     * ANSWER: Yes, but it has a special case for `null` that allows it to be assigned to any reference type
         * per Copilot
+        * It also borrows a lot from C and C++
 
 ---
 class: transition, root-causes
@@ -1103,50 +1129,132 @@ class: transition, root-causes
 
 # Multiple Meanings
 
-* Missing value
+* Unset variable
 * Empty
-* Not found
+* Not found / missing
 * Not applicable
 * Not supported
-* Unset variable
-* Default value
 * Sentinel
+* Default value
 
 ???
 
 * Nil is used for a lot of different reasons
 
 * We need to understanding what `nil` means in each context
-    * Then replace it with a more meaningful value in many places
+    * Then replace it with a more meaningful value
 
 * How we fix a `nil` depends on the context
-    * If it's representing an empty value or "not found", we could replace it with an empty array
-    * If it's a sentinel value, we might replace it with a symbol
-    * If it's a missing value, we might replace it with an empty string
-    * If it's a default value, we should replace it with the actual default value
 
 ---
 
 # Multiple Meanings
 
+* Unset variable
+* Empty
+* Not found / missing
+* Not applicable
+* Not supported
+* Sentinel
+* Default value
+
 ???
 
-* TODO: FIXME: How do I show the stuff I want to talk about here?
-    * Or do I move all of this later?
+* I talked about unset instance variables
+    * We pretty much just have to deal with that one
 
-* TODO: I feel like this section needs to be longer
-    * And/or give it more _emphasis_!
+* A lot of times we use `nil` to mean "empty"
+    * I'll show an easy fix for that
 
-* We also need to understand **when** we might have a `nil`
-    * Otherwise, we'll end up with a ton of `nil` checks
-        * Or worse, miss an edge case
-* Use guard clauses or Null Objects to eliminate the possibility
-    * Then we can be confident knowing that a value cannot be `nil`
-        * Within that context
-* Reducing the number of `nil` checks reduces the chances of bugs
-    * Makes the code more readable
+* If `nil` represents a missing value
+    * We might replace it with an empty string or empty array
 
 ---
+
+# Multiple Meanings
+
+* Unset variable
+* Empty
+* Not found / missing
+* Not applicable
+* Not supported
+* Sentinel
+* Default value
+
+???
+
+* We should really use `NotImplementedError` for "not supported"
+
+* A sentinel value is a special value that indicates something special
+    * Back in the day, we'd often use "9999" to represent an invalid date
+* If `nil` is used as a sentinel value
+    * We might replace it with a symbol
+
+* If `nil` a default value, we should replace it with the actual default value
+
+---
+
+# Duck Typing
+
+~~~ ruby
+class Dog
+  def speak
+    "Woof!"
+  end
+end
+
+class Cat
+  def speak
+    "Meow!"
+  end
+end
+
+# We have an animal, but we don't know what kind.
+animal = [Dog.new, Cat.new].sample
+
+animal.speak
+# => "Woof!" or "Meow!"
+~~~
+
+???
+
+* Ruby uses _duck typing_
+    * "If it walks like a duck and quacks like a duck, it's a duck"
+    * We don't care what an object **is**, only what it can **do**
+    * We rarely _ask_ about the type of an object
+        * We just _try_ using it
+
+* This makes Ruby **very** dynamic
+    * A **lot** happens at runtime
+
+---
+
+# Duck Typing
+
+~~~ ruby
+class Dog
+  def speak
+    "Woof!"
+  end
+end
+
+class Cat
+  def speak
+    "Meow!"
+  end
+end
+
+# We have an animal --- or maybe we don't.
+animal = [Dog.new, Cat.new, nil].sample
+
+animal.speak
+# => "Woof!" or "Meow!" or NoMethodError exception
+~~~
+
+???
+
+* Pretty much **any** value you have _could_ be `nil`
+    * So we want to do everything we can to avoid the problems with `nil`
 
 ---
 class: transition, solutions
@@ -1251,7 +1359,6 @@ puts user ? "Hello, #{user.name}!" : "Sorry, could not find user"
 ~~~ ruby
 user = User.find(123)
 
-puts user ? "Hello, #{user.name}!" : fail("user not found")
 puts user ? "Hello, #{user.name}!" : fail "user not found"
 ~~~
 
@@ -1286,13 +1393,19 @@ puts "Hello, #{user.name}!"
 
 ???
 
-* A guard clause is usually the best solution
+* A guard clause is usually the best solution ...
+    * for a simple `nil` check
 * Oddly, in a guard clause, we **have** to cover the "negative" case first
     * Because we don't want to do anything (interesting) in that case
 * There's no strong community preference between the first 2
     * Because there's no "double negative" like with `unless user.nil?`
     * Because they're both easy to read and understand
 * The 3rd option is appropriate if an exception is the right response
+
+* Nil checks lead to lots of bugs
+    * It's easy to miss edge cases
+* They also add a lot of error-handling extra code
+    * There's a better way
 
 ---
 
@@ -1307,6 +1420,7 @@ username = company.account.users.first.name rescue "[missing]"
 
 * This looks like a nice solution!
     * It's NOT!
+* This is **not** the better way!
 
 ---
 class: do-not-do-this
@@ -1323,7 +1437,7 @@ username = company.account.users.first.name rescue "[missing]"
 * Don't do this!
 * This will rescue **any** exception
     * Not just `NoMethodError`
-* You should not rescue exceptions you aren't expecting
+* You should never rescue exceptions you aren't expecting
     * You'll end up hiding bugs from yourself
         * Hours of fun!
 
@@ -1807,10 +1921,17 @@ user.name
 ???
 
 * The Null Object pattern is another excellent solution
+* The Null Object pattern uses OOP to solve the problem
+
 * Instead of `nil`, we use an object
-    * The object responds to the same methods as objects of the main class its associated with
+    * The object responds to the same methods ...
+        * as objects of the class it's associated with
         * The User class, in this case
     * Calling the methods on the Null Object results in "default" behavior
+        * Or "degenerate" behavior
+
+* The null object has the **same API** as the original object
+    * But behaves differently
 
 ---
 
@@ -1839,9 +1960,10 @@ user.name
 * It's best if you have the _callee_ return the "null object"
     * Don't let the caller get a `nil`
         * This follows the "Make Impossible States Impossible" principle
-            * AKA "Make Impossible States Unrepresentable"
 
 ------
+
+* AKA "Make Impossible States Unrepresentable".
 
 * The NullUser class should probably be a singleton here.
 
@@ -2002,6 +2124,11 @@ class: transition, conclusion
         * A play on "strongly typed" languages.
 * But our examples overuse `nil` a lot.
 
+* Technically, everything in Ruby is an object.
+    * I'm talking about richer custom-defined objects here.
+    * Except blocks
+        * Everything that _you can assign to a variable_ is an object
+
 ---
 
 # Special Case
@@ -2034,43 +2161,39 @@ end
             * Often a factory method
 
 ---
-class: image-only, percent-30
 
-# The Point
+# Conclusions
 
-![Exclamation point](images/OCR-A_char_Exclamation_Mark.svg)
+* There's a lot of nuance regarding `nil`
+    * It isn't always so simple
+* Nil is often **not** the best choice
+    * It's usually better to replace it (with a more specialized type)
+        * Rather than handling it
 
 ???
 
-* TODO: Replace all of the following
-* The original code we looked at all _worked_.
-* So what was the point in changing it?
-* We read code more than we write it.
-    * So we should optimize for reading.
-    * So we should optimize for **understanding**.
-* Abstractions are meant to help us understand things.
-    * As Sandi says, take the time to find the **right** abstraction.
-    * Sometimes that takes some extra work.
-* Writing good code might take a little longer in the short run.
-    * In the long run, it will pay off to write the code as well as you can.
+* There's more to `nil` than meets the eye.
 
 ---
 
 # Conclusions
 
-* There's a lot of nuance reguarding `nil`
-    * It isn't always so simple
-* Nil is often **not** the best choice
-    * It's usually better to replace it (with a more specialized type)
-        * Rather than handling it
 * OOP polymorphism **FTW!**
 * Learn how to use your tools **well**
 
 ???
 
-* I hope I've shown that there's more to `nil` than meets the eye.
+* OOP is our friend
+    * OOP is primarily about encapsulation and polymorphism
+* Use polymorphism to treat all objects the same way
+    * Without having to check types
+    * Replace conditionals with polymorphism
+
+* Think in terms of the messages you can send to objects
+    * Allow the objects to do their job
+
 * Lean into OOP and polymorphism!
-    * It's a powerful tool for using Ruby well
+    * Powerful tools for using Ruby well
 
 ---
 
@@ -2102,8 +2225,8 @@ class: image-only, percent-30
 * Avdi Grimm: [Confident Ruby](https://store.avdi.codes/l/rrWapR)
 * David Copeland: [Eliminating branching, nil, and attributes](https://youtu.be/inU7MEtI51g?si=hHFjRHO_Yrany-eO)
 * Source Making: [Null Object](https://sourcemaking.com/design_patterns/null_object)
-    * Great site for design patterns, refactoring, and anti-patterns
 
+(more on individual pages' presenter notes)
 ???
 
 * If you want to dig into the Null Object pattern more, ...
@@ -2113,6 +2236,28 @@ class: image-only, percent-30
     * Shows how to use the Null Object pattern within a larger context
 * David Copland has a talk that starts by eliminating all branching
     * Including `nil` checks
+* There are a couple really good sites on Design Patterns
+    * Source Making is one of the best
+    * It's also great for info on refactoring and anti-patterns
+
+---
+
+# Open to Opportunities
+
+* Principal (or Staff) Software Engineer
+
+
+* Ruby: 18 years
+* Devops: 11 years
+* Network Security: 7 years
+
+
+* Resume: https://resume.craigbuchek.com
+
+???
+
+* I'm currently wrapping up a short-term contract
+* Looking for my next great opportunity
 
 ---
 class: thanks, image-only
@@ -2133,25 +2278,6 @@ class: thanks, image-only
 
 ---
 
-# Open to Opportunities
-
-* Staff or Principal Software Engineer
-
-* Ruby: 18 years
-* Devops: 11 years
-* Network Security: 7 years
-
-* LinkedIn: https://www.linkedin.com/in/craigbuchek
-* Resume: https://resume.craigbuchek.com
-* GitHub: https://github.com/booch
-
-???
-
-* I'm currently wrapping up a short-term contract
-* Looking for my next great opportunity
-
----
-
 # Feedback
 
 * GitHub: [booch][github]
@@ -2168,7 +2294,7 @@ class: thanks, image-only
 ???
 
 * One reason I give talks at conferences is to start a conversation.
-* Please don't hesitate to come talk to me any time during the conference.
+* Please don't hesitate to come talk to me.
 
 ------
 
