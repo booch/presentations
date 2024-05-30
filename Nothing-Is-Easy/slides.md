@@ -19,112 +19,77 @@ class: title, middle, center
 
 ???
 
-* This is a talk I'll be giving next Thursday at Blue Ridge Ruby
-* My Twitter is in the upper right corner if you want to tweet at/about me.
-    * I'm also on Mastodon, same username, @ruby.social
-    * I'm rarely on Twitter any more, nor Mastodon
-* AUDIENCE QUESTION: Who has seen a talk on Nil by Sandi Metz or Avdi Grimm?
-    * I've got some big boots to fill!
+* Hi, I'm Craig
+    * I'm going to talk about `nil`, its pitfalls, and how to avoid them.
+* If you want to "at" me, ...
+    * I'm on Twitter and ruby.social Mastodon
+    * I'm rarely on them
+* I have a short URL for the slides in the lower right.
+    * Follow along
+    * Look at them later
+    * Hit `P` to toggle presenter notes
+        * Links to resources
+        * Details I don't have time to cover
+
+* AUDIENCE QUESTION: Show of hands - who has spent time debugging problems with `nil`?
+    * How much do you think that has cost you in time and money?
 
 ---
-class: middle
+class: middle, billions
 
-* Slides: http://craigbuchek.com/nil
-
-* Hit `P` to toggle presenter notes
-    * References
-    * Details I don't have time to cover
-
-???
-
-* If you want to follow along, or see the slides later, here's the URL.
-    * It'll be in the lower right corner.
-* Hit `P` for presenter notes.
-    * The notes have links to resources I reference in the talk.
-    * The notes have more details than I have time to talk about.
-
-* AUDIENCE QUESTION: Who knows the costliest mistake in computer programming?
-
----
-class: middle
-
-> I call it my billion-dollar mistake. It was the invention of the null reference in 1965. [....] This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
+> I call it my **billion-dollar mistake**.
+> It was the invention of the **null** reference in 1965. [....]
+> This has led to innumerable errors, vulnerabilities, and system crashes,
+> which have probably caused a billion dollars of pain and damage
+> in the last forty years.
 
   -- Tony Hoare, inventor of null references, 2009
 
 ???
 
-* ANSWER: Null pointers
-    * According to Tony Hoare (who invented them)
-    * It has probably cost businesses several billion dollars over the years
-* Also:
-    * "I couldn't resist the temptation to put in a null reference"
-        * "simply because it was so easy to implement"
-* Hoare was also the inventor of the Quicksort algorithm
+* ANSWER: It has costed our industry **billions** of dollars!
+
+* Tony Hoare invented the null reference in 1965
+* He also invented the Quicksort algorithm
 * He won the Turing Award in 1980
     * The "Nobel Prize" of computer science
+* This is a quote from him from 2009
+* He also said:
+
+> I couldn't resist the temptation to put in a null reference
+> simply because it was so easy to implement
 
 ------
 
+* Emphasis mine.
 * Source: https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/
 * Elided text:
 
-> At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement.
-
----
-class: middle, center, image-only
-
-![Title slide for Jeremy Fairbank's Elm-Conf 2017 talk](images/fairbank-title-slide.jpg)
-
-???
-
-* One of my favorite conference talks was by Jeremy Fairbank.
-    * He talked about Booleans
-    * I wondered how he could talk about true and false for 40 minutes
-    * It turned out to be a great talk
-    * His talk was about Elm
-
-------
-
-* I highly recommend watching Jeremy's talk.
-    * video: [Solving the Boolean Identity Crisis by Jeremy Fairbank](https://www.youtube.com/watch?v=8Af1bh-BVY8)
-    * slides: [Slides for "Solving the Boolean Identity Crisis"](https://bit.ly/elm-bool)
-
----
-class: middle, center, image-only
-
-![Title slide for Craig Buchek's RailsConf 2018 talk about Booleans in Ruby](images/Booleans-talk.png)
-
-
-???
-
-* That talk inspired me to give a talk on Booleans
-* And **that** talk inspired me to write this talk
-
-------
-
-* In my own opinion, this is the best conference talk I've given
-* http://craigbuchek.com/booleans
+> At that time, I was designing the first comprehensive type system for references
+> in an object oriented language (ALGOL W).
+> My goal was to ensure that all use of references should be absolutely safe,
+> with checking performed automatically by the compiler.
+> But I couldn't resist the temptation to put in a null reference,
+> simply because it was so easy to implement.
 
 ---
 class: agenda
 
 # Agenda
 
-* [Basics](#basics)
-* [NoMethodError](#nomethoderror)
-* [Other Anti-Patterns](#other-anti-patterns)
-* [Root Causes](#root-causes)
-* [Solutions](#solutions)
-* [Safe Navigation](#safe-navigation)
-* [Null Object](#null-object) pattern
-* [Option Types](#option-types) and [Result Objects](#result-objects)
+
+* Basics
+* Problems
+* Root Causes
+* Solutions
+* Conclusions
 
 ???
 
 * I'm going to start with the basics
-* Then some anti-patterns, and why they're problematic
-* Then some better alternatives, and refactoring
+* Show some problems with `nil`
+* I'll talk about **why** we run into so many problems with `nil`
+* Then we'll look at alternatives
 
 ---
 class: transition, basics
@@ -133,7 +98,7 @@ class: transition, basics
 
 ???
 
-* On to Ruby!
+* On to some Ruby code!
 
 ---
 
@@ -160,7 +125,8 @@ a.class
 
 ???
 
-* `nil` is an instance of a class named `NilClass`.
+* Like all objects in Ruby, `nil` has a class
+    * `NilClass`
 
 ---
 
@@ -176,19 +142,27 @@ c.object_id
 # => 4
 ~~~
 
+> "no two objects will share an id"
+
+   -- `object_id` documentation
+
 ???
 
-* In fact, there's only 1 instance of `nil`.
+* In fact, there's only 1 instance of `NilClass`.
 * No matter how we get `nil`, it's always the same object.
-* Nil's object ID is always 4.
-    * Ruby has a few objects that always have the same object_id:
-        * false:  0
-        * true:   2
-        * nil:    4
 
---
+------
 
-* From the `object_id` documentation: "no two objects will share an id".
+* So `nil` is a singleton.
+    * But `NilClass` does **not** use the Ruby `Singleton` module.
+        * It's a special case in the Ruby interpreter
+
+* Ruby has a few objects that always have the same `object_id`:
+    * false:  0
+    * true:   2
+    * nil:    4
+
+* It's technically more appropriate to say "the nil", instead of "a nil"!
 
 ---
 
@@ -201,11 +175,147 @@ NilClass.new
 
 ???
 
-* You can't create a new instance of NilClass.
+* You can't even create a new instance of NilClass.
+
+---
+class: transition, origins
+
+# Origins
+
+???
+
+* Where does `nil` come from?
+* How do we end up with `nil`?
 
 ---
 
-# Basics
+# Unset Variables
+
+~~~ ruby
+@undefined
+# => nil
+
+undefined_local
+# !> NameError: undefined local variable or method `undefined_local'
+~~~
+
+???
+
+* Instance variables are `nil` if they're not defined.
+
+* Local variables raise a `NameError` if they're not defined.
+    * Note the exception message
+    * Ruby treats local variables and method calls the same
+        * It doesn't know until runtime which it is
+
+------
+
+* I often refactor local variables, extracting them to private methods
+    * The caller doesn't need to know which it is
+    * Abstracts the implementation behind a name
+        * I don't have to think or worry about the implementation
+            * Unless/until I need to
+    * At least, if the method doesn't require passing an argument
+        * I usually take that to mean that I'm missing an abstraction
+
+---
+
+# Bare Return
+
+~~~ ruby
+def bare_return
+  return if true
+  "never gonna happen"
+end
+
+bare_return
+# => nil
+~~~
+
+???
+
+* We'll often get a `nil` without expecting it
+
+* If no value is specified in a `return`, it will return `nil`
+* Using a bare `return` like this in a guard clause is a common idiom
+
+---
+
+# Empty Method
+
+~~~ ruby
+def empty_method
+end
+
+empty_method
+# => nil
+~~~
+
+???
+
+* An empty method returns `nil`
+
+---
+
+# Implicit Else
+
+~~~ ruby
+def implicit_else
+  if false
+    "false"
+  end
+end
+
+implicit_else
+# => nil
+~~~
+
+???
+
+* If you have an `if` without an `else`, ...
+    * It results in `nil` if the condition is false
+
+---
+
+# Implicit Return
+
+~~~ ruby
+def error!
+  file = File.open("log", "w")
+  file.puts "error!"
+end
+
+error!
+# => nil
+~~~
+
+???
+
+* Implicit returns are probably the most common way to get `nil`
+    * A method returns the value of the last expression
+
+* Because `puts` method always returns `nil`, ...
+    * The `error!` method here also returns `nil`
+
+* In general, if a method doesn't have an explicit return value, ...
+    * Expect that it might return `nil`.
+
+------
+
+* I used `file.puts` instead of `puts` to avoid confusion between output and return value
+
+---
+class: transition, behavior
+
+# Behaviors
+
+???
+
+* How does `nil` behave?
+
+---
+
+# NilClass Ancestors
 
 ~~~ ruby
 NilClass.ancestors
@@ -214,8 +324,11 @@ NilClass.ancestors
 
 ???
 
-* NilClass is a direct descendent of the Object class
-    * Most classes in Ruby inherit from Object
+* `NilClass` is a direct descendent of the `Object` class.
+    * Most classes in Ruby inherit from `Object`.
+
+------
+
 * BasicObject is the top of the Ruby object hierarchy
     * It has only 12 methods
         * Mostly just equality and message passing
@@ -223,7 +336,7 @@ NilClass.ancestors
         * Like the `delegate` method in Rails
         * Messages passed to a proxy object get passed to the target object that it's proxying
             * We want as many methods as possible to be forwarded to the target object of the proxy
-* Kernel adds ~50 more methods
+* Kernel is a module that adds ~50 more methods
     * Mostly for IO, system calls, and process management
     * Methods that seemingly take no receiver
     * Things like:
@@ -238,116 +351,36 @@ NilClass.ancestors
 
 ---
 
-# Basics
+# Methods
 
 ~~~ ruby
-NilClass.methods - Object.methods
-# => []
+NilClass.instance_methods - Object.instance_methods
+# => [:rationalize, :to_a, :to_c, :to_f, :to_h, :to_i, :to_r,
+# =>  :&, :|, :^, :=~]
 ~~~
 
 ???
 
-* NilClass adds no methods other than those inherited from Object
+* NilClass adds only a few methods of its own.
+* Most are for _coercion_ to other types
+* A few are for logical operations, so `nil` can be used as `false`
 
----
+------
 
-# Basics
-
-~~~ ruby
-nil.nil?
-# => true
-
-false.nil?
-# => false
-
-Object.new.nil?
-# => false
-
-0.nil?
-# => false
-~~~
-
-???
-
-* Its only interesting overridden method is `nil?`
-    * Which always returns `true` for `nil`
-    * Every other Object returns `false`
-        * BasicObject doesn't have a `nil?` method
-            * It will raise a `NoMethodError`
-
----
-
-# Basics
+* That last one (`=~`) is the pattern matching operator
+    * The docs say the pattern matching operator is there so you can do this easily:
 
 ~~~ ruby
-"this is false" unless nil
-# => "this is false"
-
-"this is false" unless false
-# => "this is false"
-
-nil == false
-# => false
-
-!!nil == false
-# => true
+while gets =~ /re/
+  # ...
+end
 ~~~
 
-???
-
-* Ruby treats `false` and `nil` as false.
-    * Everything else is treated as true.
-    * We say that `nil` is "falsey".
-* But `nil` and `false` are not equivalent.
-    * They are only equivalent when used in a boolean test.
-* Unlike "truthy" and "falsey", there is no "nilish" concept in Ruby.
+* Why does Ruby have both `to_r` and `rationalize`?
 
 ---
 
-# Basics
-
-~~~ ruby
-expect(nil).to be_falsey
-expect(nil).not_to be_truthy
-~~~
-
-???
-
-* You might come across those terms ("truthy" and "falsey") in RSpec tests.
-
----
-
-# Basics
-
-~~~ ruby
-v = nil
-
-"variable is falsey" unless v
-
-"variable is nil" if v.nil?
-"variable is empty" if v.empty?
-
-"variable is blank" if v.blank?
-"variable is not present" unless v.present?
-~~~
-
-???
-
-* The `blank?` and `present?` methods are from Rails' ActiveSupport.
-    * Not built into Ruby
-    * Commonly used in Rails applications.
-* I do not recommend relying on `nil`'s truthiness in `if` statements.
-* It's more *idiomatic* to use something more explicitly intention-revealing that returns a Boolean.
-    * Like `nil?`, `empty?`, or `blank?`
-
-* This isn't as big a problem in Ruby as in other languages.
-
-* I contend that implicit coercion to Booleans is the 2nd most expensive mistake in computer language design.
-    * 0 and empty arrays are equal to false in many languages.
-
----
-
-# Basics
+# Coercion
 
 ~~~ ruby
 nil.inspect
@@ -368,7 +401,281 @@ nil.to_h
 
 ???
 
-* Converting `nil` to various types results in an empty or zero value.
+* Converting `nil` to various types results in an empty or 0 value.
+
+---
+
+# Nil?
+
+~~~ ruby
+nil.nil?
+# => true
+
+false.nil?
+# => false
+
+Object.new.nil?
+# => false
+
+0.nil?
+# => false
+~~~
+
+???
+
+* The `nil?` predicate method returns `true` for `nil`
+    * And `false` for everything else
+
+* I may pronounce this as:
+    * "nil predicate method"
+    * "nil question mark"
+    * "nil query"
+    * "nil, eh?"
+    * "nil, huh?"
+
+------
+
+* A _predicate method_ is a method that returns true or false.
+    * Ruby convention is to end the method name with a question mark (`?`).
+
+* Pronouncing the question mark as "eh?" is the "Canadian convention".
+
+* Other languages usually call this something like `isNull`.
+
+---
+
+# Nil?
+
+~~~ ruby
+v = something_that_might_return_nil
+
+if v.nil?
+  # handle the nil case
+else
+  # handle the non-nil case
+end
+
+if v
+  # handle the non-nil case
+else
+  # handle the nil case
+end
+~~~
+
+???
+
+* We often use `nil?` to check for `nil`
+    * But we can also use the falsiness of `nil`
+
+* Ruby convention is to use the latter form
+    * Because it puts the "positive" "happy path" case first
+
+* The only caveat is if `v` could be `false`
+    * And you want to treat `false` differently than `nil`
+    * But it's rare to have a method that could return `false`, `nil`, or something else
+        * And a huge code smell
+
+---
+
+# Nil?
+
+~~~ ruby
+def xyz
+  v = something_that_might_return_nil
+  return if v.nil?
+
+  # Normal processing
+end
+
+def xyz
+  v = something_that_might_return_nil
+  return unless v
+
+  # Normal processing
+end
+~~~
+
+???
+
+* But in a guard clause, ...
+    * Both of these are equally common styles
+* I normally prefer to be explicit and _intention-revealing_
+    * But I really don't have a preference here
+
+---
+
+# Nil? Definition
+
+~~~ ruby
+module Kernel
+  def nil?
+    false
+  end
+end
+
+class NilClass
+  def nil?
+    true
+  end
+end
+~~~
+
+???
+
+* This is how Rubinius implements the `nil?` predicate method.
+* Pretty straight-forward OOP
+
+------
+
+* Interestingly, Rubinius also has `NIL = nil`.
+    * Other rubies do not.
+
+---
+
+# Falsiness
+
+~~~ ruby
+if nil
+  "nil is truthy"
+else
+  "nil is falsey"
+end
+# => "nil is falsey"
+
+if false
+  "false is truthy"
+else
+  "false is falsey"
+end
+# => "false is falsey"
+
+"this is true" unless nil
+# => "this is true"
+
+"this is true" unless false
+# => "this is true"
+~~~
+
+???
+
+* Ruby treats `false` and `nil` as false.
+    * We say that `nil` is "falsey".
+
+---
+
+# Falsiness
+
+~~~ ruby
+"0 is truthy" if 0
+# => "0 is truthy"
+
+"an empty array is truthy" if []
+# => "an empty array is truthy"
+
+"an empty hash is truthy" if {}
+# => "an empty hash is truthy"
+~~~
+
+???
+
+* Everything else (other than `nil` and `false`) is treated as true.
+    * Even 0s and empty collections
+* We call these "truthy"
+
+---
+
+# Falsiness
+
+~~~ ruby
+"nil is not equal to false" if nil != false
+# => "nil is not equal to false"
+
+!!nil == false
+# => true
+~~~
+
+???
+
+* But `nil` and `false` are not equivalent.
+    * They are only equivalent when used in a Boolean test.
+
+* Unlike "truthy" and "falsey", there is no "nilish" concept in Ruby.
+
+---
+
+# Falsiness
+
+~~~ ruby
+expect(nil).to be_falsey
+expect(nil).not_to be_truthy
+~~~
+
+???
+
+* You might come across those terms ("truthy" and "falsey") in RSpec tests.
+
+---
+
+# Blank/Present
+
+~~~ ruby
+require 'active_support/all'
+
+v = nil
+
+"variable is blank" if v.blank?
+# => "variable is blank"
+"variable is not present" unless v.present?
+# => "variable is not present"
+~~~
+
+???
+
+* Rails adds `blank?` and `present?` methods.
+* `blank?` is true if the object is `nil`, empty, or a string with only whitespace
+* `present?` is just `!blank?`
+* These are **not** in standard Ruby
+    * They're in the ActiveSupport gem
+
+* These are great for handling user input
+    * They treat blank input the same as missing input
+
+---
+
+# Conditional Assignment
+
+~~~ ruby
+@x ||= 1
+~~~
+
+???
+
+* Because Ruby instance variables default to `nil`, and `nil` is falsey, ...
+    * We can use the "conditional assignment operator" (`||=`) to "initialize" an instance variable
+
+---
+
+# Conditional Assignment
+
+~~~ ruby
+def intermediate_result
+  @intermediate_result ||= expensive_calculation
+end
+~~~
+
+???
+
+* This is a common idiom in Ruby to _memoize_ a value
+    * So we only have to calculate the result once
+
+---
+class: transition, problems
+
+# Problems
+
+???
+
+* Nil can cause us a lot of headaches.
 
 ---
 
@@ -392,7 +699,7 @@ nil.ceil
 
 ---
 
-# NoMethodError
+# ASIDE: Other Languages
 
 * Java: NullPointerError (NPE)
 * Python: AttributeError
@@ -401,29 +708,12 @@ nil.ceil
 
 ???
 
-* Other languages have similar errors
+* Other languages have similar exceptions
     * With similar names
 * Note that all of these languages are dynamically typed
 * Statically-typed languages catch most of these errors at compile time
     * QUESTION: Isn't Java statically typed?
         * ANSWER: Yes, but it has a special case for `null` that allows it to be assigned to any reference type (per Copilot)
-
-------
-
-~~~ javascript
-let x = "abc, def, ghi";
-x.split()
-# => ["abc,", "def,", "ghi"]
-
-let y = "abc, def, ghi";
-y.split()
-# !> Uncaught TypeError: x is null
-~~~
-
----
-class: transition, nil_parameters
-
-# Nil Parameters
 
 ---
 
@@ -444,11 +734,13 @@ end
     * Here we use the "conditional assignment operator" (`||=`)
     * Note that we could have just used `name = "Guest"` in the parameter list
 
+* TODO: Move these 3 slides?
+
 ---
 
 # Nil Parameters
 
-* Warning: `nil` is not the same as "no value"
+* WARNING: Passing a `nil` is not the same as not passing an argument
 
 ~~~ ruby
 def example_default_params(d = 1000)
@@ -464,14 +756,62 @@ example_default_params(nil)
 
 ???
 
-* Nil isn't actually special here
-* Nil is a valid value here
+* Passing `nil` is not the same as not passing an argument
+* `nil` isn't actually special here
+    * It's a valid value for the parameter
     * So `d` does not get assigned the default value here
 
 ---
-class: transition, root_causes
+
+# Nil Parameters
+
+* WARNING: Except ...
+
+~~~ ruby
+def example_default_params(d = nil)
+  d ||= "1000"
+  d.inspect
+end
+
+example_default_params()
+# => "1000"
+
+example_default_params(nil)
+# => "1000"
+~~~
+
+???
+
+* However....
+    * We tend to use _this_ idiom a lot
+* In this case,
+    * Passing `nil` **does** have the same result as not supplying the argument
+
+* TODO: Show the solution:
+    * Use a different sentinel value
+
+~~~ ruby
+def example_default_params(d = :not_provided)
+  d = "1000" if d == :not_provided
+  d.inspect
+end
+
+example_default_params()
+# => "1000"
+
+example_default_params(nil)
+# => "nil"
+~~~
+
+---
+class: transition, root-causes
 
 # Root Causes
+
+???
+
+* Before we get into solutions, ...
+    * We should understand what's causing these problems
 
 ---
 
@@ -487,66 +827,35 @@ class: transition, root_causes
 
 # Multiple Meanings
 
-* It's often used to represent multiple things
-    * Missing value
-    * Empty
-    * False
-    * Not found
-    * Not applicable
-    * Not supported
-    * Uninitialized / unset variable
-    * Failure
-    * Default value
-    * Sentinel value
-    * Placeholder value
+* Missing value
+* Empty
+* Not found
+* Not applicable
+* Not supported
+* Unset variable
+* Default value
+* Sentinel
 
 ???
 
-* Nil doesn't have a single meaning
-* It's often used for these various reasons
-* Some of these are rare in Ruby
-    * False
-        * Although `nil` is the only other "falsey" value than `false`
-    * Failure
-        * We use exceptions instead
-        * Exceptions usually also cover "not found" in Ruby
-* TODO: Remove a few from this list
-
----
-
-# Unset Variable
-
-~~~ ruby
-x
-# !> NameError("undefined local variable or method `x'")
-~~~
-
-???
-
-* Trying to use an unset variable in Ruby raises a NameError
-* Note the exception message
-    * Ruby doesn't know until runtime whether `x` is a local variable or a method
-* I often refactor local variables, extracting them to private methods
-    * Abstracts the implementation behind a name
-        * I don't have to think or worry about the implementation
-            * Unless/until I need to
-    * At least, if the method doesn't require passing an argument
-        * I usually take that to mean that I'm missing an abstraction
-
----
-
-# Multiple Meanings
-
-???
+* Nil is used for a lot of different reasons
 
 * We need to understanding what `nil` means in each context
     * Then replace it with a more meaningful value in many places
 
+* TODO: Talk about most of these in this slide
+
 ---
 
 # Multiple Meanings
 
 ???
+
+* TODO: FIXME: How do I show the stuff I want to talk about here?
+    * Or do I move all of this later?
+
+* TODO: I feel like this section needs to be longer
+    * And/or give it more _emphasis_!
 
 * We also need to understand **when** we might have a `nil`
     * Otherwise, we'll end up with a ton of `nil` checks
@@ -570,6 +879,10 @@ class: transition, solutions
 
 * More importantly: How do we solve these problems without causing other problems?
 
+* There are 2 basic strategies:
+    * Handle it
+    * Replace it
+
 ---
 
 # Nil Check
@@ -584,10 +897,6 @@ unless user.nil?
 else
   fail "user not found"
 end
-~~~
-
-~~~ ruby
-user = User.find(123)
 
 if user
   puts "Hello, #{user.name}!"
@@ -598,9 +907,11 @@ end
 
 ???
 
+* We can't always get rid of a `nil` so easily
+
 * The 1st example is more explicit
     * It's more clear that we're checking for `nil`
-* The 2nd example is more *idiomatic*, more concise, and more readable
+* The 2nd example is more _idiomatic_, more concise, and more readable
     * Community standards prefer `if` over `unless`
         * Because `unless` is usually harder to read and understand
     * We think of `if user` as "if there is a user"
@@ -705,7 +1016,7 @@ puts "Hello, #{user.name}!"
 
 ---
 
-# Rescue Nil - DON'T
+# Rescue Nil
 
 ~~~ ruby
 user = User.find(123)
@@ -715,10 +1026,26 @@ username = company.account.users.first.name rescue "[missing]"
 ???
 
 * This looks like a nice solution!
+    * It's NOT!
+
+---
+class: do-not-do-this
+
+# Rescue Nil
+
+~~~ ruby
+user = User.find(123)
+username = company.account.users.first.name rescue "[missing]"
+~~~
+
+???
+
 * Don't do this!
-    * It will rescue **any** exception
-        * Not just `NoMethodError`
-    * You should not rescue exceptions you aren't expecting
+* This will rescue **any** exception
+    * Not just `NoMethodError`
+* You should not rescue exceptions you aren't expecting
+    * You'll end up hiding bugs from yourself
+        * Hours of fun!
 
 ---
 
@@ -804,117 +1131,146 @@ account && account.owner && account.owner.address
 
 ---
 
-# Dig
+# Empty Arrays
+
+* Return an empty array instead of `nil`
 
 ~~~ ruby
-address = params[:account].try(:[], :owner).try(:[], :address)
-address = params[:account].fetch(:owner) { {} }.fetch(:address)
-address = params.dig(:account, :owner, :address)
+# Returns a (possibly empty) collection of users
+def find_users
+  users = DB.find(:users)
+  users || []
+end
+
+def list_users
+  users = find_users
+  users.each { |user| puts user.name }
+end
 ~~~
 
 ???
 
-* TODO: See https://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/
-
----
-
-# Law of Demeter
-
-* The Law of Demeter is a design guideline for object-oriented programming
-* It's often summarized as "only talk to your immediate friends"
-    * Don't talk to strangers
-    * Don't talk to your friends' friends
-    * Don't talk to your friends' friends' friends
-* The safe navigation operator is often used to follow the Law of Demeter
-* But it's not a silver bullet
-    * It can lead to long chains of method calls
-    * It can lead to "train wrecks"
-* Sometimes it's OK to break the Law of Demeter
-    * But it's a code smell
-    * It's a sign that you might need to refactor
-
-???
-
-* TODO: More on the Law of Demeter
-
----
-
-# Null Object
-
-* Replace `nil` with an object that provides default behavior
-
-~~~ ruby
-class NullUser
-  def name
-    "Guest"
-  end
-end
-
-def find_user(_id)
-  nil
-end
-
-user = find_user(123) || NullUser.new
-user.name
-# => "Guest"
-~~~
-
-???
-
-* The Null Object pattern is another excellent solution
-* Instead of `nil`, we use an object
-    * The object responds to the same methods as objects of the main class its associated with
-        * The User class, in this case
-    * Calling the methods on the Null Object results in "default" behavior
-
----
-
-# Null Object
-
-* Replace `nil` with an object that provides default behavior
-
-~~~ ruby
-class User
-  def self.null
-    NullUser.new
-  end
-
-  def find(id)
-    DB.find(:users, id) || User.null
-  end
-end
-
-user = User.find(123)
-user.name
-# => "Guest"
-~~~
-
-???
-
-* It's best if you have the *callee* return the "null object"
-    * Don't let the caller get a `nil`
-        * This follows the "Make Impossible States Impossible" principle
-            * AKA "Make Impossible States Unrepresentable"
-* TODO: The NullUser class should actually be a singleton
+* An empty array does nothing when iterated over
+    * Exactly what we're looking for
+* Consider returning arrays instead of single objects or `nil`
+    * Or any Ruby `Enumerable`
+* Common pattern in Ruby
+    * It's idiomatic
+    * It's readable
+* jQuery opened my eyes to this idea in 2007
+    * Different way of thinking of the results
 
 ------
 
-* [Make Impossible States Impossible](https://kentcdodds.com/blog/make-impossible-states-impossible)
-    * Kent C Dodds (2018)
-* [Making Impossible States Impossible](https://www.youtube.com/watch?v=IcgmSRJHu_8)
-    * video by Richard Feldman (2016)
+* jQuery was the first to popularize this pattern (in JavaScript)
+    * The primary data type is an array-like object of DOM elements
+        * You work with that instead of individual DOM elements
 
 ---
 
-# Special Case
+# Array.wrap
 
-* Null Object pattern < Special Case pattern
+~~~ ruby
+def find_users
+  users = DB.find(:users)
+end
+
+def list_users
+  users = Array.wrap(find_users)
+  users.each { |user| puts user.name }
+end
+~~~
 
 ???
 
-* Null Object pattern is a special case of the Special Case pattern
-    * Used to represent the absence of an object
-* Special Case classes handle other special conditions and edge cases
+* You don't always have control of what a method will return
+* In Rails, you can use `Array.wrap` to ensure you always have an array
+
+------
+
+* From Rails' ActiveSupport
+
+---
+
+# Array.wrap
+
+~~~ ruby
+require 'active_support/all'
+
+Array.wrap(nil)
+# => []
+Array.wrap([])
+# => []
+Array.wrap([1, 2, 3])
+# => [1, 2, 3]
+Array.wrap(4)
+# => [4]
+~~~
+
+???
+
+* `Array.wrap` will convert `nil` to an empty array
+
+---
+
+# Array()
+
+~~~ ruby
+Array(nil)
+# => []
+Array([])
+# => []
+Array([1, 2, 3])
+# => [1, 2, 3]
+Array(4)
+# => [4]
+~~~
+
+???
+
+* Ruby's `Array()` top-level method is very similar
+    * I prefer the explicitness of `Array.wrap`
+
+------
+
+* I think `Array()` looks too much like a constructor.
+
+---
+
+# Array#compact
+
+~~~ ruby
+a = [1, nil, 2, nil, 3]
+a.compact
+# => [1, 2, 3]
+~~~
+
+???
+
+* The `compact` method removes `nil` elements from an array
+* Good way to get rid of nils
+* Ruby 3.1 added `compact` to Enumerable
+
+---
+
+# Dig
+
+~~~ ruby
+address = params[:account][:owners][0][:address]
+
+address = params.dig(:account, :owners, 0, :address)
+~~~
+
+???
+
+* `dig` was added in Ruby 2.3
+* It's used to navigate nested arrays and hashes
+* These 2 are equivalent
+    * Except the `dig` method won't raise an exception if there's a `nil` anywhere in the chain
+        * It will just return `nil`
+
+* TODO: Use the same examples as in the Nil Check, Safe Navigation, and Try sections
+* TODO: See https://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/
 
 ---
 
@@ -996,41 +1352,215 @@ puts failure.value      # => 'Error message'
 
 ---
 
-# Arrays
+# Null Object
 
-* Return an empty array instead of `nil`
+* Replace `nil` with an object that provides default behavior
 
 ~~~ ruby
-def find_users
-  users = DB.find(:users)
-  users || []
+class NullUser
+  def name
+    "Guest"
+  end
 end
 
-users = find_users
-users.each { |user| puts user.name }
+def find_user(_id)
+  nil
+end
+
+user = find_user(123) || NullUser.new
+user.name
+# => "Guest"
 ~~~
 
 ???
 
-* You can often save yourself the hassle of Option/Result types
-    * Just return arrays instead of single objects
-    * It's a different way of thinking of the results
-    * Or other classes that act like arrays
-        * ie the Enumerable module in Ruby
-* An empty array does nothing when iterated over
-    * Exactly what we were looking for
-* This is a common pattern in Ruby
-    * It's idiomatic
-    * It's more readable
-    * It's more intention-revealing
-* jQuery was the first to popularize this pattern (in JavaScript)
-    * The primary data type is an array-like object of DOM elements
-        * You work with that instead of individual DOM elements
+* The Null Object pattern is another excellent solution
+* Instead of `nil`, we use an object
+    * The object responds to the same methods as objects of the main class its associated with
+        * The User class, in this case
+    * Calling the methods on the Null Object results in "default" behavior
 
 ---
-class: transition, primitive_obsession
 
-# Primitive Obsession
+# Null Object
+
+* Replace `nil` with an object that provides default behavior
+
+~~~ ruby
+class User
+  def self.null
+    NullUser.new
+  end
+
+  def find(id)
+    DB.find(:users, id) || User.null
+  end
+end
+
+user = User.find(123)
+user.name
+# => "Guest"
+~~~
+
+???
+
+* It's best if you have the _callee_ return the "null object"
+    * Don't let the caller get a `nil`
+        * This follows the "Make Impossible States Impossible" principle
+            * AKA "Make Impossible States Unrepresentable"
+* TODO: The NullUser class should actually be a singleton
+
+------
+
+* [Make Impossible States Impossible](https://kentcdodds.com/blog/make-impossible-states-impossible)
+    * Kent C Dodds (2018)
+* [Making Impossible States Impossible](https://www.youtube.com/watch?v=IcgmSRJHu_8)
+    * video by Richard Feldman (2016)
+
+---
+
+# Black Hole Null Object
+
+~~~ ruby
+class BlackHole
+  include Singleton
+
+  def method_missing(*)
+    self
+  end
+
+  def respond_to_missing?(*)
+    true
+  end
+
+  def nil?
+    true
+  end
+end
+
+null_object = BlackHole.instance
+null_object.any_method_call.whatsoever.still_works
+# => #<BlackHole:0x00007fb9b20b1a70>
+~~~
+
+???
+
+* I want to share the Black Hole Null Object pattern
+* I'm not sure if I can recommend this or not
+    * Hides bugs
+    * Potential for unexpected behavior
+* It's definitely interesting
+
+---
+
+# Naught
+
+~~~ ruby
+require 'naught'
+
+log = Logging.logger["my.log"]
+log.info "Logs to my.log"
+
+NullLog = Naught.build do |config|
+  config.singleton
+  config.mimic example: log
+end
+
+null_log = NullLog.instance
+null_log.info "Logs to the void"
+~~~
+
+???
+
+* Avdi Grimm created a gem called Naught
+* It supports a lot of options
+    * Including the Black Hole Null
+* It's really a toolkit to build Null Objects
+    * Tons of options
+    * Great traceability
+
+------
+
+* Source: https://github.com/avdi/naught
+
+---
+
+# Special Case
+
+* Null Object pattern < Special Case pattern
+
+* Degenerate cases
+* Dummy objects
+* Edge cases
+* Special values
+
+???
+
+* Null Object pattern is a special case of the Special Case pattern
+    * Used to represent the absence of an object
+    * The line can get a little fuzzy
+        * Is a NullLogger really a Null Object, or just a Special Case?
+* Special Case classes handle other special conditions and edge cases
+    *
+
+---
+
+# Special Case
+
+~~~ ruby
+class User
+  # ...
+
+  def can_access?(resource)
+    resource.owner == self
+  end
+end
+
+class Admin < User
+  def can_access?(resource)
+    true
+  end
+end
+~~~
+
+???
+
+* Special cases can be really simple
+* The key is that we use polymorphism to handle the special case
+    * Create a new class that responds to the same methods as the original class
+
+---
+
+# Special Case
+
+~~~ ruby
+module Kernel
+  def nil?
+    false
+  end
+end
+
+class NilClass
+  def nil?
+    true
+  end
+end
+~~~
+
+???
+
+* TODO: Move this to conclusions
+
+* Remember this?
+* This is also an example of the Special Case pattern
+* Barely even feels like a "pattern"
+    * It's just using polymorphic classes
+* Specialization is really what OOP is all about
+
+---
+class: transition, conclusion
+
+# Conclusions
 
 ---
 
@@ -1040,42 +1570,18 @@ class: transition, primitive_obsession
 
 ???
 
+* Programmers have a tendency to reach for language primitives
+    * Even when there is a better solution using the language features
 * Example: Using a floating point number to represent money
 * Example: Using a string to represent a URL
+* Objects allow us to have a
+
+------
+
 * In Ruby, we're more likely to abuse strings in this way.
     * That's often referred to as "stringly typed".
         * A play on "strongly typed" languages.
-    * But this is an example where we've overused booleans.
-
----
-
-class: transition, readability
-
-# Readability
-
-???
-
-* Now that we have the proper tools, let's get to work.
-
----
-
-# Other Billion-Dollar Mistakes
-
-* Implicit coercion to Booleans
-* C string libraries
-    * Major cause of buffer overflows
-* SQL injection
-* Bad cryptographic hygiene
-* Time zones
-
-???
-
-* There are several other programming mistakes that have likely crossed the billion dollar mark
-* Time zones, am I right? :D
-
----
-
-# Conclusion
+    * But this is an example where we've overused `nil`.
 
 ---
 class: image-only, percent-30
@@ -1086,7 +1592,8 @@ class: image-only, percent-30
 
 ???
 
-* The original code we looked at all *worked*.
+* TODO: Replace all of the following
+* The original code we looked at all _worked_.
 * So what was the point in changing it?
 * We read code more than we write it.
     * So we should optimize for reading.
@@ -1099,19 +1606,49 @@ class: image-only, percent-30
 
 ---
 
+# Other Billion-Dollar Mistakes
+
+* Implicit coercion to Booleans
+* C string libraries
+    * Major cause of buffer overflows
+* SQL injection
+    * Failure to sanitize input
+* Bad cryptographic hygiene
+* Time zones
+
+???
+
+* Several other programming mistakes have likely crossed the billion dollar mark.
+* Implicit coercion to Booleans is the other one that's a language design mistake.
+    * In many languages, 0 and empty arrays are "falsey".
+    * For example, in Python, you'll often be confused when you get an empty list when you expected a list of lists.
+    * Usually breaks the principle of least surprise.
+* Time zones, am I right? :D
+
+---
+
 # Conclusions
 
 * Nil isn't always so simple
 * Nil is often not the best choice
-* Readability matters
+* OOP polymorphism FTW!
+* Learn how to use your tools well
 
 ???
 
 * I hope I've shown that there's more to Nil than meets the eye.
-* But the bigger point is that we can make our code easier to read and understand.
-* Take a little time to make it easier for the next person who has to read your code.
-    * More often than not, that person will be you.
-    * Even if it's not you, helping out your teammates is the right thing to do.
+* Lean into OOP and polymorphism!
+    * It's a powerful tool for using Ruby well
+
+---
+
+# Resources
+
+* [Null Object @ Source Making](https://sourcemaking.com/design_patterns/null_object)
+    * Great site for design patterns, refactoring, and anti-patterns
+* TODO: Sandi talk
+* TODO: Avdi talk
+* TODO: Avdi book
 
 ---
 class: thanks, image-only
@@ -1123,10 +1660,11 @@ class: thanks, image-only
 ???
 
 * Thank YOU for coming.
-* Big thanks to Jeremy Fairbank for inspiring this talk.
+
+------
+
 * Avdi and Sandi for leading the way
-    * And reviewing the talk?
-* Members of LA Ruby meetup for feedback on a preview of the talk.
+* Members of LA Ruby meetup for feedback on a preview of the talk
 * Thanks to Blue Ridge Ruby for selecting my talk.
 
 ---
@@ -1147,7 +1685,7 @@ class: thanks, image-only
 * One reason I give talks at conferences is to start a conversation.
 * Please don't hesitate to come talk to me any time during the conference.
 
---
+------
 
 * I used a tool called [Remark][remark] to create and show these slides.
 
@@ -1158,3 +1696,43 @@ class: thanks, image-only
 
 
 [remark]: http://remarkjs.com/
+
+---
+class: transition, extra-slides
+
+# Extra Unused Slides
+
+---
+
+# ASIDE: Nil vs. Null
+
+* In Ruby, `nil` is the only "null" value
+* In other languages, `null` is a separate concept
+    * In Java, `null` is a reference to no object
+    * In C, `NULL` is a pointer to no memory address
+    * In JavaScript, `null` is a reference to no object
+    * In SQL, `NULL` is a special value that represents "no value"
+    * In Lisp, `nil` is a symbol that represents "no value"
+
+---
+
+# Law of Demeter
+
+* The Law of Demeter is a design guideline for object-oriented programming
+* It's often summarized as "only talk to your immediate friends"
+    * Don't talk to strangers
+    * Don't talk to your friends' friends
+    * Don't talk to your friends' friends' friends
+* The safe navigation operator is often used to follow the Law of Demeter
+* But it's not a silver bullet
+    * It can lead to long chains of method calls
+    * It can lead to "train wrecks"
+* Sometimes it's OK to break the Law of Demeter
+    * But it's a code smell
+    * It's a sign that you might need to refactor
+
+???
+
+* TODO: More on the Law of Demeter
+
+---
