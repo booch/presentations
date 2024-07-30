@@ -22,13 +22,13 @@ class: title, middle, center
 - Hi, I'm Craig
     - I'm going to talk about "architecture", "design", and "patterns"
 - If you want to "at" me, ...
-    - I'm on Twitter and ruby.social Mastodon
+    - I'm on Twitter and Mastodon via ruby.social
         - ... infrequently
 - I have a short URL for the slides in the lower right.
     - Follow along, or look at them later
     - Hit `P` to toggle presenter notes
-        - Links to resources
-        - Details I don't have time to cover
+        - Also links to resources
+        - ... and some details that I don't have time to cover
 
 ---
 class: single-image
@@ -55,7 +55,7 @@ class: single-image
 
 ???
 
-- AUDIENCE QUESTION: Anyone familiar with the Ruby version?
+- AUDIENCE QUESTION: Who is familiar with the Ruby version?
 
 ---
 class: single-image
@@ -66,30 +66,34 @@ class: single-image
 
 - AUDIENCE QUESTION: Is anyone familiar with *this* book?
 
+- This is where the story starts
+
 ---
 class: single-image
 
-![book cover - A Pattern Language: Towns, Buildings, Construction](images/A-Pattern-Language.jpg)
+![book cover - The Oregon Experiment](images/Oregon-Experiment.jpg)
 
 ???
 
-- This is actually part of a series
-    - A Pattern Language (1977, vol 2)
-        - We'll focus on this book
+- ... or perhaps a little earlier
 
-    - The Timeless Way of Building (1979, vol 1)
-        - goes hand-in-hand with the Pattern Language book
-        - philosophical approach to architecture
-        - introduces the concept of the "quality without a name"
-            - we should seek to include this nameless quality in our buildings
-    - The Oregon Experiment (1975, vol 3)
-        - experimental approach to campus community planning
-            - University of Oregon
-            - testbed for ideas in the later 2 books
-        - People centric
-            - "feeling" should be the primary criterion used for making changes to any place
-            - people can and should be involved in the design process of their spaces
-        - resulted in a theory of architecture and planning
+- The Oregon Experiment (1975, vol 3)
+
+- University of Oregon
+    - early 1970s
+    - post-war campus architecture was brutalist - plain concrete
+    - students and faculty didn't like it
+
+- Christopher Alexander was hired to help
+
+- developing ways to relate people to the places in which they live or work.
+- People centric
+    - "feeling" should be the primary criterion used for making changes to any place
+    - people can and should be involved in the design process of their spaces
+- resulted in a theory of architecture and planning
+
+- experimental approach to campus community planning
+        - testbed for ideas in the later 2 books
 
 ---
 class: single-image
@@ -98,35 +102,85 @@ class: single-image
 
 ???
 
-- Earlier works:
-    - Notes on the Synthesis of Form (1964)
-
 - Christopher Alexander
-    - Designed and personally built over 100 buildings
-        - both as an architect and a general contractor
-    - Austrian-born British-American
-        - UC Berkeley
-    - architect and design theorist
-    - Died in 2022 (age 85)
+    - Born in Austria
+    - British-American
+    - UC Berkeley
+
+- Known for his 1964 book "Notes on the Synthesis of Form"
+    - Architectural and design theory
+
+------
+
+- Designed and personally built over 100 buildings
+    - both as an architect and a general contractor
+
+- https://wiki.c2.com/?ChristopherAlexander
+
+- Defines design as "the process of inventing things which display new physical order, organization, form, in response to function...".
+
+- Died in 2022 (age 85)
+
 - [The Nature of Order](https://en.wikipedia.org/wiki/The_Nature_of_Order) (2002-2004)
     - 4 books on architecture, urban design, and the nature of beauty
     - seems to be 12 books in the series now
 
-- https://wiki.c2.com/?ChristopherAlexander
-
 ---
+class: single-image
 
-# Pattern Languages
-
-- Collection of patterns
-- Describes problems and solutions
-- Organized
-- Coherent
-- Specific field of expertise
+![book cover - A Pattern Language: Towns, Buildings, Construction](images/A-Pattern-Language.jpg)
 
 ???
 
-- 
+- A Pattern Language (1977, vol 2)
+
+- This is **the** book that first used the term "pattern" in this way
+    - 253 patterns
+
+---
+class: single-image
+
+![book cover - The Timeless Way of Building](images/Timeless-Way.jpg)
+
+???
+
+- The Timeless Way of Building (1979, vol 1)
+    - goes hand-in-hand with the Pattern Language book
+    - philosophical approach to architecture
+    - introduces the concept of the "quality without a name"
+        - we should seek to include this nameless quality in our buildings
+
+---
+
+class: single-image
+
+![book cover - A Pattern Language: Towns, Buildings, Construction](images/A-Pattern-Language.jpg)
+
+???
+
+- What is a pattern language?
+
+- "A pattern language is an organized and coherent set of patterns, each of which describes a problem and the core of a solution that can be used in many ways within a specific field of expertise." -- Wikipedia
+
+- "A pattern language has the structure of a network." -- Christopher Alexander
+    - The patterns reference each other
+        - ... creating a network of relationships amongst them
+
+---
+
+# Pattern
+
+- Describes problem and solution
+
+???
+
+- What is a pattern?
+
+- "Each pattern describes a problem which occurs over and over again in our environment, and then describes the core of the solution to that problem, in such a way that you can use this solution a million times over, without ever doing it the same way twice." -- Christopher Alexander
+
+---
+
+# TODO: Example pattern(s) from the book
 
 ---
 class: single-image
@@ -135,22 +189,24 @@ class: single-image
 
 ???
 
-- Ward Cunningham:
-    - Invented the Wiki (1995)
-    - Extreme Programming (XP)
-    - FIT (Framework for Integrated Test)
-    - Smalltalk
-    - Eclipse Foundation
-    - Agile Manifesto
-    - Coined "Technical Debt" (1992)
-    - Class-responsibility-collaboration (CRC) cards
-    - Federated Wiki
-    - Cunningham's Law
-        - "The best way to get the right answer on the internet is not to ask a question; it's to post the wrong answer."
+- AUDIENCE QUESTION: Who knows who this is?
 
-- Ward and Beck - Graphical User Interfaces in Smalltalk book in 1987
-    - Based on Christopher Alexander's work
-    - https://wiki.c2.com/?WardAndKent
+- Ward Cunningham
+
+- Cunningham's Law:
+    - "The best way to get the right answer on the internet is not to ask a question; it's to post the wrong answer."
+
+- Coined term "Technical Debt" (1992)
+- Agile Manifesto (2001)
+
+------
+
+- Smalltalk
+- Object-Oriented Programming, Analysis, and Design
+    - Class-responsibility-collaboration (CRC) cards
+- Invented the Wiki (1995)
+- FIT (Framework for Integrated Test)
+- Eclipse Foundation
 
 ---
 class: single-image
@@ -159,36 +215,51 @@ class: single-image
 
 ???
 
-- Kent Beck:
-    - Apple
-    - Extreme Programming (XP)
-    - Test-Driven Development (TDD)
-    - Agile Manifesto
-    - Smalltalk
-        - Smalltalk Best Practice Patterns
-    - JUnit
-    - "Make it work, make it right, make it fast"
+- AUDIENCE QUESTION: Who knows who this is?
+
+- Kent Beck
+
+- Wrote **the** book on Extreme Programming (XP) (1999)
+- Wrote **the** book on Test-Driven Development (TDD) (2002)
+- Agile Manifesto
+- Co-wrote JUnit
+
+- Smalltalk
+    - Smalltalk Best Practice Patterns
+
+------
+
+- "Make it work, make it right, make it fast"
+- "Explore/Expand/Extract"
+
+- https://wiki.c2.com/?KentBeck
 
 ---
-# History of Design Patterns
+class: single-image
 
-- TODO: Picture here instead of text
+![Ward Cunningham and Kent Beck](images/Ward-and-Kent.png)
 
 ???
 
-- Prior to the GoF book, there was a community of people who were already using patterns
-    - Ward Cunningham
-    - Kent Beck
-    - Martin Fowler
-    - Ron Jeffries
-    - Ralph Johnson
-    - Erich Gamma
-    - Richard Helm
-    - John Vlissides
-    - Grady Booch
-    - James Coplien
-    - Joshua Kerievsky
-    - Michael Feathers
+- Ward and Kent worked together
+    - Smalltalk
+    - Object-Oriented Programming
+
+- In 1987, they published "Graphical User Interfaces in Smalltalk"
+    - First known publication using "patterns" in software
+
+- They were strongly influenced by Christopher Alexander's patterns
+
+- How did they find Christopher Alexander's work?
+    - Turns out that Kent was at the University of Oregon from 1979-1987
+    - Source: https://oowisdom.csse.canterbury.ac.nz/index.php/Design_patterns
+    - Edward Yourdon
+
+------
+
+- Photo credit: https://oandre.gal/beck-and-cunningham/
+    - Similar to the one at https://wiki.c2.com/?WardAndKent
+    - I couldn't find any others of them together
 
 ---
 class: single-image
@@ -197,17 +268,37 @@ class: single-image
 
 ???
 
-- The first wiki led directly from Alexander's work, according Ward Cunningham
-- Ward and Kent probably found Alexander's work via Edward Yourdon
+- Over the next few years, more people got involved
+    - Smalltalk community
+    - Object-Oriented community - design, analysis, programming
+- In 1994, Ward built a web site to collaborate
+    - He wrote code for the site
+        - Called it "wiki"
+            - Hawaiian for "quick"
+
+- Ward says that this was a direct consequence of Alexander's work
 
 - C2 Wiki
+    - Very first wiki!
     - C2 = Cunningham & Cunningham, Inc
     - Design Patterns
     - Portland Pattern Repository (PPR)
         - People, Projects, Patterns
         - Ward Cunningham lives near Portland, Oregon
 
----
+------
+
+- Other notables:
+    - Ron Jeffries
+    - Martin Fowler
+    - Ralph Johnson
+    - Erich Gamma
+    - Grady Booch
+    - James Coplien
+    - Joshua Kerievsky
+    - Michael Feathers
+
+- https://en.wikipedia.org/wiki/Wiki_Wiki_Shuttle
 
 ---
 class: single-image
@@ -216,110 +307,29 @@ class: single-image
 
 ???
 
-- This is **the** software Design Patterns book
-- AKA the Gang of Four (GoF) book
-- Written by Erich Gamma et al
+- In 1994, the "Gang of Four" published **the** book on software design patterns
+    - Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides
 
 - Covers 23 patterns
     - Mostly in Java and C++
-    - But the patterns are language-agnostic
+        - Some of these apply to Ruby
+
+- Erich Gamma:
+    - Started PhD in 1988
+        - applying general idea of design patterns to software engineering
+    - co-authored JUnit with Kent Beck
+
+------
+
+- Erich Gamma:
+    - IBM Rational Jazz
+    - Eclipse IDE (successor to Visual Age)
+    - Visual Studio Code
+    - https://wiki.c2.com/?ErichGamma
 
 ------
 
 - https://wiki.c2.com/?GangOfFour
-
----
-class: single-image
-
-![Erich Gamma](images/Erich-Gamma.jpg)
-
-???
-
-- Erich Gamma:
-    - Swiss computer scientist
-    - 1988, started PhD 
-        - applying general idea of design patterns to software engineering
-    - co-authored JUnit with Kent Beck
-    - IBM Rational Jazz
-    - Eclipse IDE (successor to Visual Age)
-    - Visual Studio Code
-- https://wiki.c2.com/?ErichGamma
-
----
-class: single-image
-
-![GoF book authors](images/GoF-authors.webp)
-
-???
-
-- Richard Helm:
-    - Australian software engineer and consultant
-    - software architecture
-    - object-oriented design
-    - IT Strategy and IT transformation
-- https://wiki.c2.com/?RichardHelm
-
----
-class: single-image
-
-![Ralph Johnson](images/Ralph-Johnson.jpeg)
-
-???
-
-- Ralph Johnson:
-    - American computer scientist
-    - professor emeritus at the University of Illinois at Urbana-Champaign
-    - Major contributor to the development of object-oriented programming and Smalltalk
-- https://wiki.c2.com/?RalphJohnson
-
----
-class: single-image
-
-![John Vlissides](images/John-Vlissides.jpg)
-
-???
-
-- John Vlissides: 
-    - American software engineer and researcher
-    - Stanford University & IBM Watson Research Center
-        - software design and development
-        - software visualization modeling tools and techniques
-        - software design tools and techniques (especially object-oriented ones)
-        - application frameworks and builders
-        - tools for UI development
-            - Interviews (competitor to X11)
-- https://wiki.c2.com/?JohnVlissides
-
----
-class: single-image
-
-![Grady Booch](images/Grady-Booch.webp)
-
-???
-
-- Grady Booch:
-    - Forward of the GoF book
-    - Object Analysis and Design with Applications (1993 book)
-        - Booch Method
-        - Coined the term "object-oriented design"?
-    - Unified Modeling Language (UML)
-    - IBM Rational
-    - Rational Unified Process (RUP)
-        - AKA Unified Software Development Process (USDP)
-            - Book: The Unified Software Development Process
-        - Software development process
-        - Use-case driven
-        - Architecture-centric
-        - Iterative and incremental
-    - IBM Research - Almaden
-        - Chief Scientist for Software Engineering
-        - "Handbook of Software Architecture"
-
-- My apologies to Grady Booch for having taken the `booch` username on GitHub
-
-------
-
-- https://wiki.c2.com/?GradyBooch
 
 ---
 class: single-image
@@ -684,10 +694,16 @@ class: single-image
     - The majority of the costs are in maintenance 
 - Architecture is about people
     - How they interact with a space or a software application
+- Smalltalk's legacy is huge
+    - OOP, Agile, and patterns
 
 ???
 
 - TODO
+
+- Ruby is very much like Smalltalk
+    - Many of these people now use Ruby
+    - This is why Agile is so common in Ruby
 
 ---
 
