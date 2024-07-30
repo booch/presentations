@@ -67,29 +67,6 @@ class: single-image
 - AUDIENCE QUESTION: Is anyone familiar with *this* book?
 
 ---
-class: agenda
-
-# Agenda
-
-- Software design patterns
-- History of design patterns
-- Architectural patterns (buildings)
-- Pattern languages
-- Compare and contrast
-- What have we missed?
-- Architecture "in the small"
-- Conclusions
-
-???
-
----
-class: transition, software-design-patterns
-
-# Software Design Patterns
-
-???
-
----
 
 # Software Design Pattern
 
@@ -218,11 +195,6 @@ nodes.each { |node| node.doSomething }
 - https://wiki.c2.com/?DesignPatternsAreMissingLanguageFeatures
 
 ---
-class: transition
-
-# History of Design Patterns
-
----
 class: single-image
 
 ![book cover - Design Patterns](images/Design-Patterns-book.webp)
@@ -335,7 +307,6 @@ class: single-image
 - https://wiki.c2.com/?GradyBooch
 
 ---
-class: transition
 
 # History of Design Patterns
 
@@ -462,15 +433,6 @@ class: single-image
     - Model-View-Controller
 
 ---
-class: transition
-
-# Architectural Patterns
-
-???
-
-- Where did the idea for design patterns come from?
-
----
 class: single-image
 
 ![book cover - A Pattern Language: Towns, Buildings, Construction](images/A-Pattern-Language.jpg)
@@ -538,15 +500,6 @@ class: single-image
     - seems to be 12 books in the series now
 
 - https://wiki.c2.com/?ChristopherAlexander
-
----
-class: transition
-
-# Pattern Languages
-
-???
-
-- 
 
 ---
 
@@ -665,8 +618,6 @@ class: single-image
 - TODO: More!
 
 ---
-class: transition
-
 # Large vs Small
 
 ???
@@ -694,11 +645,6 @@ class: single-image
 - TODO: Smaller pattern examples
 
 ---
-class: transition
-
-# Door Knobs
-
----
 class: single-image
 
 ![Door knob and door lever](images/door_knob_vs_door_lever.jpg)
@@ -723,11 +669,6 @@ class: single-image
 - https://www.parkavenuelocks.com/blog/post/door-knobs-vs-door-levers-ending-the-debate
 
 ---
-class: transition
-
-# Buttons
-
----
 class: single-image
 
 ![Material Design Buttons](images/material-design-buttons.webp)
@@ -740,11 +681,6 @@ class: single-image
 - We should choose the right button for the right context
     - We should not have a "one-size-fits-all" button
     - But we should not have every button be different
-
----
-class: transition
-
-# Conclusions
 
 ---
 
