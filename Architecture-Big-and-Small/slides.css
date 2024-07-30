@@ -1,0 +1,251 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+
+body {
+    font-family: Roboto;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+    font-family: Roboto;
+    font-weight: bold;
+}
+.remark-slide-content h1 {
+    font-size: 45px;
+}
+
+/* Headers and Footers */
+.remark-slide-content header,
+.remark-slide-content footer,
+.remark-slide-content .remark-slide-number {
+    font-size: 16px;
+}
+.remark-slide-content header > *,
+.remark-slide-content footer > *,
+.remark-slide-content .remark-slide-number {
+    position: absolute;
+    margin: 0;
+    padding: 0 0.4em;
+    background-color: rgba(255, 255, 255, 0.75);
+    opacity: 1;
+    color: #c34242;
+}
+.remark-slide-content header > * {
+    top: 8px;
+}
+.remark-slide-content header .left,
+.remark-slide-content footer .left,
+.remark-slide-content .remark-slide-number {
+    left: 20px;
+    right: auto;
+}
+.remark-slide-content header .right,
+.remark-slide-content footer .right {
+    right: 20px;
+    left: auto;
+}
+.remark-slide-content footer > *,
+.remark-slide-content .remark-slide-number {
+    bottom: 8px;
+}
+
+/* Around the Slides */
+.remark-slides-area {
+    background-color: #2672b5; /* Color of pillarbox on sides of slides */
+}
+.remark-slide-scaler {
+    background-color: white;
+}
+.remark-slide-content {
+    background-color: initial;
+    font-size: 26px;
+    line-height: 1.6;
+    width: 100%;
+}
+
+/* Code */
+.remark-code,
+.remark-inline-code {
+    font-family: monospace;
+    line-height: 1.5;
+    font-size: 16px;
+}
+.remark-inline-code {
+    font-size: 24px;
+}
+pre code.remark-code {
+    counter-reset: code-line-numbers;
+    background-color: rgba(240, 240, 240, 0.5) !important;
+}
+.remark-code .remark-code-line {
+    counter-increment: code-line-numbers;
+}
+.remark-code .remark-code-line::before {
+    content: counter(code-line-numbers);
+    display: inline-block;
+    width: 1.2em;
+    margin-right: 1em;
+    color: #999999;
+    -webkit-user-select: none; /* The line numbers should not be selectable. */
+}
+
+/* Slide background */
+.remark-slide .remark-slide-content {
+    background-color: #baced4;
+}
+
+/* Title page */
+.remark-slide .remark-slide-content.title {
+    background-color: #baced4;
+    color: #c34242;
+    background-image: url(images/madison-ruby-plus-logo-combo.svg);
+    background-repeat: no-repeat;
+    background-position: 50px 75px;
+}
+.remark-slide .remark-slide-content.title h1 {
+    font-size: 72px;
+}
+.remark-slide .remark-slide-content.title h1:first {
+    margin-top: 160px;
+}
+
+.remark-slide .diagram p {
+    text-align: center;
+}
+.remark-slide li p {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    border-bottom: 1px #666666 dashed;
+    color: #202;
+}
+a:hover {
+    color: #505;
+    background-color: #dd0;
+}
+
+html .remark-container.remark-presenter-mode .remark-slides-area {
+    left: -10%;
+    top: 0;
+    height: 70%;
+    width: 70%;
+}
+.remark-presenter-mode .remark-notes-area {
+    left: 50%;
+    z-index: 1;
+    font-size: 150%;
+    line-height: 1.4;
+}
+.remark-notes-area .remark-top-area .remark-toolbar-link {
+    display: none;
+}
+.remark-notes-area .remark-top-area .remark-toolbar-timer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+.remark-notes-area .remark-bottom-area .remark-notes-current-area {
+    height: 95%;
+}
+.remark-notes-area .remark-bottom-area .remark-notes-current-area .remark-notes {
+    border-top: none;
+}
+.remark-notes-area .remark-bottom-area {
+    top: 0;
+}
+.remark-notes-area .remark-bottom-area .remark-toggle {
+    display: none;
+}
+.remark-presenter-mode .remark-preview-area {
+    top: 55%;
+}
+.remark-presenter-mode .remark-preview-area .remark-slide-container {
+    transform: scale(0.5);
+}
+.remark-presenter-mode .remark-notes-area .remark-notes-preview-area {
+    display: none;
+}
+
+/* Transition Slides */
+.remark-slide .transition {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0;
+    background-size: 100% 100%;
+    opacity: 0.8;
+}
+.remark-slide .transition h1 {
+    padding: 0 20px;
+    font-size: 75px;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+.remark-slide .transition.conclusion {
+    background-image: url(images/6736130025_ac5e197e22_b.jpg);
+}
+
+/* Block Quotes */
+blockquote {
+    font-style: italic;
+    margin: 1em 0;
+    padding: 0 1em;
+    border-left: 3px solid #ccc;
+}
+blockquote + p {
+    padding-left: 1em;
+}
+
+/* Individual (non-transition) slides */
+.remark-slide .single-image img {
+    display: block;
+    margin: 0 auto;
+    height: 550px;
+    border: 1px solid black;
+}
+.remark-slide .remark-slide-content .highlight {
+    background-color: yellow;
+}
+.image-only img {
+    width: 100%;
+    vertical-align: middle;
+}
+.percent-70 img {
+    width: 70%;
+}
+.percent-50 img {
+    width: 50%;
+}
+.percent-30 img {
+    width: 30%;
+}
+
+.remark-slide .thanks.f5 img {
+    display: block;
+    margin: auto;
+    padding-top: 50px;
+    width: auto;
+    height: 250px;
+    border: 0;
+}
+
+.do-not-do-this::after {
+    content: "X";
+    position: absolute;
+    font-family: Ariel, sans-serif;
+    font-size: 1280px;
+    top: -640px;
+    left: 12px;
+    text-align: center;
+    color: red;
+    transform: rotate(90deg);
+    opacity: 0.75;
+}
