@@ -11,9 +11,33 @@ My presenter notes also contain additional information; hit `p` to see them.
 
 Presentations are listed in chronological order, with the most recent listed first.
 
+## 2024
+
+* TBD/WIP: [Laziness is a Virtue](https://booch.github.io/presentations/Laziness/slides.html) (Rocky Mountain Ruby)
+
+* 2024-08-01: [Architecture Big and Small](https://booch.github.io/presentations/Architecture-Big-and-Small/slides.html) (Madison Ruby+)
+    * Short URL: http://craigbuchek.com/arch
+
+* 2024-08-01: [Preview: Architecture Big and Small](https://booch.github.io/presentations/Architecture-Big-and-Small/stllug-20240718.html) (STLLUG)
+    * This version got more in depth into the people involved in the story, but was not yet well-organized. It's over an hour, whereas the Madison Ruby+ version is only 30 minutes.
+
+* 2024-05-30: [Nothing is Easy, Is It?](https://booch.github.io/presentations/Nothing-Is-Easy/slides.html) (Blue Ridge Ruby)
+    * [Video](https://www.youtube.com/watch?v=UiHFBpXa0vE)
+    * Short URL: http://craigbuchek.com/nil
+
+## 2022
+
+* [Lightning Talk: Community + Purpose](https://booch.github.io/presentations/lightning_talks/RubyConf/2022/Community-Purpose/slides.html) (RubyConf)
+    * [Video](https://youtu.be/6uLH8m4wZI8?si=yBVx8LM5YsEP4WKg&t=3483)
+
 ## 2021
 
 * 2021-06-11: [Intro to TDD](https://booch.github.io/presentations/TDD/Intro%20to%20TDD.pptx)
+
+## 2020
+
+* 2020-01-06: [Intellectual Property](https://booch.github.io/presentations/Intellectual_Property/slides.html)(STL Full Stack)
+    * Short URL: http://craigbuchek.com/intellectual-property
 
 ## 2019
 
