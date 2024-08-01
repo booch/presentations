@@ -154,8 +154,6 @@ class: single-image
     - Implementation - building new buildings
     - Cores of ideas to be refined in other 2 volumes
 
-"feeling" should be the primary criterion used for making changes to any place
-
 ---
 class: single-image
 
@@ -377,8 +375,12 @@ class: single-image
 
 - Cunningham's Law:
     - "The best way to get the right answer on the internet is not to ask a question; it's to post the wrong answer."
-
+- 
 - Coined term "Technical Debt" (1992)
+- Invented the wiki (1995)
+- Portland Pattern Repository (PPR)
+    - People, Projects, Patterns
+    - Ward Cunningham lives near Portland, Oregon
 - Agile Manifesto (2001)
 
 ------
@@ -424,6 +426,9 @@ class: single-image, wide
     - Smalltalk
 - In 1987, published "Graphical User Interfaces in Smalltalk"
     - First known publication of **software** "patterns"
+- 1987 OOPSLA
+    - Workshop: Specification and Design for Object-Oriented Programming
+    - Paper: Using Pattern Languages for Object-Oriented Programs
 - Strongly influenced by Christopher Alexander's patterns
 - How did they find A Pattern Language?
     - Kent was at University of Oregon from 1979-1987
@@ -436,6 +441,8 @@ class: single-image, wide
     - I couldn't find any others of them together
         - Kent says that's the only one he knows of!
 - Source: https://oowisdom.csse.canterbury.ac.nz/index.php/Design_patterns
+- Apparently Kent was at Apple at the time
+    - https://c2.com/doc/oopsla87.html
 
 ---
 class: single-image
@@ -766,15 +773,17 @@ class: single-image
 ???
 
 - Stewart Brand
-
 - Stanford
 - MIT Media Lab
-
 - Possibly coined “personal computer” (1974)
-
+- "Information wants to be free"
 - Whole Earth Catalog
-- EFF
+- Director of the EFF (Electronic Frontier Foundation)
+    - Digital rights and freedom
 - Long Now Foundation
+    - 10,000-year clock
+    - 10,000-year library
+    - Long Bets
 
 ------
 
@@ -783,9 +792,6 @@ class: single-image
 - The Well (Whole Earth 'Lectronic Link) (1984) - first online community
 - Director of the Electronic Frontier Foundation (EFF) (1990-1994)
 - Founded (with Danny Hillis) the Long Now Foundation (1995)
-    - 10,000-year clock
-    - 10,000-year library
-    - Long Bets
  - “Why Haven’t We Seen A Photograph of the Whole Earth Yet?” (1966)
     - Accelerated NASA to get/publish high-quality color photos of Earth from space
         - The ecology movement took shape in 1970 partially as a result of those photos
@@ -908,11 +914,15 @@ class: single-image
 
 ???
 
-- Small group of people were involved in Smalltalk, OOP, patterns, and Agile
+- A small group of people were involved in Smalltalk, OO, patterns, and Agile
     - Perhaps also Open Source
 - Ruby is very much like Smalltalk
     - Many of these people now use Ruby
     - This is why Agile is so common in Ruby
+- AUDIENCE QUESTION: Was anyone here involved in any of these?
+    - I know that Brian Marick was here one year
+        - He was involved in the Agile Manifesto
+    - I'm just a tad too young
 
 ---
 # Conclusions
@@ -922,15 +932,45 @@ class: single-image
 ???
 
 ---
+class: single-image
+
+![My house, a 2-story Victorian, with a 16-story high-rise looming over it](images/Our-House-Overwhelmed.jpg)
+
+???
+
+- This picture is blowing up on Facebook
+    - Caption: "Overwhelmed?"
+- This is my house
+    - The one on the left
+    - A 2-story Victorian
+- The one on the right is a 16-story high-rise
+- The owner of the house would not sell out
+- Broke several patterns:
+    - Four-Story Limit
+    - Number of Stories
+        - "Do not let the height of your building vary too much from the predominant height of surrounding buildings"
+- Hedges nails pattern 140: Private Terrace
+    - People cannot see us when we're sitting on front patio
+
+---
+# Resources
+
+- [PatternLanguage.com](https://www.patternlanguage.com/)
+- [How Buildings Learn](https://www.youtube.com/playlist?list=PLrg__Ji1S58TnecKCIFNskj-Q3P2NV0pw)
+- [Using Pattern Languages for Object-Oriented Programs](https://c2.com/doc/oopsla87.html)
+    - First paper on patterns in software
+    - Ward Cunningham and Kent Beck
+- [Christopher Alexander: An Introduction for Object-Oriented Designers - Doug Lea](https://gee.cs.oswego.edu/dl/ca/ca/ca.html)
+- [Richard Gabriel: Patterns of Software](https://www.dreamsongs.com/Files/PatternsOfSoftware.pdf)
+    
+---
 # Resources
 
 - [Source Making](https://sourcemaking.com/design_patterns)
-- [Hillside Group](https://hillside.net/patterns/)
+- [Awesome Design Patterns](https://github.com/DovAmir/awesome-design-patterns)
 - [Martin Fowler's Software Architecture Guide](https://martinfowler.com/architecture/)
-- [Wikipedia - Pattern Language](https://en.wikipedia.org/wiki/Pattern_language)
-- [Wikipedia - Software Design Pattern](https://en.wikipedia.org/wiki/Software_design_pattern)
-- [Using Pattern Languages for Object-Oriented Programs](https://c2.com/doc/oopsla87.html)
-    - First paper on patterns in software
+- [Patterns-Discussion FAQ](https://gee.cs.oswego.edu/dl/pd-FAQ/pd-FAQ.html)
+- [Hillside Group](https://hillside.net/patterns/)
 
 ???
 
@@ -939,17 +979,6 @@ class: single-image
     - It's also great for info on refactoring and anti-patterns
     - [Refactoring Guru](https://refactoring.guru/design-patterns) seems to be the same site
         - But different
-
-(more on next slide)
-
----
-# Resources
-
-- [Design Patterns Reconsidered - Alex Miller](https://puredanger.github.io/tech.puredanger.com/2008/06/29/javaone-2008-design-patterns-reconsidered/)
-- [Christopher Alexander: An Introduction for Object-Oriented Designers - Doug Lea](https://gee.cs.oswego.edu/dl/ca/ca/ca.html)
-- [Patterns-Discussion FAQ](https://gee.cs.oswego.edu/dl/pd-FAQ/pd-FAQ.html)
-- [PatternLanguage.com](https://www.patternlanguage.com/)
-- [Awesome Design Patterns](https://github.com/DovAmir/awesome-design-patterns)
 
 ---
 # Resources
@@ -1011,3 +1040,4 @@ class: single-image
     - A "framework" is a collection of patterns put to use in a specific way
     - An "anti-pattern" is a pattern that does **not** solve the problem well
         - But looks like it should
+"feeling" should be the primary criterion used for making changes to any place
