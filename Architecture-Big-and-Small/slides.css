@@ -189,6 +189,10 @@ html .remark-container.remark-presenter-mode .remark-slides-area {
     font-size: 75px;
     background-color: rgba(255, 255, 255, 0.75);
 }
+.remark-slide .transition.dot-dot-dot h1 {
+    font-size: 100px;
+    background: none;
+}
 .remark-slide .transition.conclusion {
     background-image: url(images/6736130025_ac5e197e22_b.jpg);
 }
@@ -210,6 +214,12 @@ blockquote + p {
     margin: 0 auto;
     height: 550px;
     border: 1px solid black;
+}
+.remark-slide .single-image.wide img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 .remark-slide .remark-slide-content .highlight {
     background-color: yellow;

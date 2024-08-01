@@ -20,7 +20,7 @@ class: title, middle, center
 ???
 
 - Hi, I'm Craig
-    - I'm going to talk about "architecture", "design", and "patterns"
+    - Today, I'm going to talk about "architecture", "design", and "patterns"
 - If you want to "at" me, ...
     - I'm on Twitter and Mastodon via ruby.social
         - ... infrequently
@@ -29,6 +29,11 @@ class: title, middle, center
     - Hit `P` to toggle presenter notes
         - Also links to resources
         - ... and some details that I don't have time to cover
+
+------
+
+- My wife Beth has a degree in Interior Design/Architecture
+    - This topic is at the intersection of our interests
 
 ---
 class: single-image
@@ -77,23 +82,26 @@ class: single-image
 
 - ... or perhaps a little earlier
 
-- The Oregon Experiment (1975, vol 3)
+- There are 3 books in the series
+    - The Oregon Experiment
+        - First to be published - 1975
 
 - University of Oregon
-    - early 1970s
-    - post-war campus architecture was brutalist - plain concrete
-    - students and faculty didn't like it
+    - Early 1970s
+    - Needed some new buildings
+    - Existing campus buildings
+        - Built mostly in the 1950s
+        - Lots of plain concrete (brutalist)
 
-- Christopher Alexander was hired to help
+---
+class: single-image, wide
 
-- developing ways to relate people to the places in which they live or work.
-- People centric
-    - "feeling" should be the primary criterion used for making changes to any place
-    - people can and should be involved in the design process of their spaces
-- resulted in a theory of architecture and planning
+![McKenzie Hall - a very plain concrete building](images/McKenzie-Hall.png)
 
-- experimental approach to campus community planning
-        - testbed for ideas in the later 2 books
+???
+
+- Students and faculty hated it
+- University administration asked students and faculty to be involved
 
 ---
 class: single-image
@@ -102,28 +110,51 @@ class: single-image
 
 ???
 
-- Christopher Alexander
-    - Born in Austria
-    - British-American
+- They hired Christopher Alexander
+    - "award-winning architect"
     - UC Berkeley
-
-- Known for his 1964 book "Notes on the Synthesis of Form"
-    - Architectural and design theory
+    - To design a process by which the community could create its own space
+- Prominent in late 1960s
+    - Notes on the Synthesis of Form (1964)
+- Urban design, community design
+- Had novel ideas/theories about architecture and design
+    - More than just structure
+    - Focused on people
+        - People design their own spaces
+    - Years in the making already
 
 ------
+
+- [The Nature of Order](https://en.wikipedia.org/wiki/The_Nature_of_Order) (2002-2004)
+    - 4 books on architecture, urban design, and the nature of beauty
+    - https://www.npr.org/2005/01/29/4469331/christopher-alexanders-nature-of-order
+    - seems to be 12 books in the series now, per Amazon, maybe?
+
+- Defines design as "the process of inventing things which display new physical order, organization, form, in response to function...".
+
+- https://wiki.c2.com/?ChristopherAlexander
 
 - Designed and personally built over 100 buildings
     - both as an architect and a general contractor
 
-- https://wiki.c2.com/?ChristopherAlexander
-
-- Defines design as "the process of inventing things which display new physical order, organization, form, in response to function...".
-
+- Born in Austria, English-American
 - Died in 2022 (age 85)
 
-- [The Nature of Order](https://en.wikipedia.org/wiki/The_Nature_of_Order) (2002-2004)
-    - 4 books on architecture, urban design, and the nature of beauty
-    - seems to be 12 books in the series now
+---
+class: single-image
+
+![book cover - The Oregon Experiment](images/Oregon-Experiment.jpg)
+
+???
+
+- The Oregon Experiment (1975, vol 3)
+    - Report on results of experiment
+        - Hypotheses confirmed/refuted?
+    - How did design processes work out?
+    - Implementation - building new buildings
+    - Cores of ideas to be refined in other 2 volumes
+
+"feeling" should be the primary criterion used for making changes to any place
 
 ---
 class: single-image
@@ -137,6 +168,9 @@ class: single-image
 - This is **the** book that first used the term "pattern" in this way
     - 253 patterns
 
+- Patterns is one of the main topics of this talk
+    - I'll get more in depth on this later
+
 ---
 class: single-image
 
@@ -145,10 +179,31 @@ class: single-image
 ???
 
 - The Timeless Way of Building (1979, vol 1)
-    - goes hand-in-hand with the Pattern Language book
-    - philosophical approach to architecture
-    - introduces the concept of the "quality without a name"
-        - we should seek to include this nameless quality in our buildings
+- Intro to the series
+    - Companion to Pattern Language book
+- Note that it's **the** timeless way
+    - Historical and cross-cultural examples
+    - Rejection of modern architecture industry
+- New theory of architecture
+    - Very old ideas
+    - Focused on human needs and desires
+        - Not on style or fashion
+    - How people interact within a space
+    - How people **use** a building
+- Talks about the "quality without a name"
+    - How we **feel** and interact with objects and spaces
+    - The "life" in a building
+    - The "soul", to borrow Saron's term
+    - We should seek to include this in our buildings
+- Buildings should be designed by the people who use them
+
+------
+
+- Weird format
+    - Lots of italicized portions
+        - Non-italicized sections provide more detail
+    - Can read the book without reading non-italicized sections
+    - In some ways more poetic than prose
 
 ---
 
@@ -160,27 +215,154 @@ class: single-image
 
 - What is a pattern language?
 
-- "A pattern language is an organized and coherent set of patterns, each of which describes a problem and the core of a solution that can be used in many ways within a specific field of expertise." -- Wikipedia
-
-- "A pattern language has the structure of a network." -- Christopher Alexander
-    - The patterns reference each other
-        - ... creating a network of relationships amongst them
-
 ---
+# Pattern Language
 
-# Pattern
-
-- Describes problem and solution
+> A pattern language is an organized and coherent set of patterns ... that can be used in many ways within a specific field of expertise. <cite>-- Wikipedia</cite>
 
 ???
 
-- What is a pattern?
+- Wikipedia says it well
+    - A pattern language is an organized and coherent set of patterns ...
+        - ... that can be used in many ways within a specific field of expertise.
+- Maybe more of a "vocabulary" or "glossary" for a specific field
 
-- "Each pattern describes a problem which occurs over and over again in our environment, and then describes the core of the solution to that problem, in such a way that you can use this solution a million times over, without ever doing it the same way twice." -- Christopher Alexander
+------
+
+- https://en.wikipedia.org/wiki/Pattern_language
 
 ---
+class: single-image
 
-# TODO: Example pattern(s) from the book
+![book cover - A Pattern Language: Towns, Buildings, Construction](images/A-Pattern-Language.jpg)
+
+???
+
+- Every person and organization should have its own pattern language
+    - But they should consist of mostly common patterns
+- "A pattern language has the structure of a network." -- Christopher Alexander
+    - Mathematical term: Graph
+    - Patterns reference each other
+        - ... creating a network of relationships amongst them
+        - Build on others
+        - Are built on top of others
+- Patterns and languages are alive - constantly evolving
+
+---
+# Pattern
+
+???
+
+- But what is a pattern?
+
+---
+# Pattern
+
+> Each pattern describes a problem which occurs over and over again in our environment, and then describes the **core** of the solution to that problem, in such a way that you can use this solution a million times over, without ever doing it the same way twice.
+
+???
+
+- A Pattern Language, page _x_ (emphasis mine):
+    - "Each pattern describes a problem which occurs over and over again in our environment, and then describes the **core** of the solution to that problem, in such a way that you can use this solution a million times over, without ever doing it the same way twice."
+
+---
+# Pattern
+
+- Common problem
+- Context
+- Solution
+    - Invariants
+    - Essence
+
+???
+
+- Description of a **common** problem
+- Considers various "forces"
+    - Constraints
+    - Context
+- Solution needs to balance these forces
+    - One definition of engineering!
+- Invariants/essence of solution
+    - Common properties of all "good" solutions
+
+---
+# Pattern
+
+- Hypothesis
+
+???
+
+- A hypothesis
+    - Varying amounts of evidence
+    - Some eventually proven wrong
+    - Might be replaced by a better pattern
+
+---
+# Pattern
+
+- Communication
+
+???
+
+- Common language for communicating within field
+
+---
+# Examples
+
+- 2: The Distribution Of Towns
+- 4: Agricultural Valleys
+- 9: Scattered Work
+- 10: Magic Of The City
+- 12: Community Of 7000
+- 14: Identifiable Neighborhood
+- 17: Ring Roads
+- 22: Nine Per Cent Parking
+- 25: Access To Water
+- 32: Shopping Street
+- 56: Bike Paths And Racks
+
+---
+# Examples
+
+- 61: Small Public Squares
+- 78: House For One Person
+- 128: Indoor Sunlight
+- 129: Common Areas At The Heart
+- 131: The Flow Through Rooms
+- 140: Private Terrace On The Street
+- 155: Old Age Cottage
+- 177: Vegetable Garden
+- 178: Compost
+- 193: Half-Open Wall
+- 203: Child Caves
+
+---
+# Example: Four-Story Limit
+
+- There is abundant evidence to show that high buildings make people crazy.
+- Therefore: In any urban area, no matter how dense, keep the majority of buildings four stories high or less. It is possible that certain buildings should exceed this limit, but they should never be buildings for human habitation.
+
+???
+
+- My favorite
+
+------
+
+- Source: https://www.patternlanguage.com/apl/apl21/apl21.htm
+    - Requires a subscription
+
+---
+class: single-image
+
+![Portion of the text of Pattern 21: Four-Story Limit](images/Four-Story-Limit.png)
+
+???
+
+- He cites multiple studies on effects of high-rise buildings
+    - Kids on high floors get outside less
+        - Compared to kids on lower floors
+    - Kids on high floors have less social interaction
+    - People on high floors are less likely to know their neighbors
 
 ---
 class: single-image
@@ -201,10 +383,6 @@ class: single-image
 
 ------
 
-- Smalltalk
-- Object-Oriented Programming, Analysis, and Design
-    - Class-responsibility-collaboration (CRC) cards
-- Invented the Wiki (1995)
 - FIT (Framework for Integrated Test)
 - Eclipse Foundation
 
@@ -221,21 +399,22 @@ class: single-image
 
 - Wrote **the** book on Extreme Programming (XP) (1999)
 - Wrote **the** book on Test-Driven Development (TDD) (2002)
-- Agile Manifesto
+- Agile Manifesto (2001)
 - Co-wrote JUnit
-
-- Smalltalk
-    - Smalltalk Best Practice Patterns
 
 ------
 
 - "Make it work, make it right, make it fast"
 - "Explore/Expand/Extract"
+- "Test && Commit || Revert" (TCR)
+    - Make **only 1** change in each commit
+    - If the tests pass, commit
+    - If the tests fail, revert completely and try again
 
 - https://wiki.c2.com/?KentBeck
 
 ---
-class: single-image
+class: single-image, wide
 
 ![Ward Cunningham and Kent Beck](images/Ward-and-Kent.png)
 
@@ -243,16 +422,11 @@ class: single-image
 
 - Ward and Kent worked together
     - Smalltalk
-    - Object-Oriented Programming
-
-- In 1987, they published "Graphical User Interfaces in Smalltalk"
-    - First known publication using "patterns" in software
-
-- They were strongly influenced by Christopher Alexander's patterns
-
-- How did they find Christopher Alexander's work?
-    - Turns out that Kent was at the University of Oregon from 1979-1987
-    - Source: https://oowisdom.csse.canterbury.ac.nz/index.php/Design_patterns
+- In 1987, published "Graphical User Interfaces in Smalltalk"
+    - First known publication of **software** "patterns"
+- Strongly influenced by Christopher Alexander's patterns
+- How did they find A Pattern Language?
+    - Kent was at University of Oregon from 1979-1987
     - Edward Yourdon
 
 ------
@@ -260,6 +434,8 @@ class: single-image
 - Photo credit: https://oandre.gal/beck-and-cunningham/
     - Similar to the one at https://wiki.c2.com/?WardAndKent
     - I couldn't find any others of them together
+        - Kent says that's the only one he knows of!
+- Source: https://oowisdom.csse.canterbury.ac.nz/index.php/Design_patterns
 
 ---
 class: single-image
@@ -271,20 +447,16 @@ class: single-image
 - Over the next few years, more people got involved
     - Smalltalk community
     - Object-Oriented community - design, analysis, programming
-- In 1994, Ward built a web site to collaborate
+- In 1995, Ward built a web site to collaborate
     - He wrote code for the site
         - Called it "wiki"
             - Hawaiian for "quick"
-
-- Ward says that this was a direct consequence of Alexander's work
-
 - C2 Wiki
     - Very first wiki!
     - C2 = Cunningham & Cunningham, Inc
     - Design Patterns
-    - Portland Pattern Repository (PPR)
-        - People, Projects, Patterns
-        - Ward Cunningham lives near Portland, Oregon
+- Ward says wiki was a direct consequence of Alexander's work
+    - Agile (XP) too!
 
 ------
 
@@ -298,6 +470,10 @@ class: single-image
     - Joshua Kerievsky
     - Michael Feathers
 
+- Portland Pattern Repository (PPR)
+    - People, Projects, Patterns
+    - Ward Cunningham lives near Portland, Oregon
+
 - https://en.wikipedia.org/wiki/Wiki_Wiki_Shuttle
 
 ---
@@ -307,12 +483,13 @@ class: single-image
 
 ???
 
-- In 1994, the "Gang of Four" published **the** book on software design patterns
+- In 1994, **the** book on software design patterns was published
     - Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides
+        - AKA "The Gang of Four" (GoF)
 
 - Covers 23 patterns
     - Mostly in Java and C++
-        - Some of these apply to Ruby
+        - Some of these apply to Ruby; some do not
 
 - Erich Gamma:
     - Started PhD in 1988
@@ -327,26 +504,25 @@ class: single-image
     - Visual Studio Code
     - https://wiki.c2.com/?ErichGamma
 
-------
-
 - https://wiki.c2.com/?GangOfFour
 
 ---
-class: single-image
+# Examples
 
-![Pattern Languages of Program Design](images/Pattern-Languages-of-Program-Design.jpg)
+- Singleton
+- Factory
+- Strategy
+- Template Method
+- Visitor
 
 ???
 
-- Jim Coplien, 1995
-    - I knew him from his book on C++
-        - Advanced C++ Programming Styles and Idioms
-- Also a conference:
-    - Pattern Languages of Programs, 1994-present
-    - PLoP
-    - Hillside Group
-
-"A pattern language is an organized and coherent set of patterns, each of which describes a problem and the core of a solution that can be used in many ways within a specific field of expertise." - Wikipedia
+- These are all OOP patterns
+    - They all involve classes and objects
+- FP, procedural, and logic programming generally have their own patterns
+    - They have different patterns to do similar things
+    - Or don't need to do the thing at all
+        - Or it's just a language feature
 
 ---
 class: single-image
@@ -355,31 +531,56 @@ class: single-image
 
 ???
 
-- IMHO, one of the best books on Ruby
-- Released in 1996
+- Smalltalk Best Practice Patterns (1996)
+    - Kent Beck
+    - 50 patterns
+- Covers a lot of _smaller_ patterns
+- IMHO, one of the best books on Ruby!
     - Nearly pre-dates Ruby!
-- Covers a lot of smaller patterns
+    - Ruby is virtually a dialect of Smalltalk
+        - Avi Bryant, RailsConf 2007
 
-- TODO: Smaller pattern examples
+------
+
+- RailsConf 2007 write-up: https://8thlight.com/insights/day-three-at-railsconf
 
 ---
+# Examples
 
+- Composed Method
+- Query Method
+- Method Object
+- Decomposing Message
+- Temporary Variable
+- Simple Superclass Name
+- Guard Clause
+- Intention-Revealing Method
+
+---
+# Example: Query Method
+
+- How do you represent testing a property of an object?
+- Provide a method that returns a Boolean. Name it by prefacing
+the property name with a form of “be” — is, was, will, etc.
+
+---
 class: single-image
 
-![Martin Fowler](images/Martin-Fowler.jpg)
+![](images/Intention-Revealing-1.png)
 
 ???
 
-- Martin Fowler:
-    - Chief Scientist, Thoughtworks
-    - Refactoring book (1999, with Kent Beck)
-    - Patterns of Enterprise Application Architecture (2002)
-    - Agile Manifesto
-    - UML Distilled (1997)
-    - Domain-Specific Languages book (2010)
-    - Continuous Integration
-    - Microservices
-    - Domain-Specific Languages
+- Probably my favorite pattern of all
+- Selector: Smalltalk method name
+
+------
+
+- Source: https://ptgmedia.pearsoncmg.com/images/9780134769042/samplepages/013476904X.pdf
+
+---
+class: single-image
+
+![](images/Intention-Revealing-2.png)
 
 ---
 class: single-image
@@ -391,28 +592,49 @@ class: single-image
 - Patterns of Enterprise Application Architecture (2002)
     - Martin Fowler
     - 42 patterns
-- More patterns, targeted at larger systems
-- https://martinfowler.com/eaaCatalog/
+- Targeted at _larger_ systems
 - DHH learned patterns that he applied to Ruby on Rails
     - Active Record
     - Model-View-Controller
+- Martin Fowler:
+    - Refactoring book (1999, with Kent Beck)
+    - Agile Manifesto (2001)
+
+------
+
+- https://martinfowler.com/eaaCatalog/
+
+- Martin Fowler:
+    - Chief Scientist, Thoughtworks
+    - UML Distilled (1997)
+    - Domain-Specific Languages book (2010)
+    - Continuous Integration
+    - Microservices
+    - Domain-Specific Languages
 
 ---
-
 # Software Design Pattern
 
 - General solution to a common problem
-- Not an algorithm
 - Not code
+- Not an algorithm
 - Blue-print of the outline of a solution
 
 ???
 
+- How are software design patterns different?
+    - Not much!
+    - Common problem
+    - Context
+    - Solution
+
 - Not code - cannot be copied and pasted
 - Not an algorithm - not that specific
+- Can be at any level of abstraction
+    - From a single line of code to a whole system
+- Often a "best practice"
 
 ---
-
 # Software Design Pattern
 
 - Name
@@ -424,106 +646,96 @@ class: single-image
 
 ???
 
-- Patterns help us use a common language to describe solutions to common problems
-- Intent: What are we trying to accomplish?
-- Context: Conditions under which the pattern holds
-- Problem: "System of forces" that leads towards some goal
-- Solution: configuration that balances the system of forces
+- Same format as Christopher Alexander used
+    - Roughly
 
 ---
+# Architecture
 
-# Software Design Pattern - Examples
-
-- Singleton
-- Factory
-- Strategy
-- Template Method
-- Visitor
-- Null Object
+> the complex or carefully designed structure of something
 
 ???
 
-- A singleton is a class that can only be instantiated once
-- A factory is a class or method that creates objects
-- A strategy is a class that provides an algorithm that can be swapped out
-- A template method provides a default implementation that can be overridden
-- A visitor is used to iterate over a collection of objects
-- A null object is used to provide a default implementation that does nothing
+- Dictionary definition of "architecture"
+- In many fields, "architecture" means "unchanging deep structure"
 
 ---
+class: single-image, wide
 
-# Software Design Pattern - Example
-
-- [Null Object](https://sourcemaking.com/design_patterns/null_object)
-
----
-
-# Software Design Pattern Categories
-
-- Creational
-- Structural
-- Behavioral
-- Concurrency
-- Architectural
+![AI-generated picture of a majestic ornate building](images/Majestic-ornate-building.webp)
 
 ???
 
-- Creational patterns create objects
-- Structural patterns organize classes and objects to form larger structures
-- Behavioral patterns provide communication between objects
-- Concurrency patterns deal with multi-threading
-- Architectural patterns deal with high-level structure
+- We think of architecture as "big"
+    - Buildings
+    - Cities
+    - Software systems
 
 ---
+class: single-image
 
-# Software Design Patterns - Criticism
-
-- Overuse
-- Wrong context
-- Limited reusability
-- Missing language features
-- Paradigm-specific
-- Not a substitute for experience
-- Not a silver bullet
+![Ornate details on a building](images/ornate-detail.jpg)
 
 ???
 
-- The first problem is that many developers misunderstand patterns
-    - They try to take patterns and apply them to every problem
-    - Instead, we need to think of patterns as a common language to describe solutions to common problems
-    - Patterns can be very context-dependent
-- Reuse often isn't possible
-    - We have to write the pattern every time
-    - Components are a better way to reuse code
-- Many patterns are just a replacement for missing language features
-    - For example, in machine language, a "subroutine" was a pattern
-    - In Ruby, we have `Enumerable`, so we don't need the Iterator or Visitor pattern as much
-    - In Ruby, mixins are just part of the language, so we don't think of them as a pattern
-    - In Ruby, dependency injection just feels like passing in a parameter (with a default)
-- Most of the patterns in the GoF book are object-oriented
-- And of course, patterns are not a substitute for experience
+- But structure is fractal
+    - We can see zoom in
+    - See patterns at all levels
+- But we can also think of "small" architecture
+    - Rooms
+    - Alcoves
+    - Software components
 
 ---
+class: single-image, wide
 
-# Missing Language Features
-
-~~~ java
-Iterator it = nodes.iterator();
-while (it.hasNext()) {
-    Node node = (Node) it.next();
-    node.doSomething();
-}
-~~~
-
-~~~ ruby
-nodes.each { |node| node.doSomething }
-~~~
+![Door knob and door lever](images/door_knob_vs_door_lever.jpg)
 
 ???
+
+- For example, door knobs are an architectural element
+    - Many famous architects have designed door knobs
+        - I found knobs by Gaudi, Eames, Frank Lloyd Wright, and others
+
+- I found 2 web pages that help choose between these 2 options
+    - Levers are easier to use
+    - Levers can be used with your hands are full
+    - Levers are easier for young people, old people, disabled people
+    - Levers can easily snag on clothing
+    - Knobs have more styles available
+    - Knobs can turn either way
 
 ------
 
-- https://wiki.c2.com/?DesignPatternsAreMissingLanguageFeatures
+- https://www.suffolklatchcompany.com/blogs/news/door-knobs-or-door-handles
+- https://www.parkavenuelocks.com/blog/post/door-knobs-vs-door-levers-ending-the-debate
+
+- I was surprised that Alexander's book didn't cover door knobs/handles
+
+- Modern door knobs are a relatively recent invention!
+    - 1878
+    - Lever handles are much older
+
+---
+class: single-image, wide
+
+![Material Design Buttons](images/material-design-buttons.webp)
+
+???
+
+- We rarely think of a button as an architectural element
+- Part of the structure of an app
+- Same kinds of decisions
+    - Constraints
+    - Context
+    - Users interacting with them
+- We want consistency
+    - When contexts are similar
+
+---
+class: transition, middle, dot-dot-dot
+
+# ...
 
 ---
 class: single-image
@@ -532,55 +744,52 @@ class: single-image
 
 ???
 
-- I missed something in my chronology
-    - I was well into writing this talk before my research turned it up
-    - I had seen mention of the book recently
-        - An article about it (or maybe a video)
-        - Definitely after I had proposed this talk
-            - But I didn't think much about it in relation to this talk
+- Late into my research, I found this book
+    - I had seen it before (recently)
+        - But didn't think much about it
+
 - How Buildings Learn: What Happens After They’re Built (1994)
     - Stewart Brand
-        - Whole Earth Catalog
-        - Long Now Foundation
-            - 10,000-year clock
-            - 10,000-year Library
-            - Long Bets
+
 - Inspired by Alexander's work
-    - Extensive work with Christopher Alexander
+    - Extensive collaboration
+    - Mentions "Chris Alexander" about every other page
+
 - 6-part TV series for the BBC
-    - Aired in July-August 1997 on BBC2
-- the best buildings are made from low-cost, standard designs that people are familiar with, and easy to modify
-- "Use materials that smell bad when they are wet"
-    - So you know when there's a leak
+    - Aired 1997 on BBC2
 
 ---
 class: single-image
 
-![Whole Earth Catalog](images/Whole-Earth-Catalog.jpg)
+![Stewart Brand](images/Stewart-Brand.jpg)
 
 ???
 
-- Stewart Brand, 1968-1972
 - Stewart Brand
-    - LSD studies (legal, early 1960s)
-    - helped design and participated in Doug Engelbart's "mother of all demoes” (1968)
-    - The Well (Whole Earth 'Lectronic Link) (1984) - first online community
-    - Stanford
-    - MIT Media Lab
-    - coined the term "personal computer"?
-        - first use of the term “personal computer” in print (1974) - Two Cybernetic Frontiers
-    - director of the Electronic Frontier Foundation (EFF) (1990-1994)
-    - Founded (with Danny Hillis) the Long Now Foundation (1995)
-        - 10,000 year clock
-        - 10,000-year Library
-        - also Brian Eno, Esther Dyson
-        - Long Bets
-    
+
+- Stanford
+- MIT Media Lab
+
+- Possibly coined “personal computer” (1974)
+
+- Whole Earth Catalog
+- EFF
+- Long Now Foundation
+
 ------
 
+- LSD studies (legal, early 1960s)
+- Helped design and participated in Doug Engelbart's "mother of all demos” (1968)
+- The Well (Whole Earth 'Lectronic Link) (1984) - first online community
+- Director of the Electronic Frontier Foundation (EFF) (1990-1994)
+- Founded (with Danny Hillis) the Long Now Foundation (1995)
+    - 10,000-year clock
+    - 10,000-year library
+    - Long Bets
  - “Why Haven’t We Seen A Photograph of the Whole Earth Yet?” (1966)
-    - Legend has it that this accelerated NASA's making good color photos of Earth from space
+    - Accelerated NASA to get/publish high-quality color photos of Earth from space
         - The ecology movement took shape in 1970 partially as a result of those photos
+        - Legend has it
     - https://sb.longnow.org/SB_homepage/WholeEarth_buton.html
 
 ---
@@ -590,23 +799,52 @@ class: single-image
 
 ???
 
-- **This all applies to software as well!**
+- So much to cover
+    - IMHO, the best book on software engineering
+        - That's not about software engineering
+
+---
+# How Buildings Learn
+
+- A building is never finished
+- Adapt to changing needs
+- Design for change
+- Change incrementally
+- Learn as we go
+- Maintenance is a form of evolution
+
+???
+
+- Do these sound familiar?
+    - **Nearly all the lessons apply to software as well!**
+
+- This sounds like Agile to me
+    - Not the watered-down Scrum that we end up with
     - Incremental change
-    - Learning as you go
-    - Choose the option that gives more options in the future
-    - Adaptation to changing needs
-    - "Maintenance is a form of evolution"
-    - Buildings are predictions
-        - All predictions are wrong
-        - Ergo, design so that it doesn't matter when they're wrong
-    - A building is never finished
-    - [Shearing layers](https://en.wikipedia.org/wiki/Shearing_layers)
-        - SITE: changes every 50-500 years
-        - STRUCTURE: foundation & load-bearing, rarely changed
-        - SKIN: changes every 20 years, air-tight, better insulated
-        - SERVICES: changes every 7-15 years
-        - SPACE PLAN: interior layout, walls, ceilings, floors, doors. changes every 3-30 years
-        - STUFF: "mobilia" in Italian
+    - Focus on users
+    - Adapting
+
+---
+class: single-image
+
+![book cover - How Buildings Learn: What Happens After They’re Built](images/How-Buildings-Learn.jpg)
+
+???
+
+- "Buildings are predictions"
+    - All predictions are wrong
+    - Ergo, design so that it doesn't matter when we're wrong
+- Choose options that provide more options in the future
+
+------
+
+- [Shearing layers](https://en.wikipedia.org/wiki/Shearing_layers)
+    - SITE: changes every 50-500 years
+    - STRUCTURE: foundation & load-bearing, rarely changed
+    - SKIN: changes every 20 years, air-tight, better insulated
+    - SERVICES: changes every 7-15 years
+    - SPACE PLAN: interior layout, walls, ceilings, floors, doors. changes every 3-30 years
+    - STUFF: "mobilia" in Italian
 
 ---
 class: single-image
@@ -624,89 +862,66 @@ class: single-image
 - "temporary" is permanent most of the time
 - Fail small, early, and often, and you will succeed in the long run
 
-- "A new building is a bad teacher of maintenance habits, since deferring of maintenance is habit. A building that has been maintained for a long time is a good teacher, since its maintenance is a habit."
-
-- In many fields, "architecture" means "unchanging deep structure".
-
-- TODO: More!
-
----
-# Large vs Small
-
-???
-
-- We think of architecture as "big"
-    - Buildings
-    - Cities
-    - Software systems
-- But we can also think of "small" architecture
-    - Rooms
-    - Software components
-
----
-class: single-image
-
-![Door knob and door lever](images/door_knob_vs_door_lever.jpg)
-
-???
-
-- I was surprised that Alexander's book didn't cover this
-- Door knobs are a relatively recent invention
-    - 1878
-    - Lever handles are much older
-- I found 2 web pages that help choose which to use
-    - Knobs have more styles available
-    - Knobs can turn either way
-    - Levers are easier to use
-    - Levers can be used with your hands are full
-    - Levers are easier for young people, old people, disabled people
-    - Levers can easily snag on clothing
-
 ------
 
-- https://www.suffolklatchcompany.com/blogs/news/door-knobs-or-door-handles
-- https://www.parkavenuelocks.com/blog/post/door-knobs-vs-door-levers-ending-the-debate
+- "A new building is a bad teacher of maintenance habits, since deferring of maintenance is habit. A building that has been maintained for a long time is a good teacher, since its maintenance is a habit."
 
 ---
-class: single-image
-
-![Material Design Buttons](images/material-design-buttons.webp)
-
-???
-
-- We rarely think of a button as an architectural element
-- But an architectural element is anything that is part of the structure of an application
-        - or building
-- We should choose the right button for the right context
-    - We should not have a "one-size-fits-all" button
-    - But we should not have every button be different
-
----
-
 # Conclusions
 
-- Patterns are a way to describe solutions to common problems
-- Pattern languages give us a common language
-- Architecture is about structure
-- We can't predict what our future needs will be
-    - So we need to design for change, evolution, and adaptation
-    - Learning, habit, prediction, 
-    - The majority of the costs are in maintenance 
-- Architecture is about people
-    - How they interact with a space or a software application
-- Smalltalk's legacy is huge
-    - OOP, Agile, and patterns
+- Pattern languages help us communicate
+    - Solutions to common problems
 
 ???
 
-- TODO
+---
+# Conclusions
 
+- Architecture is about structure
+- Architecture is about people
+    - Interactions is space and time
+    - Interactions with people and objects
+
+???
+
+- In many fields, "architecture" means "unchanging deep structure"
+    - But architecture **does** change
+- Architecture is really about people
+    - And how they interact with their environment
+
+---
+# Conclusions
+
+- We can't predict what our future needs will be
+    - Design for change, evolution, adaptation
+    - Learning
+
+???
+
+---
+# Conclusions
+
+- Smalltalk's legacy is huge
+    - OOP
+    - Agile
+    - Design Patterns
+
+???
+
+- Small group of people were involved in Smalltalk, OOP, patterns, and Agile
+    - Perhaps also Open Source
 - Ruby is very much like Smalltalk
     - Many of these people now use Ruby
     - This is why Agile is so common in Ruby
 
 ---
+# Conclusions
 
+- We can learn from other fields
+
+???
+
+---
 # Resources
 
 - [Source Making](https://sourcemaking.com/design_patterns)
@@ -719,7 +934,7 @@ class: single-image
 
 ???
 
-- There are a couple really good sites on Design Patterns
+- There are a couple really good sites on design patterns
 - Source Making is one of the best
     - It's also great for info on refactoring and anti-patterns
     - [Refactoring Guru](https://refactoring.guru/design-patterns) seems to be the same site
@@ -728,7 +943,6 @@ class: single-image
 (more on next slide)
 
 ---
-
 # Resources
 
 - [Design Patterns Reconsidered - Alex Miller](https://puredanger.github.io/tech.puredanger.com/2008/06/29/javaone-2008-design-patterns-reconsidered/)
@@ -738,7 +952,6 @@ class: single-image
 - [Awesome Design Patterns](https://github.com/DovAmir/awesome-design-patterns)
 
 ---
-
 # Resources
 
 - A few patterns that I found independently and documented:
@@ -747,41 +960,6 @@ class: single-image
     - [Ruby Pattern: Parameterized Module Inclusion](https://web.archive.org/web/20210510205350/http://blog.boochtek.com/2014/04/14/ruby-parameterized-module-inclusion)
 
 ---
-
-# Open to Opportunities
-
-* Principal Software Engineer
-
-
-* Ruby: 18 years
-* Devops: 11 years
-* Network Security: 7 years
-* Agile: 15 years
-
-* Resume: https://resume.craigbuchek.com
-
-???
-
-* I'm currently looking for my next great opportunity
-
----
-class: thanks, image-only
-
-# Thanks
-
-![Thank you](images/Thank-you-word-cloud.jpg)
-
-???
-
-- Thank YOU for coming.
-
-------
-
-- Thanks to Madison Ruby for selecting my talk
-- Members of STL Linux meetup for feedback on a preview of the talk
-
----
-
 # Feedback
 
 - GitHub: [booch][github]
@@ -793,14 +971,24 @@ class: thanks, image-only
 
 
 - Slides: http://craigbuchek.com/arch
+    - Hit P to see notes
     - Source: https://github.com/booch/presentations
 
 ???
 
-- One reason I give talks at conferences is to start a conversation.
-- Please don't hesitate to come talk to me.
+- One reason I give talks at conferences is to start a conversation
+- Come talk to me
+    - Or send me a message
+    - Or send me a job offer :D
+- Thank YOU for coming
 
 ------
+
+- Thanks also to:
+    - Madison Ruby+ organizers
+        - For selecting my talk
+    - Members of STL Linux meetup
+        - Feedback on a preview version of the talk
 
 - I used a tool called [Remark][remark] to create and show these slides.
 
@@ -811,6 +999,15 @@ class: thanks, image-only
 
 ---
 
-# Image Credits
+# Other Thoughts
 
-- 
+???
+
+------
+
+- My thoughts on related terms:
+    - A language-specific pattern is an "idiomatic" pattern
+    - A "convention" is perhaps a pattern that is so common that it is not written down
+    - A "framework" is a collection of patterns put to use in a specific way
+    - An "anti-pattern" is a pattern that does **not** solve the problem well
+        - But looks like it should
