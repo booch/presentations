@@ -2,13 +2,11 @@
 
 This is my presentation for [Madison Ruby+ 2024, August 1-2](https://www.madisonruby.com/).
 
+Here's the [slide show](https://booch.github.io/presentations/Architecture-Big-and-Small/slides.html).
+
 Here's the [CFP proposal](proposal.md).
 
-This is currently a [work in progress](TODO.md).
-
 [Slides are written in Markdown](slides.md).
-
-Here's the [slide show](slides.html).
 
 I'm using [some AI](AI-prompts.md) to help me create the slides, and to find good examples.
 
