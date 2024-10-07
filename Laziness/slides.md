@@ -1,0 +1,1133 @@
+layout: true
+
+<header>
+  <p class="left">Rocky Mountain Ruby 2024</p>
+  <p class="right">@CraigBuchek</p>
+</header>
+
+<footer>
+  <p class="left"><!-- page numbers --></p>
+  <p class="right">http://craigbuchek.com/laziness</p>
+</footer>
+
+---
+class: title, middle, center
+
+![Rocky Mountain Ruby logo - white mountains on top of a red ruby](images/rocky-mountain-ruby-logo-white.svg)
+
+# Laziness is a Virtue
+
+## Lazy, Functional, Immutable Ruby
+
+???
+
+- Hi, I'm Craig
+    - Today, I'm going to talk about:
+        - laziness
+        - functional programming
+        - immutability
+        - in Ruby
+- If you want to "at" me, ...
+    - I'm on Twitter and Mastodon via ruby.social
+        - ... infrequently
+- Short URL for the slides in lower right
+    - Follow along, or look at them later
+    - Hit `P` to toggle presenter notes
+        - Also links to resources
+        - ... and some details that I don't have time to cover
+
+---
+class: quote
+
+> The three chief virtues of a programmer are: Laziness, Impatience and Hubris.
+<cite>-- Larry Wall, _Programming Perl_</cite>
+
+???
+
+- QUESTION: Who knows who Larry Wall is?
+    - Creator of Perl
+        - And the language formerly known as Perl 6
+
+------
+
+- _sic_ missing Oxford comma
+- Also created Raku (formerly Perl 6)
+- Quote is from the glossary of the first _Programming Perl_ book
+    - Per https://en.wikiquote.org/wiki/Larry_Wall
+
+---
+class: single-image
+
+![a sloth](images/sloth.jpeg)
+
+???
+
+- I identify with Larry's description
+- My wife's therapist says I'm a sloth
+    - I've embraced that label
+
+---
+
+# Laziness
+
+- Delay computation until resulting value is needed
+
+???
+
+- Let's start with a definition
+- My definition of laziness:
+    - "Delaying computation until the result of the computation is needed"
+
+---
+
+# Too Eager
+
+~~~ ruby
+before_action :set_current_account, except: [:index]
+
+attr_reader :current_account
+
+private def set_current_account
+  @current_account = Account.find_by(user: current_user)
+end
+~~~
+
+???
+
+- I often see code like this in Rail controllers
+- Code like this prompted idea for this talk
+- Why do we need to set current account before everything else?
+    - ...
+
+---
+
+# Almost Lazy Enough
+
+~~~ ruby
+private def current_account
+  Account.find_by(user: current_user)
+end
+~~~
+
+???
+
+- We don't!
+- Rails requests are synchronous
+    - There is no "ahead of time"
+    - Only needs to be computed by the time it's used
+- This code is more "lazy"
+    - Waits to do the computation when it's needed
+
+---
+
+# Still a Bit Too Eager
+
+~~~ ruby
+attr_reader :current_account
+
+def initialize
+  @current_account = Account.find_by(user: current_user)
+end
+~~~
+
+???
+
+- Could also compute the value in initializer
+    - Especially if it's always needed
+- But still worrying about it before we need it
+- I contend that this mindset is harmful
+    - It's a hold-over from procedural programming
+- At least in this case, we're thinking about current account as a property of the class
+    - Instead of an action that needs to be done
+
+---
+
+# Lazy Enough
+
+~~~ ruby
+private def current_account
+  @current_account ||= Account.find_by(user: current_user)
+end
+~~~
+
+???
+
+- Original code had 1 advantage:
+    - Only computed value once
+- But that's easily solved with memoization
+
+---
+
+# Too Early
+
+~~~ ruby
+before_action :set_current_account
+~~~
+
+???
+
+- What does this line tell us when we read it?
+    - We need to set current account before anything else
+- It's a lie
+    - Don't need to think about current account until we see it used
+        - If we've named it well, probably don't need to read details
+
+
+- WARNING: Before filters are still useful
+    - For interrupting request before doing any other work
+        - Authentication or authorization
+        - That's the _filter_ part
+    - But not for setting up data
+- NOTE: Instance variables in Rails controllers also get copied to view
+    - I recommend using other mechanisms to pass data to views
+        - Labeling helper methods
+        - Decent Exposure gem
+
+---
+class: transition
+background-image: url(images/memoization.jpg)
+
+# Memoization
+
+???
+
+- More detail on memoization
+
+---
+
+# Memoization - Idiomatic
+
+~~~ ruby
+def my_value
+  @my_value ||= computation_of_my_value
+end
+~~~
+
+???
+
+- Memoizing caches result of computation
+    - Don't have to compute it again
+- Canonical Ruby idiom
+    - `||=` operator only assigns if variable is `nil` or `false`
+        - Undefined variables are `nil`
+        - Otherwise, return cached value
+
+---
+
+# Memoization - Caveats
+
+- ||= does not handle `nil` and `false`
+- Only for values that don't change
+- Not thread-safe
+
+???
+
+- Standard Ruby memoization idiom doesn't handle `nil` and `false`
+    - Rarely a concern
+        - True/false answers are usually quick to compute
+        - Nil is often quick to compute
+
+------
+
+- Some people will add "complexity" to list
+    - I don't buy that argument
+        - Short, simple, idiomatic
+
+---
+
+# Memoization - Long Form
+
+~~~ ruby
+def my_value
+  return @my_value if defined? @my_value
+  setup_complex_stuff
+  @my_value = computation_of_my_value
+end
+~~~
+
+???
+
+- Here's a longer version that handles `nil` and `false`
+- Also good if method is > 1 line
+
+---
+
+# Memoization - ActiveSupport
+
+- ActiveSupport::Memoizable
+    - Deprecated in Rails 3.2!
+
+~~~ ruby
+extend ActiveSupport::Memoizable
+
+def my_value
+  computation_of_my_value
+end
+memoize :my_value
+~~~
+
+???
+
+- Rails used to come with `memoize` built-in
+
+---
+
+# Memoize - Short Form
+
+~~~ ruby
+memoize def my_value = computation_of_my_value
+~~~
+
+???
+
+- Method definition actually returns the name of the method
+    - So we can use it as an argument to `memoize`
+- We can use Ruby 3.0 short method definition
+
+------
+
+- This use of `memoize` looks like a variable type qualifier or attribute in C/C++
+        - `const`, `static`, `extern`, `volatile`, etc.
+- Short method definition in C# (with no arguments) is called "computed property"
+    - I like this term a lot
+        - Good way to think about it
+            - Not substantially different than properties assigned in constructor
+    - JavaScript "computed properties" are something different
+
+---
+
+# Memoist
+
+~~~ ruby
+extend Memoist
+
+memoize def my_value = computation_of_my_value
+~~~
+
+- 267M downloads
+- Extraction of ActiveSupport::Memoizable
+- Last updated 2020
+- Tested on Ruby 1.9.3 - 2.6
+
+???
+
+- The `memoize` method is really useful
+    - Even works for methods that take arguments
+        - The idiom for that is more complex
+
+------
+
+- https://github.com/matthewrudy/memoist
+
+~~~ ruby
+# Example of memoizing a method that takes arguments
+def volume(height, width, depth)
+  @cache ||= {}
+  @cache[[height, width, depth]] ||= compute_volume
+end
+~~~
+
+---
+
+# Memoizable
+
+~~~ ruby
+extend Memoizable
+
+memoize def my_value = computation_of_my_value
+~~~
+
+- 51M downloads
+- Last updated 2023
+- Tested on Ruby 2.1 - 3.2
+- Mutation tested!
+
+???
+
+- Another option, written from scratch
+- Dan Kubb, a "leader" in FP branch of Ruby community
+- Mutation testing is a good sign
+    - Verifies all possible code paths are covered by tests
+    - Ensures that all code is necessary
+
+------
+
+- https://github.com/dkubb/memoizable
+
+---
+class: transition
+background-image: url(images/data.webp)
+
+# Data Class
+
+???
+
+- Ruby 3.2 introduced a `Data` class
+    - Similar to `Struct`
+    - Immutable
+        - No setters
+        - No behavior
+
+------
+
+- CAVEAT: No enforcement of immutability of member fields
+    - Ie, it's not a "deep freeze"
+
+---
+
+# Data Class - Definition
+
+~~~ ruby
+Person = Data.define(:name, :age)
+
+craig = Person.new(name: "craig", age: "53")
+~~~
+
+???
+
+- Define a Data class with `define` and list of fields
+- Create a new instance with `new` and field values by name
+
+---
+
+# Data Class - Definition
+
+~~~ ruby
+class Person < Data.define(:name, :age)
+end
+
+craig = Person.new(name: "craig", age: "53")
+~~~
+
+???
+
+- We can subclass a Data class
+- Very minor downside:
+    - Adds anonymous class between `Person` and `Data` classes
+        - As seen when looking at `Person.ancestors`
+        - Pretty minor
+- My preferred style
+    - Consistency with other class definitions
+    - I'm questioning this now
+
+---
+
+# Data Class - Definition
+
+~~~ ruby
+class Person < Data.define(:name, :age)
+  def initialize(name:, age:)
+    super(name: name.to_s.capitalize, age: age.to_i)
+  end
+end
+
+craig = Person.new(name: "craig", age: "53")
+~~~
+
+???
+
+- Can override initializer
+- In example, normalize name and age
+
+---
+
+# Data Class - Definition
+
+~~~ ruby
+Person = Data.define(:name, :age) do
+  def initialize(name:, age:)
+    super(name: name.to_s.capitalize, age: age.to_i)
+  end
+end
+
+craig = Person.new(name: "craig", age: "53")
+~~~
+
+???
+
+- Or can pass a block to `Data.define`
+    - Add and override methods
+- Downside: `Person` is not defined until after the block
+    - So we can't refer to `Person` inside the block
+        - But we'd normally use `self` anyway
+
+---
+
+# Data Class - Definition
+
+~~~ ruby
+Person = Data.define(:name, :age) do
+  def initialize(name:, age:)
+    super(name: name.to_s.capitalize, age: age.to_i)
+  end
+end
+
+craig = Person[name: "craig", age: "53"]
+~~~
+
+???
+
+- Data class allows using `[]` instead of `new`
+- Upside:
+    - Think of value objects distinct from AR entities and service objects
+
+---
+
+# Data Class - Definition
+
+~~~ ruby
+Person = Data.define(:name, :age) do
+  def initialize(name:, age:)
+    super(name: name.to_s.capitalize, age: age.to_i)
+  end
+end
+
+Craig = Person[name: "craig", age: "53"]
+~~~
+
+???
+
+- The result is immutable
+    - Might use a constant instead of variable
+
+---
+class: single-image
+
+![Domain-Driven Design book by Eric Evans](images/domain-driven-design.jpg)
+
+???
+
+- in DDD, Evans divides objects into 3 categories:
+    - Value Object
+        - Immutable state
+        - No behavior
+    - Entity
+        - Identity
+        - Mutable state
+    - Service Object
+        - Behavior
+        - Side effects
+        - Like an actor in an actor model
+            - Analogous to process in Erlang VM
+
+---
+
+# Value Object
+
+- Value Object
+    - Immutable state
+    - No behavior
+
+???
+
+- What is "behavior"?
+    - Change object's state
+    - Side effects
+    - Interaction with outside world
+- Easier to reason about
+    - No state changes
+    - No side effects
+- Easier to test
+    - No need to set up state
+    - No need to check state changes
+    - For given input, always get same output
+- Transforms input to output
+    - Like a pure function
+    - Functional Programming
+
+---
+class: transition
+background-image: url(images/functional-programming.webp)
+
+# Functional Programming
+
+???
+
+- QUESTION: Is Ruby OOP or FP?
+    - Both!
+
+---
+
+# FP in Ruby
+
+~~~ ruby
+x = [1, 2, 3]
+
+y = x.map { |n| n * 2 }
+~~~
+
+???
+
+- Ruby's FP is most commonly used with enumerables
+    - Array, Hash, Range, etc.
+- `map` is an FP concept
+    - It transforms the data
+
+---
+
+# Procedural Programming
+
+~~~ ruby
+x = [1, 2, 3]
+
+y = []
+x.each do |n|
+  y << n * 2
+end
+~~~
+
+???
+
+- Ruby is also a procedural language
+- `each` indications procedural code
+    - Its side effects are its reason for being
+
+---
+
+# FP vs Procedural
+
+~~~ ruby
+x = [1, 2, 3]
+
+y = []
+x.each do |n|
+  y << n * 2
+end
+~~~
+
+~~~ ruby
+x = [1, 2, 3]
+
+y = x.map { |n| n * 2 }
+~~~
+
+???
+
+- Both examples return same result
+- But 2nd example does not mutate original data
+    - It doesn't mutate **anything**
+- No worrying if something else modifies `y`
+- Don't have to worry about side effects
+    - Can reason about code more easily
+
+---
+
+# Mutation
+
+~~~ ruby
+x = [1, 2, 3]
+x.map! { |n| n * 2 }
+x.sort!
+~~~
+
+???
+
+- Ruby has quite a few methods that mutate variables in-place
+    - Note that we don't use these much any more
+- But we do still mutate arrays and hashes a lot
+
+---
+class: transition
+background-image: url(images/lazy-couch.png)
+
+# Lazy Enumerators
+
+???
+
+- Lazy enumerators have been around since Ruby 2.0
+- These are more traditional "lazy" evaluation
+
+---
+
+# Lazy Evaluation
+
+- Delay evaluation of an expression until its value is needed
+
+???
+
+- Traditional definition of "lazy" evaluation
+- A little different than my earlier definition
+    - This is focused on expressions
+
+---
+
+# Lazy Enumerator
+
+~~~ ruby
+(1..Float::INFINITY).select { |n| n.odd? }.first(5)
+~~~
+
+~~~ ruby
+(1..Float::INFINITY).lazy.select { |n| n.odd? }.first(5)
+~~~
+
+???
+
+- The top code will run forever
+    - It will never finish the `select`
+- The bottom code will stop after returning the first 5 odd numbers
+    - The `lazy` returns an Enumerator::Lazy object
+    - Enumerator::Lazy will not execute any blocks until they're needed
+
+---
+
+# ActiveRelation
+
+~~~ ruby
+Person.all.where(title: "Software Engineer").order(:tenure).to_a
+~~~
+
+???
+
+- No examples that aren't a Range or finding the first _n_ things in file
+- ActiveRecord is lazy, in its own way!
+    - Doesn't execute query until you ask for results
+- ActiveRel - uses "relational algebra" (via builder pattern) to build up query
+    - `all` returns a new relation
+    - `where` returns a new relation
+    - `order` returns a new relation
+    - `to_a` executes the query and returns result as array
+
+------
+
+- Nice article on lazy vs eager performance: https://betterprogramming.pub/how-lazy-evaluation-works-in-ruby-a90237e99ac3
+
+---
+class: transition
+background-image: url(images/ask-vs-tell.webp)
+
+# Tell vs. Ask
+
+???
+
+---
+
+# Tell, Don't Ask
+
+~~~ ruby
+class SystemMonitor
+  def check_for_overheating
+    sound_alarm if temperature > 100
+  end
+end
+
+monitor = SystemMonitor.new
+monitor.check_for_overheating
+~~~
+
+???
+
+- OOP says "tell, don't ask"
+    - An object should contain everything it needs to do something
+        - We tell it to do that thing
+    - We don't ask it for information and then do something with that information
+- All procedural code can be seen as telling
+    - We tell the computer **how** to do something
+
+---
+
+# Violating Tell, Don't Ask
+
+~~~ ruby
+class SystemMonitor
+  attr_reader :temperature
+
+  def sound_alarm
+    Klaxon.blare!
+  end
+end
+
+monitor = SystemMonitor.new
+monitor.sound_alarm if monitor.temperature > 100
+~~~
+
+???
+
+- Violation of Single Responsibility Principle
+- Violation of encapsulation
+
+# Ask, Don't Tell
+
+~~~ ruby
+x.map do { |n| n * 2 }
+~~~
+
+???
+
+- FP says do the opposite
+- Declarative code
+    - We ask the computer **what** to do
+    - We don't tell it **how** to do it
+
+---
+
+# Ask, Don't Tell
+
+~~~ ruby
+~~~
+
+???
+
+- TODO
+- You can't tell an immutable object to change itself
+    - You can ask it to give you a new object with the change
+
+---
+class: single-image
+
+![Boundaries by Gary Bernhardt](images/boundaries-gary-bernhardt.png)
+
+???
+
+- QUESTION: Who has seen this talk?
+- Gary Bernhardt's "Boundaries" talk
+    - I watch on a yearly rotation
+    - Functional Core: Ask
+        - Data objects
+    - Imperative Shell: Tell
+        - Actors (Services)
+
+------
+
+- https://www.destroyallsoftware.com/talks/boundaries
+
+---
+
+class: transition
+
+# Better
+
+???
+
+- What does it mean for code to be "better"?
+
+---
+
+# Better
+
+- Readable
+- Understandable
+- Maintainable
+
+???
+
+- We often talk about "readability"
+- But it's really about whether it's easy to **understand**
+- And to maintain
+- How easily can someone else understand the code and make changes?
+
+---
+
+# Better
+
+- Easy to change
+
+???
+
+- What we really care about:
+    - How easy is it to **change** our code?
+- Because all software _evolves_
+
+---
+
+# Better
+
+- Socially accepted
+
+???
+
+- There's also a social aspect
+- _We_ don't use `for` loops in Ruby any more
+
+---
+class: transition
+background-image: url(images/cocktail-on-beach.jpg)
+
+# Laziness-Driven Development
+
+???
+
+- Thinking back to Larry Wall's quote ...
+
+---
+class: quote
+
+> Simplicity — the art of maximizing the amount of work not done — is essential.
+<cite> -- Agile Manifesto, principle 10</cite>
+
+???
+
+- I'm reminded of quote from Agile Manifesto
+
+---
+
+# Laziness-Driven Development
+
+- README-Driven Development
+- Test-Driven Development
+    - Behavior-Driven Development
+    - Acceptance Test-Driven Development
+- Data-Driven Development
+- Model-Driven Development
+
+???
+
+- I like README-Driven Development
+- I love TDD
+    - And its offshoots, BDD and Acceptance Test-Driven Development
+- Data-Driven and Model-Driven Development are things
+    - Probably worth looking into
+- Maybe Laziness-Driven Development should be a thing
+
+---
+
+# Lazy Manifesto
+
+We are uncovering lazier ways of developing valuable products by doing it.
+We have come to value:
+
+- Keeping slack over fully utilizing all the time
+- A small simple quality product over a large complex product
+- Doing only what's necessary over exhaustively discovering all task
+- Doing less to deliver the same over doing more to deliver more
+
+That is, while there is value in the items on the right, we value the items on the left more.
+
+???
+
+- I googled to see if this already exists
+- Found Manifesto for Lazy Product Development
+    - http://lazymanifesto.org/
+
+- Simplicity and quality
+- Keeping slack ensures that we can handle unexpected events
+
+---
+
+# Lazy Manifesto Principles
+
+- Work hard only to make work easier and safer
+- Doing nothing is always an option
+- Minimize backlog items while keeping the value
+- Keeping velocity increasing is not always good
+- Eliminate tasks that generate no value
+- Combine tasks to reduce latency and rework
+- Rearrange tasks to find problems early
+- Simplify all tasks as much as possible
+- Eliminate tasks/processes by finding lazier ways
+- Expand capabilities, not capacities
+- Get help from others while providing help to others with minimum effort
+
+---
+
+# Laziness-Driven Development
+
+- Prefer
+    - Outcomes
+    - Business value
+    - Effectiveness
+- Over
+    - Work
+    - Output
+    - Productivity
+    - Efficiency
+
+???
+
+- Here's my take
+- We want to do less work, but still make the customer happy
+- How?
+    - Focus on outcomes
+    - Effectiveness over efficiency
+- Happy developers
+
+---
+
+# Lean/Kanban - Waste
+
+- WIP
+- Complex processes
+    - Context switching
+    - Maker vs Manager time
+    - Waiting for answers
+    - Waiting for feedback
+- Meetings
+- Unused features
+- Bugs
+- Unnecessary code, testing, documentation
+
+???
+
+- Lean/Kanban tells us to eliminate waste
+- Where do we find waste?
+- Lean says that all work in progress is waste
+- Every time we change tasks, we have to pull context back into our mental state
+- Maker vs Manager time
+    - Makers need long blocks of time to get into flow
+    - Managers need short blocks of time to answer questions
+- Most meetings are waste, can we agree?
+- Unused features probably cost more than bugs
+    - Dev time
+    - Carrying costs
+- Most testing is **necessary** automation and documentation
+    - Document what code is **supposed** to do
+
+---
+
+# LDD - Principles
+
+- Choose long-term value over short-term costs
+- Do the right things, well
+- Collaboration increases effectiveness
+- Automate!
+
+???
+
+- When we think long-term, we make better decisions
+- We often do the wrong things
+    - Don't take time to understand problem
+    - Build wrong thing
+    - Don't do a good job
+- Collaboration and pair programming reduce waste
+    - No time spent waiting for answers
+    - More eyes to catch mistakes
+    - Build on each other's ideas
+- Automate when cost of **not** doing so outweighs the cost of doing it
+    - Same for abstraction, documentation, testing, etc
+    - Keep YAGNI in mind
+    - Rule of 3
+
+---
+
+# LDD - Principles
+
+- Continuous learning and improvement
+- Code is a liability
+- Consider risks
+- Make things easy to change
+- Don't be lazy about **thinking**!
+
+???
+
+- Think about the next person who has to read this code
+    - Optimize for their time
+    - Likely "future-you"
+        - Always be kind to "future-you"
+            - "Past-me" was a jerk!
+            - Save time by making sure "future-you" can understand you
+                - Make sure to document **why** you did things the way you did
+- Cold is not just a one-time cost
+    - It has to be tested, maintained, readable, etc.
+    - So we want to minimize the amount of code we write and maintain
+        - Using libraries and frameworks allows us to offload that work
+            - Keeping libraries and frameworks up to date has a cost, too
+        - Better abstractions allow us to write less code
+            - And code that's easier to understand
+
+---
+class: quote
+
+> Make the change easy, then make the easy change.
+<cite>-- Kent Beck</cite>
+
+---
+class: transition
+background-image: url(images/6736130025_ac5e197e22_b.jpg)
+
+# Conclusions
+
+---
+
+# Conclusions
+
+- Functional core vs imperative shell
+- Think long-term
+- Delay work until necessary
+- Our real job is to learn
+
+???
+
+- Functional core vs imperative shell
+- Think long-term
+- I'm reminded of Lean's "last responsible moment"
+
+---
+
+# Resources
+
+- Gary Bernhardt's "Boundaries" talk
+    - https://www.destroyallsoftware.com/talks/boundaries
+- Data class
+    - https://docs.ruby-lang.org/en/3.2/Data.html
+- Lazy enumerators
+    - https://docs.ruby-lang.org/en/3.2/Enumerator/Lazy.html
+
+---
+
+# Resources
+
+- Domain-Driven Design
+    - https://en.wikipedia.org/wiki/Domain-driven_design
+    - https://martinfowler.com/bliki/DomainDrivenDesign.html
+    - https://www.google.com/books/edition/Domain_Driven_Design/hHBf4YxMnWMC
+- Lazy Manifesto
+    - http://lazymanifesto.org/
+    - https://dev.to/drm317/the-lazy-developer-5goe
+
+---
+
+# Hire Me
+
+- Principal Software Engineer
+
+
+- Ruby/Rails: 18 years
+- Agile: 12 years
+- Devops: 11 years
+- Network Security: 7 years
+
+
+- LinkedIn: https://www.linkedin.com/in/craigbuchek
+- Resume: https://resume.craigbuchek.com
+
+???
+
+- I just wrapped up a short-term contract
+- Looking for my next great opportunity
+
+---
+
+# Feedback
+
+- GitHub: [booch][github]
+- Mastadon: [@CraigBuchek@ruby.social][mastadon]
+- Twitter: [@CraigBuchek][twitter]
+- Email: craig.buchek@gmail.com
+
+
+- Slides: http://craigbuchek.com/laziness
+    - Hit P to see notes
+    - Source: https://github.com/booch/presentations
+
+???
+
+- One reason I give talks at conferences is to start a conversation
+- Come talk to me
+    - Or send me a message
+        - Or a job offer!
+- Thank YOU for coming
+
+------
+
+- Thanks also to:
+    - Rocky Mountain Ruby organizers
+        - For selecting my talk
+
+- I used a tool called [Remark][remark] to create and show these slides.
+- I used ChatGPT to generate some of the images
+    - It's pretty bad at giving me what I ask for
+
+[github]: https://github.com/booch
+[mastadon]: https://ruby.social/@CraigBuchek
+[twitter]: https://twitter.com/CraigBuchek
+[remark]: http://remarkjs.com/

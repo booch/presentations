@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= TITLE %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="slides.css">
+    <!-- <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script> -->
+    <script src="remark-latest.min.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+<%= BODY %>
+    </textarea>
+    <script>
+      var slideshow = remark.create({
+        highlightLines: true,
+        highlightLanguage: "ruby",
+        ratio: "4:3"
+      });
+    </script>
+  </body>
+</html>
