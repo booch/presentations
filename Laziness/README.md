@@ -19,11 +19,7 @@ In this talk, we'll dig into a more functional "lazy" style. Instead of setting 
 - Ask vs Tell
     - Asking is pure FP, with immutability
     - Ask for a transformation
-        - Think of how to determine the result, not the process
-    - When possible, ask
     - Boundaries
-        - Data objects
-        - Actors (Services)
 - Immutability
 - "Better" Styles
     - Readability
@@ -73,17 +69,9 @@ In this talk, we'll dig into a more functional "lazy" style. Instead of setting 
             - Ex: `x = [1, 2, 3].lazy.map { |n| n * 2 }.first`
             - `x` will contain `2`
             - we only evaluated the `map` enough to get the first value
-- Memoization requires the method to be idempotent and pure
-    - idempotent: producing the same result when called multiple times with the same arguments
-        - Ex: `2 * 3` is idempotent
-        - Ex: `Time.now` is not idempotent
-    - pure: no side effects
-        - Ex: `2 * 3` is pure
-        - Ex: `puts "Hello"` is not pure
 - Notice that the methods we're looking at take no arguments
     - They're based solely on the object's state
     - This is a good transition to Entity vs Value Object
-    - Called computed properties in C#
     - Because Ruby follows the uniform access principle, 0-argument methods are the same as getters
     - Other principles:
         - Interface Segregation Principle
@@ -97,10 +85,6 @@ In this talk, we'll dig into a more functional "lazy" style. Instead of setting 
     - TODO: Example using binary to show how shift left is the same as multiply by 2
     - Just ask for what you want - what's the name of the result?
         - That's what we should name the method
-- Data#with
-    - https://docs.ruby-lang.org/en/3.2/Data.html#method-i-with
-    - Warning: shallow copy!
-        - Really only matters if you mutate anything _inside_ of the object's state
 - Properties of objects
 - Ask, don't tell v. Tell, don't ask
     - OOP says "tell, don't ask"
@@ -127,6 +111,10 @@ In this talk, we'll dig into a more functional "lazy" style. Instead of setting 
 
 ## Other Thoughts
 
+- Data#with
+    - https://docs.ruby-lang.org/en/3.2/Data.html#method-i-with
+    - Warning: shallow copy!
+        - Really only matters if you mutate anything _inside_ of the object's state
 - Other laziness
     - UNIX systems don't allocate memory until it's **used**
         - It doesn't allocate any memory when you _ask_ for memory

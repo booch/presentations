@@ -214,7 +214,30 @@ end
 
 ---
 
-# Memoization - Caveats
+# Memoization - Requirements
+
+- Idempotent
+- Pure
+
+~~~ ruby
+2 * 3  # => 6
+2 * 3  # => 6
+
+Time.now  # => 2024-10-07 10:26:43.24013 -0600
+Time.now  # => 2024-10-07 10:26:45.19534 -0600
+
+gets         # => potentially different input every time
+puts "Hello"  # => changes the outside world
+~~~
+
+???
+
+- idempotent: produces same result when called multiple times with same arguments
+- pure: no side effects
+
+---
+
+# Memoization Idiom - Caveats
 
 - ||= does not handle `nil` and `false`
 - Only for values that don't change

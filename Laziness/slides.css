@@ -72,7 +72,7 @@ a:hover {
 
 /* Around the Slides */
 .remark-slides-area {
-    background-color: rgb(137, 155, 187); /* Color of pillarbox on sides of slides */
+    background-color: rgb(140, 200, 250); /* Color of pillarbox on sides of slides */
 }
 
 .remark-slide-scaler {
@@ -113,15 +113,16 @@ pre code.remark-code {
 
 /* Slide background */
 .remark-slide .remark-slide-content {
-    background-color: rgb(137, 155, 187);
+    background-color: rgb(140, 200, 250);
 }
 
 /* Title page */
 .remark-slide .remark-slide-content.title {
-    background-color: rgb(137, 155, 187);
+    background-color: rgb(140, 200, 250);
     color: rgb(180, 0, 0);
-    background-image: url(images/flatirons-boulder-winter.jpeg);
-    background-position: 0 0;
+    background-image: url(images/boulder-flatirons.jpg);
+    background-size: cover;
+    background-position-x: left -400px;
 }
 .remark-slide .remark-slide-content.title img {
     height: 100px;
@@ -132,6 +133,10 @@ pre code.remark-code {
 
 .remark-slide .remark-slide-content.title h1 {
     font-size: 72px;
+}
+.remark-slide .remark-slide-content.title h1,
+.remark-slide .remark-slide-content.title h2 {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 .remark-slide .remark-slide-content.title h1:first {
     margin-top: 160px;
