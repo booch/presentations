@@ -1,7 +1,7 @@
 ---
 ---
 
-# Manifesto for Lazy Product Development
+# Manifesto for Lazy Product Development [original]
 
 - We are uncovering lazier ways of developing valuable products by doing it and
 - Through this work we have come to value:
@@ -15,7 +15,7 @@ this declaration
 
 ---
 
-# Lazy Manifesto Principles
+# Lazy Manifesto Principles [original]
 
 - We work hard only to make our work easier and safer.
 - Doing nothing is always an option.

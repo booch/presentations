@@ -25,7 +25,6 @@ class: title, middle, center
     - Today, I'm going to talk about:
         - laziness
         - functional programming
-        - immutability
         - in Ruby
 - If you want to "at" me, ...
     - I'm on Twitter and Mastodon via ruby.social
@@ -35,6 +34,7 @@ class: title, middle, center
     - Hit `P` to toggle presenter notes
         - Also links to resources
         - ... and some details that I don't have time to cover
+- I took the background image from my hotel this morning!
 
 ---
 class: quote
@@ -50,7 +50,7 @@ class: quote
 
 ------
 
-- _sic_ missing Oxford comma
+- _sic_ missing Oxford comma and extraneous colon
 - Also created Raku (formerly Perl 6)
 - Quote is from the glossary of the first _Programming Perl_ book
     - Per https://en.wikiquote.org/wiki/Larry_Wall
@@ -114,7 +114,8 @@ end
 - We don't!
 - Rails requests are synchronous
     - There is no "ahead of time"
-    - Only needs to be computed by the time it's used
+    - Only need to compute things before they're used
+        - I'm going to argue **right** before they're used
 - This code is more "lazy"
     - Waits to do the computation when it's needed
 
@@ -137,7 +138,7 @@ end
 - But still worrying about it before we need it
 - I contend that this mindset is harmful
     - It's a hold-over from procedural programming
-- At least in this case, we're thinking about current account as a property of the class
+- At least in this case, we're thinking about current account as a property of object
     - Instead of an action that needs to be done
 
 ---
@@ -153,7 +154,7 @@ end
 ???
 
 - Original code had 1 advantage:
-    - Only computed value once
+    - Only computes value once
 - But that's easily solved with memoization
 
 ---
@@ -167,19 +168,20 @@ before_action :set_current_account
 ???
 
 - What does this line tell us when we read it?
-    - We need to set current account before anything else
+    - Need to set current account before anything else
 - It's a lie
-    - Don't need to think about current account until we see it used
-        - If we've named it well, probably don't need to read details
+    - Can forget about current account until we see it used
+        - If we've named it well, probably **never** need to read details
 
 
-- WARNING: Before filters are still useful
+- Controller before filters are still useful
     - For interrupting request before doing any other work
         - Authentication or authorization
         - That's the _filter_ part
     - But not for setting up data
 - NOTE: Instance variables in Rails controllers also get copied to view
     - I recommend using other mechanisms to pass data to views
+        - Passing locals to `render`
         - Labeling helper methods
         - Decent Exposure gem
 
@@ -192,6 +194,30 @@ background-image: url(images/memoization.jpg)
 ???
 
 - More detail on memoization
+
+---
+
+# Memoization - Requirements
+
+- Idempotent
+- Pure
+
+~~~ ruby
+2 * 3  # => 6
+2 * 3  # => 6
+
+Time.now  # => 2024-10-07 10:26:43.24013 -0600
+Time.now  # => 2024-10-07 10:26:45.19534 -0600
+
+gets          # => potentially different input every time
+puts "Hello"  # => changes the outside world
+~~~
+
+???
+
+- Before memoizing, make sure it makes sense
+- Idempotent: produces same result when called multiple times with same arguments
+- Pure: no side effects
 
 ---
 
@@ -208,32 +234,9 @@ end
 - Memoizing caches result of computation
     - Don't have to compute it again
 - Canonical Ruby idiom
-    - `||=` operator only assigns if variable is `nil` or `false`
+    - `||=` operator assigns to variable if variable is `nil` or `false`
+        - Otherwise, results in its existing value
         - Undefined variables are `nil`
-        - Otherwise, return cached value
-
----
-
-# Memoization - Requirements
-
-- Idempotent
-- Pure
-
-~~~ ruby
-2 * 3  # => 6
-2 * 3  # => 6
-
-Time.now  # => 2024-10-07 10:26:43.24013 -0600
-Time.now  # => 2024-10-07 10:26:45.19534 -0600
-
-gets         # => potentially different input every time
-puts "Hello"  # => changes the outside world
-~~~
-
-???
-
-- idempotent: produces same result when called multiple times with same arguments
-- pure: no side effects
 
 ---
 
@@ -245,10 +248,11 @@ puts "Hello"  # => changes the outside world
 
 ???
 
-- Standard Ruby memoization idiom doesn't handle `nil` and `false`
+- Basic Ruby memoization idiom doesn't handle `nil` or `false`
     - Rarely a concern
         - True/false answers are usually quick to compute
         - Nil is often quick to compute
+        - Nil might even indicate to try again
 
 ------
 
@@ -272,10 +276,11 @@ end
 
 - Here's a longer version that handles `nil` and `false`
 - Also good if method is > 1 line
+- Ruby's `defined?` is a complex story unto itself
 
 ---
 
-# Memoization - ActiveSupport
+# Memoize - ActiveSupport
 
 - ActiveSupport::Memoizable
     - Deprecated in Rails 3.2!
@@ -304,13 +309,13 @@ memoize def my_value = computation_of_my_value
 ???
 
 - Method definition actually returns the name of the method
-    - So we can use it as an argument to `memoize`
-- We can use Ruby 3.0 short method definition
+    - Can use it as an argument to `memoize`
+- Can use Ruby 3.0 short method definition
+- This use of `memoize` looks like a variable type qualifier or attribute in C/C++
+    - `const`, `static`, `extern`, `volatile`, etc.
 
 ------
 
-- This use of `memoize` looks like a variable type qualifier or attribute in C/C++
-        - `const`, `static`, `extern`, `volatile`, etc.
 - Short method definition in C# (with no arguments) is called "computed property"
     - I like this term a lot
         - Good way to think about it
@@ -337,6 +342,9 @@ memoize def my_value = computation_of_my_value
 - The `memoize` method is really useful
     - Even works for methods that take arguments
         - The idiom for that is more complex
+- Memoist lets us keep using it
+- Possibly out of date
+    - Popular
 
 ------
 
@@ -367,8 +375,9 @@ memoize def my_value = computation_of_my_value
 
 ???
 
-- Another option, written from scratch
+- Memoizable is another option, written from scratch
 - Dan Kubb, a "leader" in FP branch of Ruby community
+- More up to date
 - Mutation testing is a good sign
     - Verifies all possible code paths are covered by tests
     - Ensures that all code is necessary
@@ -409,11 +418,12 @@ craig = Person.new(name: "craig", age: "53")
 ???
 
 - Define a Data class with `define` and list of fields
-- Create a new instance with `new` and field values by name
+- Create a new instance with `new`
+    - Pass field values by name
 
 ---
 
-# Data Class - Definition
+# Data Class - Subclass
 
 ~~~ ruby
 class Person < Data.define(:name, :age)
@@ -425,17 +435,15 @@ craig = Person.new(name: "craig", age: "53")
 ???
 
 - We can subclass a Data class
+- My preferred style
+    - Consistent syntax as other class definitions
 - Very minor downside:
     - Adds anonymous class between `Person` and `Data` classes
         - As seen when looking at `Person.ancestors`
-        - Pretty minor
-- My preferred style
-    - Consistency with other class definitions
-    - I'm questioning this now
 
 ---
 
-# Data Class - Definition
+# Data Class - Extended Subclass
 
 ~~~ ruby
 class Person < Data.define(:name, :age)
@@ -454,7 +462,7 @@ craig = Person.new(name: "craig", age: "53")
 
 ---
 
-# Data Class - Definition
+# Data Class - Extended Definition
 
 ~~~ ruby
 Person = Data.define(:name, :age) do
@@ -470,13 +478,14 @@ craig = Person.new(name: "craig", age: "53")
 
 - Or can pass a block to `Data.define`
     - Add and override methods
-- Downside: `Person` is not defined until after the block
+- Minor downside: `Person` is not defined until after the block
     - So we can't refer to `Person` inside the block
         - But we'd normally use `self` anyway
+- Bigger downside: always forgetting `do`
 
 ---
 
-# Data Class - Definition
+# Data Class - Square Brackets
 
 ~~~ ruby
 Person = Data.define(:name, :age) do
@@ -492,11 +501,11 @@ craig = Person[name: "craig", age: "53"]
 
 - Data class allows using `[]` instead of `new`
 - Upside:
-    - Think of value objects distinct from AR entities and service objects
+    - Value objects **visibly** distinct from mutable objects
 
 ---
 
-# Data Class - Definition
+# Data Class - Constant?
 
 ~~~ ruby
 Person = Data.define(:name, :age) do
@@ -510,8 +519,8 @@ Craig = Person[name: "craig", age: "53"]
 
 ???
 
-- The result is immutable
-    - Might use a constant instead of variable
+- Use a constant instead of variable?
+    - Immutable implies constant
 
 ---
 class: single-image
@@ -520,12 +529,17 @@ class: single-image
 
 ???
 
-- in DDD, Evans divides objects into 3 categories:
+- Domain-Driven Design is a great book
+    - By Eric Evans
+    - Top 10 book
+    - How to divide up our code cleanly
+- Divides objects into 3 categories:
     - Value Object
         - Immutable state
         - No behavior
     - Entity
         - Identity
+            - Ship of Theseus
         - Mutable state
     - Service Object
         - Behavior
@@ -543,10 +557,6 @@ class: single-image
 
 ???
 
-- What is "behavior"?
-    - Change object's state
-    - Side effects
-    - Interaction with outside world
 - Easier to reason about
     - No state changes
     - No side effects
@@ -554,9 +564,13 @@ class: single-image
     - No need to set up state
     - No need to check state changes
     - For given input, always get same output
-- Transforms input to output
-    - Like a pure function
-    - Functional Programming
+- What is "behavior"?
+    - Change object's state
+    - Side effects
+    - Interaction with outside world
+- Methods included should:
+    - Transform inputs to outputs
+    - Be pure functions
 
 ---
 class: transition
@@ -566,6 +580,7 @@ background-image: url(images/functional-programming.webp)
 
 ???
 
+- Which brings us to Functional Programming
 - QUESTION: Is Ruby OOP or FP?
     - Both!
 
@@ -629,9 +644,9 @@ y = x.map { |n| n * 2 }
 - Both examples return same result
 - But 2nd example does not mutate original data
     - It doesn't mutate **anything**
-- No worrying if something else modifies `y`
-- Don't have to worry about side effects
-    - Can reason about code more easily
+    - No worrying if something else modifies `y`
+    - Don't have to worry about side effects
+        - Can reason about code more easily
 
 ---
 
@@ -647,7 +662,13 @@ x.sort!
 
 - Ruby has quite a few methods that mutate variables in-place
     - Note that we don't use these much any more
-- But we do still mutate arrays and hashes a lot
+- Still mutate contents of arrays, hashes
+- Still mutate ActiveRecord objects a lot
+
+
+- BTW, Phoenix/Elixir doesn't mutate their domain objects
+    - Instead, the send change requests to the DB
+    - Provides immutability benefits to most domain objects
 
 ---
 class: transition
@@ -658,7 +679,6 @@ background-image: url(images/lazy-couch.png)
 ???
 
 - Lazy enumerators have been around since Ruby 2.0
-- These are more traditional "lazy" evaluation
 
 ---
 
@@ -668,7 +688,7 @@ background-image: url(images/lazy-couch.png)
 
 ???
 
-- Traditional definition of "lazy" evaluation
+- Traditional definition of "lazy" -- lazy evaluation
 - A little different than my earlier definition
     - This is focused on expressions
 
@@ -702,8 +722,10 @@ Person.all.where(title: "Software Engineer").order(:tenure).to_a
 
 ???
 
-- No examples that aren't a Range or finding the first _n_ things in file
-- ActiveRecord is lazy, in its own way!
+- Could not find examples that aren't
+    - a Range
+    - or finding the first _n_ things in file
+- I realized that ActiveRecord is lazy, in its own way!
     - Doesn't execute query until you ask for results
 - ActiveRel - uses "relational algebra" (via builder pattern) to build up query
     - `all` returns a new relation
@@ -787,13 +809,17 @@ x.map do { |n| n * 2 }
 # Ask, Don't Tell
 
 ~~~ ruby
+Craig = Person[first_name: "craig", last_name: "buchek", age: "53"]
+Craig.full_name         # => "Craig Buchek"
+Craig.spouse.full_name  # => "Beth Buchek"
+Greg = Craig.with(first_name: "Greg")
 ~~~
 
 ???
 
-- TODO
 - You can't tell an immutable object to change itself
-    - You can ask it to give you a new object with the change
+    - You can ask it to give you a new object
+    - You can then persist that new object, if you want
 
 ---
 class: single-image
@@ -815,8 +841,8 @@ class: single-image
 - https://www.destroyallsoftware.com/talks/boundaries
 
 ---
-
 class: transition
+background-image: url(images/better-homes-and-gardens.jpg)
 
 # Better
 
@@ -826,7 +852,7 @@ class: transition
 
 ---
 
-# Better
+# Better - Readability
 
 - Readable
 - Understandable
@@ -836,12 +862,12 @@ class: transition
 
 - We often talk about "readability"
 - But it's really about whether it's easy to **understand**
-- And to maintain
-- How easily can someone else understand the code and make changes?
+    - And to maintain
+- How easily can someone else understand code and make changes?
 
 ---
 
-# Better
+# Better - Changability
 
 - Easy to change
 
@@ -852,15 +878,41 @@ class: transition
 - Because all software _evolves_
 
 ---
+class: quote
 
-# Better
+> Make the change easy, then make the easy change.
+<cite>-- Kent Beck</cite>
+
+---
+
+# Better - Social
 
 - Socially accepted
 
 ???
 
 - There's also a social aspect
-- _We_ don't use `for` loops in Ruby any more
+- We don't use `for` loops in Ruby any more
+
+---
+
+# Better - Example
+
+~~~ ruby
+private def my_method = do_some_stuff
+~~~
+
+???
+
+- I've used this in code above
+- Put the `private` right next to the definition
+    - Makes it obvious
+    - Can move methods around in a big file
+        - Without worrying if it's in the `private` section
+    - WARNING: RuboCop does not like this!
+- Short methods are more readable
+    - Refactor relentlessly -- try to get to 1-line methods
+- Optimize style for readability and error avoidance
 
 ---
 class: transition
@@ -1001,8 +1053,7 @@ That is, while there is value in the items on the right, we value the items on t
 
 - Choose long-term value over short-term costs
 - Do the right things, well
-- Collaboration increases effectiveness
-- Automate!
+- Automate
 
 ???
 
@@ -1024,10 +1075,12 @@ That is, while there is value in the items on the right, we value the items on t
 
 # LDD - Principles
 
-- Continuous learning and improvement
 - Code is a liability
 - Consider risks
 - Make things easy to change
+
+- Collaboration increases effectiveness
+- Continuous learning and improvement
 - Don't be lazy about **thinking**!
 
 ???
@@ -1048,12 +1101,6 @@ That is, while there is value in the items on the right, we value the items on t
             - And code that's easier to understand
 
 ---
-class: quote
-
-> Make the change easy, then make the easy change.
-<cite>-- Kent Beck</cite>
-
----
 class: transition
 background-image: url(images/6736130025_ac5e197e22_b.jpg)
 
@@ -1061,10 +1108,11 @@ background-image: url(images/6736130025_ac5e197e22_b.jpg)
 
 ---
 
-# Conclusions
+# Take-Aways
 
 - Functional core vs imperative shell
 - Think long-term
+- Code is always changing
 - Delay work until necessary
 - Our real job is to learn
 
@@ -1072,6 +1120,7 @@ background-image: url(images/6736130025_ac5e197e22_b.jpg)
 
 - Functional core vs imperative shell
 - Think long-term
+- Remember that code is always changing
 - I'm reminded of Lean's "last responsible moment"
 
 ---
@@ -1117,6 +1166,7 @@ background-image: url(images/6736130025_ac5e197e22_b.jpg)
 
 - I just wrapped up a short-term contract
 - Looking for my next great opportunity
+    - I prefer the role of a player-coach
 
 ---
 
