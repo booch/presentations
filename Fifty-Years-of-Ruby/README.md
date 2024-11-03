@@ -66,16 +66,15 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
     - Today: you tell it what should run at compile time
     - Future: let the compiler run whatever it thinks is best
 4. Slide: XR, new Meta concept, Apple XR, Oculus, etc
-5. Slide about Mac?
-6. Make Headings stay at the top of the page consistently
-7. Fix colors in header/footers
-8. Add "RubyConf 2024" to title page
-9. Make quotes look nicer
-10. Add a header with the date?
+5. Make Headings stay at the top of the page consistently
+6. Fix colors in header/footers
+7. Add "RubyConf 2024" to title page
+8. Make quotes look nicer
+9.  Add a header with the date?
     - or the title
     - or RubyConf 2024
-11. Create a thumbnail of the presentation
+10. Create a thumbnail of the presentation
     - `marp --image=png slides.md -o og-image.png`
     - generate slide-show with `--og-image=og-image.png`
     - or add `image: og-image.png` to marp.yml
-12. Makefile?
+11. Makefile?

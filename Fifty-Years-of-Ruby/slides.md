@@ -30,6 +30,7 @@ url: https://craigbuchek.com/fifty
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 
 > The best way to predict the future is to invent it.
 
@@ -46,10 +47,9 @@ url: https://craigbuchek.com/fifty
 
 ---
 <!-- _backgroundColor: black -->
-# 1995: Ruby
-
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg 60%](assets/Yukihiro-Matsumoto-2011.jpg)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# 1995: Ruby
 
 <!--
 - December 21, 1995
@@ -72,8 +72,9 @@ url: https://craigbuchek.com/fifty
 -->
 
 ---
-# 1968: Mother of All Demos
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg](assets/mother-of-all-demos-keyboard.jpg)
+# 1968: Mother of All Demos
 
 <!-- 
 - 1968: Mother of All Demos
@@ -99,6 +100,7 @@ url: https://craigbuchek.com/fifty
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # 1942: As We May Think
 
 <!-- 
@@ -147,6 +149,7 @@ url: https://craigbuchek.com/fifty
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 
 > Wholly new forms of encyclopedias will appear, 
 > ready-made with a mesh of associative trails running through them,
@@ -159,33 +162,11 @@ url: https://craigbuchek.com/fifty
 -->
 
 ---
-# Alan Kay
-![bg left](assets/Alan_Kay_(3097597186)_(cropped).jpg)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+![bg](assets/PARC-campus.jpg)
+# 1969: Xerox PARC
 
 <!--
-- Attended MoAD
-- Degree in Molecular Biology
-- Where
-    - Stanford Artificial Intelligence Lab (1969)
-    - Xerox PARC (1970-1981)
-    - Atari (1981-1984)
-    - Apple (1984-1996)
-    - Disney (1997-2002)
-- Squeak (1995)
-- GUI
-- OOP
-- Dynabook (1972)
-    - OLPC: One laptop per child (2005)
-    - Key to everything: GUI, UX, OOP
-- https://tinlizzie.org/IA/index.php/Talks_by_Alan_Kay
-- https://www.quora.com/profile/Alan-Kay-11
-- Photo credit: https://commons.wikimedia.org/wiki/File:Alan_Kay_(3097597186)_(cropped).jpg
--->
-
----
-# 1973: Xerox PARC
-
-<!-- 
 - Xerox Palo Alto Research Center
 - Lots of people from SRI's Augmentation Research Center
 - Innovations:
@@ -194,6 +175,52 @@ url: https://craigbuchek.com/fifty
     - Ethernet
     - Real-time video conferencing
     - Interactive editing
+-->
+
+---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+![bg left](assets/Alan_Kay_(3097597186)_(cropped).jpg)
+# Alan Kay
+
+<!--
+- Attended MoAD
+- Degree in Molecular Biology
+- Where
+    - Stanford AI Lab (1969)
+    - Xerox PARC (1970-1981)
+    - Atari (1981-1984)
+    - Apple (1984-1996)
+    - Disney (1997-2002)
+- Squeak (1995)
+- https://tinlizzie.org/IA/index.php/Talks_by_Alan_Kay
+- https://www.quora.com/profile/Alan-Kay-11
+- Photo credit: https://commons.wikimedia.org/wiki/File:Alan_Kay_(3097597186)_(cropped).jpg
+-->
+
+---
+![bg height:100%](assets/First-Dynabook-idea.webp)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# 1972: Dynabook
+
+<!--
+- 1968: Alan Kay had an idea
+    - This cartoon and cardboard mockup
+- First paper on it: 1972
+    - Named it Dynabook
+- ARPA: “interactive intellectual amplifiers pervasively networked worldwide"
+- OLPC: One laptop per child (2005)
+- Key to everything:
+    - GUI, windows, icons, mouse, UX
+    - OOP
+- Image credit: https://www.quora.com/What-lessons-were-learned-in-aspiring-towards-the-DynaBook-and-have-any-of-its-original-goals-become-dated/answer/Alan-Kay-11
+-->
+
+---
+![bg height:151%](assets/xerox-alto.webp)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# 1973: Xerox Alto
+
+<!-- 
 - Xerox Alto
     - Introduced March 1, 1973
     - $32k ($100k+ today)
@@ -204,15 +231,17 @@ url: https://craigbuchek.com/fifty
     - About 2000 made
         - Mostly used at Xerox and universities
     - Byte magazine in 1981:
-        "It is unlikely that a person outside of the computer-science research community will ever be able to buy an Alto. They are not intended for commercial sale, but rather as development tools for Xerox, and so will not be mass-produced. What makes them worthy of mention is the fact that a large number of the personal computers of tomorrow will be designed with knowledge gained from the development of the Alto."
+        - "It is unlikely that a person outside of the computer-science research community
+            - will ever be able to buy an Alto.
+            - They are not intended for commercial sale, 
+            - but rather as development tools for Xerox, 
+            - and so will not be mass-produced.
+            - What makes them worthy of mention is the fact that
+            - a large number of the personal computers of tomorrow
+            - will be designed with knowledge gained from the development of the Alto."
     - Keyboard, mouse (3 buttons), key chorder (5 keys)
     - Size of a small refrigerator
     - Ethernet
-- Steve Jobs and Apple folks visited in 1979 (twice)
-    - Xerox received some Apple stock options
-    - Inspired the Mac
-    - Smalltalk-76, networking, mouse-driven WYSIWYG GUI
-    - "Xerox could have owned the entire computer industry, could have been the IBM of the nineties, could have been the Microsoft of the nineties." -- Steve Jobs
 - Niklaus Wirth had sabbaticals there in 1976-1977 and 1985
     - Inspired him to build DISER Lilith (1980)
     - Inspired him to create Oberon programming language
@@ -229,6 +258,20 @@ url: https://craigbuchek.com/fifty
 -->
 
 ---
+![bg](assets/Macintosh.jpg)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# Macintosh
+
+<!--
+- Steve Jobs and Apple folks visited PARC in 1979 (twice)
+    - Xerox received some Apple stock options
+    - Inspired the Mac
+    - Smalltalk-76, networking, mouse-driven WYSIWYG GUI
+    - "Xerox could have owned the entire computer industry, could have been the IBM of the nineties, could have been the Microsoft of the nineties." -- Steve Jobs
+-->
+
+---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Smalltalk
 
 <!--
@@ -236,6 +279,7 @@ url: https://craigbuchek.com/fifty
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Smalltalk-72
 
 ~~~ smalltalk-72
@@ -270,6 +314,7 @@ to for token step stop var start exp (:👉var.
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Smalltalk-76
 
 ~~~ smalltalk-76
@@ -304,6 +349,7 @@ Point arithmetic
 
 ---
 ![bg left w:80%](assets/Smalltalk-80-book.jpg)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Smalltalk-80
 
 <!--
@@ -314,6 +360,7 @@ Point arithmetic
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # OOP
 
 TODO: picture
@@ -334,6 +381,7 @@ TODO: picture
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Simula 67
 
 ~~~ simula-67
@@ -371,6 +419,7 @@ End of Rectangle;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Simula 67
 
 ~~~ simula-67
@@ -400,6 +449,7 @@ End of LocRectangle;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # 1995: Celebrating 25 Years of Smalltalk
 
 <!--
@@ -414,6 +464,7 @@ End of LocRectangle;
 
 ---
 ![bg left w:80%](assets/Smalltalk-Best-Practice-Patterns.jpg)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Smalltalk Best Practice Patterns
 
 <!--
@@ -428,8 +479,9 @@ End of LocRectangle;
 -->
 
 ---
-# Pickaxe Book
 ![bg left w:80%](assets/Programming-Ruby-1st-ed.jpg)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# Pickaxe Book
 
 <!--
 - December 15, 2000
@@ -442,8 +494,9 @@ End of LocRectangle;
 -->
 
 ---
-# 2004: Ruby on Rails
 ![bg left](assets/dhh-headshot-2017-full.jpg)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# 2004: Ruby on Rails
 
 <!--
 - David Heinemeier Hansson
@@ -456,8 +509,9 @@ End of LocRectangle;
 -->
 
 ---
-# 2005: Agile Web Development with Rails
 ![bg left top:0](assets/Agile-Web-Development-with-Rails-1st-ed.jpg)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# 2005: Agile Web Development with Rails
 
 <!--
 - Dave Thomas (Pragmatic Dave)
@@ -467,8 +521,9 @@ End of LocRectangle;
 -->
 
 ---
-# 2007: Avi Bryant at RailsConf
 ![bg](assets/Avi-Bryant-keynote-RailsConf-2007.png)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# 2007: Avi Bryant at RailsConf
 
 - TODO: Crop off the bottom of the image, so we can see the top of the picture
 - TODO: Story about this talk
@@ -478,6 +533,7 @@ End of LocRectangle;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Ruby was a **rediscovery** of Smalltalk
 
 <!--
@@ -485,9 +541,11 @@ End of LocRectangle;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # FP
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Newer Ruby Features
 
 - Refinements
@@ -507,6 +565,7 @@ End of LocRectangle;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Squeak
 
 - Modern Smalltalk
@@ -517,6 +576,7 @@ End of LocRectangle;
 - OpenSmalltalk Virtual Machine
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 <div class="columns">
 <div>
 
@@ -550,6 +610,7 @@ x = [] of Int32;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Elixir
 
 - FP
@@ -573,6 +634,7 @@ x = [] of Int32;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Rust
 
 - Fast and memory-efficient
@@ -587,6 +649,7 @@ x = [] of Int32;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Zig
 
 - Low-level
@@ -601,6 +664,7 @@ x = [] of Int32;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Nim
 
 - Compiled
@@ -615,6 +679,7 @@ x = [] of Int32;
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Other
 
 - Roc
@@ -633,6 +698,7 @@ https://www.gleam.run/
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Take-aways
 
 - Good solutions are rediscovered
@@ -658,6 +724,7 @@ https://www.gleam.run/
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 
 > A change in perspective is worth 80 IQ points.
 
@@ -669,6 +736,7 @@ https://www.gleam.run/
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 
 > Technology is anything invented after you were born.
 
@@ -681,6 +749,7 @@ https://www.gleam.run/
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 
 > The best way to predict the future is to invent it.
 
@@ -701,6 +770,7 @@ https://www.gleam.run/
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Thank You
 
 * Attendees
@@ -712,6 +782,7 @@ https://www.gleam.run/
     - Mikhail Pasichniuk
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Come talk to me!
 
 <div class="columns">
@@ -737,6 +808,7 @@ Tell me about:
 </div></div>
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Colophon
 
 - [Marp](https://marp.app/) (https://marp.app/)
@@ -744,6 +816,7 @@ Tell me about:
 - Source: https://github.com/booch/presentations/
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Contact Info
 
 - GitHub: [booch](https://github.com/booch), [boochtek](https://github.com/boochtek)
