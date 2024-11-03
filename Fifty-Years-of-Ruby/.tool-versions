@@ -1,0 +1,3 @@
+# Sadly, Marp 4.0 and 3.4 binaries don't support X86; using Homebrew version for now.
+# marp-cli 4.0
+node 20

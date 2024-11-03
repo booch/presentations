@@ -1,0 +1,32 @@
+@theme "boochtek";
+@import-theme "default";
+
+/* Page numbers in right footer. */
+section::after {
+    content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+}
+header,
+footer,
+section::after {
+    font-size: 20px;
+    padding: 0 1ex;
+    background: rgba(240, 240, 240, 0.5);
+}
+
+section.title h1 {
+    font-size: 100px;
+    color: rgb(242, 149, 16);
+}
+
+img[src="assets/RubyConf-2024-background-doodle-2.png"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
