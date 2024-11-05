@@ -25,6 +25,13 @@ img[src="assets/RubyConf-2024-background-doodle-2.png"] {
     width: 300px;
 }
 
+img[src="assets/Smalltalk-76-UI.jpg"] {
+    position: absolute;
+    top: -187px;
+    right: 0;
+    width: 50%;
+}
+
 .columns {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

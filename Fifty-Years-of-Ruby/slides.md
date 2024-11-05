@@ -18,10 +18,6 @@ url: https://craigbuchek.com/fifty
 # Fifty Years of Ruby
 
 <!-- 
-- Hi, I'm Craig!
-- If you want to "at" me, ...
-    - I'm on Twitter and Mastodon via ruby.social
-        - ... infrequently
 - Short URL for the slides in lower right
     - Follow along, or look at them later
     - Hit `P` to toggle presenter notes
@@ -36,7 +32,11 @@ url: https://craigbuchek.com/fifty
 
 <cite>Alan Kay</cite>
 
-<!-- 
+<!--
+- Hi, I'm Craig!
+- If you want to "at" me, ...
+    - I'm on Twitter and Mastodon via ruby.social
+        - ... infrequently
 - Today, I'm going to talk about:
     - ideas that have led to us being here today
     - people who had a vision of future
@@ -100,6 +100,7 @@ url: https://craigbuchek.com/fifty
 -->
 
 ---
+![bg width:100%](assets/As-We-May-Think-top-drawing.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # 1942: As We May Think
 
@@ -146,6 +147,8 @@ url: https://craigbuchek.com/fifty
         - https://worrydream.com/refs/Bush_1945_-_As_We_May_Think_(Life_Magazine).pdf
         - Adds some drawings
     - https://dougengelbart.org/pubs/augment-133183-AHI-Vistas.html
+- Photo credit: https://www.michaeljkramer.net/wp-content/uploads/2021/09/Bush_The-Memex.jpg
+- Photo credit (memex): https://erinkmalone.medium.com/foreseeing-the-future-the-legacy-of-vannevar-bush-c418edc9a4ee
 -->
 
 ---
@@ -163,7 +166,7 @@ url: https://craigbuchek.com/fifty
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-![bg](assets/PARC-campus.jpg)
+![bg width:100%](assets/PARC-sign.webp)
 # 1969: Xerox PARC
 
 <!--
@@ -175,6 +178,7 @@ url: https://craigbuchek.com/fifty
     - Ethernet
     - Real-time video conferencing
     - Interactive editing
+- Image source: https://www.techspot.com/articles-info/477/images/2015-09-30-image.jpg
 -->
 
 ---
@@ -207,8 +211,13 @@ url: https://craigbuchek.com/fifty
     - This cartoon and cardboard mockup
 - First paper on it: 1972
     - Named it Dynabook
+- Inspired by seeing Logo turtle graphics used in classrooms
+    - changed Kay's view of computers and personal computers
+        - from just “vehicles” and “tools”
+        - to “meta-media” and “for children”
+- Portability -> ubiquity
 - ARPA: “interactive intellectual amplifiers pervasively networked worldwide"
-- OLPC: One laptop per child (2005)
+- Says his original innovation was the idea of a personal computer for children
 - Key to everything:
     - GUI, windows, icons, mouse, UX
     - OOP
@@ -220,10 +229,11 @@ url: https://craigbuchek.com/fifty
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # 1973: Xerox Alto
 
-<!-- 
+<!--
+- "The Interim Dynabook"
 - Xerox Alto
     - Introduced March 1, 1973
-    - $32k ($100k+ today)
+    - $32k ($200k+ today)
     - 96kB RAM
         - $4k more for 128kB
         - up to 512kB
@@ -246,9 +256,9 @@ url: https://craigbuchek.com/fifty
     - Inspired him to build DISER Lilith (1980)
     - Inspired him to create Oberon programming language
 - Xerox Star in 1981
+    - Sold commercially
     - $16k ($50k+ today)
     - Same year as IBM PC ($2k)
-    - Sold commercially
 - Also inspired SUN workstations
     - Stanford University Network
 - https://en.wikipedia.org/wiki/PARC_(company)
@@ -268,11 +278,34 @@ url: https://craigbuchek.com/fifty
     - Inspired the Mac
     - Smalltalk-76, networking, mouse-driven WYSIWYG GUI
     - "Xerox could have owned the entire computer industry, could have been the IBM of the nineties, could have been the Microsoft of the nineties." -- Steve Jobs
+- Alan Kay joined apple in 1984
+    - Had been at Atari for a few years
+    - Stayed until 1996
+- Kay's criticism of iPad
+    - Not user programmable
+    - Not designed for authoring meta-media
+    - Not designed for kids
+    - No physical keyboard
+    - "The Mac was a failure in the sense that it didn't achieve the goal of changing the way people think about computers."
+    - "The Mac was a success in the sense that it was a very good implementation of the ideas that were around at the time."
+- Kay says Microsoft Surface tablet is closer to his vision
+- OLPC: One laptop per child (2005)
+    - encourages children to interact with & change code on their computer
 -->
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Smalltalk
+# Smalltalk-71
+
+~~~ smalltalk-71
+to T 'and' :y do 'y'
+to F 'and' :y do F
+
+to 'factorial' 0 is 1
+to 'factorial' :n do 'n*factorial n-1'
+
+to 'fact' :n do 'to 'fact' n do factorial n. ^ fact n'
+~~~
 
 <!--
 
@@ -310,10 +343,12 @@ to for token step stop var start exp (:👉var.
     - Looks a bit Lispy with the nested parens
     - This is 100% accurate UTF transliteration
     - TODO: Understand definition of `for`, `∢`, `do`, and `:#exp`
+- Already had `self`
 - Source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
 -->
 
 ---
+![Smalltalk-76 GUI](assets/Smalltalk-76-UI.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Smalltalk-76
 
@@ -336,6 +371,8 @@ Point arithmetic
 * scale [⇑Point new x; x*scale y: y*scale]
 ~~~
 
+- TODO: Move image up
+
 <!--
 - All in an IDE in a full GUI windowing system
     - overlapping windows
@@ -353,10 +390,12 @@ Point arithmetic
 # Smalltalk-80
 
 <!--
-- First Smalltalk book
-- Adele Goldberg
-    - Xerox PARC
-    - One of the designers/implementers of Smalltalk
+- Smalltalk-80: first public release
+- Added blocks, booleans, meta-classes
+- First Smalltalk book, 1983
+    - Adele Goldberg
+        - Xerox PARC
+        - One of the designers/implementers of Smalltalk
 -->
 
 ---
@@ -449,20 +488,6 @@ End of LocRectangle;
 -->
 
 ---
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 1995: Celebrating 25 Years of Smalltalk
-
-<!--
-- Dave Thomas
-    - Object Technology International
-    - Created IBM VisualAge
-    - Eclipse IDE
-    - Object Mentor
-        - Agile training
-    - TODO: What did this talk have to say? What can we learn from it?
--->
-
----
 ![bg left w:80%](assets/Smalltalk-Best-Practice-Patterns.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Smalltalk Best Practice Patterns
@@ -481,7 +506,7 @@ End of LocRectangle;
 ---
 ![bg left w:80%](assets/Programming-Ruby-1st-ed.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Pickaxe Book
+# 2000: Pickaxe Book
 
 <!--
 - December 15, 2000
@@ -490,22 +515,34 @@ End of LocRectangle;
     - Pragmatic Programmer book
         - Coined "DRY"
     - Pragmatic Bookshelf
-    - Agile manifesto
+    - Agile manifesto (2001)
+    - Brought Agile/XP practices to Ruby
 -->
 
 ---
-![bg left](assets/dhh-headshot-2017-full.jpg)
+![bg left](assets/DHH-headshot-2017-full.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # 2004: Ruby on Rails
 
 <!--
 - David Heinemeier Hansson
     - Danish programmer
-- Released Rails in 2004 # TODO: get exact date?
+    - Using Ruby since 2003
+    - Was doing PHP before that
+- Released Rails publicly on July 25 2004
     - part of framework he built for Basecamp at 37 Signals
+    - marketed Rails w/ 5-minute blog video
+        - Fast at editing: TextMate
+    - Convention over Configuration
+    - Big reduction in code vs Java frameworks
+    - 0.1 release was 2003
+    - 0.8 release October 25, 2004
+    - 1.0 release December 13, 2005
+    - Announcement: https://web.archive.org/web/20040823214652/http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/107370
 - Made enough money to buy himself a bespoke exotic race car
     - His Wikipedia entry has much more detail on his racing career than Rails
 - image credit: https://dhh.dk/images/headshot-2017-full.jpg
+- image credit: https://commons.wikimedia.org/wiki/File:Ruby_on_Rails-logo.png
 -->
 
 ---
@@ -526,10 +563,22 @@ End of LocRectangle;
 # 2007: Avi Bryant at RailsConf
 
 - TODO: Crop off the bottom of the image, so we can see the top of the picture
-- TODO: Story about this talk
 
 <!--
+- "Smalltalk’s Lessons for Ruby"
+- Ruby IS-A Smalltalk
+- Lessons the Ruby community should learn from Smalltalk
+    - TODO: What are the lessons?
 - TODO: Story about this talk
+- TODO: Read the links below
+- Source: http://lambda-the-ultimate.org/node/2573
+- Source: https://www.artima.com/forums//threaded.jsp?forum=155&thread=220183
+- Source: https://news.ycombinator.com/item?id=3029981
+- Source: https://web.archive.org/web/20170421065632/http://blog.redtexture.net/2010/10/30/avi-bryants-presentations/#Avi%20Bryant's%20Presentations
+- Source: https://www.akitaonrails.com/2007/12/21/chatting-with-avi-bryant-part-1
+- Source: https://www.akitaonrails.com/2007/12/22/chatting-with-avi-bryant-part-2
+- Source: http://web.archive.org/web/20130729204305id_/http://itc.conversationsnetwork.org/shows/detail3432.html
+- Image source: https://www.flickr.com/photos/x180/505428676
 -->
 
 ---
@@ -539,10 +588,6 @@ End of LocRectangle;
 <!--
 - [read slide]
 -->
-
----
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# FP
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
@@ -577,18 +622,23 @@ End of LocRectangle;
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+
+TODO: Pharo
+
+---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 <div class="columns">
 <div>
 
 # Crystal
 
 - Effectively compiled Ruby
-- Plus type hints
+- Lose some meta-programming
+- Typed, but minimal type hints
 - Nil checking
     - No nil errors at runtime!
         - Eliminates a whole class of bugs
 - Fast
-- Lose some meta-programming
 - Decent community/libraries
 
 </div><div>
@@ -596,8 +646,8 @@ End of LocRectangle;
 ~~~ crystal
 x = [] of Int32;
 
-# TODO: show nil checking?
-# TODO: show meta-programming?
+# TODO: show nil checking
+# TODO: show meta-programming differences
 ~~~
 
 </div></div>
@@ -646,55 +696,6 @@ x = [] of Int32;
 
 <!--
 - https://www.rust-lang.org/
--->
-
----
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Zig
-
-- Low-level
-    - Like C, but better
-- No hidden control flow
-- No hidden memory allocations
-- No macros
-- Call any function at compile-time
-
-<!--
-- https://ziglang.org/
--->
-
----
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Nim
-
-- Compiled
-    - C-like performance
-    - Compile-time execution
-- Macros
-- Garbage collection
-- Python-like syntax
-
-<!--
-- https://nim-lang.org/
--->
-
----
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Other
-
-- Roc
-    - Descendent of Elm
-    - No Null, use Result types
-    - Type inference; no type annotations
-- Gleam
-    - Runs on Erlang VM
-    - No null
-    - No implicit conversions
-    - No exceptions
-
-<!--
-https://www.roc-lang.org/
-https://www.gleam.run/
 -->
 
 ---
@@ -777,9 +778,7 @@ https://www.gleam.run/
 * Viewers
 * RubyConf organizers
 * People that helped me with the talk
-    - Noel Rappin
-    - Kerri Miller
-    - Mikhail Pasichniuk
+    - **Noel Rappin**
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
