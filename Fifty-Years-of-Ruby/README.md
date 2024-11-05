@@ -45,16 +45,16 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
 - elevator pitch
     - what is the point?
         - Ruby influences and influenced-bys
-    - tie it back to Ruby better
-- Chronological order
+    - tie it all back to Ruby better
+- Chronological order ✅
     - Timeline at the top or bottom
-- EngleBART
+- EngelBART
 - Wait to introduce myself during the first quote
 - Dave Thomas might be in the room?!?!?!?!?!
 - Matz may be in the room!?!?!?!?!
 - less about Dynabook
-    - tie anything in with Smalltalk portions
-- Alto team?
+    - keep everything tied to Smalltalk and Ruby
+- Alto team
     - Felt guilty having spare computer cycles overnight
 - $32k in 1973 is now $200k ✅
 - More fun with constraints
@@ -110,7 +110,10 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
     - Should I include full dates, or just years?
     - Too much?
     - Too little?
-2. Language support for Faux-O
+2. Ruby's growth
+    - Features added (innovations, borrowed)
+    - Milestones
+3. Language support for Faux-O
     - Boundaries talk
     - Bob Martin said that the only thing that has changed in the last 50 years has been adding constraints
         - Structured programming constrains use of GOTO
@@ -125,7 +128,7 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
             - But the syntax looks the same as OO
             - They can **represent** a state instead of **having** a state
         - Message-passing actors for the procedural shell
-3. Why Smalltalk "lost" to C++
+4. Why Smalltalk "lost" to C++
     - Ask Alan Kay on Quora
     - Worse is better
         - Smalltalk ecosystem made it too difficult to share code
@@ -133,28 +136,33 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
         - Wanted everything to be inside Smalltalk
             - Hard to talk to DBs
       - C++ fit into the UNIX ecosystem
-4. Key ideas of OOP
+5. Key ideas of OOP
     - Message passing
     - Encapsulation
     - Polymorphism
     - picture of cells "communicating"
-5. Compile-time execution will continue to gain popularity
+6. Story about Ruby community learning
+    - Meta-programming overuse
+        - I did it myself (after deferring learning about it for a while)\
+        - I see most programmers do this
+        - As Noel Rappin says, you don't fully understand the boundaries of your tools until you overuse them
+7. Compile-time execution will continue to gain popularity
     - Today: you tell it what should run at compile time
     - Future: let the compiler run whatever it thinks is best
-6. Slide: XR, new Meta concept, Apple XR, Oculus, etc
-7. Smalltalk is still used today
+8. Slide: XR, new Meta concept, Apple XR, Oculus, etc
+9.  Smalltalk is still used today
     - Heyday was the late 1999s
     - Many of the people moved to Ruby
-8.  WYSIWYG
-9.  Make Headings stay at the top of the page consistently
-10. Fix colors in header/footers
-11. Add "RubyConf 2024" to title page
-12. Make quotes look nicer
-13. Add a header with the date?
+10. WYSIWYG
+11. Make Headings stay at the top of the page consistently
+12. Fix colors in header/footers
+13. Add "RubyConf 2024" to title page
+14. Make quotes look nicer
+16. Add a header with the date?
     - or the title
     - or RubyConf 2024
-14. Create a thumbnail of the presentation
+17. Create a thumbnail of the presentation
     - `marp --image=png slides.md -o og-image.png`
     - generate slide-show with `--og-image=og-image.png`
     - or add `image: og-image.png` to marp.yml
-15. Makefile?
+18. Makefile?

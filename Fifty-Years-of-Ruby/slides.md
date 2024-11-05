@@ -49,14 +49,13 @@ url: https://craigbuchek.com/fifty
 <!-- _backgroundColor: black -->
 ![bg 60%](assets/Yukihiro-Matsumoto-2011.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 1995: Ruby
 
 <!--
+- February 24, 1993
+    - Japanese programmer Yukihiro Matsumoto started developing Ruby
+        - "Matz"
 - December 21, 1995
-    - Ruby's first release: 0.95
-    - Started from conversation with a colleague on February 24, 1993
-- Yukihiro Matsumoto
-    - "Matz"
+    - Released his work (0.95)
 - Influenced by:
     - Perl, Smalltalk, Eiffel, Ada, Lisp
     - "more powerful than Perl, and more object-oriented than Python"
@@ -76,12 +75,16 @@ url: https://craigbuchek.com/fifty
 ![bg](assets/mother-of-all-demos-keyboard.jpg)
 # 1968: Mother of All Demos
 
-<!-- 
-- 1968: Mother of All Demos
-    - December 9, 1968
-    - ACM conference in San Francisco
+<!--
+- My story starts in 1968
     - Matz was 3 years old
-- Who: Douglas Engelbart
+    - I wasn't even born yet
+    - Most of you weren't born yet
+        - Some of your parents weren't born yet!
+- December 9, 1968
+    - ACM conference in San Francisco
+    - Mother of All Demos
+- Who: Douglas EngelBART
     - Augmentation Research Center
         - Stanford Research Institute
             - Stanford University
@@ -95,90 +98,10 @@ url: https://craigbuchek.com/fifty
     - Interactive editing
 - Steven Levy dubbed it "the mother of all demos" in 1994
     - _Insanely Great_
+- TODO: Tell them to watch the video (or fit 1 minute of it in)
 - TODO: Better images
+- TODO: Explain the picture
 - TODO: Link to "Augmenting Human Intellect: A Conceptual Framework" (1962)
--->
-
----
-![bg width:100%](assets/As-We-May-Think-top-drawing.jpg)
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 1942: As We May Think
-
-<!-- 
-- 1945: As We May Think
-    - _The Atlantic_ magazine, July 1945
-    - Engelbart read it in 1945 and again in 1961
-        - Inspired him to design a sort of memex!
-        - Wrote "A Conceptual Framework for the Augmentation of Man's Intellect"
-            - 1963
-- Vannevar Bush
-    - Engineer
-        - Analog computers
-            - Differential equation solvers
-    - MIT
-        - PhD
-        - Dean of Engineering
-    - Lots of government science agencies
-        - Head of NACA (NASA's predecessor)
-        - Organization overseeing Manhattan Project
-            - Was in the 2023 Oppenheimer movie
-    - Founded Raytheon
-- memex (memory expansion)
-    - store all of your books, records, and communications
-    - desk with microfilm screens
-    - supplement memory
-    - shared and collective memories
-    - associative indexing "trails" of research
-- Innovative ideas
-    - hypertext
-    - personal computers
-    - Internet/Web
-    - speech recognition
-    - online encyclopedias
-    - information science/processing/work/society/literacy
-    - information overload
-- Ted Nelson referred to it when he conceived "hypertext" in 1960
-- Primary sources:
-    - https://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/
-        - paywalled
-    - https://cdn.theatlantic.com/media/archives/1945/07/176-1/132407932.pdf
-    - https://www.w3.org/History/1945/vbush/vbush.shtml
-    - Abridged version in _Life_ magazine, September 10, 1945
-        - https://worrydream.com/refs/Bush_1945_-_As_We_May_Think_(Life_Magazine).pdf
-        - Adds some drawings
-    - https://dougengelbart.org/pubs/augment-133183-AHI-Vistas.html
-- Photo credit: https://www.michaeljkramer.net/wp-content/uploads/2021/09/Bush_The-Memex.jpg
-- Photo credit (memex): https://erinkmalone.medium.com/foreseeing-the-future-the-legacy-of-vannevar-bush-c418edc9a4ee
--->
-
----
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-
-> Wholly new forms of encyclopedias will appear, 
-> ready-made with a mesh of associative trails running through them,
-> ready to be dropped into the memex and there amplified.
-
-<cite>Vannevar Bush, _As We May Think_</cite>
-
-<!--
-
--->
-
----
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-![bg width:100%](assets/PARC-sign.webp)
-# 1969: Xerox PARC
-
-<!--
-- Xerox Palo Alto Research Center
-- Lots of people from SRI's Augmentation Research Center
-- Innovations:
-    - Laser printer
-    - GUI, icons
-    - Ethernet
-    - Real-time video conferencing
-    - Interactive editing
-- Image source: https://www.techspot.com/articles-info/477/images/2015-09-30-image.jpg
 -->
 
 ---
@@ -202,6 +125,43 @@ url: https://craigbuchek.com/fifty
 -->
 
 ---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+![bg width:100%](assets/PARC-sign.webp)
+# 1969: Xerox PARC
+
+<!--
+- Xerox Palo Alto Research Center (PARC)
+    - Silicon Valley
+    - Founded 1969
+- Lots of people from SRI's Augmentation Research Center
+- Innovations:
+    - Laser printer
+    - GUI, icons
+    - Ethernet
+    - Real-time video conferencing
+    - Interactive editing
+- Image source: https://www.techspot.com/articles-info/477/images/2015-09-30-image.jpg
+-->
+
+---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# Smalltalk-71
+
+~~~ smalltalk-71
+to T 'and' :y do 'y'
+to F 'and' :y do F
+
+to 'factorial' 0 is 1
+to 'factorial' :n do 'n*factorial n-1'
+
+to 'fact' :n do 'to 'fact' n do factorial n. ^ fact n'
+~~~
+
+<!--
+
+-->
+
+---
 ![bg height:100%](assets/First-Dynabook-idea.webp)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # 1972: Dynabook
@@ -216,12 +176,47 @@ url: https://craigbuchek.com/fifty
         - from just “vehicles” and “tools”
         - to “meta-media” and “for children”
 - Portability -> ubiquity
-- ARPA: “interactive intellectual amplifiers pervasively networked worldwide"
 - Says his original innovation was the idea of a personal computer for children
 - Key to everything:
     - GUI, windows, icons, mouse, UX
     - OOP
 - Image credit: https://www.quora.com/What-lessons-were-learned-in-aspiring-towards-the-DynaBook-and-have-any-of-its-original-goals-become-dated/answer/Alan-Kay-11
+-->
+
+---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# Smalltalk-72
+
+~~~ smalltalk-72
+to square
+  (do 4
+    (😀 go 50 turn. 90))
+
+to square length
+  (👉length 🠔 :.
+    do 4 (😀 go length turn 90))!
+
+to poly sides size
+  (👉sides 🠔 :. 👉size 🠔 :.
+    do sides (😀 go size turn 360/sides))!
+
+to for token step stop var start exp (:👉var.
+  (∢←⇒(:start.) 👉start←1).
+  (∢to⇒(:stop.) 👉stop←start).
+  (∢by⇒(:step.) 👉step←1).
+∢do. :#exp. CODE 24)
+~~~
+
+<!--
+- Some notes:
+    - `to` is equivalent to Ruby's `def`
+    - 😀 was called smiley
+        - 😀 is instance of turtle class
+    - Looks a bit Lispy with the nested parens
+    - This is 100% accurate UTF transliteration
+    - TODO: Understand definition of `for`, `∢`, `do`, and `:#exp`
+- Already had `self`
+- Source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
 -->
 
 ---
@@ -265,86 +260,6 @@ url: https://craigbuchek.com/fifty
 - https://en.wikipedia.org/wiki/List_of_people_associated_with_PARC
 - PARC campus photo credit: https://preview.redd.it/kjl8la0xow191.jpg?width=900&format=pjpg&auto=webp&s=bc4dfbff6ada4007fdf27ed9fed8dcdbee6ed12e
 - Xerox Alto photo credit: https://dq51jve9h21d4.cloudfront.net/sites/default/files/imce/xie-alto-1-886x750.jpg.pagespeed.ic.pU09ByiUIQ.webp
--->
-
----
-![bg](assets/Macintosh.jpg)
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Macintosh
-
-<!--
-- Steve Jobs and Apple folks visited PARC in 1979 (twice)
-    - Xerox received some Apple stock options
-    - Inspired the Mac
-    - Smalltalk-76, networking, mouse-driven WYSIWYG GUI
-    - "Xerox could have owned the entire computer industry, could have been the IBM of the nineties, could have been the Microsoft of the nineties." -- Steve Jobs
-- Alan Kay joined apple in 1984
-    - Had been at Atari for a few years
-    - Stayed until 1996
-- Kay's criticism of iPad
-    - Not user programmable
-    - Not designed for authoring meta-media
-    - Not designed for kids
-    - No physical keyboard
-    - "The Mac was a failure in the sense that it didn't achieve the goal of changing the way people think about computers."
-    - "The Mac was a success in the sense that it was a very good implementation of the ideas that were around at the time."
-- Kay says Microsoft Surface tablet is closer to his vision
-- OLPC: One laptop per child (2005)
-    - encourages children to interact with & change code on their computer
--->
-
----
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Smalltalk-71
-
-~~~ smalltalk-71
-to T 'and' :y do 'y'
-to F 'and' :y do F
-
-to 'factorial' 0 is 1
-to 'factorial' :n do 'n*factorial n-1'
-
-to 'fact' :n do 'to 'fact' n do factorial n. ^ fact n'
-~~~
-
-<!--
-
--->
-
----
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Smalltalk-72
-
-~~~ smalltalk-72
-to square
-  (do 4
-    (😀 go 50 turn. 90))
-
-to square length
-  (👉length 🠔 :.
-    do 4 (😀 go length turn 90))!
-
-to poly sides size
-  (👉sides 🠔 :. 👉size 🠔 :.
-    do sides (😀 go size turn 360/sides))!
-
-to for token step stop var start exp (:👉var.
-  (∢←⇒(:start.) 👉start←1).
-  (∢to⇒(:stop.) 👉stop←start).
-  (∢by⇒(:step.) 👉step←1).
-∢do. :#exp. CODE 24)
-~~~
-
-<!--
-- Some notes:
-    - `to` is equivalent to Ruby's `def`
-    - 😀 was called smiley
-        - 😀 is instance of turtle class
-    - Looks a bit Lispy with the nested parens
-    - This is 100% accurate UTF transliteration
-    - TODO: Understand definition of `for`, `∢`, `do`, and `:#exp`
-- Already had `self`
-- Source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
 -->
 
 ---
@@ -488,9 +403,41 @@ End of LocRectangle;
 -->
 
 ---
+![bg](assets/Macintosh.jpg)
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# 1984: Macintosh
+
+<!--
+- Steve Jobs and Apple folks visited PARC in 1979 (twice)
+    - Xerox received some Apple stock options
+    - Inspired the Mac
+    - Smalltalk-76, networking, mouse-driven WYSIWYG GUI
+    - "Xerox could have owned the entire computer industry, could have been the IBM of the nineties, could have been the Microsoft of the nineties." -- Steve Jobs
+- Alan Kay joined apple in 1984
+    - Had been at Atari for a few years
+    - Stayed until 1996
+- Kay's criticism of iPad
+    - Not user programmable
+    - Not designed for authoring meta-media
+    - Not designed for kids
+    - No physical keyboard
+    - "The Mac was a failure in the sense that it didn't achieve the goal of changing the way people think about computers."
+    - "The Mac was a success in the sense that it was a very good implementation of the ideas that were around at the time."
+- Kay says Microsoft Surface tablet is closer to his vision
+- OLPC: One laptop per child (2005)
+    - encourages children to interact with & change code on their computer
+-->
+
+---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# 1996: Squeak
+
+- Modern Smalltalk
+
+---
 ![bg left w:80%](assets/Smalltalk-Best-Practice-Patterns.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Smalltalk Best Practice Patterns
+# 1996: Smalltalk Best Practice Patterns
 
 <!--
 - October 3, 1996
@@ -611,26 +558,44 @@ End of LocRectangle;
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Squeak
 
-- Modern Smalltalk
-- Others:
-    - Pharo
-    - Newspeak
-    - Cuis
-- OpenSmalltalk Virtual Machine
+TODO: 2008: Pharo
+
+<!--
+- Today: OpenSmalltalk Virtual Machine, shared among Squeak, Pharo, Cuis, Newspeak
+- Cuis looks interesting
+-->
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# 2012: Elixir
 
-TODO: Pharo
+- FP
+- Ruby-like syntax
+    - DSLs
+- Erlang VM
+- Concurrency
+    - Lightweight threads
+- Fault tolerance
+- Scalability
+- Meta-programming
+
+<!--
+- Lightweight threads
+    - 1 million threads on a 16-core machine
+- Elixir scales
+    - Small embedded devices
+    - Large clusters & distributed systems
+- Fault tolerance
+- https://elixir-lang.org/
+-->
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 <div class="columns">
 <div>
 
-# Crystal
+# 2014: Crystal
 
 - Effectively compiled Ruby
 - Lose some meta-programming
@@ -661,31 +626,7 @@ x = [] of Int32;
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Elixir
-
-- FP
-- Ruby-like syntax
-    - DSLs
-- Erlang VM
-- Concurrency
-    - Lightweight threads
-- Fault tolerance
-- Scalability
-- Meta-programming
-
-<!--
-- Lightweight threads
-    - 1 million threads on a 16-core machine
-- Elixir scales
-    - Small embedded devices
-    - Large clusters & distributed systems
-- Fault tolerance
-- https://elixir-lang.org/
--->
-
----
-![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# Rust
+# 2015: Rust
 
 - Fast and memory-efficient
 - Low-level
@@ -696,6 +637,37 @@ x = [] of Int32;
 
 <!--
 - https://www.rust-lang.org/
+-->
+
+---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+# Ruby's Future
+
+- Ruby will still get new features
+    - Innovations
+    - Borrowing/stealing
+- Ruby will last a long time
+- Something will replace Ruby
+
+<!--
+
+- Good solutions are rediscovered
+    - We need to look out for other solutions we can learn from
+- Compiled languages are winning again
+- Many Rubyists have already moved to other languages
+    - And communities
+        - Community is important
+            - Why I keep attending conferences
+    - They take what they've learned with them
+        - Features
+        - Practices
+        - Community
+        - DX
+- Ruby is still alive and doing well
+    - Bright future for many years to come
+    - It will adapt
+- Eventually Ruby use will dwindle
+    - Long tail
 -->
 
 ---
