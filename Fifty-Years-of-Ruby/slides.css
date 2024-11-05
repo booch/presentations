@@ -6,11 +6,22 @@ section::after {
     content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
 }
 header,
+header a,
 footer,
-section::after {
+section::after
+{
     font-size: 20px;
     padding: 0 1ex;
-    background: rgba(240, 240, 240, 0.5);
+    background: rgba(240, 240, 240, 0.2);
+    z-index: 1;
+    color: rgba(100, 100, 100, 0.6)
+}
+section.black header,
+section.black header a,
+section.black footer,
+section.black::after {
+    background: rgba(240, 240, 240, 0.2);
+    color: rgba(255, 255, 255, 0.6)
 }
 
 section.title h1 {
@@ -23,13 +34,62 @@ img[src="assets/RubyConf-2024-background-doodle-2.png"] {
     top: 0;
     right: 0;
     width: 300px;
+    z-index: 1;
 }
 
+img {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* Books */
+img[src="assets/Smalltalk-80-book.jpg"],
+img[src="assets/Smalltalk-Best-Practice-Patterns.jpg"],
+img[src="assets/Programming-Ruby-1st-ed.jpg"],
+img[src="assets/Agile-Web-Development-with-Rails-1st-ed.jpg"]
+{
+    border: 1px solid black;
+    margin: auto;
+    position: relative;
+    top: -100px;
+    width: 50%;
+}
+img[src="assets/Smalltalk-80-book.jpg"] {
+    width: 49%;
+    border: none;
+}
+img[src="assets/Smalltalk-Best-Practice-Patterns.jpg"] {
+    width: 46%;
+    border: none;
+}
+img[src="assets/Programming-Ruby-1st-ed.jpg"] {
+    width: 49%;
+}
+
+/* Other slide images */
 img[src="assets/Smalltalk-76-UI.jpg"] {
-    position: absolute;
     top: -187px;
     right: 0;
     width: 50%;
+}
+
+/* img[src="assets/DHH-headshot-2017-full.jpg"] {
+    width: 52%;
+    left: 0;
+    top: -80px;
+}
+img[src="assets/Ruby-on-Rails-logo-original.png"] {
+    width: 45%;
+    left: 55%;
+    top: 0;
+} */
+
+img[src="assets/Avi-Bryant-keynote-RailsConf-2007.png"] {
+    left: -79px;
+    top: -122px;
+    max-width: 115%;
 }
 
 .columns {

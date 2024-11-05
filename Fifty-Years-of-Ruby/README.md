@@ -89,7 +89,7 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
 - More about Avi
 - Tie in other languages
 - Slot back in what Ruby took from languages
-    - What Matz innovated
+    - And what Matz innovated
 - Drop a few newer languages ✅
 - Only inspired by Ruby - Elixir, Rust, Crystal ✅
 - How Ruby fits in to history of personal computers
@@ -156,13 +156,35 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
 10. WYSIWYG
 11. Make Headings stay at the top of the page consistently
 12. Fix colors in header/footers
-13. Add "RubyConf 2024" to title page
-14. Make quotes look nicer
-16. Add a header with the date?
+13. Matz's innovations
+    - focus on developer happiness
+    - simple, easy to read syntax
+        - well-done blocks!
+        - dot notation for method calls
+        - no type annotations
+    - Duck typing
+    - attr_accessor?
+    - OOP at the right time
+        - But also FP (primarily for collections)
+        - easy to learn because of syntax and duck typing
+        - fast feedback loop, because it's interpreted
+    - good for DSLs
+    - good meta-programming story
+    - community?
+14. Mistakes in Ruby (see Ruby, the Bad Parts)
+    - Monkey patching
+    - Global variables
+    - Flip-flop operator?
+    - and/or/not keywords
+        - lower precedence, leading to confusion
+    - BEGIN/END blocks
+15. Add "RubyConf 2024" to title page
+16. Make quotes look nicer
+17. Add a header with the date?
     - or the title
     - or RubyConf 2024
-17. Create a thumbnail of the presentation
+18. Create a thumbnail of the presentation
     - `marp --image=png slides.md -o og-image.png`
     - generate slide-show with `--og-image=og-image.png`
     - or add `image: og-image.png` to marp.yml
-18. Makefile?
+19. Makefile?

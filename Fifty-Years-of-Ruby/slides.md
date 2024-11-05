@@ -34,21 +34,27 @@ url: https://craigbuchek.com/fifty
 
 <!--
 - Hi, I'm Craig!
-- If you want to "at" me, ...
-    - I'm on Twitter and Mastodon via ruby.social
-        - ... infrequently
 - Today, I'm going to talk about:
     - ideas that have led to us being here today
     - people who had a vision of future
     - how they shaped computers we use today
     - how they shaped Ruby
     - what Ruby's future might look like
+
+------
+
+- If you want to "at" me, ...
+    - I'm on Twitter and Mastodon via ruby.social
+        - ... infrequently
 -->
 
 ---
-<!-- _backgroundColor: black -->
-![bg 60%](assets/Yukihiro-Matsumoto-2011.jpg)
+<!--
+_backgroundColor: black
+_class: black
+-->
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+![bg 60% Yukihiro "Matz" Matsumoto speaking in 2011](assets/Yukihiro-Matsumoto-2011.jpg)
 
 <!--
 - February 24, 1993
@@ -66,24 +72,30 @@ url: https://craigbuchek.com/fifty
     - add blocks, inspired by higher order functions.
     - add methods found in Smalltalk.
     - add functionality found in Perl (in OO way).
-- I will dig into the most similar of those languages, Smalltalk
+- I will dig into the most similar of those languages:
+    - Smalltalk
+
+------
+
 - Image credit: https://upload.wikimedia.org/wikipedia/commons/5/5a/Yukihiro_Matsumoto_EuRuKo_2011.jpg
 -->
 
 ---
+<!--
+_class: black
+-->
+
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg](assets/mother-of-all-demos-keyboard.jpg)
-# 1968: Mother of All Demos
 
 <!--
-- My story starts in 1968
-    - Matz was 3 years old
-    - I wasn't even born yet
-    - Most of you weren't born yet
-        - Some of your parents weren't born yet!
+- My story starts: 1968
+    - Matz: 3
+    - Me: not even born
+    - Most of you: weren't born yet
+    - Many of your parents: weren't born yet!
 - December 9, 1968
     - ACM conference in San Francisco
-    - Mother of All Demos
 - Who: Douglas EngelBART
     - Augmentation Research Center
         - Stanford Research Institute
@@ -96,11 +108,14 @@ url: https://craigbuchek.com/fifty
     - Personal computing
     - Real-time video conferencing
     - Interactive editing
-- Steven Levy dubbed it "the mother of all demos" in 1994
-    - _Insanely Great_
+- Steven Levy dubbed it "the Mother of all Demos"
+    - _Insanely Great_, 1994
 - TODO: Tell them to watch the video (or fit 1 minute of it in)
 - TODO: Better images
 - TODO: Explain the picture
+
+------
+
 - TODO: Link to "Augmenting Human Intellect: A Conceptual Framework" (1962)
 -->
 
@@ -108,6 +123,9 @@ url: https://craigbuchek.com/fifty
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg left](assets/Alan_Kay_(3097597186)_(cropped).jpg)
 # Alan Kay
+
+- TODO: Fix the headers
+    - So they're not in middle of screen
 
 <!--
 - Attended MoAD
@@ -119,6 +137,9 @@ url: https://craigbuchek.com/fifty
     - Apple (1984-1996)
     - Disney (1997-2002)
 - Squeak (1995)
+
+------
+
 - https://tinlizzie.org/IA/index.php/Talks_by_Alan_Kay
 - https://www.quora.com/profile/Alan-Kay-11
 - Photo credit: https://commons.wikimedia.org/wiki/File:Alan_Kay_(3097597186)_(cropped).jpg
@@ -127,12 +148,11 @@ url: https://craigbuchek.com/fifty
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg width:100%](assets/PARC-sign.webp)
-# 1969: Xerox PARC
 
 <!--
+- Founded 1969
 - Xerox Palo Alto Research Center (PARC)
     - Silicon Valley
-    - Founded 1969
 - Lots of people from SRI's Augmentation Research Center
 - Innovations:
     - Laser printer
@@ -140,6 +160,9 @@ url: https://craigbuchek.com/fifty
     - Ethernet
     - Real-time video conferencing
     - Interactive editing
+
+------
+
 - Image source: https://www.techspot.com/articles-info/477/images/2015-09-30-image.jpg
 -->
 
@@ -162,9 +185,8 @@ to 'fact' :n do 'to 'fact' n do factorial n. ^ fact n'
 -->
 
 ---
-![bg height:100%](assets/First-Dynabook-idea.webp)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 1972: Dynabook
+![bg height:90%](assets/First-Dynabook-idea.webp)
 
 <!--
 - 1968: Alan Kay had an idea
@@ -180,6 +202,9 @@ to 'fact' :n do 'to 'fact' n do factorial n. ^ fact n'
 - Key to everything:
     - GUI, windows, icons, mouse, UX
     - OOP
+
+------
+
 - Image credit: https://www.quora.com/What-lessons-were-learned-in-aspiring-towards-the-DynaBook-and-have-any-of-its-original-goals-become-dated/answer/Alan-Kay-11
 -->
 
@@ -216,15 +241,18 @@ to for token step stop var start exp (:👉var.
     - This is 100% accurate UTF transliteration
     - TODO: Understand definition of `for`, `∢`, `do`, and `:#exp`
 - Already had `self`
+
+------
+
 - Source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
 -->
 
 ---
-![bg height:151%](assets/xerox-alto.webp)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 1973: Xerox Alto
+![bg height:151%](assets/xerox-alto.webp)
 
 <!--
+- 1973
 - "The Interim Dynabook"
 - Xerox Alto
     - Introduced March 1, 1973
@@ -254,6 +282,9 @@ to for token step stop var start exp (:👉var.
     - Sold commercially
     - $16k ($50k+ today)
     - Same year as IBM PC ($2k)
+
+------
+
 - Also inspired SUN workstations
     - Stanford University Network
 - https://en.wikipedia.org/wiki/PARC_(company)
@@ -263,9 +294,9 @@ to for token step stop var start exp (:👉var.
 -->
 
 ---
-![Smalltalk-76 GUI](assets/Smalltalk-76-UI.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Smalltalk-76
+![Smalltalk-76 GUI](assets/Smalltalk-76-UI.jpg)
 
 ~~~ smalltalk-76
 Class new title: 'Point';
@@ -300,24 +331,32 @@ Point arithmetic
 -->
 
 ---
-![bg left w:80%](assets/Smalltalk-80-book.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # Smalltalk-80
+
+TODO
 
 <!--
 - Smalltalk-80: first public release
 - Added blocks, booleans, meta-classes
+-->
+
+---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+![book: Smalltalk-80 The Language and Its Implementation](assets/Smalltalk-80-book.jpg)
+
+<!--
 - First Smalltalk book, 1983
-    - Adele Goldberg
-        - Xerox PARC
-        - One of the designers/implementers of Smalltalk
+- Adele Goldberg
+    - Xerox PARC
+    - One of the designers/implementers of Smalltalk
+- Several in a series
 -->
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 # OOP
-
-TODO: picture
+TODO: picture of cells
 
 <!--
 - Alan Kay coined the term "object-oriented programming" in 1967
@@ -403,11 +442,11 @@ End of LocRectangle;
 -->
 
 ---
-![bg](assets/Macintosh.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 1984: Macintosh
+![bg original Macintosh with keyboard, mouse, and floppy drive](assets/Macintosh.jpg)
 
 <!--
+- 1984: Macintosh
 - Steve Jobs and Apple folks visited PARC in 1979 (twice)
     - Xerox received some Apple stock options
     - Inspired the Mac
@@ -435,9 +474,8 @@ End of LocRectangle;
 - Modern Smalltalk
 
 ---
-![bg left w:80%](assets/Smalltalk-Best-Practice-Patterns.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 1996: Smalltalk Best Practice Patterns
+![book: Smalltalk Best Practice Patterns](assets/Smalltalk-Best-Practice-Patterns.jpg)
 
 <!--
 - October 3, 1996
@@ -451,27 +489,30 @@ End of LocRectangle;
 -->
 
 ---
-![bg left w:80%](assets/Programming-Ruby-1st-ed.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 2000: Pickaxe Book
+![book: Programming Ruby 1st edition](assets/Programming-Ruby-1st-ed.jpg)
 
 <!--
 - December 15, 2000
+- "Pickaxe book"
 - First English-language book on Ruby
+- TODO: Picture of Dave Thomas
 - Dave Thomas (Pragmatic Dave)
     - Pragmatic Programmer book
         - Coined "DRY"
     - Pragmatic Bookshelf
     - Agile manifesto (2001)
     - Brought Agile/XP practices to Ruby
+- TODO: New version
 -->
 
 ---
-![bg left](assets/DHH-headshot-2017-full.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 2004: Ruby on Rails
+![bg headshot: DHH in 2017](assets/DHH-headshot-2017-full.jpg)
+![bg 75% original logo: Ruby on Rails](assets/Ruby-on-Rails-logo-original.png)
 
 <!--
+- 2004: Ruby on Rails
 - David Heinemeier Hansson
     - Danish programmer
     - Using Ruby since 2003
@@ -493,25 +534,25 @@ End of LocRectangle;
 -->
 
 ---
-![bg left top:0](assets/Agile-Web-Development-with-Rails-1st-ed.jpg)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 2005: Agile Web Development with Rails
+![book: Agile Web Development with Rails, 1st edition](assets/Agile-Web-Development-with-Rails-1st-ed.jpg)
 
 <!--
 - Dave Thomas (Pragmatic Dave)
     - with DHH
 - August 7, 2005
 - TODO: More about this book
+- TODO: New version
 -->
 
 ---
-![bg](assets/Avi-Bryant-keynote-RailsConf-2007.png)
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# 2007: Avi Bryant at RailsConf
+![Avi Bryant giving keynote at RailsConf 2007](assets/Avi-Bryant-keynote-RailsConf-2007.png)
 
 - TODO: Crop off the bottom of the image, so we can see the top of the picture
 
 <!--
+- 2007: Avi Bryant at RailsConf
 - "Smalltalk’s Lessons for Ruby"
 - Ruby IS-A Smalltalk
 - Lessons the Ruby community should learn from Smalltalk
