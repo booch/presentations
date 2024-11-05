@@ -51,7 +51,7 @@ url: https://craigbuchek.com/fifty
 ---
 <!--
 _backgroundColor: black
-_class: black
+_class: dark
 -->
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg 60% Yukihiro "Matz" Matsumoto speaking in 2011](assets/Yukihiro-Matsumoto-2011.jpg)
@@ -81,10 +81,7 @@ _class: black
 -->
 
 ---
-<!--
-_class: black
--->
-
+<!-- _class: dark -->
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg](assets/mother-of-all-demos-keyboard.jpg)
 
@@ -146,6 +143,7 @@ _class: black
 -->
 
 ---
+<!-- _class: dark -->
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg width:100%](assets/PARC-sign.webp)
 
@@ -248,6 +246,7 @@ to for token step stop var start exp (:👉var.
 -->
 
 ---
+<!-- _class: dark -->
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg height:151%](assets/xerox-alto.webp)
 
@@ -507,6 +506,7 @@ End of LocRectangle;
 -->
 
 ---
+<!-- _class: dark -->
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![bg headshot: DHH in 2017](assets/DHH-headshot-2017-full.jpg)
 ![bg 75% original logo: Ruby on Rails](assets/Ruby-on-Rails-logo-original.png)
@@ -546,6 +546,7 @@ End of LocRectangle;
 -->
 
 ---
+<!-- _class: dark -->
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
 ![Avi Bryant giving keynote at RailsConf 2007](assets/Avi-Bryant-keynote-RailsConf-2007.png)
 

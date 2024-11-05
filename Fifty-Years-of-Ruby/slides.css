@@ -14,8 +14,8 @@ section:has(blockquote) {
 section::after {
     content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
 }
+
 header,
-header a,
 footer,
 section::after
 {
@@ -25,12 +25,14 @@ section::after
     z-index: 2;
     color: rgba(100, 100, 100, 0.6)
 }
-section.black header,
-section.black header a,
-section.black footer,
-section.black::after {
-    background: rgba(240, 240, 240, 0.2);
-    color: rgba(255, 255, 255, 0.6)
+section.dark header,
+section.dark footer,
+section.dark::after {
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.8)
+}
+header a {
+    color: inherit;
 }
 
 section.title h1 {
