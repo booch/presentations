@@ -1,6 +1,15 @@
 @theme "boochtek";
 @import-theme "default";
 
+/* Slides */
+section {
+    place-content: baseline;
+}
+section.title,
+section:has(blockquote) {
+    place-content: center;
+}
+
 /* Page numbers in right footer. */
 section::after {
     content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
@@ -13,7 +22,7 @@ section::after
     font-size: 20px;
     padding: 0 1ex;
     background: rgba(240, 240, 240, 0.2);
-    z-index: 1;
+    z-index: 2;
     color: rgba(100, 100, 100, 0.6)
 }
 section.black header,
