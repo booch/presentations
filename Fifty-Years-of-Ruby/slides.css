@@ -1,6 +1,16 @@
 @theme "boochtek";
 @import-theme "default";
 
+/* Theme colors */
+:root {
+    --title-text-color: rgb(242, 149, 16);
+    --text-color: rgb(37, 46, 184);
+}
+section,
+section a {
+    color: var(--text-color);
+}
+
 /* Slides */
 section {
     place-content: baseline;
@@ -10,11 +20,21 @@ section:has(blockquote) {
     place-content: center;
 }
 
-/* Page numbers in right footer. */
-section::after {
-    content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+/* Headings */
+section h1 {
+    color: var(--title-text-color);
+}
+section h2 {
+    color: black;
+}
+section h3 {
+    color: var(--text-color);
+}
+section.title h1 {
+    font-size: 100px;
 }
 
+/* Headers and footers */
 header,
 footer,
 section::after
@@ -23,23 +43,29 @@ section::after
     padding: 0 1ex;
     background: rgba(240, 240, 240, 0.2);
     z-index: 2;
-    color: rgba(100, 100, 100, 0.6)
+    color: rgba(100, 100, 100, 0.6);
 }
 section.dark header,
 section.dark footer,
 section.dark::after {
     background: rgba(0, 0, 0, 0.2);
-    color: rgba(255, 255, 255, 0.8)
+    color: rgba(255, 255, 255, 0.8);
 }
 header a {
     color: inherit;
 }
 
-section.title h1 {
-    font-size: 100px;
-    color: rgb(242, 149, 16);
+section.title h3 {
+    position:fixed;
+    top: -10px;
+    right: 100px;
+}
+/* Page numbers in right footer */
+section::after {
+    content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
 }
 
+/* Doodle in upper right header */
 img[src="assets/RubyConf-2024-background-doodle-2.png"] {
     position: absolute;
     top: 0;
@@ -48,6 +74,7 @@ img[src="assets/RubyConf-2024-background-doodle-2.png"] {
     z-index: 1;
 }
 
+/* Images */
 img {
     position: relative;
     display: block;
@@ -58,6 +85,7 @@ img {
 /* Books */
 img[src="assets/Smalltalk-80-book.jpg"],
 img[src="assets/Smalltalk-Best-Practice-Patterns.jpg"],
+img[src="assets/Japanese-ruby-book.jpg"],
 img[src="assets/Programming-Ruby-1st-ed.jpg"],
 img[src="assets/Agile-Web-Development-with-Rails-1st-ed.jpg"]
 {
@@ -103,8 +131,42 @@ img[src="assets/Avi-Bryant-keynote-RailsConf-2007.png"] {
     max-width: 115%;
 }
 
+/* 2-column layout */
 .columns {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
+}
+
+/* Quotes */
+blockquote {
+    font-size: 1.4em;
+    font-style: italic;
+    /* margin: 1em; */
+    /* padding: 1em; */
+    border: none;
+    text-align: center;
+    color: var(--title-text-color);
+}
+blockquote p {
+    display: inline;
+}
+blockquote p::before {
+    font-size: 1.5em;
+    font-family: serif;
+    content: open-quote;
+}
+blockquote p::after {
+    font-size: 1.5em;
+    font-family: serif;
+    content: close-quote;
+}
+cite {
+    font-style: normal;
+    display: block;
+    text-align: right;
+    padding-right: 5em;
+}
+cite::before {
+    content: "— ";
 }

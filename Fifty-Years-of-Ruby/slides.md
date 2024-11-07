@@ -13,9 +13,11 @@ url: https://craigbuchek.com/fifty
 <!-- _paginate: false # Hide page number on title page. -->
 ![bg](assets/RubyConf-2024-background-title.png)
 
+# Fifty Years of Ruby
+
 ## Craig Buchek
 
-# Fifty Years of Ruby
+### RubyConf 2024
 
 <!-- 
 - Short URL for the slides in lower right
@@ -117,12 +119,9 @@ _class: dark
 -->
 
 ---
+<!-- _class: dark -->
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-![bg left](assets/Alan_Kay_(3097597186)_(cropped).jpg)
-# Alan Kay
-
-- TODO: Fix the headers
-    - So they're not in middle of screen
+![bg](assets/Alan_Kay_and_the_prototype_of_Dynabook_v5.jpg)
 
 <!--
 - Attended MoAD
@@ -140,6 +139,30 @@ _class: dark
 - https://tinlizzie.org/IA/index.php/Talks_by_Alan_Kay
 - https://www.quora.com/profile/Alan-Kay-11
 - Photo credit: https://commons.wikimedia.org/wiki/File:Alan_Kay_(3097597186)_(cropped).jpg
+-->
+
+---
+![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
+![bg height:90%](assets/First-Dynabook-idea.webp)
+
+<!--
+- 1968: Alan Kay had an idea
+    - This cartoon and cardboard mockup
+- First paper on it: 1972
+    - Named it Dynabook
+- Inspired by seeing Logo turtle graphics used in classrooms
+    - changed Kay's view of computers and personal computers
+        - from just “vehicles” and “tools”
+        - to “meta-media” and “for children”
+- Portability -> ubiquity
+- Says his original innovation was the idea of a personal computer for children
+- Key to everything:
+    - GUI, windows, icons, mouse, UX, WYSIWYG, networking
+    - OOP
+
+------
+
+- Image credit: https://www.quora.com/What-lessons-were-learned-in-aspiring-towards-the-DynaBook-and-have-any-of-its-original-goals-become-dated/answer/Alan-Kay-11
 -->
 
 ---
@@ -354,8 +377,7 @@ TODO
 
 ---
 ![RubyConf 2024 doodle](assets/RubyConf-2024-background-doodle-2.png)
-# OOP
-TODO: picture of cells
+![bg AI representation of cells communicating](assets/Neuron_7.jpg)
 
 <!--
 - Alan Kay coined the term "object-oriented programming" in 1967
@@ -370,6 +392,10 @@ TODO: picture of cells
 - Regrets that Smalltalk did not evolve after Smalltalk-80
 - Smalltalk was 1st OOP language
     - or so I thought ...
+
+------
+
+- Image credit: https://lifexchangesolutions.com/neurons/
 -->
 
 ---
