@@ -5,6 +5,12 @@
 :root {
     --title-text-color: rgb(242, 149, 16);
     --text-color: rgb(37, 46, 184);
+    --year-color: rgb(37, 46, 184);
+    --year-color-dark: rgba(165, 190, 252, 0.8);
+    --header-footer-color: rgba(100, 100, 100, 0.6);
+    --header-footer-background: rgba(240, 240, 240, 0.2);
+    --header-footer-color-dark: rgba(255, 255, 255, 0.8);
+    --header-footer-background-dark: rgba(0, 0, 0, 0.2);
 }
 section,
 section a {
@@ -27,52 +33,77 @@ section h1 {
 section h2 {
     color: black;
 }
-section h3 {
-    color: var(--text-color);
-}
 section.title h1 {
     font-size: 100px;
+}
+section.title h3 {
+    font-size: 32px;
+    position: fixed;
+    top: -10px;
+    right: 100px;
+    color: inherit;
+    background: none;
 }
 
 /* Headers and footers */
 header,
 footer,
-section::after
-{
+section::after,
+section h4 {
     font-size: 20px;
     padding: 0 1ex;
-    background: rgba(240, 240, 240, 0.2);
+    color: var(--header-footer-color);
+    background: var(--header-footer-background);
     z-index: 2;
-    color: rgba(100, 100, 100, 0.6);
 }
 section.dark header,
 section.dark footer,
-section.dark::after {
-    background: rgba(0, 0, 0, 0.2);
-    color: rgba(255, 255, 255, 0.8);
+section.dark::after,
+section.dark h4 {
+    color: var(--header-footer-color-dark);
+    background: var(--header-footer-background-dark);
 }
 header a {
     color: inherit;
 }
 
-section.title h3 {
-    position:fixed;
-    top: -10px;
-    right: 100px;
+/* Doodle in upper right */
+section header::after {
+    content: "";
+    background: url("assets/RubyConf-2024-background-doodle-2.png") no-repeat;
+    position: fixed;
+    top: 0;
+    right: -1024px;
+    z-index: 3;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background-size: 20%;
 }
-/* Page numbers in right footer */
-section::after {
-    content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+/* Except the title slide */
+section.title header::after {
+    content: none;
 }
 
-/* Doodle in upper right header */
-img[src="assets/RubyConf-2024-background-doodle-2.png"] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 300px;
-    z-index: 1;
+/* Year in lower right */
+section h4 {
+    position: fixed;
+    font-size: 32px;
+    bottom: 5px;
+    right: 25px;
+    color: var(--year-color);
+    z-index: 5;
+    margin-bottom: 10px !important;
+    margin-top: 0;
 }
+section.dark h4 {
+    color: var(--year-color-dark);
+}
+section.dark h4[id="2004"] {
+    color: var(--year-color);
+    background: var(--header-footer-background);
+}
+
 
 /* Images */
 img {
@@ -87,12 +118,15 @@ img[src="assets/Smalltalk-80-book.jpg"],
 img[src="assets/Smalltalk-Best-Practice-Patterns.jpg"],
 img[src="assets/Japanese-ruby-book.jpg"],
 img[src="assets/Programming-Ruby-1st-ed.jpg"],
-img[src="assets/Agile-Web-Development-with-Rails-1st-ed.jpg"]
+img[src="assets/Ruby-in-a-Nutshell.jpg"],
+img[src="assets/Agile-Web-Development-with-Rails-1st-ed.jpg"],
+img[src="assets/Byte-1981-08-Smalltalk.jpg"],
+img[src="assets/Programming-Perl-1st-edition.jpg"]
 {
     border: 1px solid black;
     margin: auto;
     position: relative;
-    top: -100px;
+    top: -60px;
     width: 50%;
 }
 img[src="assets/Smalltalk-80-book.jpg"] {
@@ -103,9 +137,24 @@ img[src="assets/Smalltalk-Best-Practice-Patterns.jpg"] {
     width: 46%;
     border: none;
 }
+img[src="assets/Japanese-ruby-book.jpg"] {
+    width: 43%;
+    border: none;
+}
 img[src="assets/Programming-Ruby-1st-ed.jpg"] {
     width: 49%;
 }
+img[src="assets/Ruby-in-a-Nutshell.jpg"] {
+    width: 40.5%;
+    /* border: none; */
+}
+img[src="assets/Byte-1981-08-Smalltalk.jpg"] {
+    width: 45%;
+}
+img[src="assets/Programming-Perl-1st-edition.jpg"] {
+    width: 39%;
+}
+
 
 /* Other slide images */
 img[src="assets/Smalltalk-76-UI.jpg"] {

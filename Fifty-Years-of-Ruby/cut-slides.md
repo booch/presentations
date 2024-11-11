@@ -55,3 +55,69 @@ And I don't want to have to dig into git history to find it.
 - Photo credit: https://www.michaeljkramer.net/wp-content/uploads/2021/09/Bush_The-Memex.jpg
 - Photo credit (memex): https://erinkmalone.medium.com/foreseeing-the-future-the-legacy-of-vannevar-bush-c418edc9a4ee
 -->
+
+---
+# Simula 67
+
+~~~ simula-67
+Class Rectangle (Width, Height); Real Width, Height;
+                         ! Class with two parameters;
+   Begin
+      Real Area, Perimeter;  ! Attributes;
+
+      Procedure Update;     ! Methods (Can be Virtual);
+      Begin
+         Area := Width * Height;
+         Perimeter := 2*(Width + Height)
+      End of Update;
+
+      Boolean Procedure IsSquare;
+         IsSquare := Width=Height;
+      Update;               ! Life of rectangle started at creation;
+    OutText("Rectangle created: "); OutFix(Width,2,6);
+    OutFix(Height,2,6); OutImage
+End of Rectangle;
+~~~
+
+<!--
+- Or perhaps Simula 67 was the first OO language
+    - Derived from ALGOL 60
+        - Most languages we use today are ancestors of ALGOL 60
+- "more" syntax than we see today
+- but you can make everything out
+    - types
+    - instance variables
+    - class keyword for user-defined types
+    - methods
+    - ...
+- code source: https://staff.um.edu.mt/jskl1/talk.html
+-->
+
+---
+# Simula 67
+
+~~~ simula-67
+Rectangle Class LocRectangle (X, Y); Integer X, Y;
+Begin                                        ! More parameters;
+   Boolean Tall;                             ! More attributes;
+   Procedure Move (Dx, Dy); Integer Dx, Dy;  ! More methods;
+   Begin
+      X := X + Dx; Y := Y + Dy
+   End of Move;
+   Tall := Height > Width;
+   OutText("Located at: "); OutFix(X,2,6); OutFix(Y,2,6); OutImage
+End of LocRectangle;
+~~~
+
+<!--
+- but you can make everything out
+    - ... subclass inheriting from superclass
+        - and adding more instance variables
+- Simula 67
+    - garbage collection
+    - objects were processes
+        - actor model
+        - coroutines
+            - no true parallelism
+- code source: https://staff.um.edu.mt/jskl1/talk.html
+-->
