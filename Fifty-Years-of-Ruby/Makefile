@@ -1,3 +1,5 @@
+all: thumbnail slides pdf
+
 slides: slides.html
 
 setup:
@@ -9,8 +11,6 @@ dev:
 	marp --config=marp.yml --watch --browser=firefox slides.md -o slides.html
 
 html: slides
-
-all: thumbnail slides pdf
 
 pdf: slides.pdf
 
