@@ -121,3 +121,30 @@ End of LocRectangle;
             - no true parallelism
 - code source: https://staff.um.edu.mt/jskl1/talk.html
 -->
+
+---
+
+# Colophon
+
+- [Marp](https://marp.app/) (https://marp.app/)
+- [mise](https://mise.jdx.dev/) (https://mise.jdx.dev/)
+- Source: https://github.com/booch/presentations/
+
+---
+
+> Technology is anything invented after you were born.
+
+<cite>Alan Kay</cite>
+
+<!--
+- [read quote]
+- TODO: Douglas Adams follow-on quote?
+- TODO: There was some point I wanted to make here
+-->
+
+---
+
+# Smalltalk-76
+![Smalltalk-76 GUI](assets/Smalltalk-76-UI.jpg)
+
+---

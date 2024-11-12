@@ -16,6 +16,9 @@ section,
 section a {
     color: var(--text-color);
 }
+section.dark {
+    background-color: black;
+}
 
 /* Slides */
 section {
@@ -86,8 +89,13 @@ section.title header::after {
 }
 
 /* Year in lower right */
+section {
+    position: relative;
+}
 section h4 {
-    position: fixed;
+    /* position: fixed; */
+    position: absolute;
+    display: block;
     font-size: 32px;
     bottom: 5px;
     right: 25px;
@@ -95,6 +103,7 @@ section h4 {
     z-index: 5;
     margin-bottom: 10px !important;
     margin-top: 0;
+    clear: both;
 }
 section.dark h4 {
     color: var(--year-color-dark);
@@ -102,6 +111,9 @@ section.dark h4 {
 section.dark h4[id="2004"] {
     color: var(--year-color);
     background: var(--header-footer-background);
+}
+section.h1 {
+    clear: both;
 }
 
 
@@ -163,16 +175,19 @@ img[src="assets/Smalltalk-76-UI.jpg"] {
     width: 50%;
 }
 
-/* img[src="assets/DHH-headshot-2017-full.jpg"] {
-    width: 52%;
+img[src="assets/DHH-headshot-2017-full.jpg"],
+img[src="assets/Chad-Fowler.jpg"],
+img[src="assets/David-Black.jpg"]
+{
+    width: 104%;
     left: 0;
-    top: -80px;
+    top: -60px;
 }
 img[src="assets/Ruby-on-Rails-logo-original.png"] {
-    width: 45%;
-    left: 55%;
-    top: 0;
-} */
+    width: 100%;
+    left: 5%;
+    top: -10px;
+}
 
 img[src="assets/Avi-Bryant-keynote-RailsConf-2007.png"] {
     left: -79px;

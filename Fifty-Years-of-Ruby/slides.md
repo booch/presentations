@@ -6,8 +6,7 @@ marp: true
 paginate: false
 header: 'https://craigbuchek.com/fifty' # Left header
 footer: '@CraigBuchek' # Left footer
-# backgroundImage: 'linear-gradient(to bottom, #67b8e3, #0288d1)'
-url: https://craigbuchek.com/fifty
+# backgroundImage: 'linear-gradient(to bottom, #67b8e3, #0288d1)'url: https://craigbuchek.com/fifty
 ---
 <!--
 _class: title lead
@@ -45,24 +44,19 @@ _class: title lead
         - how they shaped Ruby
     - what Ruby's future might look like
 
-------
-
 - If you want to "at" me, ...
     - I'm on Twitter and Mastodon via ruby.social
         - ... infrequently
 -->
 
 ---
-<!--
-_backgroundColor: black
-_class: dark
--->
+<!-- _class: dark -->
 #### 1993
 ![bg 60% Yukihiro "Matz" Matsumoto speaking in 2011](assets/Yukihiro-Matsumoto-2011.jpg)
 
 <!--
 - We're all here today because...
-- February 24, 1993
+- 1993 February 24
     - Japanese programmer YukiHIRO MatsuMOTO
         - inspired to write programming language
         - "Matz"
@@ -70,8 +64,7 @@ _class: dark
     - Perl, Smalltalk, Eiffel, Ada, Lisp
 - I will dig into Smalltalk
     - most similar to Ruby
-
-------
+- Innovative goal: programmer happiness, joy, productivity
 
 - Image credit: https://upload.wikimedia.org/wikipedia/commons/5/5a/Yukihiro_Matsumoto_EuRuKo_2011.jpg
 -->
@@ -82,32 +75,42 @@ _class: dark
 ![bg](assets/mother-of-all-demos-keyboard.jpg)
 
 <!--
-- My story starts: 1968
+- My story starts: 1968 (December 9)
     - Most of us here weren't born yet
 - ACM conference in San Francisco
     - ACM = Association for Computing Machinery
 - Douglas EngelBART
-    - Augmentation Research Center (ARC)
-        - Stanford Research Institute (SRI)
+    - Stanford Research Institute (SRI)
+        - Augmented Human Intellect Research Center (ARC)
+            - Started in 1962
     - Showed their NLS (oN-Line System)
+- Vision of personal computing
+    - Interactive!
+    - Batch processing -> time-sharing
 - Innovations:
-    - Key chorder
-        - Thing on left
+    - Key chorder (on left)
     - Mouse
-        - Actually invented in 1963
-    - Personal computing
+        - Invented in 1963 at SRI
     - Real-time video conferencing
-    - Interactive editing
-    - Remote networking
+    - Networking (to Menlo Park)
+        - Mentioned ARPANET coming soon
+    - Full-screen interactive editor
+        - Copy & paste
+    - Drawing
+    - Hyperlinks
+    - Re-sizable fonts
 - Hands in vs hands out
 - Steven Levy dubbed it "the Mother of all Demos"
     - _Insanely Great_, 1994
-- TODO: Tell them to watch the video (or fit 1 minute of it in)
+- Watch the video!
+    - 5 minutes: https://www.youtube.com/watch?v=B6rKUf9DWRI
+    - 3 parts: https://www.youtube.com/watch?v=UhpTiWyVa6k
+    - full 90 minutes: https://www.youtube.com/watch?v=yJDv-zdhzMY
 
-------
-
-- TODO: Link to videos and articles
-- TODO: Link to "Augmenting Human Intellect: A Conceptual Framework" (1962)
+- TODO: Time for 1 minute of video?
+- TODO: Link to articles
+- "Augmenting Human Intellect: A Conceptual Framework" (Engelbart, SRI, 1962)
+    - https://www.dougengelbart.org/pubs/augment-3906.html
 - Photo credit: https://qph.cf2.quoracdn.net/main-qimg-401017ddb89209598d6f0f9b74f5a1d8
 -->
 
@@ -118,9 +121,12 @@ _class: dark
 <!--
 - Attendee at MoAD:
     - Alan Kay
-- Degree in Molecular Biology
-
-------
+- Bachelor degree in Math & Molecular Biology
+- University of Utah graduate school
+    - Sketchpad (first computer graphics, GUI)
+        - "Master" drawing (objects) & instance drawings
+    - Simula-67
+        - Objects
 
 - https://tinlizzie.org/IA/index.php/Talks_by_Alan_Kay
 - https://www.quora.com/profile/Alan-Kay-11
@@ -145,8 +151,6 @@ _class: dark
 - Inspired by seeing Logo turtle graphics used in classrooms
 - Original innovation: idea of personal computer for children
 
-------
-
 - Image credit: https://www.quora.com/What-lessons-were-learned-in-aspiring-towards-the-DynaBook-and-have-any-of-its-original-goals-become-dated/answer/Alan-Kay-11
 -->
 
@@ -166,12 +170,11 @@ _class: dark
     - Laser printer
     - Ethernet
 
-------
-
 - Image source: https://www.techspot.com/articles-info/477/images/2015-09-30-image.jpg
 -->
 
 ---
+#### 1971
 # Smalltalk-71
 
 ~~~ smalltalk-71
@@ -185,13 +188,33 @@ to 'fact' :n do 'to 'fact' n do factorial n. ^ fact n'
 ~~~
 
 <!--
+- 1971
+- Hallway discussion at PARC:
+    - How small could a message-based language be?
+    - Alan Kay: No more than a page of code
+    - Dan Ingalls: Prove it!
+    - Inspired by Lisp and Simula,
+        - Alan Kay wrote basic Smalltalk in 2 weeks
+    - Dan Ingalls ran with it
+- Main ideas:
+    - Everything is an object
+    - Objects communicate by sending & receiving messages
+    - Objects have own memory
+    - Every object is an instance of a class
+    - Class holds shared behavior for its instances
 
+- Primary source: http://gagne.homedns.org/~tgagne/earlyhistoryst.html
+- Primary source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
 -->
 
 ---
+#### 1972
 # Smalltalk-72
 
 ~~~ smalltalk-72
+to box var / x y size tilt
+  (⏿(draw => (😀 place x y turn tilt. square size.))
+
 to square
   (do 4
     (😀 go 50 turn. 90))
@@ -203,26 +226,25 @@ to square length
 to poly sides size
   (👉sides 🠔 :. 👉size 🠔 :.
     do sides (😀 go size turn 360/sides))!
-
-to for token step stop var start exp (:👉var.
-  (∢←⇒(:start.) 👉start←1).
-  (∢to⇒(:stop.) 👉stop←start).
-  (∢by⇒(:step.) 👉step←1).
-∢do. :#exp. CODE 24)
 ~~~
 
 <!--
+- Smalltalk-72
+    - Adele Goldberg
+    - Dan Ingalls
+- Already had:
+    - Classes
+    - Instance variables
+    - Message-passing
 - Some notes:
     - `to` is equivalent to Ruby's `def`
     - 😀 was called smiley
         - 😀 is instance of turtle class
     - Looks a bit Lispy with the nested parens
     - This is 100% accurate UTF transliteration
-    - TODO: Understand definition of `for`, `∢`, `do`, and `:#exp`
-- Already had `self`
-
 ------
 
+- Primary source: https://smalltalkzoo.thechm.org/papers/Smalltalk72_Manual.pdf
 - Source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
 -->
 
@@ -254,8 +276,6 @@ to for token step stop var start exp (:👉var.
     - Size of a small refrigerator
     - Ethernet
 
-------
-
 - Introduced March 1, 1973
 - 1981: Xerox Star
     - Sold commercially
@@ -274,53 +294,65 @@ to for token step stop var start exp (:👉var.
 -->
 
 ---
+#### 1976
 # Smalltalk-76
-![Smalltalk-76 GUI](assets/Smalltalk-76-UI.jpg)
 
 ~~~ smalltalk-76
 Class new title: 'Point';
- fields: 'x y'. "Cartesian coordinates"
+    fields: 'x y'. "Cartesian coordinates"
 
-Access to fields
+"Access to fields"
 x [⇑x]
 y [⇑y]
 x: x y: y
 
-Testing
+"Testing"
 ≤pt  "return true if I am below/1eft of pt"
     [⇑x≤pt x and: y≤pt y]
 
-Point arithmetic
+"Point arithmetic"
 + pt [⇑Point new x: x+pt x y: y+pt y]
 - pt [⇑Point new x: x-pt x y: y-pt y]
 * scale [⇑Point new x; x*scale y: y*scale]
 ~~~
 
-- TODO: Move image up
-
 <!--
-- All in an IDE in a full GUI windowing system
-    - overlapping windows
-    - different size fonts, bold, italic
-- Source: https://smalltalkzoo.thechm.org/papers/The%20Smalltalk-76%20Programming%20System.PDF
 - Dan Ingalls designed Smalltalk-76
     - more of a compromise between the Lisp and Algol worlds
-        - brilliant design; not much flexibility was lost
     - almost 200 times faster than Smalltalk-72
 -->
 
 ---
+#### 1980
 # Smalltalk-80
 
-TODO
+~~~ smalltalk
+x := OrderedCollection with: 1 with: 2 with: 3.
+x addFirst: 0.
+x select: [:a | a > 1].  "result: #(2 3)"
+x collect: [:a | a * a]. "result: #(0 1 4 9)"
+
+Object subclass: #MessagePublisher
+    instanceVariableNames: ''
+    classVariableNames: ''
+    category: 'Smalltalk Examples'
+publish
+    Transcript show: 'Hello, World!'
+multiply: i1 and: i2 by: n
+    | mul |
+    mul := i1 * i2.
+    ^mul * n  "Return i1 * i2 * n"
+~~~
 
 <!--
 - Smalltalk-80: first public release
 - Added blocks, booleans, meta-classes
+- Ruby still has `collect` as an alias for `map`
 - Introduced MVC (model-view-controller)
 -->
 
 ---
+<!-- _class: dark -->
 #### 1981
 ![magazine: August 1981 issue of Byte magazine, introducing Smalltalk](assets/Byte-1981-08-Smalltalk.jpg)
 Byte-1981-08-Smalltalk.jpg
@@ -331,8 +363,6 @@ Byte-1981-08-Smalltalk.jpg
 - Included 13 articles on Smalltalk and OOP
     - "a large number of the personal computers of tomorrow" ...
     - "will be designed with knowledge gained from the development of the Alto."
-
-------
 
 - Previous August issues of Byte covered:
     - 1977: APL
@@ -351,6 +381,7 @@ Byte-1981-08-Smalltalk.jpg
 -->
 
 ---
+<!-- _class: dark -->
 #### 1983
 ![book: Smalltalk-80 The Language and Its Implementation](assets/Smalltalk-80-book.jpg)
 
@@ -358,8 +389,11 @@ Byte-1981-08-Smalltalk.jpg
 - First Smalltalk book, 1983
 - Adele Goldberg
     - Xerox PARC
-    - One of the designers/implementers of Smalltalk
+    - Smalltalk design, implementation
 - Several in a series
+    - Blue
+    - Green
+    - Red
 -->
 
 ---
@@ -390,39 +424,104 @@ Byte-1981-08-Smalltalk.jpg
 
 ---
 #### 1991
-![book: Programming Perl 1st edition](assets/Programming-Perl-1st-edition.jpg)
+# Perl 4
+
+~~~ perl-4
+@numbers = (1, 2, 3, 4, 5);
+$total = 0;
+foreach $num (@numbers) {
+    $total += $num;
+}
+print "Sum: $total\n";
+
+$filename = "sample.txt";
+open(FILE, $filename) || die "Cannot open $filename\n";
+while ($line = <FILE>) {
+    print $line;
+}
+close(FILE);
+
+%ages = ("Alice" => 30, "Bob" => 25);
+print "Alice is $ages{'Alice'} years old.\n";
+~~~
 
 <!--
 - Perl 4 released
     - March 21, 1991
     - Larry Wall
     - Started on Perl in 1987
-- designed so computer programmers could write programs more quickly and easily
+- Designed so computer programmers could write programs more quickly and easily
     - "Easy things should be easy and hard things should be possible"
 - More complete scripting language than shell, sed, awk
+-->
+
+---
+<!-- _class: dark -->
+#### 1991
+![book: Programming Perl 1st edition](assets/Programming-Perl-1st-edition.jpg)
+
+<!--
 - Programming Perl "camel book" released
     - January 1991
-    - O'Reilly publishing
     - Larry Wall & Randal Schwartz
 - Perl 5 released October 17, 1994
     - Added objects (among other features)
-
-------
 
 - Image source: https://en.wikipedia.org/wiki/Programming_Perl
 -->
 
 ---
 #### 1993
-# Matz starts working on Ruby
+# Pre-release Ruby
+
+~~~
+keiju> By the way, do you have considered the name of the language?  
+matz> Well, Tish, if it's like shell enough.
+matz> But I want a smarter name.
+keiju> Toilet paper?  
+...
+keiju> ruby 
+keiju> a jewelry name after all 
+matz> why jewel's name?
+keiju> perl 
+matz> I see
+keiju> But, perl is related to a shell.  
+...
+matz> What is your best up to now?
+keiju> I'm content with coral.
+matz> I thought ruby is cool as a codename, isn't it
+keiju> Well. Ruby is also good.
+~~~
 
 <!--
-- "more powerful than Perl, and more object-oriented than Python"
+- TODO: Conversation w/ Keiju Ishitsuka
+- Matz considered:
+    - Perl: "toy" language
+    - Python: not OO enough
+- Matz wanted:
+    - Simple syntax
+    - Truly OO
+    - Iterators & Closures
+    - Exception Handling
+    - Garbage Collection
+
+- Source (translated): https://blade.ruby-lang.org/ruby-talk/88819
 -->
 
 ---
+<!-- _class: dark -->
 #### 1995
-# Matz Ruby 0.95 to Japanese newsgroup
+# Ruby 0.95
+![bg](assets/happy-birthday.jpg)
+
+<!--
+- 1995 December 21
+- Ruby 0.95
+- Matz announces
+    - Japanese newsgroups
+
+- Image credit: https://www.goodfon.com/holidays/wallpaper-download-3584x2240-happy-birthday-decoration-krem-celebration-colorful-keks-cup.html
+-->
 
 ---
 #### 1996
@@ -449,6 +548,7 @@ Byte-1981-08-Smalltalk.jpg
 -->
 
 ---
+<!-- _class: dark -->
 #### 1996
 ![book: Smalltalk Best Practice Patterns](assets/Smalltalk-Best-Practice-Patterns.jpg)
 
@@ -464,16 +564,19 @@ Byte-1981-08-Smalltalk.jpg
 -->
 
 ---
+<!-- _class: dark -->
 #### 1996
 # Ruby 1.0
+![bg](assets/christmas.jpg)
 
 <!--
-- December 25
--->
+- 1996: Ruby 1.0
+- First of many major releases on Christmas
+- Creates ruby-list mailing list
+    - Japanese
 
----
-#### 1997
-# Matz starts working on Ruby full-time at Netlab.jp (July)
+- Image credit: https://www.goodfon.com/new-year/wallpaper-download-1920x1200-novyy-god-shary-krasnyy-elka.html
+-->
 
 ---
 #### 1998
@@ -482,38 +585,53 @@ Byte-1981-08-Smalltalk.jpg
 - First stable release
 
 ---
+<!-- _class: dark -->
 #### 1999
 ![Japanese Ruby book](assets/Japanese-ruby-book.jpg)
 
 <!--
-- Appears to be first Ruby book published
-- October 1999
-- Written by Keiju Ishitsuka and Matz?
-
-------
+- 1999 August 13
+    - Ruby 1.4
+- 1999 October
+    - First Ruby book published
+- Japanese
+- Written by Matz & Keiju Ishitsuka (KAY-jew I-shee-TSU-ka)
+- English title: 
+    - The Object-Oriented Scripting Language Ruby
+- 2000
+    - 20 more Ruby books
+        - in Japanese
+    - Ruby more popular in Japan than Perl or Python
 
 - Source: https://auth0.com/blog/a-brief-history-of-ruby/
 - Source: https://www.amazon.co.jp/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E8%A8%80%E8%AA%9E-ASCII-SOFTWARE-SCIENCE-Language/dp/4756132545
 -->
 
 ---
+<!-- _class: dark -->
 #### 2000
 ![book: Programming Ruby 1st edition](assets/Programming-Ruby-1st-ed.jpg)
 
 <!--
-- December 15, 2000
-- "Pickaxe book"
+- 2000 December 15
 - First English-language book on Ruby
-- Dave Thomas (Pragmatic Dave)
+- "Pickaxe book"
+- Covers Ruby 1.6
+- Dave Thomas & Andy Hunt
     - Pragmatic Programmer book
         - Coined "DRY"
     - Pragmatic Bookshelf
-    - Agile manifesto (2001)
+- Dave Thomas: Agile manifesto (2001)
     - Brought Agile/XP practices to Ruby
-- TODO: New version
+- Latest (5th) edition: Ruby 3.3
+    - Noel Rappin
+
+- NOTE: Some sources say 2001 December 15
+    - but Amazon has reviews from early 2001
 -->
 
 ---
+<!-- _class: dark -->
 #### 2001
 
 <div class="columns">
@@ -528,7 +646,7 @@ Byte-1981-08-Smalltalk.jpg
 </div></div>
 
 <!--
-- April 12-13, 2001
+- 2001 April 12-13
 - First International Ruby Conference
     - Tampa, FL
     - organizers
@@ -539,8 +657,6 @@ Byte-1981-08-Smalltalk.jpg
         - nonprofit
         - future conferences
             - including this one!
-
-------
 
 - Image source: https://www.flickr.com/photos/elabsse/9023807719
 - Image source: https://www.linkedin.com/in/dablack/
@@ -564,7 +680,15 @@ Byte-1981-08-Smalltalk.jpg
 
 <!--
 - First "modern" Ruby?
-- TODO: More about this release
+- Duck typing
+    - If it quacks like a duck, ...
+        - you can use it as if it **is** a duck
+    - If object responds to a method, ...
+        - you can call that method
+- Libraries
+    - YAML
+    - WEBrick
+    - open-uri
 -->
 
 ---
@@ -582,42 +706,111 @@ Byte-1981-08-Smalltalk.jpg
 </div></div>
 
 <!--
-- 2004: Ruby on Rails
-- David Heinemeier Hansson (DHH)
+- 2003:
     - Danish programmer
+    - David Heinemeier Hansson (DHH)
+    - part of framework he built for Basecamp at 37 Signals
     - Using Ruby since 2003
     - Was doing PHP before that
-- Released Rails publicly on July 25 2004
-    - MVC web framework
-    - part of framework he built for Basecamp at 37 Signals
-    - marketed Rails w/ 15-minute blog video
-        - Fast at editing: TextMate
-    - Convention over Configuration
+- 2004 July 25: Ruby on Rails 1st public release
+- MVC web framework
+    - Extracted from Basecamp
+- Marketed w/ 15-minute video building blog app
+    - Fast at editing: TextMate
+- Convention over Configuration
     - Big reduction in code vs Java frameworks
-    - 0.1 release was 2003
-    - 0.8 release October 25, 2004
-    - 1.0 release December 13, 2005
+- Ruby's killer app
+- Huge growth of community
 
 ------
 
 - Rails announcement: https://web.archive.org/web/20040823214652/http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/107370
 - Original Rails blog video: https://www.youtube.com/watch?v=Gzj723LkRJY
-- Made enough money to buy himself a bespoke exotic race car
+- 0.8 release October 25, 2004
+- 1.0 release December 13, 2005
+- Made enough money to buy himself a bespoke exotic car
+    - https://world.hey.com/dhh/my-all-time-dream-car-1b28942d
     - His Wikipedia entry has much more detail on his racing career than Rails
 - image credit: https://dhh.dk/images/headshot-2017-full.jpg
 - image credit: https://commons.wikimedia.org/wiki/File:Ruby_on_Rails-logo.png
 -->
 
 ---
+#### 2004
+# Groovy
+
+<div class="columns"><div>
+
+- JVM
+- Concise syntax
+- Dynamic typing
+- Meta-programming
+- DSLs
+- Grails (2006)
+
+</div><div>
+
+~~~ groovy
+languages = ["Ruby", "Java"]
+languages << "Groovy"
+languages.each { println "Language: $it"}
+
+def say(msg = 'Hello', name = 'world') {
+    "$msg $name!"
+}
+say
+say()
+say 'Hello'
+
+class Test implements GroovyInterceptable {
+    def sum(Integer x, Integer y) { x + y }
+    def invokeMethod(String name, args) {
+        System.out.println "Invoke method $name with args: $args"
+    }
+}
+def test = new Test()
+test?.sum(2,3)
+test?.multiply(2,3)
+
+class Foo {
+   def propertyMissing(String name) { name }
+}
+def f = new Foo()
+assert f.boo == "boo"
+~~~
+
+</div></div>
+
+<!--
+- Also 2004: Groovy
+- JVM
+- Superset of Java!
+- From Ruby:
+    - concise syntax
+        - superset of Java
+    - dynamic typing
+    - closures
+    - meta-programming
+- Grails (2006)
+
+- Primary source: https://web.archive.org/web/20030901064404/http://radio.weblogs.com/0112098/2003/08/29.html
+- Primary source: https://groovy-lang.org/
+-->
+
+---
+<!-- _class: dark -->
 #### 2005
 ![book: Agile Web Development with Rails, 1st edition](assets/Agile-Web-Development-with-Rails-1st-ed.jpg)
 
 <!--
-- Dave Thomas (Pragmatic Dave)
+- August, 2005
+- First Rails book
+- Dave Thomas
     - with DHH
-- August 7, 2005
-- TODO: More about this book
-- TODO: New version
+- I learned Ruby and Rails from this - late 2005
+- Note the title
+    - Dave Thomas brought Agile from the beginning
+- Rails 8 edition: coming 2025
 -->
 
 ---
@@ -649,30 +842,80 @@ Byte-1981-08-Smalltalk.jpg
 -->
 
 ---
+<!-- _class: dark -->
 # Ruby was a **rediscovery** of Smalltalk
 
 <!--
-- [read slide]
+- Ruby was a **rediscovery** of Smalltalk
+- TODO: More
+    - A re-imagining
+    - A re-implementation
+    - A re-interpretation
+    - A re-creation
+    - A re-...
 -->
 
 ---
 #### 2007
-# Ruby 1.9 (Christmas day)
+# Ruby 1.9
+
+<div class="columns"><div>
+
 - YARV interpreter
-- "stabby" lambda: f = ->(a,b) { puts a + b }
-- Hash colons: { a: 1, b: 2 } vs Hash rockets: { :a => 1, :b => 2 }
-- Block-local variables (broke compatibility with Ruby 1.8)
+- "Stabby" lambda
+- Hash colons
+- RubyGems
+- Variables scoped to blocks
+- Compatibility issues!
+
+</div><div>
+
+~~~ ruby
+f = ->(a,b) { puts a + b }
+
+has_rockets = { :a => 1, :b => 2 }
+has_colons = { a: 1, b: 2 }
+has_colons == has_rockets
+
+def foo
+  1.times { x = 2 }
+  puts x # Worked in 1.8; NameError in 1.9
+end
+~~~
+
+</div></div>
+
+<!--
+- 2007
+    - Ruby 1.9
+    - 3 years after 1.8
+        - Longest between major releases
+- YARV
+    - Yet Another Ruby VM
+    - Faster
+- MRI
+    - Matz's Ruby Interpreter
+- "Stabby" lambda
+- Hash colons
+    - Company named Hash Rocket
+- Compatibility nightmare
+    - Gems didn't work with each other
+    - 1.9.1 had a different ABI than 1.9.0
+    - Provoked Bundler (2009)
+- 2011: Ruby 1.9.3
+    - Stability, finally!
+-->
 
 ---
 #### 2008
 ![Pharo logo and example from web site](assets/Pharo.png)
 
 <!--
+- 2008
 - Pharo
 - Forked from Squeak
 - Goal: revisit Smalltalk design; enhance it
 - Based on OpenSmalltalk Virtual Machine
-    - also used by Squeak, Cuis, Newspeak
 -->
 
 ---
@@ -684,9 +927,13 @@ Byte-1981-08-Smalltalk.jpg
 - Based loosely on Smalltalk-80 blue book
 
 <!--
+- 2008
+- Rubinius
+- Mostly written in Ruby
+    - MRI: mostly C
+- Looked promising
 - There have been over 30 implementations of Ruby
-
-- Source: https://ruby-compilers.com/
+    - Source: https://ruby-compilers.com/
 -->
 
 ---
@@ -734,6 +981,11 @@ end
 </div></div>
 
 <!--
+- José Valim
+    - Rails core team
+    - book: Crafting Rails Applications
+- Erlang VM, with cleaner syntax
+    - Mostly borrowed from Ruby
 - Lightweight threads
     - 1 million threads on a 16-core machine
 - Elixir scales
@@ -856,7 +1108,8 @@ craig = User.new(name: "Craig")
 ---
 #### 2014
 # Ruby 2.2
-- incremental garbage collector
+- Incremental garbage collector
+- Performance improvements
 
 <!--
 - Primary source: https://www.ruby-lang.org/en/news/2014/12/25/ruby-2-2-0-released/
@@ -910,38 +1163,78 @@ let r2 = &mut message; // Compile error! Can't mutable borrow twice
 ---
 #### 2015
 # Ruby 2.3
-- safe navigation operator: `&.` (like Groovy)
-- `dig` for nested arrays and hashes
+- Safe navigation operator: `&.`
+- `dig`
+- Performance improvements
 
 <!--
-- Primary source: https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released/
--->
-<!--
-- Primary source: 
--->
+- 2015: Ruby 2.3
+- Safe navigation operator
+    - AKA "lonely operator"
+    - Matz says it looks like a person
+        - sitting looking at the period
+    - Borrowed from Groovy
+        - `?.`
+- `dig`
+    - for nested arrays and hashes
+- Performance improvements
+    - 3x3 performance goal started
 
----
-#### 2015
-# Ruby 2.3
-- safe navigation operator: `&.` (like Groovy)
-- `dig` for nested arrays and hashes
-
-<!--
 - Primary source: https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released/
 -->
 
 ---
 #### 2016
 # Ruby 2.4
+- Unify Fixnum and Bignum into Integer
+- Performance improvements
 
 <!--
+- 2016: Ruby 2.4
+- Integer class
+    - Unified Fixnum, Bignum
+        - Was _mostly_ transparent
+- Performance improvements
+
 - Primary source: https://www.ruby-lang.org/en/news/2016/12/25/ruby-2-4-0-released/
 -->
 
 ---
 #### 2017
 # Ruby 2.5
-- rescue and ensure can use a surrounding do-end block
+
+<div class="columns"><div>
+
+- `rescue`, `ensure` don't require `begin`, `end`
+    -  can use surrounding block
+
+</div><div>
+
+~~~ ruby
+# Ruby 2.5
+def foo
+  f = File.open("file")
+  raise "error"
+rescue
+  "rescued"
+ensure
+  f.close
+end
+
+# Ruby < 2.5
+def foo
+  begin
+    f = File.open("file")
+    raise "error"
+  rescue
+    "rescued"
+  ensure
+    f.close
+  end
+end
+~~~
+
+</div></div>
 
 <!--
 - Primary source: https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/
@@ -959,10 +1252,9 @@ let r2 = &mut message; // Compile error! Can't mutable borrow twice
 
 ---
 #### 2019
-
-~~~ ruby
 # Ruby 2.7
 
+~~~ ruby
 people = [
     { name: "Craig", age: 53, children: []},
     { name: "Alice", age: 30, children: [
@@ -1031,13 +1323,25 @@ def raise_to_power(number, power) = number ** power
 {x:, y:} == {x: x, y: y}
 foo(x:, y:) == foo(x: x, y: y)
 
-Prime.each_cons(2).lazy.find_all{_1 in [n, ^(n + 2)]}.take(3).to_a
+prime_pairs = Prime.each_cons(2).lazy
+prime_pairs.find_all{_1 in [n, ^(n + 2)]}.take(3).to_a
 #=> [[3, 5], [5, 7], [11, 13]]
 ~~~
 
 </div></div>
 
 <!--
+- 2021
+- Ruby 3.1
+- YJIT (experimental)
+    - Yet Another JIT
+- Finally got a standard debugger
+- IRB autocomplete
+- Pattern matching improvements
+- Type profiler
+    - Reads plain Ruby
+    - Generates RBS type signatures
+
 - Primary source: https://www.ruby-lang.org/en/news/2021/12/25/ruby-3-1-0-released/
 -->
 
@@ -1105,6 +1409,8 @@ craig = Person.new(name: "craig", age: "53")
 -->
 
 ---
+<!-- _class: dark -->
+####
 # Newer Ruby Features
 
 - Refinements
@@ -1124,6 +1430,8 @@ craig = Person.new(name: "craig", age: "53")
 -->
 
 ---
+<!-- _class: dark -->
+####
 # Ruby's Future
 
 - Ruby will still get new features
@@ -1154,6 +1462,29 @@ craig = Person.new(name: "craig", age: "53")
 -->
 
 ---
+<!-- _class: dark -->
+####
+# Ideas for Ruby's Future
+
+- [Ruby 4.0: To Infinity and Beyond](https://www.youtube.com/watch?v=aFSuXUXRySc)
+    - Bozhidar Batsov
+- [What If...?: Ruby 3](https://www.youtube.com/watch?v=0i2NgDhXH9Q)
+    - Eric Weinstein
+- [Steal This Talk: The Best Features Ruby Doesn't Have (Yet)](https://www.youtube.com/watch?v=XrCU5r_NF2Q)
+    - John Feminella
+- [Compiling Ruby](https://www.youtube.com/watch?v=iWDOXi7Kj2o)
+    - Kevin Deisz
+- [Keynote: Beyond Ruby 3.0](https://www.youtube.com/watch?v=2r8wcrwPH8E) (RubyConf 2021)
+    - Yukihiro Matsumoto
+
+<!--
+- Highly recommend these talks
+    - Great ideas for Ruby features
+-->
+
+---
+<!-- _class: dark -->
+####
 # Take-aways
 
 - Good solutions are rediscovered
@@ -1190,18 +1521,7 @@ craig = Person.new(name: "craig", age: "53")
 -->
 
 ---
-
-> Technology is anything invented after you were born.
-
-<cite>Alan Kay</cite>
-
-<!--
-- [read quote]
-- TODO: Douglas Adams follow-on quote?
-- TODO: There was some point I wanted to make here
--->
-
----
+#### 1971
 
 > The best way to predict the future is to invent it.
 
@@ -1212,15 +1532,6 @@ craig = Person.new(name: "craig", age: "53")
     - Explore whether decisions made are still valid
     - Experiment with language features
         - Add to Ruby
-        - Look at ideas from presentations by TODO: list people
-            - Ruby 4.0: To Infinity and Beyond by Bozhidar (BO-ji-dar) Batsov
-                - https://www.youtube.com/watch?v=aFSuXUXRySc
-            - What If...?: Ruby 3 by Eric Weinstein
-                - https://www.youtube.com/watch?v=0i2NgDhXH9Q
-            - Compiling Ruby by Kevin Deisz (DICE)
-                - https://www.youtube.com/watch?v=iWDOXi7Kj2o
-            - Steal This Talk: The Best Features Ruby Doesn't Have (Yet) by John Feminella
-                - https://www.youtube.com/watch?v=XrCU5r_NF2Q
         - Steal from other languages
     - Find ways to help the Ruby maintainers
     - Get involved in community for new upcoming language
@@ -1230,6 +1541,7 @@ craig = Person.new(name: "craig", age: "53")
 -->
 
 ---
+####
 # Thank You
 
 * Attendees
@@ -1237,8 +1549,10 @@ craig = Person.new(name: "craig", age: "53")
 * RubyConf organizers
 * People that helped me with the talk
     - **Noel Rappin**
+    - **Kerri Miller**
 
 ---
+####
 # Come talk to me!
 
 <div class="columns">
@@ -1264,15 +1578,10 @@ Tell me about:
 </div></div>
 
 ---
-# Colophon
-
-- [Marp](https://marp.app/) (https://marp.app/)
-- [mise](https://mise.jdx.dev/) (https://mise.jdx.dev/)
-- Source: https://github.com/booch/presentations/
-
----
+####
 # Contact Info
 
+- Source: https://github.com/booch/presentations/
 - GitHub: [booch](https://github.com/booch), [boochtek](https://github.com/boochtek)
 - Email: first.last@Gmail.com
 - LinkedIn https://linkedin.com/in/craigbuchek

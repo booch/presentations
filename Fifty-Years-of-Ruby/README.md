@@ -23,9 +23,7 @@ These are the same binaries that the mise marp-cli plugin uses.
 So I'm currently using Homebrew to install Marp.
 
 ~~~ shell
-mise -y install
-brew install --quiet marp-cli
-brew upgrade --quiet marp-cli
+make setup
 ~~~
 
 ## Build
@@ -33,19 +31,19 @@ brew upgrade --quiet marp-cli
 To build the HTML page, and have it auto-update as you make changes:
 
 ~~~ shell
-marp --config=marp.yml --watch --browser=firefox slides.md -o slides.html
+make dev
 ~~~
 
 To build the HTML page for later use:
 
 ~~~ shell
-marp --config=marp.yml slides.md -o slides.html
+make
 ~~~
 
 To create a PDF:
 
 ~~~ shell
-marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
+make pdf
 ~~~
 
 
@@ -95,8 +93,8 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
     - My realizations:
         - Ruby **is** a Smalltalk
         - Smalltalk community **became** the Ruby community
-- Tie in other languages
-- Slot back in what Ruby took from languages
+- Tie in other languages ✅
+- Slot back in what Ruby took from languages ✅
     - And what Matz innovated
 - Drop a few newer languages ✅
 - Only inspired by Ruby - Elixir, Rust, Crystal ✅
@@ -118,25 +116,22 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
     - Should I include full dates, or just years?
     - Too much?
     - Too little?
-2. Ruby's growth
-    - Features added (innovations, borrowed)
-    - Milestones
-3. Language support for Faux-O ???
-    - Boundaries talk
-    - Bob Martin said that the only thing that has changed in the last 50 years has been adding constraints
-        - Structured programming constrains use of GOTO
-        - Object-oriented programming constrains use of global variables
-        - Functional programming constrains use of assignment
-        - Declarative programming constrains use of control structures
-    - I think a language that gives us Faux-O constraints is next
-        - Why not both OO and FP support in a language?
-            - Ruby, Smalltalk, and JavaScript do this fairly well
-        - I believe we need immutable objects that are around passed to functions
-            - Manipulate them with function calls, rather than message passing
-            - But the syntax looks the same as OO
-            - They can **represent** a state instead of **having** a state
-        - Message-passing actors for the procedural shell
-4. Why Smalltalk "lost" to C++❗
+2. Matz's innovations
+    - focus on developer happiness❗❗❗❗
+    - simple, easy to read syntax
+        - well-done blocks!
+        - dot notation for method calls
+        - no type annotations
+    - Duck typing❗
+    - OOP at the right time
+        - But also FP (primarily for collections)
+        - easy to learn because of syntax and duck typing
+        - fast feedback loop, because it's interpreted
+    - good meta-programming story❗
+    - good syntax for DSLs❗
+    - community?❗
+        - MINASWAN: Matz is nice, and so we are nice
+3. Why Smalltalk "lost" to C++❗
     - File-based vs "the image"
     - UNIX ecosystem
     - Ask Alan Kay on Quora?
@@ -154,51 +149,40 @@ marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
             - https://isocpp.org/wiki/faq/conferences-worldwide
         - Ruby had ~20 conferences in 2019
             - https://rubyconferences.org/past/
-6. Story about Ruby community learning NO
-    - Meta-programming overuse
-        - I did it myself (after deferring learning about it for a while)\
-        - I see most programmers do this
-        - As Noel Rappin says, you don't fully understand the boundaries of your tools until you overuse them
-7. Compile-time execution will continue to gain popularity
+4. Ruby's growth ✅
+    - Features added (innovations, borrowed)
+    - Milestones
+5. Language support for Faux-O ???
+    - Boundaries talk
+    - Bob Martin said that the only thing that has changed in the last 50 years has been adding constraints
+        - Structured programming constrains use of GOTO
+        - Object-oriented programming constrains use of global variables
+        - Functional programming constrains use of assignment
+        - Declarative programming constrains use of control structures
+    - I think a language that gives us Faux-O constraints is next
+        - Why not both OO and FP support in a language?
+            - Ruby, Smalltalk, and JavaScript do this fairly well
+        - I believe we need immutable objects that are around passed to functions
+            - Manipulate them with function calls, rather than message passing
+            - But the syntax looks the same as OO
+            - They can **represent** a state instead of **having** a state
+        - Message-passing actors for the procedural shell
+6. Compile-time execution will continue to gain popularity
     - Today: you tell it what should run at compile time
     - Future: let the compiler run whatever it thinks is best
-8. Slide: XR, new Meta concept, Apple XR, Oculus, etc
-9. Collection methods: collect (map), select (filter), inject (reduce), reject, detect❗
-10. Smalltalk is still used today
+7.  Smalltalk is still used today
     - Heyday was the late 1999s
     - Many of the people moved to Ruby
-11. Short URL ✅
-12. Make Headings stay at the top of the page consistently ✅
-13. Fix colors in header/footers ✅
-14. Matz's innovations
-    - focus on developer happiness❗
-    - simple, easy to read syntax
-        - well-done blocks!
-        - dot notation for method calls
-        - no type annotations
-    - Duck typing❗
-    - attr_accessor?
-    - OOP at the right time
-        - But also FP (primarily for collections)
-        - easy to learn because of syntax and duck typing
-        - fast feedback loop, because it's interpreted
-    - good for DSLs❗
-    - good meta-programming story❗
-    - community?❗
-15. Mistakes in Ruby (see Ruby, the Bad Parts) NO
-    - Monkey patching
-    - Global variables
-    - Flip-flop operator?
-    - and/or/not keywords
-        - lower precedence, leading to confusion
-    - BEGIN/END blocks
-16. Add "RubyConf 2024" to title page ✅
-17. Make quotes look nicer ✅
-18. Create a thumbnail of the presentation
-    - `marp --image=png slides.md -o og-image.png`
-    - generate slide-show with `--og-image=og-image.png`
-    - or add `image: og-image.png` to marp.yml
-19. Makefile?
+8.  Short URL ✅
+9.  Make Headings stay at the top of the page consistently ✅
+10. Fix colors in header/footers ✅
+11. Slide: XR, new Meta concept, Apple XR, Oculus, etc❗❗❗❗❗❗
+12. Collection methods:
+    - collect (map), select (filter), inject (reduce), reject, detect
+13. Add "RubyConf 2024" to title page ✅
+14. Make quotes look nicer ✅
+15. Create a thumbnail of the presentation ✅
+16. Makefile ✅
 
 ## Colophon
 
@@ -207,15 +191,89 @@ This is the first time I'm using it; I used [Remark](https://remarkjs.com) for t
 
 ## Sources
 
-- https://blog.jetbrains.com/ruby/2015/12/20-years-of-ruby/
+- https://blog.jetbrains.com/ruby/2015/12/20-years-of-ruby/ ***
 - http://blog.nicksieger.com/articles/2006/10/20/rubyconf-history-of-ruby/
 - https://web.archive.org/web/20150506152932/http://www.linuxdevcenter.com/pub/a/linux/2001/11/29/ruby.html
 - https://web.archive.org/web/20110716133016/http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/382
 - https://en.wikipedia.org/wiki/History_of_Ruby
 
 
-
 ## Practice w/ Kerri
 - 38 minutes
     - Start: 6:07
     - End: 6:45
+- Tighten things up
+- +Smalltalk's first version in a week (1971?)
+- +OOP
+- Cut out GUI page ✅
+- Cut out early Smalltalks?
+- +Perl code
+- IDEA: Photos of what happened those years!
+- Birthday cake ✅
+- Ruby 1.0 ✅
+    - Announcement?
+        - Can't find a trace of it on the web
+    - First of many major releases on Christmas day ✅
+    - Christmas background! ✅
+- 1.8
+    - Maturity!
+        - background pic representing maturity?
+- Rails ✅
+    - Huge growth of community ✅
+    - Ruby's killer app ✅
+- **Rediscovery slide**: more notes
+- 1.9 ✅
+    - Code examples ✅
+    - Compatibility - move to notes ✅
+    - Nightmare getting gems to work with each other ✅
+        - Provoked Bundler ✅
+- Elixir: José Valim ✅
+    - wrote books on Ruby ✅
+- 2.2
+    - Pic of trash can?
+    - Performance improvements ✅
+- 2.3 ✅
+    - Move Groovy to notes ✅
+    - Performance improvements ✅
+- 2.4 ✅
+    - Performance improvements ✅
+    - Unify Fixnum and Bignum into Integer ✅
+- 2.5
+    - a couple more notes and/or bullets
+- 2.6
+- 2.7
+    - notes.
+    - bullets, maybe
+    - Make the title a title ✅
+- 3.0
+    - more notes
+    - more code
+- 3.1
+    - bullet and note about `x: x` shortcut
+- 3.3 show Prism code usage?
+- 3.4 show code using `it`
+    - Earlier version using `_1`, `_2`, etc
+        - TODO: When were those added?
+- remove "technology" quote? ✅
+- Show names of 3 talks I recommend about Ruby's future ✅
+    - QR codes?
+- Remove Colophon ✅
+- Cut Netlab ✅
+- Why did C++ win? !!!!!!!
+    - UNIX ecosystem
+    - File-based
+    - Worse is better
+    - Smalltalk was quietly being used in industry
+        - Airline industry
+        - IBM VisualAge
+        - Original XP team
+    - Smalltalk community became Ruby community
+    - Ruby values quality over quantity
+    - Same number of conferences
+- Rust etc
+    - Language logos
+- Names on pictures of people
+    - low priority
+- Crop Chad picture ✅
+- DHH/Rails pics: center ✅
+- Fix page number on DHH slide

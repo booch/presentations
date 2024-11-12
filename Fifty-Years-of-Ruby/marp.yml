@@ -13,3 +13,4 @@ pdfOutlines:
   pages: false
   headings: true
 allowLocalFiles: true # Allow PDF converter to read local (relative) files. (WARNING: Potentially insecure.)
+image: og-image.png
