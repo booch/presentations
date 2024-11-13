@@ -54,46 +54,34 @@
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
-<h4 id="1971-1">1971</h4>
-<h1 id="smalltalk-71">Smalltalk-71</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-smalltalk-71">to T 'and' :y do 'y'
-to F 'and' :y do F
-
-to 'factorial' 0 is 1
-to 'factorial' :n do 'n*factorial n-1'
-
-to 'fact' :n do 'to 'fact' n do factorial n. ^ fact n'
-</code></pre>
-<footer>@CraigBuchek</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
-<header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="1972">1972</h4>
 <h1 id="smalltalk-72">Smalltalk-72</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-smalltalk-72">to box var / x y size tilt
-  (⏿(draw =&gt; (😀 place x y turn tilt. square size.))
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-smalltalk-72">to box b | x y size tilt &quot;x, y, size, tilt are instance variables&quot;
+  (ISNEW   »    (SELF undraw. 'size 🠔 size + :. SELF draw. ⇑SELF)
+  ⏿draw    »    (😀 place x y turn tilt. square size.)
+  ⏿undraw  »    (😀 white. SELF draw. 😀 black)
+  ⏿turn    »    (SELF undraw. 'tilt 🠔 tilt + :. SELF draw)
+  ⏿size    »    (⇑size))
 
-to square
-  (do 4
-    (😀 go 50 turn. 90))
-
-to square length
-  (👉length 🠔 :.
-    do 4 (😀 go length turn 90))!
+to square size
+  (poly 4 size)
 
 to poly sides size
   (👉sides 🠔 :. 👉size 🠔 :.
-    do sides (😀 go size turn 360/sides))!
+    do sides (😀 go size turn 360/sides))
+
+👉mybox 🠔 box 0 0 50 0
+mybox turn 45  &quot;redraw box turned 45°&quot;
 </code></pre>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/xerox-alto.webp&quot;);background-size:auto 151%;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="10" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="content">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/xerox-alto.webp&quot;);background-size:auto 151%;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="9" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="content">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="1973">1973</h4>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="1976">1976</h4>
 <h1 id="smalltalk-76">Smalltalk-76</h1>
@@ -116,7 +104,7 @@ x: x y: y
 </code></pre>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="1980">1980</h4>
 <h1 id="smalltalk-80">Smalltalk-80</h1>
@@ -138,7 +126,7 @@ multiply: i1 and: i2 by: n
 </code></pre>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="1981">1981</h4>
@@ -146,19 +134,19 @@ multiply: i1 and: i2 by: n
 Byte-1981-08-Smalltalk.jpg</p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="1983">1983</h4>
 <p><img src="assets/Smalltalk-80-book.jpg" alt="book: Smalltalk-80 The Language and Its Implementation" /></p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/Macintosh.jpg&quot;);"><figcaption>original Macintosh with keyboard, mouse, and floppy drive</figcaption></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="15" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="content">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/Macintosh.jpg&quot;);"><figcaption>original Macintosh with keyboard, mouse, and floppy drive</figcaption></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="14" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="content">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="1984">1984</h4>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="1991">1991</h4>
 <h1 id="perl-4">Perl 4</h1>
@@ -181,14 +169,14 @@ print &quot;Alice is $ages{'Alice'} years old.\n&quot;;
 </code></pre>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="1991-1">1991</h4>
 <p><img src="assets/Programming-Perl-1st-edition.jpg" alt="book: Programming Perl 1st edition" /></p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="1993-1">1993</h4>
 <h1 id="pre-release-ruby">Pre-release Ruby</h1>
@@ -211,57 +199,63 @@ keiju&gt; Well. Ruby is also good.
 </code></pre>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/happy-birthday.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="19" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="content">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/happy-birthday.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="18" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="content">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="1995">1995</h4>
 <h1 id="ruby-095">Ruby 0.95</h1>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="1996">1996</h4>
 <p><img src="assets/Squeak.png" alt="Squeak web site" /></p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="1996-1">1996</h4>
 <p><img src="assets/Smalltalk-Best-Practice-Patterns.jpg" alt="book: Smalltalk Best Practice Patterns" /></p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/christmas.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="22" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="content">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/christmas.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="21" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="content">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="1996-2">1996</h4>
 <h1 id="ruby-10">Ruby 1.0</h1>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/stability.jpg&quot;);filter:opacity(.6);"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="22" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;" data-marpit-advanced-background="content">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="1998">1998</h4>
 <h1 id="ruby-12">Ruby 1.2</h1>
+
 <ul>
 <li>First stable release</li>
+<li><code>defined?</code></li>
+<li><code>catch</code> and <code>throw</code></li>
+<li><code>&amp;&amp;=</code> and <code>||=</code></li>
+<li>Float <code>floor</code>, <code>ceil</code>, <code>round</code></li>
+<li><code>true</code> and <code>false</code> keywords</li>
 </ul>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="1999">1999</h4>
 <p><img src="assets/Japanese-ruby-book.jpg" alt="Japanese Ruby book" /></p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="2000">2000</h4>
 <p><img src="assets/Programming-Ruby-1st-ed.jpg" alt="book: Programming Ruby 1st edition" /></p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="2001">2001</h4>
@@ -273,7 +267,7 @@ keiju&gt; Well. Ruby is also good.
 </div></div>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2001-1">2001</h4>
 <h1 id="jruby">JRuby</h1>
@@ -291,13 +285,25 @@ keiju&gt; Well. Ruby is also good.
 </ul>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2003">2003</h4>
-<h1 id="ruby-18-august-4">Ruby 1.8 (August 4)</h1>
+<h1 id="ruby-18">Ruby 1.8</h1>
+<ul>
+<li>Expression interpolation in strings</li>
+<li>Enumerable <code>all?</code>, <code>any?</code></li>
+<li>Enumerable <code>inject</code>
+<ul>
+<li>Later renamed <code>reduce</code></li>
+</ul>
+</li>
+<li>Net::HTTP breaking changes</li>
+<li>Libraries (lots!)</li>
+<li>Hooks</li>
+</ul>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="2004">2004</h4>
@@ -308,7 +314,7 @@ keiju&gt; Well. Ruby is also good.
 </div></div>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2004-1">2004</h4>
 <h1 id="groovy">Groovy</h1>
@@ -352,27 +358,27 @@ assert f.boo == <span class="hljs-string">&quot;boo&quot;</span>
 </div></div>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="2005">2005</h4>
 <p><img src="assets/Agile-Web-Development-with-Rails-1st-ed.jpg" alt="book: Agile Web Development with Rails, 1st edition" /></p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h4 id="2007">2007</h4>
 <p><img src="assets/Avi-Bryant-keynote-RailsConf-2007.png" alt="Avi Bryant giving keynote at RailsConf 2007" /></p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 
 <h1 id="ruby-was-a-rediscovery-of-smalltalk">Ruby was a <strong>rediscovery</strong> of Smalltalk</h1>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2007-1">2007</h4>
 <h1 id="ruby-19">Ruby 1.9</h1>
@@ -400,13 +406,13 @@ has_colons == has_rockets
 </div></div>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2008">2008</h4>
 <p><img src="assets/Pharo.png" alt="Pharo logo and example from web site" /></p>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2008-1">2008</h4>
 <h1 id="rubinius">Rubinius</h1>
@@ -417,7 +423,7 @@ has_colons == has_rockets
 </ul>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2012">2012</h4>
 <h1 id="elixir">Elixir</h1>
@@ -465,7 +471,7 @@ craig = %{ craig | <span class="hljs-symbol">email:</span> <span class="hljs-str
 </div></div>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2013">2013</h4>
 <h1 id="truffleruby">TruffleRuby</h1>
@@ -476,7 +482,7 @@ craig = %{ craig | <span class="hljs-symbol">email:</span> <span class="hljs-str
 </ul>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2013-1">2013</h4>
 <h1 id="ruby-20-and-21">Ruby 2.0 (and 2.1)</h1>
@@ -514,7 +520,7 @@ using M
 </div></div>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2014">2014</h4>
 <h1 id="crystal">Crystal</h1>
@@ -566,9 +572,29 @@ craig = User.new(<span class="hljs-symbol">name:</span> <span class="hljs-string
 </div></div>
 <footer>@CraigBuchek</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2014-1">2014</h4>
+<h1 id="mruby">MRuby</h1>
+<ul>
+<li>Lightweight Ruby implementation</li>
+<li>Embeddable
+<ul>
+<li>Easily called from C</li>
+</ul>
+</li>
+<li>No standard library
+<ul>
+<li>Only core library</li>
+</ul>
+</li>
+<li>Can't override some core classes</li>
+</ul>
+<footer>@CraigBuchek</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
+<header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
+<h4 id="2014-2">2014</h4>
 <h1 id="ruby-22">Ruby 2.2</h1>
 <ul>
 <li>Incremental garbage collector</li>
@@ -580,8 +606,7 @@ craig = User.new(<span class="hljs-symbol">name:</span> <span class="hljs-string
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2015">2015</h4>
 <h1 id="rust">Rust</h1>
-<div class="columns">
-<div>
+<div class="columns"><div>
 <ul>
 <li>Fast and memory-efficient</li>
 <li>Low-level</li>
@@ -681,23 +706,66 @@ craig = User.new(<span class="hljs-symbol">name:</span> <span class="hljs-string
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2018">2018</h4>
 <h1 id="ruby-26">Ruby 2.6</h1>
+<div class="columns"><div>
 <ul>
 <li>MJIT (experimental)</li>
+<li>Bundler included</li>
+<li>Endless ranges</li>
+<li>Function composition operators
+<ul>
+<li><code>&lt;&lt;</code> and <code>&gt;&gt;</code></li>
 </ul>
+</li>
+<li><code>then</code></li>
+</ul>
+</div><div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ruby"><span class="hljs-string">&quot;My long string&quot;</span>[<span class="hljs-number">8</span>..]  <span class="hljs-comment"># =&gt; &quot;string&quot;</span>
+
+f = <span class="hljs-built_in">proc</span>{|<span class="hljs-params">x</span>| x + <span class="hljs-number">2</span>}
+g = <span class="hljs-built_in">proc</span>{|<span class="hljs-params">x</span>| x * <span class="hljs-number">3</span>}
+(f &gt;&gt; g).call(<span class="hljs-number">3</span>)  <span class="hljs-comment"># Same as g(f(3))</span>
+(f &lt;&lt; g).call(<span class="hljs-number">3</span>)  <span class="hljs-comment"># Same as f(g(3))</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">filter_by_status</span>(<span class="hljs-params">posts</span>)
+  <span class="hljs-keyword">return</span> posts <span class="hljs-keyword">unless</span> <span class="hljs-variable">@status</span>
+  posts.where(<span class="hljs-symbol">status:</span> <span class="hljs-title class_">Post</span>.statuses[<span class="hljs-variable">@status</span>])
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">order</span>(<span class="hljs-params">posts</span>)
+  posts.order(<span class="hljs-string">&#x27;published_at DESC&#x27;</span>)
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-title class_">Post</span>.all
+  .<span class="hljs-keyword">then</span>(&amp;method(<span class="hljs-symbol">:filter_by_status</span>))
+  .<span class="hljs-keyword">then</span>(&amp;method(<span class="hljs-symbol">:order</span>))
+</code></pre>
+</div></div>
 <footer>@CraigBuchek</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2019">2019</h4>
 <h1 id="ruby-27">Ruby 2.7</h1>
+<div class="columns"><div>
+<ul>
+<li>Pattern matching (experimental)
+<ul>
+<li><code>case</code> <code>in</code></li>
+</ul>
+</li>
+<li>Numbered block parameters
+<ul>
+<li><code>_1</code>, <code>_2</code>, <code>_3</code>, etc</li>
+</ul>
+</li>
+</ul>
+</div><div>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ruby">people = [
     { <span class="hljs-symbol">name:</span> <span class="hljs-string">&quot;Craig&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">53</span>, <span class="hljs-symbol">children:</span> []},
     { <span class="hljs-symbol">name:</span> <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">30</span>, <span class="hljs-symbol">children:</span> [
         { <span class="hljs-symbol">name:</span> <span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-symbol">age:</span> <span class="hljs-number">2</span> }
     ]}
 ]
-
-<span class="hljs-comment"># Pattern matching (experimental)</span>
 people.each <span class="hljs-keyword">do</span> |<span class="hljs-params">person</span>|
   <span class="hljs-keyword">case</span> person
     <span class="hljs-keyword">in</span> {<span class="hljs-symbol">name:</span> name, <span class="hljs-symbol">children:</span> [{<span class="hljs-symbol">name:</span> child, <span class="hljs-symbol">age:</span> age}]}
@@ -706,7 +774,10 @@ people.each <span class="hljs-keyword">do</span> |<span class="hljs-params">pers
       p <span class="hljs-string">&quot;<span class="hljs-subst">#{name}</span> has no children&quot;</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
+
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].each { puts _1 }
 </code></pre>
+</div></div>
 <footer>@CraigBuchek</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
@@ -721,14 +792,34 @@ people.each <span class="hljs-keyword">do</span> |<span class="hljs-params">pers
 <li>JIT</li>
 </ul>
 </li>
-<li>Ractors (experimental)</li>
+<li><code>end</code>-less method definition</li>
+<li>Ractors
+<ul>
+<li>Experimental</li>
+</ul>
+</li>
 <li>RBS static analysis</li>
-<li>One-line pattern matching (experimental)</li>
-<li>Endless method definition</li>
+<li>One-line pattern matching
+<ul>
+<li>Experimental</li>
+</ul>
+</li>
 </ul>
 </div><div>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ruby"><span class="hljs-keyword">def</span> <span class="hljs-title function_">raise_to_power</span>(<span class="hljs-params">number, power</span>) = number ** power
 
+receiver = <span class="hljs-title class_">Ractor</span>.new <span class="hljs-keyword">do</span>
+  message = <span class="hljs-title class_">Ractor</span>.receive
+  puts <span class="hljs-string">&quot;received message is <span class="hljs-subst">#{message}</span>&quot;</span>
+<span class="hljs-keyword">end</span>
+receiver.send(<span class="hljs-string">&quot;Hi!&quot;</span>)  <span class="hljs-comment"># prints received message is Hi!&quot;</span>
+received message is <span class="hljs-title class_">Hi</span>!
+
+sender = <span class="hljs-title class_">Ractor</span>.new <span class="hljs-keyword">do</span>
+  message = <span class="hljs-string">&#x27;Hi!&#x27;</span>
+  <span class="hljs-title class_">Ractor</span>.<span class="hljs-keyword">yield</span>(message)
+<span class="hljs-keyword">end</span>
+sender.take  <span class="hljs-comment"># =&gt; &quot;Hi!&quot;</span>
 </code></pre>
 </div></div>
 <footer>@CraigBuchek</footer>
@@ -739,6 +830,7 @@ people.each <span class="hljs-keyword">do</span> |<span class="hljs-params">pers
 <h1 id="ruby-31">Ruby 3.1</h1>
 <div class="columns"><div>
 <ul>
+<li>Hash and keyword argument shorthand</li>
 <li>YJIT (experimental)</li>
 <li><code>debug</code> gem (<code>rdbg</code>)</li>
 <li><code>error_highlight</code> gem</li>
@@ -796,8 +888,12 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 <h4 id="2023">2023</h4>
 <h1 id="ruby-33">Ruby 3.3</h1>
 <ul>
-<li>Prism parser</li>
-<li>pure-Ruby JIT compiler (RJIT)</li>
+<li>Prism parser
+<ul>
+<li>Not default yet</li>
+</ul>
+</li>
+<li>RJIT: pure Ruby JIT compiler</li>
 <li>IRB improvements</li>
 </ul>
 <footer>@CraigBuchek</footer>
@@ -806,11 +902,16 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="2024">2024</h4>
 <h1 id="ruby-34">Ruby 3.4</h1>
+<div class="columns"><div>
 <ul>
-<li>Prism parser used by default</li>
+<li>Prism parser by default</li>
 <li>Mutating string literals deprecated</li>
 <li><code>it</code> as block parameter</li>
 </ul>
+</div><div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ruby">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].each { puts it }
+</code></pre>
+</div></div>
 <footer>@CraigBuchek</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-class="dark" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" class="dark" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--class:dark;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
@@ -902,7 +1003,7 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-header="https://craigbuchek.com/fifty" data-footer="@CraigBuchek" data-theme="ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v" lang="en-US" style="--header:https://craigbuchek.com/fifty;--footer:@CraigBuchek;--theme:ljf26h2uqa8746809q25nxzaqpjj83yim31de91d8v;">
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
-<h4 id="1971-2">1971</h4>
+<h4 id="1971-1">1971</h4>
 <blockquote>
 <p>The best way to predict the future is to invent it.</p>
 </blockquote>
@@ -917,7 +1018,7 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 <li data-marpit-fragment="1">Attendees</li>
 <li data-marpit-fragment="2">Viewers</li>
 <li data-marpit-fragment="3">RubyConf organizers</li>
-<li data-marpit-fragment="4">People that helped me with the talk
+<li data-marpit-fragment="4">People that gave me feedback
 <ul>
 <li><strong>Noel Rappin</strong></li>
 <li><strong>Kerri Miller</strong></li>
@@ -930,8 +1031,7 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 <header><a href="https://craigbuchek.com/fifty">https://craigbuchek.com/fifty</a></header>
 <h4 id="-5"></h4>
 <h1 id="come-talk-to-me">Come talk to me!</h1>
-<div class="columns">
-<div>
+<div class="columns"><div>
 <p>Ask me about:</p>
 <ul>
 <li>This talk (or others)</li>
@@ -998,12 +1098,12 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - Perl, Smalltalk, Eiffel, Ada, Lisp
 - I will dig into Smalltalk
     - most similar to Ruby
-- Innovative goal: programmer happiness, joy, productivity
+- Goal: programmer happiness, joy, productivity
 
 - Image credit: https://upload.wikimedia.org/wikipedia/commons/5/5a/Yukihiro_Matsumoto_EuRuKo_2011.jpg</p></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>- My story starts: 1968 (December 9)
-    - Most of us here weren't born yet
-- ACM conference in San Francisco
+- ACM/IEEE conference in San Francisco
     - ACM = Association for Computing Machinery
+    - IEEE = Institute of Electrical and Electronics Engineers
 - Douglas EngelBART
     - Stanford Research Institute (SRI)
         - Augmented Human Intellect Research Center (ARC)
@@ -1011,32 +1111,31 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - Showed their NLS (oN-Line System)
 - Vision of personal computing
     - Interactive!
-    - Batch processing -&gt; time-sharing
+    - Batch processing -&gt; time-sharing -&gt; personal computing
 - Innovations:
-    - Key chorder (on left)
     - Mouse
         - Invented in 1963 at SRI
-    - Real-time video conferencing
+    - Key chorder (on left)
     - Networking (to Menlo Park)
         - Mentioned ARPANET coming soon
+    - Video conferencing
     - Full-screen interactive editor
+        - Collaborative editing
         - Copy &amp; paste
-    - Drawing
     - Hyperlinks
-    - Re-sizable fonts
-- Hands in vs hands out
+- TODO: Time for 1 minute of video?
 - Steven Levy dubbed it &quot;the Mother of all Demos&quot;
     - _Insanely Great_, 1994
 - Watch the video!
     - 5 minutes: https://www.youtube.com/watch?v=B6rKUf9DWRI
     - 3 parts: https://www.youtube.com/watch?v=UhpTiWyVa6k
-    - full 90 minutes: https://www.youtube.com/watch?v=yJDv-zdhzMY
 
-- TODO: Time for 1 minute of video?
 - TODO: Link to articles
 - &quot;Augmenting Human Intellect: A Conceptual Framework&quot; (Engelbart, SRI, 1962)
     - https://www.dougengelbart.org/pubs/augment-3906.html
-- Photo credit: https://qph.cf2.quoracdn.net/main-qimg-401017ddb89209598d6f0f9b74f5a1d8</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>- Attendee at MoAD:
+- Source: https://en.wikipedia.org/wiki/The_Mother_of_All_Demos
+- Photo credit: https://qph.cf2.quoracdn.net/main-qimg-401017ddb89209598d6f0f9b74f5a1d8
+- Book: What the Dormouse Said by John Markoff (2005)</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>- Attendee at MoAD:
     - Alan Kay
 - Bachelor degree in Math &amp; Molecular Biology
 - University of Utah graduate school
@@ -1070,39 +1169,31 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - Laser printer
     - Ethernet
 
-- Image source: https://www.techspot.com/articles-info/477/images/2015-09-30-image.jpg</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>- 1971
+- Image source: https://www.techspot.com/articles-info/477/images/2015-09-30-image.jpg</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>- 1972
 - Hallway discussion at PARC:
     - How small could a message-based language be?
     - Alan Kay: No more than a page of code
     - Dan Ingalls: Prove it!
     - Inspired by Lisp and Simula,
         - Alan Kay wrote basic Smalltalk in 2 weeks
-    - Dan Ingalls ran with it
+    - Dan Ingalls &amp; Adele Goldberg ran with it
 - Main ideas:
     - Everything is an object
     - Objects communicate by sending &amp; receiving messages
     - Objects have own memory
     - Every object is an instance of a class
     - Class holds shared behavior for its instances
-
-- Primary source: http://gagne.homedns.org/~tgagne/earlyhistoryst.html
-- Primary source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf</p></div><div class="bespoke-marp-note" data-index="8" tabindex="0"><p>- Smalltalk-72
-    - Adele Goldberg
-    - Dan Ingalls
-- Already had:
-    - Classes
-    - Instance variables
-    - Message-passing
 - Some notes:
     - `to` is equivalent to Ruby's `def`
     - 😀 was called smiley
         - 😀 is instance of turtle class
     - Looks a bit Lispy with the nested parens
     - This is 100% accurate UTF transliteration
-------
 
+- Primary source: http://gagne.homedns.org/~tgagne/earlyhistoryst.html
+- Primary source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
 - Primary source: https://smalltalkzoo.thechm.org/papers/Smalltalk72_Manual.pdf
-- Source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf</p></div><div class="bespoke-marp-note" data-index="9" tabindex="0"><p>- 1973
+- Source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf</p></div><div class="bespoke-marp-note" data-index="8" tabindex="0"><p>- 1973
 - Xerox Alto
     - &quot;The Interim Dynabook&quot;
     - $32k ($200k+ today)
@@ -1138,12 +1229,12 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 - https://en.wikipedia.org/wiki/PARC_(company)
 - https://en.wikipedia.org/wiki/List_of_people_associated_with_PARC
 - PARC campus photo credit: https://preview.redd.it/kjl8la0xow191.jpg?width=900&amp;format=pjpg&amp;auto=webp&amp;s=bc4dfbff6ada4007fdf27ed9fed8dcdbee6ed12e
-- Xerox Alto photo credit: https://crm.org/articles/xerox-parc-and-the-origins-of-gui</p></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>- Dan Ingalls designed Smalltalk-76
+- Xerox Alto photo credit: https://crm.org/articles/xerox-parc-and-the-origins-of-gui</p></div><div class="bespoke-marp-note" data-index="9" tabindex="0"><p>- Dan Ingalls designed Smalltalk-76
     - more of a compromise between the Lisp and Algol worlds
-    - almost 200 times faster than Smalltalk-72</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>- Smalltalk-80: first public release
+    - almost 200 times faster than Smalltalk-72</p></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>- Smalltalk-80: first public release
 - Added blocks, booleans, meta-classes
 - Ruby still has `collect` as an alias for `map`
-- Introduced MVC (model-view-controller)</p></div><div class="bespoke-marp-note" data-index="12" tabindex="0"><p>- August 1981
+- Introduced MVC (model-view-controller)</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>- August 1981
 - Byte magazine
 - Included 13 articles on Smalltalk and OOP
     - &quot;a large number of the personal computers of tomorrow&quot; ...
@@ -1162,14 +1253,14 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
         - Also intro of Commodore Amiga
     - 1986: Object-Oriented Languages
     - 1987: Prolog
-- Source: https://archive.org/details/byte-magazine-1981-08</p></div><div class="bespoke-marp-note" data-index="13" tabindex="0"><p>- First Smalltalk book, 1983
+- Source: https://archive.org/details/byte-magazine-1981-08</p></div><div class="bespoke-marp-note" data-index="12" tabindex="0"><p>- First Smalltalk book, 1983
 - Adele Goldberg
     - Xerox PARC
     - Smalltalk design, implementation
 - Several in a series
     - Blue
     - Green
-    - Red</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>- 1984: Macintosh
+    - Red</p></div><div class="bespoke-marp-note" data-index="13" tabindex="0"><p>- 1984: Macintosh
 - Steve Jobs and Apple folks visited PARC in 1979 (twice)
     - Xerox received some Apple stock options
     - Smalltalk-76, networking, mouse-driven WYSIWYG GUI
@@ -1182,24 +1273,22 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - Had been at Atari for a few years
     - Stayed until 1996
 
-------
-
 - Kay on Mac:
     - &quot;The Mac was a failure in the sense that it didn't achieve the goal of changing the way people think about computers.&quot;
         - Me: LOLWAT!!!?????
-    - &quot;The Mac was a success in the sense that it was a very good implementation of the ideas that were around at the time.&quot;</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>- Perl 4 released
+    - &quot;The Mac was a success in the sense that it was a very good implementation of the ideas that were around at the time.&quot;</p></div><div class="bespoke-marp-note" data-index="14" tabindex="0"><p>- Perl 4 released
     - March 21, 1991
     - Larry Wall
     - Started on Perl in 1987
 - Designed so computer programmers could write programs more quickly and easily
     - &quot;Easy things should be easy and hard things should be possible&quot;
-- More complete scripting language than shell, sed, awk</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>- Programming Perl &quot;camel book&quot; released
+- More complete scripting language than shell, sed, awk</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>- Programming Perl &quot;camel book&quot; released
     - January 1991
     - Larry Wall &amp; Randal Schwartz
 - Perl 5 released October 17, 1994
     - Added objects (among other features)
 
-- Image source: https://en.wikipedia.org/wiki/Programming_Perl</p></div><div class="bespoke-marp-note" data-index="17" tabindex="0"><p>- TODO: Conversation w/ Keiju Ishitsuka
+- Image source: https://en.wikipedia.org/wiki/Programming_Perl</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>- TODO: Conversation w/ Keiju Ishitsuka
 - Matz considered:
     - Perl: &quot;toy&quot; language
     - Python: not OO enough
@@ -1210,12 +1299,12 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - Exception Handling
     - Garbage Collection
 
-- Source (translated): https://blade.ruby-lang.org/ruby-talk/88819</p></div><div class="bespoke-marp-note" data-index="18" tabindex="0"><p>- 1995 December 21
+- Source (translated): https://blade.ruby-lang.org/ruby-talk/88819</p></div><div class="bespoke-marp-note" data-index="17" tabindex="0"><p>- 1995 December 21
 - Ruby 0.95
 - Matz announces
     - Japanese newsgroups
 
-- Image credit: https://www.goodfon.com/holidays/wallpaper-download-3584x2240-happy-birthday-decoration-krem-celebration-colorful-keks-cup.html</p></div><div class="bespoke-marp-note" data-index="19" tabindex="0"><p>- 1996
+- Image credit: https://www.goodfon.com/holidays/wallpaper-download-3584x2240-happy-birthday-decoration-krem-celebration-colorful-keks-cup.html</p></div><div class="bespoke-marp-note" data-index="18" tabindex="0"><p>- 1996
 - Apple
     - Dan Ingalls
     - Alan Kay
@@ -1227,23 +1316,22 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 - More movement towards Dynabook
 - Scratch visual programming language
 
-------
-
 - Primary source: https://dl.acm.org/doi/pdf/10.1145/263698.263754
 - Source: https://en.wikipedia.org/wiki/Squeak
-- Image source: https://squeak.org/</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>- October 3, 1996
+- Image source: https://squeak.org/</p></div><div class="bespoke-marp-note" data-index="19" tabindex="0"><p>- October 3, 1996
 - IMHO, one of the best &quot;Ruby&quot; books
 - Design patterns &quot;in the small&quot;
 - Kent Beck
     - Agile Manifesto
     - Extreme Programming
     - Wrote _the_ book on Test-Driven Development
-    - JUnit</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>- 1996: Ruby 1.0
+    - JUnit</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>- 1996: Ruby 1.0
 - First of many major releases on Christmas
 - Creates ruby-list mailing list
     - Japanese
 
-- Image credit: https://www.goodfon.com/new-year/wallpaper-download-1920x1200-novyy-god-shary-krasnyy-elka.html</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>- 1999 August 13
+- Image credit: https://www.goodfon.com/new-year/wallpaper-download-1920x1200-novyy-god-shary-krasnyy-elka.html</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>- Primary source: https://github.com/github/ruby-thecodeshop/blob/v1_2_stable/ChangeLog
+- Image credit: https://www.online-therapy.com/blog/borderline-personality-disorder-vs-stability-life/</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>- 1999 August 13
     - Ruby 1.4
 - 1999 October
     - First Ruby book published
@@ -1257,7 +1345,7 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - Ruby more popular in Japan than Perl or Python
 
 - Source: https://auth0.com/blog/a-brief-history-of-ruby/
-- Source: https://www.amazon.co.jp/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E8%A8%80%E8%AA%9E-ASCII-SOFTWARE-SCIENCE-Language/dp/4756132545</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>- 2000 December 15
+- Source: https://www.amazon.co.jp/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E8%A8%80%E8%AA%9E-ASCII-SOFTWARE-SCIENCE-Language/dp/4756132545</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>- 2000 December 15
 - First English-language book on Ruby
 - &quot;Pickaxe book&quot;
 - Covers Ruby 1.6
@@ -1271,7 +1359,7 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - Noel Rappin
 
 - NOTE: Some sources say 2001 December 15
-    - but Amazon has reviews from early 2001</p></div><div class="bespoke-marp-note" data-index="25" tabindex="0"><p>- 2001 April 12-13
+    - but Amazon has reviews from early 2001</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>- 2001 April 12-13
 - First International Ruby Conference
     - Tampa, FL
     - organizers
@@ -1284,32 +1372,28 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
             - including this one!
 
 - Image source: https://www.flickr.com/photos/elabsse/9023807719
-- Image source: https://www.linkedin.com/in/dablack/</p></div><div class="bespoke-marp-note" data-index="27" tabindex="0"><p>- First &quot;modern&quot; Ruby?
-- Duck typing
-    - If it quacks like a duck, ...
-        - you can use it as if it **is** a duck
-    - If object responds to a method, ...
-        - you can call that method
+- Image source: https://www.linkedin.com/in/dablack/</p></div><div class="bespoke-marp-note" data-index="26" tabindex="0"><p>- 2003 August 4
+- Ruby 1.8
+- First &quot;mature&quot; Ruby, IMO
 - Libraries
     - YAML
+    - CSV
     - WEBrick
-    - open-uri</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>- 2003:
-    - Danish programmer
+    - open-uri
+    - OpenSSL
+    - Test::Unit</p></div><div class="bespoke-marp-note" data-index="27" tabindex="0"><p>- 2003:
     - David Heinemeier Hansson (DHH)
-    - part of framework he built for Basecamp at 37 Signals
-    - Using Ruby since 2003
-    - Was doing PHP before that
+    - Had been coding in PHP
+    - Built Basecamp at 37 Signals
 - 2004 July 25: Ruby on Rails 1st public release
 - MVC web framework
     - Extracted from Basecamp
 - Marketed w/ 15-minute video building blog app
     - Fast at editing: TextMate
-- Convention over Configuration
+- Convention over configuration
     - Big reduction in code vs Java frameworks
 - Ruby's killer app
 - Huge growth of community
-
-------
 
 - Rails announcement: https://web.archive.org/web/20040823214652/http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/107370
 - Original Rails blog video: https://www.youtube.com/watch?v=Gzj723LkRJY
@@ -1319,26 +1403,26 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - https://world.hey.com/dhh/my-all-time-dream-car-1b28942d
     - His Wikipedia entry has much more detail on his racing career than Rails
 - image credit: https://dhh.dk/images/headshot-2017-full.jpg
-- image credit: https://commons.wikimedia.org/wiki/File:Ruby_on_Rails-logo.png</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>- Also 2004: Groovy
+- image credit: https://commons.wikimedia.org/wiki/File:Ruby_on_Rails-logo.png</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>- Also 2004: Groovy
 - JVM
 - Superset of Java!
 - From Ruby:
     - concise syntax
-        - superset of Java
     - dynamic typing
     - closures
     - meta-programming
 - Grails (2006)
 
 - Primary source: https://web.archive.org/web/20030901064404/http://radio.weblogs.com/0112098/2003/08/29.html
-- Primary source: https://groovy-lang.org/</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>- August, 2005
+- Primary source: https://groovy-lang.org/</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>- 2005 August
 - First Rails book
 - Dave Thomas
     - with DHH
-- I learned Ruby and Rails from this - late 2005
-- Note the title
-    - Dave Thomas brought Agile from the beginning
-- Rails 8 edition: coming 2025</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>- 2007: Avi Bryant at RailsConf
+- I learned Ruby and Rails from this
+    - late 2005
+- Note the title: *Agile*
+    - Dave Thomas brought Agile from start
+- Rails 8 edition: coming 2025</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>- 2007: Avi Bryant at RailsConf
 - Avi Bryant
     - Seaside web framework
     - GemStone Smalltalk
@@ -1357,13 +1441,13 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 - Source: https://www.akitaonrails.com/2007/12/21/chatting-with-avi-bryant-part-1
 - Source: https://www.akitaonrails.com/2007/12/22/chatting-with-avi-bryant-part-2
 - Source: http://web.archive.org/web/20130729204305id_/http://itc.conversationsnetwork.org/shows/detail3432.html
-- Image source: https://www.flickr.com/photos/x180/505428676</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>- Ruby was a **rediscovery** of Smalltalk
+- Image source: https://www.flickr.com/photos/x180/505428676</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>- Ruby was a **rediscovery** of Smalltalk
 - TODO: More
     - A re-imagining
     - A re-implementation
     - A re-interpretation
     - A re-creation
-    - A re-...</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>- 2007
+    - A re-...</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>- 2007
     - Ruby 1.9
     - 3 years after 1.8
         - Longest between major releases
@@ -1380,17 +1464,17 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - 1.9.1 had a different ABI than 1.9.0
     - Provoked Bundler (2009)
 - 2011: Ruby 1.9.3
-    - Stability, finally!</p></div><div class="bespoke-marp-note" data-index="34" tabindex="0"><p>- 2008
+    - Stability, finally!</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>- 2008
 - Pharo
 - Forked from Squeak
 - Goal: revisit Smalltalk design; enhance it
-- Based on OpenSmalltalk Virtual Machine</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>- 2008
+- Based on OpenSmalltalk Virtual Machine</p></div><div class="bespoke-marp-note" data-index="34" tabindex="0"><p>- 2008
 - Rubinius
 - Mostly written in Ruby
     - MRI: mostly C
 - Looked promising
 - There have been over 30 implementations of Ruby
-    - Source: https://ruby-compilers.com/</p></div><div class="bespoke-marp-note" data-index="36" tabindex="0"><p>- José Valim
+    - Source: https://ruby-compilers.com/</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>- José Valim
     - Rails core team
     - book: Crafting Rails Applications
 - Erlang VM, with cleaner syntax
@@ -1401,11 +1485,11 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
     - Small embedded devices
     - Large clusters &amp; distributed systems
 - Fault tolerance
-- https://elixir-lang.org/</p></div><div class="bespoke-marp-note" data-index="38" tabindex="0"><p>- Every major release since 2.1 has been yearly, on Christmas day
+- https://elixir-lang.org/</p></div><div class="bespoke-marp-note" data-index="37" tabindex="0"><p>- Every major release since 2.1 has been yearly, on Christmas day
 
 - Primary source: https://www.ruby-lang.org/en/news/2013/02/24/ruby-2-0-0-p0-is-released/
 - Primary source: https://www.ruby-lang.org/en/news/2013/12/25/ruby-2-1-0-is-released/
-- Primary source: https://docs.ruby-lang.org/en/2.4.0/syntax/refinements_rdoc.html</p></div><div class="bespoke-marp-note" data-index="39" tabindex="0"><p>- I gave talk on Crystal very early on
+- Primary source: https://docs.ruby-lang.org/en/2.4.0/syntax/refinements_rdoc.html</p></div><div class="bespoke-marp-note" data-index="38" tabindex="0"><p>- I gave talk on Crystal very early on
     - local Ruby user group - STLRuby
     - had one of the 2 originators on video
 - https://crystal-lang.org/</p></div><div class="bespoke-marp-note" data-index="40" tabindex="0"><p>- Primary source: https://www.ruby-lang.org/en/news/2014/12/25/ruby-2-2-0-released/</p></div><div class="bespoke-marp-note" data-index="41" tabindex="0"><p>- https://www.rust-lang.org/</p></div><div class="bespoke-marp-note" data-index="42" tabindex="0"><p>- 2015: Ruby 2.3
@@ -1427,8 +1511,23 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 - Performance improvements
 
 - Primary source: https://www.ruby-lang.org/en/news/2016/12/25/ruby-2-4-0-released/</p></div><div class="bespoke-marp-note" data-index="44" tabindex="0"><p>- Primary source: https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/</p></div><div class="bespoke-marp-note" data-index="45" tabindex="0"><p>- First JIT
-- Primary source: https://www.ruby-lang.org/en/news/2018/12/25/ruby-2-6-0-released/</p></div><div class="bespoke-marp-note" data-index="46" tabindex="0"><p>- Primary source: https://www.ruby-lang.org/en/news/2019/12/25/ruby-2-7-0-released/</p></div><div class="bespoke-marp-note" data-index="47" tabindex="0"><p>- Primary source: https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released/</p></div><div class="bespoke-marp-note" data-index="48" tabindex="0"><p>- 2021
+- Bundler included
+- Function composition operators
+    - `&lt;&lt;` and `&gt;&gt;`
+- `then` to chain methods
+    - Like pipes in Unix shell
+
+- Primary source: https://www.ruby-lang.org/en/news/2018/12/25/ruby-2-6-0-released/</p></div><div class="bespoke-marp-note" data-index="46" tabindex="0"><p>- 2019: Ruby 2.7
+- Pattern matching (experimental)
+    - Borrowed from Elixir
+    - `case` `in`
+- Numbered block parameters
+    - `_1`, `_2`, `_3`, etc
+- Internal cleanup
+
+- Primary source: https://www.ruby-lang.org/en/news/2019/12/25/ruby-2-7-0-released/</p></div><div class="bespoke-marp-note" data-index="47" tabindex="0"><p>- Primary source: https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released/</p></div><div class="bespoke-marp-note" data-index="48" tabindex="0"><p>- 2021
 - Ruby 3.1
+- Shorthand for hash and keyword arguments
 - YJIT (experimental)
     - Yet Another JIT
 - Finally got a standard debugger
@@ -1447,7 +1546,11 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 
 - Primary source: https://www.ruby-lang.org/en/news/2022/12/25/ruby-3-2-0-released/
 - Source: https://www.shakacode.com/blog/ruby-3-2-adds-a-new-data-class/</p></div><div class="bespoke-marp-note" data-index="50" tabindex="0"><p>- Primary source: https://www.ruby-lang.org/en/news/2023/12/25/ruby-3-3-0-released/
-- Primary source: https://railsatscale.com/2023-12-19-irb-for-ruby-3-3/</p></div><div class="bespoke-marp-note" data-index="51" tabindex="0"><p>- Primary source: https://www.ruby-lang.org/en/news/2024/10/07/ruby-3-4-0-preview2-released/</p></div><div class="bespoke-marp-note" data-index="52" tabindex="0"><p>- Most of us are not using Ruby to its full potential
+- Primary source: https://railsatscale.com/2023-12-19-irb-for-ruby-3-3/</p></div><div class="bespoke-marp-note" data-index="51" tabindex="0"><p>- Prism parser used by:
+    - RuboCop (not default)
+    - Ruby LSP
+    - Used by default
+- Primary source: https://www.ruby-lang.org/en/news/2024/10/07/ruby-3-4-0-preview2-released/</p></div><div class="bespoke-marp-note" data-index="52" tabindex="0"><p>- Most of us are not using Ruby to its full potential
     - Not using modern Ruby features
         - I have not used most of these
 - QUESTION: Who uses refinements regularly?
@@ -1483,10 +1586,9 @@ craig = <span class="hljs-title class_">Person</span>.new(<span class="hljs-symb
 - Eventually Ruby use will dwindle
     - Long tail</p></div><div class="bespoke-marp-note" data-index="56" tabindex="0"><p>- Go learn other languages!
     - It'll make you a better Ruby programmer</p></div><div class="bespoke-marp-note" data-index="57" tabindex="0"><p>- Let's help invent the future!
-    - Explore whether decisions made are still valid
     - Experiment with language features
-        - Add to Ruby
         - Steal from other languages
+        - Add to Ruby
     - Find ways to help the Ruby maintainers
     - Get involved in community for new upcoming language
         - Shape their libraries

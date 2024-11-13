@@ -148,3 +148,21 @@ End of LocRectangle;
 ![Smalltalk-76 GUI](assets/Smalltalk-76-UI.jpg)
 
 ---
+
+#### 1971
+# Smalltalk-71
+
+~~~ smalltalk-71
+to T 'and' :y do 'y'
+to F 'and' :y do F
+
+to 'factorial' 0 is 1
+to 'factorial' :n do 'n*factorial n-1'
+
+to 'fact' :n do 'to 'fact' n do factorial n. ^ fact n'
+~~~
+
+<!--
+- This was called "Smalltalk", but was not OO yet
+    - Smalltalk-72 was the first OO version
+-->

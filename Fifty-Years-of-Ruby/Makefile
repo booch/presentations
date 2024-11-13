@@ -22,7 +22,7 @@ slides.html: slides.md slides.css
 	marp --config=marp.yml slides.md -o slides.html
 
 slides.pdf: slides.md slides.css
-	marp --config=marp.yml --pdf --preview slides.md -o slides.pdf
+	marp --config=marp.yml --pdf slides.md -o slides.pdf
 
 og-image.png: slides.md slides.css
 	marp  --config=marp.yml --image=png slides.md -o og-image.png --allow-local-files

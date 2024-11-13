@@ -202,12 +202,10 @@ This is the first time I'm using it; I used [Remark](https://remarkjs.com) for t
 - 38 minutes
     - Start: 6:07
     - End: 6:45
-- Tighten things up
-- +Smalltalk's first version in a week (1971?)
-- +OOP
+- TODO: Tighten things up
+- Smalltalk's first version in a week ✅
 - Cut out GUI page ✅
-- Cut out early Smalltalks?
-- +Perl code
+- +Perl code ✅
 - IDEA: Photos of what happened those years!
 - Birthday cake ✅
 - Ruby 1.0 ✅
@@ -215,13 +213,12 @@ This is the first time I'm using it; I used [Remark](https://remarkjs.com) for t
         - Can't find a trace of it on the web
     - First of many major releases on Christmas day ✅
     - Christmas background! ✅
-- 1.8
-    - Maturity!
+- 1.8 ✅
+    - Maturity! ✅
         - background pic representing maturity?
 - Rails ✅
     - Huge growth of community ✅
     - Ruby's killer app ✅
-- **Rediscovery slide**: more notes
 - 1.9 ✅
     - Code examples ✅
     - Compatibility - move to notes ✅
@@ -239,27 +236,31 @@ This is the first time I'm using it; I used [Remark](https://remarkjs.com) for t
     - Performance improvements ✅
     - Unify Fixnum and Bignum into Integer ✅
 - 2.5
-    - a couple more notes and/or bullets
+    - a couple more notes and/or bullets?
 - 2.6
+    - Bundler included ✅
+    - endless ranges 
+    - `then` ✅
+    - function composition operators << and >> ✅
 - 2.7
-    - notes.
+    - notes ✅
     - bullets, maybe
     - Make the title a title ✅
 - 3.0
-    - more notes
-    - more code
+    - more notes ✅
+    - more code ✅
 - 3.1
-    - bullet and note about `x: x` shortcut
-- 3.3 show Prism code usage?
-- 3.4 show code using `it`
-    - Earlier version using `_1`, `_2`, etc
-        - TODO: When were those added?
+    - bullet and note about `x: x` shortcut ✅
+- 3.3 show Prism code usage - NO!
+- 3.4 show code using `it` ✅
+    - Earlier version using `_1`, `_2`, etc ✅
 - remove "technology" quote? ✅
 - Show names of 3 talks I recommend about Ruby's future ✅
     - QR codes?
 - Remove Colophon ✅
 - Cut Netlab ✅
-- Why did C++ win? !!!!!!!
+- TODO: **Rediscovery slide**: more notes
+- TODO?: Why did C++ win? !!!!!!!
     - UNIX ecosystem
     - File-based
     - Worse is better
@@ -277,3 +278,11 @@ This is the first time I'm using it; I used [Remark](https://remarkjs.com) for t
 - Crop Chad picture ✅
 - DHH/Rails pics: center ✅
 - Fix page number on DHH slide
+
+
+## Practice night before:
+
+- Start: 10:42
+- Finish: 11:18
+
+18+18=36 minutes

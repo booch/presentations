@@ -64,7 +64,7 @@ _class: title lead
     - Perl, Smalltalk, Eiffel, Ada, Lisp
 - I will dig into Smalltalk
     - most similar to Ruby
-- Innovative goal: programmer happiness, joy, productivity
+- Goal: programmer happiness, joy, productivity
 
 - Image credit: https://upload.wikimedia.org/wikipedia/commons/5/5a/Yukihiro_Matsumoto_EuRuKo_2011.jpg
 -->
@@ -76,9 +76,9 @@ _class: title lead
 
 <!--
 - My story starts: 1968 (December 9)
-    - Most of us here weren't born yet
-- ACM conference in San Francisco
+- ACM/IEEE conference in San Francisco
     - ACM = Association for Computing Machinery
+    - IEEE = Institute of Electrical and Electronics Engineers
 - Douglas EngelBART
     - Stanford Research Institute (SRI)
         - Augmented Human Intellect Research Center (ARC)
@@ -86,32 +86,31 @@ _class: title lead
     - Showed their NLS (oN-Line System)
 - Vision of personal computing
     - Interactive!
-    - Batch processing -> time-sharing
+    - Batch processing -> time-sharing -> personal computing
 - Innovations:
-    - Key chorder (on left)
     - Mouse
         - Invented in 1963 at SRI
-    - Real-time video conferencing
+    - Key chorder (on left)
     - Networking (to Menlo Park)
         - Mentioned ARPANET coming soon
+    - Video conferencing
     - Full-screen interactive editor
+        - Collaborative editing
         - Copy & paste
-    - Drawing
     - Hyperlinks
-    - Re-sizable fonts
-- Hands in vs hands out
+- TODO: Time for 1 minute of video?
 - Steven Levy dubbed it "the Mother of all Demos"
     - _Insanely Great_, 1994
 - Watch the video!
     - 5 minutes: https://www.youtube.com/watch?v=B6rKUf9DWRI
     - 3 parts: https://www.youtube.com/watch?v=UhpTiWyVa6k
-    - full 90 minutes: https://www.youtube.com/watch?v=yJDv-zdhzMY
 
-- TODO: Time for 1 minute of video?
 - TODO: Link to articles
 - "Augmenting Human Intellect: A Conceptual Framework" (Engelbart, SRI, 1962)
     - https://www.dougengelbart.org/pubs/augment-3906.html
+- Source: https://en.wikipedia.org/wiki/The_Mother_of_All_Demos
 - Photo credit: https://qph.cf2.quoracdn.net/main-qimg-401017ddb89209598d6f0f9b74f5a1d8
+- Book: What the Dormouse Said by John Markoff (2005)
 -->
 
 ---
@@ -174,76 +173,52 @@ _class: title lead
 -->
 
 ---
-#### 1971
-# Smalltalk-71
+#### 1972
+# Smalltalk-72
 
-~~~ smalltalk-71
-to T 'and' :y do 'y'
-to F 'and' :y do F
+~~~ smalltalk-72
+to box b | x y size tilt "x, y, size, tilt are instance variables"
+  (ISNEW   »    (SELF undraw. 'size 🠔 size + :. SELF draw. ⇑SELF)
+  ⏿draw    »    (😀 place x y turn tilt. square size.)
+  ⏿undraw  »    (😀 white. SELF draw. 😀 black)
+  ⏿turn    »    (SELF undraw. 'tilt 🠔 tilt + :. SELF draw)
+  ⏿size    »    (⇑size))
 
-to 'factorial' 0 is 1
-to 'factorial' :n do 'n*factorial n-1'
+to square size
+  (poly 4 size)
 
-to 'fact' :n do 'to 'fact' n do factorial n. ^ fact n'
+to poly sides size
+  (👉sides 🠔 :. 👉size 🠔 :.
+    do sides (😀 go size turn 360/sides))
+
+👉mybox 🠔 box 0 0 50 0
+mybox turn 45  "redraw box turned 45°"
 ~~~
 
 <!--
-- 1971
+- 1972
 - Hallway discussion at PARC:
     - How small could a message-based language be?
     - Alan Kay: No more than a page of code
     - Dan Ingalls: Prove it!
     - Inspired by Lisp and Simula,
         - Alan Kay wrote basic Smalltalk in 2 weeks
-    - Dan Ingalls ran with it
+    - Dan Ingalls & Adele Goldberg ran with it
 - Main ideas:
     - Everything is an object
     - Objects communicate by sending & receiving messages
     - Objects have own memory
     - Every object is an instance of a class
     - Class holds shared behavior for its instances
-
-- Primary source: http://gagne.homedns.org/~tgagne/earlyhistoryst.html
-- Primary source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
--->
-
----
-#### 1972
-# Smalltalk-72
-
-~~~ smalltalk-72
-to box var / x y size tilt
-  (⏿(draw => (😀 place x y turn tilt. square size.))
-
-to square
-  (do 4
-    (😀 go 50 turn. 90))
-
-to square length
-  (👉length 🠔 :.
-    do 4 (😀 go length turn 90))!
-
-to poly sides size
-  (👉sides 🠔 :. 👉size 🠔 :.
-    do sides (😀 go size turn 360/sides))!
-~~~
-
-<!--
-- Smalltalk-72
-    - Adele Goldberg
-    - Dan Ingalls
-- Already had:
-    - Classes
-    - Instance variables
-    - Message-passing
 - Some notes:
     - `to` is equivalent to Ruby's `def`
     - 😀 was called smiley
         - 😀 is instance of turtle class
     - Looks a bit Lispy with the nested parens
     - This is 100% accurate UTF transliteration
-------
 
+- Primary source: http://gagne.homedns.org/~tgagne/earlyhistoryst.html
+- Primary source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
 - Primary source: https://smalltalkzoo.thechm.org/papers/Smalltalk72_Manual.pdf
 - Source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
 -->
@@ -414,8 +389,6 @@ Byte-1981-08-Smalltalk.jpg
     - Had been at Atari for a few years
     - Stayed until 1996
 
-------
-
 - Kay on Mac:
     - "The Mac was a failure in the sense that it didn't achieve the goal of changing the way people think about computers."
         - Me: LOLWAT!!!?????
@@ -540,8 +513,6 @@ keiju> Well. Ruby is also good.
 - More movement towards Dynabook
 - Scratch visual programming language
 
-------
-
 - Primary source: https://dl.acm.org/doi/pdf/10.1145/263698.263754
 - Source: https://en.wikipedia.org/wiki/Squeak
 - Image source: https://squeak.org/
@@ -581,8 +552,19 @@ keiju> Well. Ruby is also good.
 ---
 #### 1998
 # Ruby 1.2
+![bg opacity:.6](assets/stability.jpg)
 
 - First stable release
+- `defined?`
+- `catch` and `throw`
+- `&&=` and `||=`
+- Float `floor`, `ceil`, `round`
+- `true` and `false` keywords
+
+<!--
+- Primary source: https://github.com/github/ruby-thecodeshop/blob/v1_2_stable/ChangeLog
+- Image credit: https://www.online-therapy.com/blog/borderline-personality-disorder-vs-stability-life/
+-->
 
 ---
 <!-- _class: dark -->
@@ -676,19 +658,27 @@ keiju> Well. Ruby is also good.
 
 ---
 #### 2003
-# Ruby 1.8 (August 4)
+# Ruby 1.8
+
+- Expression interpolation in strings
+- Enumerable `all?`, `any?`
+- Enumerable `inject`
+    - Later renamed `reduce`
+- Net::HTTP breaking changes
+- Libraries (lots!)
+- Hooks
 
 <!--
-- First "modern" Ruby?
-- Duck typing
-    - If it quacks like a duck, ...
-        - you can use it as if it **is** a duck
-    - If object responds to a method, ...
-        - you can call that method
+- 2003 August 4
+- Ruby 1.8
+- First "mature" Ruby, IMO
 - Libraries
     - YAML
+    - CSV
     - WEBrick
     - open-uri
+    - OpenSSL
+    - Test::Unit
 -->
 
 ---
@@ -707,22 +697,18 @@ keiju> Well. Ruby is also good.
 
 <!--
 - 2003:
-    - Danish programmer
     - David Heinemeier Hansson (DHH)
-    - part of framework he built for Basecamp at 37 Signals
-    - Using Ruby since 2003
-    - Was doing PHP before that
+    - Had been coding in PHP
+    - Built Basecamp at 37 Signals
 - 2004 July 25: Ruby on Rails 1st public release
 - MVC web framework
     - Extracted from Basecamp
 - Marketed w/ 15-minute video building blog app
     - Fast at editing: TextMate
-- Convention over Configuration
+- Convention over configuration
     - Big reduction in code vs Java frameworks
 - Ruby's killer app
 - Huge growth of community
-
-------
 
 - Rails announcement: https://web.archive.org/web/20040823214652/http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/107370
 - Original Rails blog video: https://www.youtube.com/watch?v=Gzj723LkRJY
@@ -787,7 +773,6 @@ assert f.boo == "boo"
 - Superset of Java!
 - From Ruby:
     - concise syntax
-        - superset of Java
     - dynamic typing
     - closures
     - meta-programming
@@ -803,13 +788,14 @@ assert f.boo == "boo"
 ![book: Agile Web Development with Rails, 1st edition](assets/Agile-Web-Development-with-Rails-1st-ed.jpg)
 
 <!--
-- August, 2005
+- 2005 August
 - First Rails book
 - Dave Thomas
     - with DHH
-- I learned Ruby and Rails from this - late 2005
-- Note the title
-    - Dave Thomas brought Agile from the beginning
+- I learned Ruby and Rails from this
+    - late 2005
+- Note the title: *Agile*
+    - Dave Thomas brought Agile from start
 - Rails 8 edition: coming 2025
 -->
 
@@ -1107,7 +1093,19 @@ craig = User.new(name: "Craig")
 
 ---
 #### 2014
+# MRuby
+
+- Lightweight Ruby implementation
+- Embeddable
+    - Easily called from C
+- No standard library
+    - Only core library
+- Can't override some core classes
+
+---
+#### 2014
 # Ruby 2.2
+
 - Incremental garbage collector
 - Performance improvements
 
@@ -1119,8 +1117,7 @@ craig = User.new(name: "Craig")
 #### 2015
 # Rust
 
-<div class="columns">
-<div>
+<div class="columns"><div>
 
 - Fast and memory-efficient
 - Low-level
@@ -1186,6 +1183,7 @@ let r2 = &mut message; // Compile error! Can't mutable borrow twice
 ---
 #### 2016
 # Ruby 2.4
+
 - Unify Fixnum and Bignum into Integer
 - Performance improvements
 
@@ -1243,16 +1241,65 @@ end
 ---
 #### 2018
 # Ruby 2.6
+
+<div class="columns"><div>
+
 - MJIT (experimental)
+- Bundler included
+- Endless ranges
+- Function composition operators
+    - `<<` and `>>`
+- `then`
+
+</div><div>
+
+~~~ ruby
+"My long string"[8..]  # => "string"
+
+f = proc{|x| x + 2}
+g = proc{|x| x * 3}
+(f >> g).call(3)  # Same as g(f(3))
+(f << g).call(3)  # Same as f(g(3))
+
+def filter_by_status(posts)
+  return posts unless @status
+  posts.where(status: Post.statuses[@status])
+end
+
+def order(posts)
+  posts.order('published_at DESC')
+end
+
+Post.all
+  .then(&method(:filter_by_status))
+  .then(&method(:order))
+~~~
+
+</div></div>
 
 <!--
 - First JIT
+- Bundler included
+- Function composition operators
+    - `<<` and `>>`
+- `then` to chain methods
+    - Like pipes in Unix shell
+
 - Primary source: https://www.ruby-lang.org/en/news/2018/12/25/ruby-2-6-0-released/
 -->
 
 ---
 #### 2019
 # Ruby 2.7
+
+<div class="columns"><div>
+
+- Pattern matching (experimental)
+    - `case` `in`
+- Numbered block parameters
+    - `_1`, `_2`, `_3`, etc
+
+</div><div>
 
 ~~~ ruby
 people = [
@@ -1261,8 +1308,6 @@ people = [
         { name: "Bob", age: 2 }
     ]}
 ]
-
-# Pattern matching (experimental)
 people.each do |person|
   case person
     in {name: name, children: [{name: child, age: age}]}
@@ -1271,9 +1316,21 @@ people.each do |person|
       p "#{name} has no children"
   end
 end
+
+[1, 2, 3].each { puts _1 }
 ~~~
 
+</div></div>
+
 <!--
+- 2019: Ruby 2.7
+- Pattern matching (experimental)
+    - Borrowed from Elixir
+    - `case` `in`
+- Numbered block parameters
+    - `_1`, `_2`, `_3`, etc
+- Internal cleanup
+
 - Primary source: https://www.ruby-lang.org/en/news/2019/12/25/ruby-2-7-0-released/
 -->
 
@@ -1286,16 +1343,30 @@ end
 - 3x3 performance improvements
     - 3 times faster than Ruby 2.0
     - JIT
-- Ractors (experimental)
+- `end`-less method definition
+- Ractors
+    - Experimental
 - RBS static analysis
-- One-line pattern matching (experimental)
-- Endless method definition
+- One-line pattern matching
+    - Experimental
 
 </div><div>
 
 ~~~ ruby
 def raise_to_power(number, power) = number ** power
 
+receiver = Ractor.new do
+  message = Ractor.receive
+  puts "received message is #{message}"
+end
+receiver.send("Hi!")  # prints received message is Hi!"
+received message is Hi!
+
+sender = Ractor.new do
+  message = 'Hi!'
+  Ractor.yield(message)
+end
+sender.take  # => "Hi!"
 ~~~
 
 </div></div>
@@ -1310,6 +1381,7 @@ def raise_to_power(number, power) = number ** power
 
 <div class="columns"><div>
 
+- Hash and keyword argument shorthand
 - YJIT (experimental)
 - `debug` gem (`rdbg`)
 - `error_highlight` gem
@@ -1333,6 +1405,7 @@ prime_pairs.find_all{_1 in [n, ^(n + 2)]}.take(3).to_a
 <!--
 - 2021
 - Ruby 3.1
+- Shorthand for hash and keyword arguments
 - YJIT (experimental)
     - Yet Another JIT
 - Finally got a standard debugger
@@ -1388,7 +1461,8 @@ craig = Person.new(name: "craig", age: "53")
 # Ruby 3.3
 
 - Prism parser
-- pure-Ruby JIT compiler (RJIT)
+    - Not default yet
+- RJIT: pure Ruby JIT compiler
 - IRB improvements
 
 <!-- 
@@ -1400,11 +1474,25 @@ craig = Person.new(name: "craig", age: "53")
 #### 2024
 # Ruby 3.4
 
-- Prism parser used by default
+<div class="columns"><div>
+
+- Prism parser by default
 - Mutating string literals deprecated
 - `it` as block parameter
 
+</div><div>
+
+~~~ ruby
+[1, 2, 3].each { puts it }
+~~~
+
+</div></div>
+
 <!--
+- Prism parser used by:
+    - RuboCop (not default)
+    - Ruby LSP
+    - Used by default
 - Primary source: https://www.ruby-lang.org/en/news/2024/10/07/ruby-3-4-0-preview2-released/
 -->
 
@@ -1529,10 +1617,9 @@ craig = Person.new(name: "craig", age: "53")
 
 <!--
 - Let's help invent the future!
-    - Explore whether decisions made are still valid
     - Experiment with language features
-        - Add to Ruby
         - Steal from other languages
+        - Add to Ruby
     - Find ways to help the Ruby maintainers
     - Get involved in community for new upcoming language
         - Shape their libraries
@@ -1547,7 +1634,7 @@ craig = Person.new(name: "craig", age: "53")
 * Attendees
 * Viewers
 * RubyConf organizers
-* People that helped me with the talk
+* People that gave me feedback
     - **Noel Rappin**
     - **Kerri Miller**
 
@@ -1555,8 +1642,7 @@ craig = Person.new(name: "craig", age: "53")
 ####
 # Come talk to me!
 
-<div class="columns">
-<div>
+<div class="columns"><div>
 
 Ask me about:
 
