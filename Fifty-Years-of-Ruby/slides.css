@@ -125,6 +125,26 @@ img {
     padding: 0;
 }
 
+/* Logos */
+img[alt="Perl logo"],
+img[alt="JRuby logo"],
+img[alt="Elixir logo"],
+img[alt="Crystal logo"],
+img[alt="Rust logo"],
+img[alt="Rubinius logo"],
+img[alt="Groovy logo"],
+img[alt="TruffleRuby logo"] {
+    width: 160px;
+    position: absolute;
+    top: 100px;
+    right: 100px;
+}
+img[alt="Elixir logo"] {
+    width: 320px;
+    top: 10px;
+    right: -15px;
+}
+
 /* Books */
 img[src="assets/Smalltalk-80-book.jpg"],
 img[src="assets/Smalltalk-Best-Practice-Patterns.jpg"],

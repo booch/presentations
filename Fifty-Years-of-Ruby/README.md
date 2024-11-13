@@ -68,7 +68,7 @@ make pdf
 - Define more terms❗
 - Assume less knowledge about Lisp, etc
     - Show lisp code❗
-    - Show Perl❗
+    - Show Perl ✅
         - Camel book picture ✅
 - Transition slides❗
 - Drop Vannevar Bush? ✅
@@ -259,8 +259,8 @@ This is the first time I'm using it; I used [Remark](https://remarkjs.com) for t
     - QR codes?
 - Remove Colophon ✅
 - Cut Netlab ✅
-- TODO: **Rediscovery slide**: more notes
-- TODO?: Why did C++ win? !!!!!!!
+- **Rediscovery slide**: more notes ✅
+- Why did C++ win? !!!!!!!
     - UNIX ecosystem
     - File-based
     - Worse is better
@@ -272,7 +272,7 @@ This is the first time I'm using it; I used [Remark](https://remarkjs.com) for t
     - Ruby values quality over quantity
     - Same number of conferences
 - Rust etc
-    - Language logos
+    - Language logos ✅
 - Names on pictures of people
     - low priority
 - Crop Chad picture ✅
@@ -286,3 +286,57 @@ This is the first time I'm using it; I used [Remark](https://remarkjs.com) for t
 - Finish: 11:18
 
 18+18=36 minutes
+
+
+8:35 - 9:02 = 27 minutes
+
+
+## Last-minute TODOs
+
+- Kill 2.5 ✅
+- Rust etc
+    - Language logos ✅
+- TODO?: Why did C++ win? !!!!!!!
+    - UNIX ecosystem
+    - File-based
+    - Worse is better
+    - Smalltalk was quietly being used in industry
+        - Airline industry
+        - IBM VisualAge
+        - Original XP team
+    - Smalltalk community became Ruby community
+    - Same number of conferences
+2. Matz's innovations
+    - focus on developer happiness❗❗❗❗
+    - simple, easy to read syntax
+        - well-done blocks!
+        - dot notation for method calls
+        - no type annotations
+    - Duck typing❗
+    - OOP at the right time
+        - But also FP (primarily for collections)
+        - easy to learn because of syntax and duck typing
+        - fast feedback loop, because it's interpreted
+    - good meta-programming story❗
+    - good syntax for DSLs❗
+    - community?❗
+        - MINASWAN: Matz is nice, and so we are nice
+3. Why Smalltalk "lost" to C++❗
+    - Ruby values quality over quantity
+    - File-based vs "the image"
+    - UNIX ecosystem
+    - Ask Alan Kay on Quora?
+    - Worse is better
+        - Smalltalk ecosystem made it too difficult to share code
+            - The image
+        - Wanted everything to be inside Smalltalk
+            - Hard to talk to DBs
+        - C++ fit into the UNIX ecosystem
+    - My theory: It didn't!❗❗❗
+        - Smalltalk community _mostly_ **became** the Ruby community
+            - Many of the Agile Manifesto signers were Smalltalkers who became Rubyists
+                - Kent Beck, Ward Cunningham, Ron Jeffries, Dave Thomas, Robert Martin, Martin Fowler, etc
+        - C++ had ~20 conferences in 2019
+            - https://isocpp.org/wiki/faq/conferences-worldwide
+        - Ruby had ~20 conferences in 2019
+            - https://rubyconferences.org/past/

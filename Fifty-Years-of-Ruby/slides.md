@@ -28,7 +28,6 @@ _class: title lead
 -->
 
 ---
-#### 1971
 
 > The best way to predict the future is to invent it.
 
@@ -51,20 +50,18 @@ _class: title lead
 
 ---
 <!-- _class: dark -->
-#### 1993
 ![bg 60% Yukihiro "Matz" Matsumoto speaking in 2011](assets/Yukihiro-Matsumoto-2011.jpg)
 
 <!--
 - We're all here today because...
-- 1993 February 24
-    - Japanese programmer YukiHIRO MatsuMOTO
-        - inspired to write programming language
-        - "Matz"
+- YukiHIRO MatsuMOTO
+    - AKA "Matz"
+    - inspired to write programming language
+- Goal: programmer happiness, joy, productivity
 - Influenced by:
     - Perl, Smalltalk, Eiffel, Ada, Lisp
-- I will dig into Smalltalk
-    - most similar to Ruby
-- Goal: programmer happiness, joy, productivity
+- I will focus mostly on Smalltalk
+    - how it influenced Ruby
 
 - Image credit: https://upload.wikimedia.org/wikipedia/commons/5/5a/Yukihiro_Matsumoto_EuRuKo_2011.jpg
 -->
@@ -76,41 +73,52 @@ _class: title lead
 
 <!--
 - My story starts: 1968 (December 9)
-- ACM/IEEE conference in San Francisco
-    - ACM = Association for Computing Machinery
-    - IEEE = Institute of Electrical and Electronics Engineers
+- Mother of All Demos
+- Joint Computer Conference in San Francisco
+- About 2000 attendees
 - Douglas EngelBART
     - Stanford Research Institute (SRI)
         - Augmented Human Intellect Research Center (ARC)
             - Started in 1962
-    - Showed their NLS (oN-Line System)
+    - Showed NLS (oN-Line System)
 - Vision of personal computing
     - Interactive!
-    - Batch processing -> time-sharing -> personal computing
-- Innovations:
+    - Computing at that time:
+        - Mainframes
+        - Batch processing
+        - Maybe time-sharing
+- Innovations introduced:
     - Mouse
         - Invented in 1963 at SRI
     - Key chorder (on left)
-    - Networking (to Menlo Park)
+        - Press multiple keys at once
+        - Commands
+    - Networking
         - Mentioned ARPANET coming soon
     - Video conferencing
     - Full-screen interactive editor
-        - Collaborative editing
         - Copy & paste
+        - Collaborative editing
+            - Shared screen
+                - Multiple cursors
     - Hyperlinks
-- TODO: Time for 1 minute of video?
-- Steven Levy dubbed it "the Mother of all Demos"
-    - _Insanely Great_, 1994
 - Watch the video!
     - 5 minutes: https://www.youtube.com/watch?v=B6rKUf9DWRI
     - 3 parts: https://www.youtube.com/watch?v=UhpTiWyVa6k
 
-- TODO: Link to articles
+- Steven Levy dubbed it "the Mother of all Demos"
+    - _Insanely Great_, 1994
 - "Augmenting Human Intellect: A Conceptual Framework" (Engelbart, SRI, 1962)
     - https://www.dougengelbart.org/pubs/augment-3906.html
 - Source: https://en.wikipedia.org/wiki/The_Mother_of_All_Demos
 - Photo credit: https://qph.cf2.quoracdn.net/main-qimg-401017ddb89209598d6f0f9b74f5a1d8
 - Book: What the Dormouse Said by John Markoff (2005)
+- TODO: Link to more articles
+- Joint Computer Conference
+    - American Federation of Information Processing Societies (AFIPS)
+    - Association for Computing Machinery (ACM)
+    - Institute of Electrical and Electronics Engineers (IEEE)
+    - Held annually 1951-1987
 -->
 
 ---
@@ -121,7 +129,7 @@ _class: title lead
 - Attendee at MoAD:
     - Alan Kay
 - Bachelor degree in Math & Molecular Biology
-- University of Utah graduate school
+- Graduate school at University of Utah
     - Sketchpad (first computer graphics, GUI)
         - "Master" drawing (objects) & instance drawings
     - Simula-67
@@ -143,12 +151,11 @@ _class: title lead
 ![bg height:90%](assets/First-Dynabook-idea.webp)
 
 <!--
-- 1968: Alan Kay had idea
-    - This cartoon and cardboard mockup
-- First paper on it: 1972
-    - Named it Dynabook
-- Inspired by seeing Logo turtle graphics used in classrooms
+- 1968 (shortly before MoAD)
+- Alan Kay drew this cartoon
+    - Later named it Dynabook
 - Original innovation: idea of personal computer for children
+- Inspired by Logo turtle graphics
 
 - Image credit: https://www.quora.com/What-lessons-were-learned-in-aspiring-towards-the-DynaBook-and-have-any-of-its-original-goals-become-dated/answer/Alan-Kay-11
 -->
@@ -159,15 +166,16 @@ _class: title lead
 ![bg width:100%](assets/PARC-sign.webp)
 
 <!--
-- 1969: Xerox opened its Palo Alto Research Center
+- 1969: Xerox opened Palo Alto Research Center
     - PARC
     - Palo Alto in Silicon Valley
 - Alan Kay joined, 1970
 - Lots of people from SRI's Augmentation Research Center
     - People from Engelbart's lab
-- Innovations:
+- Invented:
     - Laser printer
     - Ethernet
+    - among others
 
 - Image source: https://www.techspot.com/articles-info/477/images/2015-09-30-image.jpg
 -->
@@ -203,19 +211,25 @@ mybox turn 45  "redraw box turned 45°"
     - Dan Ingalls: Prove it!
     - Inspired by Lisp and Simula,
         - Alan Kay wrote basic Smalltalk in 2 weeks
-    - Dan Ingalls & Adele Goldberg ran with it
+    - Dan Ingalls ran with it
+        - later joined by Adele Goldberg
+        - 80 releases over next 8 years
 - Main ideas:
     - Everything is an object
     - Objects communicate by sending & receiving messages
     - Objects have own memory
     - Every object is an instance of a class
     - Class holds shared behavior for its instances
-- Some notes:
+- Primitive
+    - No clear distinction between classes and instances
+- This is 100% accurate UTF transliteration
+    - Emoji were in black & white
+- Notes on code:
     - `to` is equivalent to Ruby's `def`
+        - from Logo
     - 😀 was called smiley
-        - 😀 is instance of turtle class
+        - instance of turtle class
     - Looks a bit Lispy with the nested parens
-    - This is 100% accurate UTF transliteration
 
 - Primary source: http://gagne.homedns.org/~tgagne/earlyhistoryst.html
 - Primary source: https://smalltalkzoo.thechm.org/papers/EvolutionOfSmalltalk.pdf
@@ -229,29 +243,27 @@ mybox turn 45  "redraw box turned 45°"
 ![bg height:151%](assets/xerox-alto.webp)
 
 <!--
-- 1973
+- 1973 (March 1)
 - Xerox Alto
     - "The Interim Dynabook"
+    - Size of a small refrigerator
     - $32k ($200k+ today)
-    - 96kB RAM (up to 512kB)
-    - 2.5 MB removable hard drive
-    - About 2000 made
-        - Mostly used at Xerox and universities
         - Not intended for commercial sale
-    - GUI
+            - Internal use for research
+            - Universities
+    - 96kB RAM
+    - 2.5 MB removable hard drive
+    - Monitor
+        - ~500,000 bitmapped b/w pixels
         - "portrait" orientation
             - like we normally use paper
-        - 606x808 pixels
-            - 72 dpi b/w bitmapped screen
-    - First WYSIWYG editor
-        - Bravo
+    - Mouse (3 buttons), key chorder (5 keys), keyboard
+    - GUI
+        - Overlapping windows, icons, menus, pointer
+    - First WYSIWYG editor: Bravo
         - Charles Simonyi
-            - Went on to write Microsoft Word
-    - Keyboard, mouse (3 buttons), key chorder (5 keys)
-    - Size of a small refrigerator
-    - Ethernet
+            - Later: Microsoft Word
 
-- Introduced March 1, 1973
 - 1981: Xerox Star
     - Sold commercially
     - $16k ($50k+ today)
@@ -293,8 +305,10 @@ x: x y: y
 
 <!--
 - Dan Ingalls designed Smalltalk-76
-    - more of a compromise between the Lisp and Algol worlds
-    - almost 200 times faster than Smalltalk-72
+    - Almost 200 times faster than Smalltalk-72
+    - Blocks
+    - Keyword arguments
+    - Starting to look modern
 -->
 
 ---
@@ -304,8 +318,9 @@ x: x y: y
 ~~~ smalltalk
 x := OrderedCollection with: 1 with: 2 with: 3.
 x addFirst: 0.
-x select: [:a | a > 1].  "result: #(2 3)"
-x collect: [:a | a * a]. "result: #(0 1 4 9)"
+x select: [:n | n > 1].  "result: #(2 3)"
+x collect: [:n | n * n]. "result: #(0 1 4 9)"
+x inject: 0 into: [:a :n | a + n]. "result: 6"
 
 Object subclass: #MessagePublisher
     instanceVariableNames: ''
@@ -321,9 +336,8 @@ multiply: i1 and: i2 by: n
 
 <!--
 - Smalltalk-80: first public release
-- Added blocks, booleans, meta-classes
-- Ruby still has `collect` as an alias for `map`
-- Introduced MVC (model-view-controller)
+- Ruby has `collect` as an alias for `map`
+    - And `inject` as an alias for `reduce`
 -->
 
 ---
@@ -335,9 +349,11 @@ Byte-1981-08-Smalltalk.jpg
 <!--
 - August 1981
 - Byte magazine
-- Included 13 articles on Smalltalk and OOP
+- Special issue
+    - Included 13 articles on Smalltalk and OOP
     - "a large number of the personal computers of tomorrow" ...
     - "will be designed with knowledge gained from the development of the Alto."
+    - but you probably won't be able to buy one
 
 - Previous August issues of Byte covered:
     - 1977: APL
@@ -363,8 +379,7 @@ Byte-1981-08-Smalltalk.jpg
 <!--
 - First Smalltalk book, 1983
 - Adele Goldberg
-    - Xerox PARC
-    - Smalltalk design, implementation
+
 - Several in a series
     - Blue
     - Green
@@ -376,18 +391,16 @@ Byte-1981-08-Smalltalk.jpg
 ![bg original Macintosh with keyboard, mouse, and floppy drive](assets/Macintosh.jpg)
 
 <!--
-- 1984: Macintosh
 - Steve Jobs and Apple folks visited PARC in 1979 (twice)
     - Xerox received some Apple stock options
     - Smalltalk-76, networking, mouse-driven WYSIWYG GUI
+        - Jobs was enamored by the GUI
     - Inspired the Lisa and Mac
     - Jobs later said:
         - "Xerox could have owned the entire computer industry,"
         - "could have been the IBM of the nineties,"
         - "could have been the Microsoft of the nineties."
-- Alan Kay joined apple in 1984
-    - Had been at Atari for a few years
-    - Stayed until 1996
+- 1984: Alan Kay joined Apple
 
 - Kay on Mac:
     - "The Mac was a failure in the sense that it didn't achieve the goal of changing the way people think about computers."
@@ -418,14 +431,19 @@ close(FILE);
 print "Alice is $ages{'Alice'} years old.\n";
 ~~~
 
+![Perl logo](assets/perl.svg)
+
 <!--
-- Perl 4 released
-    - March 21, 1991
+- 1991
+- Perl 4
     - Larry Wall
-    - Started on Perl in 1987
+    - More powerful scripting language than:
+        - UNIX shell, sed, awk
+- Perl was started in 1987
+    - Not popular until Perl 4
 - Designed so computer programmers could write programs more quickly and easily
     - "Easy things should be easy and hard things should be possible"
-- More complete scripting language than shell, sed, awk
+- No objects until Perl 5 in 1994
 -->
 
 ---
@@ -434,18 +452,16 @@ print "Alice is $ages{'Alice'} years old.\n";
 ![book: Programming Perl 1st edition](assets/Programming-Perl-1st-edition.jpg)
 
 <!--
+- 1991 (to coincide with Perl 4)
 - Programming Perl "camel book" released
-    - January 1991
     - Larry Wall & Randal Schwartz
-- Perl 5 released October 17, 1994
-    - Added objects (among other features)
 
 - Image source: https://en.wikipedia.org/wiki/Programming_Perl
 -->
 
 ---
 #### 1993
-# Pre-release Ruby
+# Ruby as an Idea
 
 ~~~
 keiju> By the way, do you have considered the name of the language?  
@@ -467,7 +483,6 @@ keiju> Well. Ruby is also good.
 ~~~
 
 <!--
-- TODO: Conversation w/ Keiju Ishitsuka
 - Matz considered:
     - Perl: "toy" language
     - Python: not OO enough
@@ -477,6 +492,9 @@ keiju> Well. Ruby is also good.
     - Iterators & Closures
     - Exception Handling
     - Garbage Collection
+- Didn't exist, so he created it
+- 1993 February 24
+    - Matz and his friend picked the name "Ruby"
 
 - Source (translated): https://blade.ruby-lang.org/ruby-talk/88819
 -->
@@ -489,8 +507,7 @@ keiju> Well. Ruby is also good.
 
 <!--
 - 1995 December 21
-- Ruby 0.95
-- Matz announces
+- Matz announces Ruby 0.95
     - Japanese newsgroups
 
 - Image credit: https://www.goodfon.com/holidays/wallpaper-download-3584x2240-happy-birthday-decoration-krem-celebration-colorful-keks-cup.html
@@ -502,16 +519,16 @@ keiju> Well. Ruby is also good.
 
 <!--
 - 1996
-- Apple
-    - Dan Ingalls
-    - Alan Kay
 - Squeak
     - Modern portable Smalltalk
     - Written in Smalltalk
     - Compiles to C
+- Apple
+    - Alan Kay
+    - Dan Ingalls
 - Moved to Disney in 1997
-- More movement towards Dynabook
 - Scratch visual programming language
+    - built on Squeak
 
 - Primary source: https://dl.acm.org/doi/pdf/10.1145/263698.263754
 - Source: https://en.wikipedia.org/wiki/Squeak
@@ -524,14 +541,13 @@ keiju> Well. Ruby is also good.
 ![book: Smalltalk Best Practice Patterns](assets/Smalltalk-Best-Practice-Patterns.jpg)
 
 <!--
-- October 3, 1996
+- 1996 (October 3)
 - IMHO, one of the best "Ruby" books
-- Design patterns "in the small"
+    - Design patterns "in the small"
 - Kent Beck
-    - Agile Manifesto
-    - Extreme Programming
     - Wrote _the_ book on Test-Driven Development
-    - JUnit
+    - Wrote _the_ book on Extreme Programming
+    - Agile Manifesto, Extreme Programming
 -->
 
 ---
@@ -555,13 +571,16 @@ keiju> Well. Ruby is also good.
 ![bg opacity:.6](assets/stability.jpg)
 
 - First stable release
-- `defined?`
-- `catch` and `throw`
-- `&&=` and `||=`
-- Float `floor`, `ceil`, `round`
 - `true` and `false` keywords
+- `&&=` and `||=`
+- `defined?`
 
 <!--
+- 1998: Ruby 1.2
+- First stable release
+- `true` and `false` keywords
+- `||=`
+
 - Primary source: https://github.com/github/ruby-thecodeshop/blob/v1_2_stable/ChangeLog
 - Image credit: https://www.online-therapy.com/blog/borderline-personality-disorder-vs-stability-life/
 -->
@@ -572,18 +591,11 @@ keiju> Well. Ruby is also good.
 ![Japanese Ruby book](assets/Japanese-ruby-book.jpg)
 
 <!--
-- 1999 August 13
-    - Ruby 1.4
 - 1999 October
     - First Ruby book published
-- Japanese
 - Written by Matz & Keiju Ishitsuka (KAY-jew I-shee-TSU-ka)
-- English title: 
+    - Japanese 
     - The Object-Oriented Scripting Language Ruby
-- 2000
-    - 20 more Ruby books
-        - in Japanese
-    - Ruby more popular in Japan than Perl or Python
 
 - Source: https://auth0.com/blog/a-brief-history-of-ruby/
 - Source: https://www.amazon.co.jp/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E8%A8%80%E8%AA%9E-ASCII-SOFTWARE-SCIENCE-Language/dp/4756132545
@@ -595,16 +607,17 @@ keiju> Well. Ruby is also good.
 ![book: Programming Ruby 1st edition](assets/Programming-Ruby-1st-ed.jpg)
 
 <!--
-- 2000 December 15
+- 2000
+    - 20 more Ruby books
+        - in Japanese
+    - Ruby more popular in Japan than Perl or Python
+- 2000 December 15: "Pickaxe book"
 - First English-language book on Ruby
-- "Pickaxe book"
-- Covers Ruby 1.6
+- Covered Ruby 1.6
 - Dave Thomas & Andy Hunt
     - Pragmatic Programmer book
-        - Coined "DRY"
-    - Pragmatic Bookshelf
 - Dave Thomas: Agile manifesto (2001)
-    - Brought Agile/XP practices to Ruby
+    - Brought Agile practices to Ruby
 - Latest (5th) edition: Ruby 3.3
     - Noel Rappin
 
@@ -635,9 +648,8 @@ keiju> Well. Ruby is also good.
         - David Alan Black
         - Chad Fowler
         - Dave Thomas
-    - later founded Ruby Central
-        - nonprofit
-        - future conferences
+    - later founded nonprofit Ruby Central
+        - to run future conferences
             - including this one!
 
 - Image source: https://www.flickr.com/photos/elabsse/9023807719
@@ -656,29 +668,46 @@ keiju> Well. Ruby is also good.
 - Charles Nutter
 - Thomas Enebo
 
+![JRuby logo](assets/jruby.svg)
+
+<!--
+- 2001: JRuby
+- Jan Arne Petersen
+- JVM
+    - Faster
+    - interoperates w/ Java and its libraries
+    - if you're approved to use Java ...
+- later Charles Nutter, Thomas Enebo
+-->
+
 ---
 #### 2003
 # Ruby 1.8
 
-- Expression interpolation in strings
+- String interpolation of expressions
 - Enumerable `all?`, `any?`
 - Enumerable `inject`
-    - Later renamed `reduce`
+    - AKA `reduce`
 - Net::HTTP breaking changes
 - Libraries (lots!)
 - Hooks
 
 <!--
-- 2003 August 4
+- 2003 (August 4)
 - Ruby 1.8
 - First "mature" Ruby, IMO
-- Libraries
+- Lots of libraries added
     - YAML
     - CSV
     - WEBrick
     - open-uri
     - OpenSSL
     - Test::Unit
+- String interpolation of any expression
+    - Previously just variables
+- Enumerable `inject`
+    - Borrowed from Smalltalk
+    - Later aliased as `reduce`
 -->
 
 ---
@@ -698,16 +727,19 @@ keiju> Well. Ruby is also good.
 <!--
 - 2003:
     - David Heinemeier Hansson (DHH)
-    - Had been coding in PHP
     - Built Basecamp at 37 Signals
-- 2004 July 25: Ruby on Rails 1st public release
+        - Using Ruby
+    - Had been coding in PHP
 - MVC web framework
     - Extracted from Basecamp
-- Marketed w/ 15-minute video building blog app
+- 2004 July 25: Ruby on Rails 1st public release
+- Marketed w/ 15-minute video
+    - Builds a blog app
     - Fast at editing: TextMate
-- Convention over configuration
-    - Big reduction in code vs Java frameworks
 - Ruby's killer app
+- Big reduction in code vs Java web frameworks
+    - DSLs (meta-programming)
+    - Convention over configuration
 - Huge growth of community
 
 - Rails announcement: https://web.archive.org/web/20040823214652/http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/107370
@@ -767,6 +799,8 @@ assert f.boo == "boo"
 
 </div></div>
 
+![Groovy logo](assets/groovy.svg)
+
 <!--
 - Also 2004: Groovy
 - JVM
@@ -776,7 +810,6 @@ assert f.boo == "boo"
     - dynamic typing
     - closures
     - meta-programming
-- Grails (2006)
 
 - Primary source: https://web.archive.org/web/20030901064404/http://radio.weblogs.com/0112098/2003/08/29.html
 - Primary source: https://groovy-lang.org/
@@ -806,17 +839,21 @@ assert f.boo == "boo"
 
 <!--
 - 2007: Avi Bryant at RailsConf
+- "Smalltalk’s Lessons for Ruby"
 - Avi Bryant
     - Seaside web framework
     - GemStone Smalltalk
     - MagLev
         - Ruby VM based on GemStone
-- "Smalltalk’s Lessons for Ruby"
-- Ruby IS-A Smalltalk
 - Lessons the Ruby community should learn from Smalltalk
-    - TODO: What are the lessons?
-- TODO: Story about this talk
-- TODO: Read the links below
+    - Premise: Ruby and Smalltalk are **dialects** of same language
+    - Ruby could/should be faster
+        - As fast as Smalltalk
+        - As fast as Java
+            - Java's VM tech came from a Smalltalk research project
+- My take-away: Ruby was a **rediscovery** of Smalltalk
+    - Smalltalk community **became** Ruby community
+
 - Source: http://lambda-the-ultimate.org/node/2573
 - Source: https://www.artima.com/forums//threaded.jsp?forum=155&thread=220183
 - Source: https://news.ycombinator.com/item?id=3029981
@@ -825,20 +862,6 @@ assert f.boo == "boo"
 - Source: https://www.akitaonrails.com/2007/12/22/chatting-with-avi-bryant-part-2
 - Source: http://web.archive.org/web/20130729204305id_/http://itc.conversationsnetwork.org/shows/detail3432.html
 - Image source: https://www.flickr.com/photos/x180/505428676
--->
-
----
-<!-- _class: dark -->
-# Ruby was a **rediscovery** of Smalltalk
-
-<!--
-- Ruby was a **rediscovery** of Smalltalk
-- TODO: More
-    - A re-imagining
-    - A re-implementation
-    - A re-interpretation
-    - A re-creation
-    - A re-...
 -->
 
 ---
@@ -898,9 +921,11 @@ end
 
 <!--
 - 2008
-- Pharo
-- Forked from Squeak
+- Fork of Squeak:
+    - Pharo
 - Goal: revisit Smalltalk design; enhance it
+- Most modern Smalltalk
+
 - Based on OpenSmalltalk Virtual Machine
 -->
 
@@ -915,12 +940,14 @@ end
 <!--
 - 2008
 - Rubinius
+    - Evan Phoenix
 - Mostly written in Ruby
     - MRI: mostly C
 - Looked promising
-- There have been over 30 implementations of Ruby
-    - Source: https://ruby-compilers.com/
+    - Now abandoned
 -->
+
+![Rubinius logo](assets/rubinius.png)
 
 ---
 #### 2012
@@ -966,18 +993,20 @@ end
 
 </div></div>
 
+![Elixir logo](assets/elixir.svg)
+
 <!--
 - José Valim
     - Rails core team
     - book: Crafting Rails Applications
 - Erlang VM, with cleaner syntax
     - Mostly borrowed from Ruby
-- Lightweight threads
-    - 1 million threads on a 16-core machine
 - Elixir scales
     - Small embedded devices
     - Large clusters & distributed systems
+    - 1 million threads on a 16-core machine
 - Fault tolerance
+
 - https://elixir-lang.org/
 -->
 
@@ -987,6 +1016,8 @@ end
 - Chris Seaton
 - Fork of JRuby
 - Graal JIT and VM
+
+![TruffleRuby logo](assets/truffleruby.png)
 
 ---
 #### 2013
@@ -1084,33 +1115,13 @@ craig = User.new(name: "Craig")
 
 </div></div>
 
+![Crystal logo](assets/crystal.svg)
+
 <!--
 - I gave talk on Crystal very early on
     - local Ruby user group - STLRuby
     - had one of the 2 originators on video
 - https://crystal-lang.org/
--->
-
----
-#### 2014
-# MRuby
-
-- Lightweight Ruby implementation
-- Embeddable
-    - Easily called from C
-- No standard library
-    - Only core library
-- Can't override some core classes
-
----
-#### 2014
-# Ruby 2.2
-
-- Incremental garbage collector
-- Performance improvements
-
-<!--
-- Primary source: https://www.ruby-lang.org/en/news/2014/12/25/ruby-2-2-0-released/
 -->
 
 ---
@@ -1153,6 +1164,8 @@ let r2 = &mut message; // Compile error! Can't mutable borrow twice
 
 </div></div>
 
+![Rust logo](assets/rust.svg)
+
 <!--
 - https://www.rust-lang.org/
 -->
@@ -1178,64 +1191,6 @@ let r2 = &mut message; // Compile error! Can't mutable borrow twice
     - 3x3 performance goal started
 
 - Primary source: https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released/
--->
-
----
-#### 2016
-# Ruby 2.4
-
-- Unify Fixnum and Bignum into Integer
-- Performance improvements
-
-<!--
-- 2016: Ruby 2.4
-- Integer class
-    - Unified Fixnum, Bignum
-        - Was _mostly_ transparent
-- Performance improvements
-
-- Primary source: https://www.ruby-lang.org/en/news/2016/12/25/ruby-2-4-0-released/
--->
-
----
-#### 2017
-# Ruby 2.5
-
-<div class="columns"><div>
-
-- `rescue`, `ensure` don't require `begin`, `end`
-    -  can use surrounding block
-
-</div><div>
-
-~~~ ruby
-# Ruby 2.5
-def foo
-  f = File.open("file")
-  raise "error"
-rescue
-  "rescued"
-ensure
-  f.close
-end
-
-# Ruby < 2.5
-def foo
-  begin
-    f = File.open("file")
-    raise "error"
-  rescue
-    "rescued"
-  ensure
-    f.close
-  end
-end
-~~~
-
-</div></div>
-
-<!--
-- Primary source: https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/
 -->
 
 ---
@@ -1353,13 +1308,13 @@ end
 </div><div>
 
 ~~~ ruby
-def raise_to_power(number, power) = number ** power
+def pow(num, exp) = num ** exp
 
 receiver = Ractor.new do
   message = Ractor.receive
-  puts "received message is #{message}"
+  puts "received #{message}"
 end
-receiver.send("Hi!")  # prints received message is Hi!"
+receiver.send("Hi!")  # prints "received Hi!"
 received message is Hi!
 
 sender = Ractor.new do
@@ -1497,43 +1452,53 @@ craig = Person.new(name: "craig", age: "53")
 -->
 
 ---
-<!-- _class: dark -->
 ####
-# Newer Ruby Features
+# Ruby Today
 
-- Refinements
-- Data classes
-- Pattern matching
-- Concurrency
-- Immutable objects
+- Over 30 implementations
+- Innovations
+- New features
+- Community
 
 <!--
+- Over 30 implementations of Ruby
+    - Source: https://ruby-compilers.com/
+- Ruby is still innovating
+    - New features
+    - New implementations
+    - New libraries
+- Community is still strong
+    - RubyConf
+    - RubyKaigi
+    - Regional conferences
 - Most of us are not using Ruby to its full potential
-    - Not using modern Ruby features
-        - I have not used most of these
-- QUESTION: Who uses refinements regularly?
-- QUESTION: Who is using pattern matching?
-- QUESTION: Who is using Data class?
-- QUESTION: Who is using concurrency in Ruby?
+    - I still haven't really used:
+        - Refinements
+        - Pattern matching
+        - Ractors, fibers
+- Community will learn how to better use features
+    - Just as we learned how to use meta-programming
+        - Then learned how to not overdo it
 -->
 
 ---
-<!-- _class: dark -->
 ####
 # Ruby's Future
 
-- Ruby will still get new features
-    - Innovations
+- Ruby is alive and well!
+- New features
     - Borrowing/stealing
-- Ruby will last a long time
+    - Innovations
 - Something will replace Ruby
+- Ruby will survive
 
 <!--
-
+- Ruby is alive and well!
+    - It will continue to adapt
+    - Bright future for many years to come
 - Good solutions are rediscovered
-    - We need to look out for other solutions we can learn from
-- Compiled languages are winning again
-- Many Rubyists have already moved to other languages
+    - Look for other solutions we can learn from
+- Many Rubyists have moved to other languages
     - And communities
         - Community is important
             - Why I keep attending conferences
@@ -1541,16 +1506,14 @@ craig = Person.new(name: "craig", age: "53")
         - Features
         - Practices
         - Community
-        - DX
-- Ruby is still alive and doing well
-    - Bright future for many years to come
-    - It will adapt
+        - Developer tools
+    - They bring new ideas back to Ruby
 - Eventually Ruby use will dwindle
     - Long tail
+    - Long ways off
 -->
 
 ---
-<!-- _class: dark -->
 ####
 # Ideas for Ruby's Future
 
@@ -1571,33 +1534,6 @@ craig = Person.new(name: "craig", age: "53")
 -->
 
 ---
-<!-- _class: dark -->
-####
-# Take-aways
-
-- Good solutions are rediscovered
-- Ruby will last a long time
-- Ruby will still get new features
-- Something will replace Ruby
-- TBD
-
-<!--
-
-- Good solutions are rediscovered
-    - We need to look out for other solutions we can learn from
-- Compiled languages are winning again
-- Many Rubyists have already moved to other languages
-    - And communities
-        - Community is important
-            - Why I keep attending conferences
-- Ruby is still alive and doing well
-    - Bright future for many years to come
-    - It will adapt
-- Eventually Ruby use will dwindle
-    - Long tail
--->
-
----
 
 > A change in perspective is worth 80 IQ points.
 
@@ -1609,7 +1545,6 @@ craig = Person.new(name: "craig", age: "53")
 -->
 
 ---
-#### 1971
 
 > The best way to predict the future is to invent it.
 
