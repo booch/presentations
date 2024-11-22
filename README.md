@@ -13,7 +13,10 @@ Presentations are listed in chronological order, with the most recent listed fir
 
 ## 2024
 
-* TBD/WIP: [Laziness is a Virtue](https://booch.github.io/presentations/Laziness/slides.html) (Rocky Mountain Ruby)
+* 2024-11-13: [Fifty Years of Ruby](https://booch.github.io/presentations/Fifty-Years-of-Ruby/slides.html) (RubyConf)
+    * Short URL: http://craigbuchek.com/fifty
+
+* 2024-10-07: [Laziness is a Virtue](https://booch.github.io/presentations/Laziness/slides.html) (Rocky Mountain Ruby)
 
 * 2024-08-01: [Architecture Big and Small](https://booch.github.io/presentations/Architecture-Big-and-Small/slides.html) (Madison Ruby+)
     * Short URL: http://craigbuchek.com/arch
