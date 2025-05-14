@@ -22,6 +22,7 @@ paginate: false
 ---
 <!-- 
 _class: transition
+paginate: true
 -->
 
 ## Part 1
@@ -221,16 +222,46 @@ _class: transition
 - "Show Commands"
 - "Show Numbers"
 - "Show Grid"
-- "Show Colors"
+- "Command Mode"
+- "Dictation Mode"
+- "Spelling Mode"
 
 ---
 
 ## Demo: Apple Voice Control
 
-- "Select \<word>"
+- "Click \<menu> menu"
 - "Click \<button>"
+- "Click and hold mouse"
+- "Search for \<phrase>"
 - "Scroll \<direction>"
-- "Press \<key>"
+
+---
+
+## Demo: Apple Voice Control
+
+- "Press \<key> key"
+- "New line"
+- "Type \<phrase>"
+- "Type \<letters>"
+- "\<emoji> emoji"
+
+---
+
+## Demo: Apple Voice Control
+
+- "Insert \<phrase> before/after \<phrase>"
+- "Replace \<phrase> with \<phrase>"
+- "Select \<phrase>"
+- "Extend selection 2 words"
+- "Capitalize/lowercase/uppercase that"
+- "Put quotes around that"
+
+---
+
+## Demo: Apple Voice Control
+
+- [Demo](https://www.youtube.com/watch?v=kvFHz5wf0Qk)
 
 ---
 
