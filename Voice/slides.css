@@ -1,0 +1,163 @@
+@theme "boochtek";
+@import-theme "default";
+
+/* Theme colors */
+:root {
+    --title-text-color: black;
+    --text-color: black;
+    --link-color: darkblue;
+    --header-footer-color: rgba(100, 100, 100, 0.6);
+    --header-footer-background: rgba(240, 240, 240, 0.2);
+}
+section {
+    color: var(--text-color);
+}
+section a {
+    color: var(--link-color);
+}
+
+/* Slides */
+section {
+    place-content: baseline;
+}
+section.title,
+section:has(blockquote) {
+    place-content: center;
+    text-align: center;
+}
+
+/* Transition slides */
+section.transition {
+    text-align: center;
+    place-content: center;
+}
+section.transition h2 {
+    color: var(--title-text-color);
+    font-size: 80px;
+}
+
+
+/* Headings */
+section h1 {
+    color: var(--title-text-color);
+}
+section h2 {
+    color: black;
+}
+section.title h1 {
+    font-size: 100px;
+}
+section.title h3 {
+    font-size: 50px;
+    /* position: fixed;
+    top: -10px;
+    right: 100px; */
+    color: inherit;
+    background: none;
+    text-align: center;
+}
+
+
+/* Headers and footers */
+header,
+footer,
+section::after,
+section h4 {
+    font-size: 20px;
+    padding: 0 1ex;
+    color: var(--header-footer-color);
+    background: var(--header-footer-background);
+    z-index: 2;
+}
+header a {
+    color: inherit;
+}
+
+/* Still needed/useful/harmless? */
+section.h1 {
+    clear: both;
+}
+
+
+/* Images */
+img {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* Logos */
+img[alt="JRuby logo"] {
+    width: 160px;
+    position: absolute;
+    top: 100px;
+    right: 100px;
+}
+img[alt="Elixir logo"] {
+    width: 320px;
+    top: 10px;
+    right: -15px;
+}
+
+/* Books */
+img[src="assets/Smalltalk-Best-Practice-Patterns.jpg"]
+{
+    border: 1px solid black;
+    margin: auto;
+    position: relative;
+    top: -60px;
+    width: 50%;
+}
+img[src="assets/Smalltalk-Best-Practice-Patterns.jpg"] {
+    width: 46%;
+    border: none;
+}
+
+/* Other slide images */
+img[src="assets/DHH-headshot-2017-full.jpg"]
+{
+    width: 104%;
+    left: 0;
+    top: -60px;
+}
+
+/* 2-column layout */
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+/* Quotes */
+blockquote {
+    font-size: 1.4em;
+    font-style: italic;
+    /* margin: 1em; */
+    /* padding: 1em; */
+    border: none;
+    text-align: center;
+    color: var(--title-text-color);
+}
+blockquote p {
+    display: inline;
+}
+blockquote p::before {
+    font-size: 1.5em;
+    font-family: serif;
+    content: open-quote;
+}
+blockquote p::after {
+    font-size: 1.5em;
+    font-family: serif;
+    content: close-quote;
+}
+cite {
+    font-style: normal;
+    display: block;
+    text-align: right;
+    padding-right: 5em;
+}
+cite::before {
+    content: "— ";
+}

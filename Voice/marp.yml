@@ -1,0 +1,16 @@
+theme: slides.css
+template: bespoke
+bespoke:
+  osc: false # Don't show on-screen controls.
+  progress: true # Show a progress bar in the top few pixels of the window.
+  transition: true # Allow transition animations between slides.
+options:
+  emoji:
+    unicode: false # Don't use Twemoji (because it hits the Internet).
+    shortcode: true # Convert shortcodes (like `:dog:`) to Unicode (🐶).
+pdfNotes: true # Include notes in PDFs.
+pdfOutlines:
+  pages: false
+  headings: true
+allowLocalFiles: true # Allow PDF converter to read local (relative) files. (WARNING: Potentially insecure.)
+image: og-image.png
