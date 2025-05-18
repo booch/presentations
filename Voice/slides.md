@@ -50,7 +50,7 @@ _class: transition
 - 1982 by [Don't Ask Software](https://www.text2speech.com/)
 - Commodore C64, Apple II, Atari 400/800
 - [Text-To-Phoneme](https://github.com/s-macke/SAM/wiki/Phonetic-Alphabet)
-    - `HEH3LOW, MAY3 NEY3M IHZ KRAY5G`
+    - `HEH3LOW, MAY3 NEY3M IHZ KREY5G`
 - Phoneme-To-Speech
 - Macintalk - [1984 Macintosh](https://www.folklore.org/Intro_Demo.html) [demo](https://www.youtube.com/watch?v=2B-XwPjn9YY)
 
@@ -513,8 +513,7 @@ _class: transition
 - [Numen](https://git.sr.ht/~geb/numen/tree/master/item/README.md) (free)
 - Voice control
 - Linux only
-- [demo](https://numen.org/)
-- `$NUMEN_MODEL`
+- [demo](https://numenvoice.org/)
 
 ---
 <!-- 
