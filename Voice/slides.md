@@ -523,15 +523,86 @@ _class: transition
 ## Part 2
 
 ---
+
+## Part 2
+
+- Updates from last week
+- Review from last week
+- Voice and AI
+- Coding with Voice and AI
+- Coding with Voice!
+- Feasibility
+- Conclusions
+
+---
 <!-- 
 _class: transition
 -->
 
-## AI and Voice
+## Updates from Last Week
 
 ---
 
-## AI & Voice
+## Updates from Last Week
+
+- Talon config files fail silently
+    - Random text inserted
+- Have to **override** default config files
+    - More specific file selection criteria
+        - `language: en`
+    - Emoji were only overriding in **some** modes
+- Learning!
+
+---
+
+## Updated Talon Configs
+
+- Emojis in any mode
+- `alpha bravo Charlie` **and** `air bat cap`
+- Easier to change modes
+- App-specific: Bash
+- Mode indicator
+- Moved subtitles
+- Large help font
+- Vocabulary file
+
+---
+
+## Vocabulary
+
+- Additional words/phrases
+    - Recognition will **expect** and **listen for**
+- Replace words/phrases with other words/phrases
+    - Spelling/capitalization
+    - Acronyms
+        - Pronounced ("NASA")
+        - Spelled out ("NBC") without phonetic alphabet
+    - Substitutions
+        - "GitHub booch" → "https://github.com/booch"
+    - Mishearings
+        - "boot jack" → "Buchek"
+
+---
+
+## Review from Last Week
+
+- Text-to-Speech (TTS)
+- Dictation
+    - Speech-to-Text (STT)
+    - Automated Speech Recognition (ASR)
+- Voice Control
+- Questions?
+
+---
+<!-- 
+_class: transition
+-->
+
+## Voice and AI
+
+---
+
+## Voice and AI
 
 - Large Language Models with voice
 - Voice generation/synthesis
@@ -540,50 +611,32 @@ _class: transition
 
 ---
 
----
-<!-- 
-_class: transition
--->
-
-## Part 2
-
----
-
-## Part 2
-
-- AI and Voice
-- Coding with Voice
-
----
-<!-- 
-_class: transition
--->
-
-## AI & Voice
-
----
-
-## AI & Voice
-
-- Large Language Models with voice
-- Voice generation/synthesis
-- Voice cloning
-
----
-
-## AI & Voice
+## Voice and AI
 
 - Natural Language Processing (NLP)
     - Machine Learning (ML)
 - Natural Language Understanding (NLU)
     - Meaning, Context, Intent, Sentiment
-    - Semantic Analysis:
-        - Named Entity Recognition (NER)
-        - Part-of-Speech (POS) tagging
-        - Dependency Parsing
-        - Text Classification
+    - Semantic Analysis
     - Ontology
         - Relationships between words and phrases
+- Generative AI
+    - Text, Images, Audio, Video
+
+---
+
+## LLMs
+
+- ChatGPT, Claude, Gemini, etc
+- Trained on large datasets
+    - Predicts next word
+- Prompt engineering
+- "Understanding"
+    - Context, Meaning, Intent, Sentiment
+- "Reasoning", "Deep Thinking"
+- Memory - short-term, long-term
+- Generative AI
+    - Text, Images, Audio, Video
 
 ---
 
@@ -638,8 +691,24 @@ _class: transition
 
 - VS Code
 - GitHub Copilot
-- Cursor
+- Cursor, Windsurf, Zed, etc
+- Talon
 - Cursorless (demo)
+
+---
+
+## Demo: VS Code with Copilot
+
+- VS Code Speech extension
+    - STT and TTS
+- Hold `Command+I` and speak
+    - "Add a factorial function"
+    - Accept with `Command+Enter`
+    - Select text, "Delete this"
+    - Cancel with `Esc`
+- Dictation
+    - `Command+Alt+V`
+        - Broken!
 
 ---
 
@@ -666,9 +735,172 @@ _class: transition
 - "curse undo"
 - "select word", "skip word"
 - "select line", "skip line"
-- "preview markdown"
-- "jump line 12"?
-- "command palette"?
-- "multi cursor add below"?, "multi cursor disable"?
-- "camel that", "snake that", "kebab that", "dub string", "dunder", "hammer"
-- "comment line 12 until 14"
+- "preview markdown", "tab close"
+- "snake that", "camel that", "dub string that"
+    - "dunder that", "hammer that"
+
+---
+
+## Demo: Cursorless
+
+- [Cursorless](https://www.cursorless.org/)
+    - Tutorial part 1
+    - Tutorial part 2
+- [Docs](https://www.cursorless.org/docs)
+- [Cheat sheet](https://www.cursorless.org/cheatsheet)
+
+---
+<!--
+_class: transition
+-->
+## Experience Reports
+
+---
+
+## Goals
+
+- Surpass my marginal typing skills
+    - Supplement keyboard with voice
+- Conversation with AI
+    - Should be like pair programming
+- Not having to think about input
+    - Ability to just think about code/sentences
+
+---
+
+## Experience Reports
+
+- Environmental noises
+- Cognitive effort
+    - Entering text vs conversation
+    - "Babysitting" recognition
+    - Complete sentences vs phrases vs words
+- Thinking in phrases works best for me
+    - Given current recognition accuracy
+    - I want to get to sentences and conversation
+
+---
+
+## Recognition Errors
+
+- Even in quiet environments
+
+- "incomplete sentences" heard as "incomplete sentences"
+- "Claude" heard as "clad"
+- "depressed" heard as "oppressed"
+- "Talon" heard as "tall end" or "talent"
+
+---
+
+## Experience Report - Talon
+
+- Requires a lot of configuration
+- Subtitles
+    - Feedback on recognition accuracy
+- Dictation + keyboard editing
+    - Select what it got wrong
+        - Say the replacement text
+    - Type punctuation
+- Better than typing
+    - When I remember to use it
+- Better than Apple Voice Control
+
+---
+
+## Demo: Talon - Homophones
+
+- "There is a lot of stuff there."
+- "They said they're going to get 2 more, too."
+- Select a word
+    - "Phones that"
+    - "Choose 3"
+
+---
+
+## Experience Report - Claude
+
+- No voice input on Mac
+    - Sessions easily shared between Mac and iPad/iPhone
+    - I used Talon
+- Unable to turn my ramblings into coherent text
+    - Tried for slides
+    - Will try with prose
+    - Will try with outlines
+- What it shows it heard and what it processes seem very different
+    - Text shown was often incomprehensible
+    - Replies implied it understood it
+
+---
+
+## Experience Report - iPhone
+
+- Limited choices
+    - Voice Control
+    - Voice input
+    - Dictation apps
+    - Per-app voice input
+- Voice input plus keyboard editing
+
+---
+
+## Experience Report - iPad
+
+- Limited choices
+    - Voice Control
+    - Voice input
+    - Dictation apps
+    - Per-app voice input
+- Can use external keyboard
+- Voice input plus keyboard editing
+- Maybe Voice Control
+    - Tuned to be more like Talon
+
+---
+<!--
+_class: transition
+-->
+## Conclusions
+
+---
+
+## Conclusions
+
+- Voice technology is far from perfect
+- Takes practice
+    - Takes time
+- Worth the effort?
+    - Hopefully it will get better
+
+---
+
+## Conclusions
+
+- Very fiddly
+    - Config files!
+    - Programmable!
+    - Broken half the time!
+- Requires a lot of setup
+
+---
+
+## Conclusions
+
+- Talon is like Vim
+    - Command mode vs input mode
+- I'm not a fan of modes
+    - Confusion about which mode I'm in
+    - Cognitive overhead
+- Visual mode indicator helps
+- I want to dictate **and** edit
+
+---
+
+## Conclusions
+
+- A tool
+    - Another input method
+    - Augmentation
+    - Rough edges
+- Requires effort/practice/time
+- Here to stay
+    - Multimodal Interaction (MMI)
