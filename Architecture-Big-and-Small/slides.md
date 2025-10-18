@@ -876,7 +876,7 @@ class: single-image
 
 - Architecture is about structure
 - Architecture is about people
-    - Interactions is space and time
+    - Interactions in space and time
     - Interactions with people and objects
 
 ???
@@ -992,7 +992,7 @@ class: single-image
 
 - Slides: http://craigbuchek.com/arch
     - Hit P to see notes
-    - Source: https://github.com/booch/presentations
+    - Source: [https://github.com/booch/presentations](https://github.com/booch/presentations)
 
 ???
 
