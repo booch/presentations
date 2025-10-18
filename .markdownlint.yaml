@@ -1,5 +1,4 @@
 ---
-
 # Start with the default set of rules turned on.
 default: true
 
@@ -13,3 +12,18 @@ line-length: false
 # Allow multiple blank lines. (MD012)
 no-multiple-blanks: false
 
+# Don't force URLs inside of <> brackets. (MD034)
+no-bare-urls: false
+
+# Allow multiple headings with the same name. (MD024)
+# For example, CHANGELOG will have "Changed", "Added", and "Fixed" sections for each version.
+no-duplicate-heading: false
+
+# Slides don't generally have a title at the top of the file. (MD041)
+first-line-heading: false
+
+# Allow HTML tags. (MD033)
+no-inline-html: false
+
+# Heading increments will vary in slides. (MD001)
+heading-increment: false
